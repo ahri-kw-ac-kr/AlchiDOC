@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">My Application54</string>
+
+    <string name="StringValue">이미지가 열리지 않습니다.</string>
+
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="log_in">로그인하기</string>
+    <string name="man">남자</string>
+    <string name="woman">여자</string>
+    <string name="sex">성별</string>
+
+    <string name="login1">로그인</string>
+    <string name="login4">ex. mhse8919@gmail.com</string>
+    <string name="login5">비밀번호를 잊어버리셨나요?</string>
+    <string name="login6">비밀번호 찾기</string>
+
+    <string name="password_find1">비밀번호 찾기</string>
+    <string name="password_find2">AlchiDOC에 가입된 이메일을 입력해 주세요.\n
+    입력된 이메일로 비밀번호를 전송해 드립니다.</string>
+    <string name="password_find3">전송하기</string>
+
+    <string name="sign_up1">회원가입</string>
+    <string name="sign_up2">이름</string>
+    <string name="sign_up3">생년월일</string>
+    <string name="sign_up4">이미 계정이 존재하나요?</string>
+    <string name="sign_up5">회원가입하기</string>
+    <string name="sign_up6">ex. 19950809</string>
+
+</resources>

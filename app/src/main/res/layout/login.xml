@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    >
+
+    <ImageView
+        android:contentDescription="@string/StringValue"
+        android:layout_marginBottom="16dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+        android:gravity="start"
+        ></ImageView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/nanumregular"
+        android:gravity="left"
+        android:text="@string/login1"
+        android:textColor="#646464"
+        android:textSize="30sp"></TextView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nanumlight"
+        android:gravity="left"
+        android:text="@string/email"
+        android:textColor="#646464"
+        android:textSize="18sp"></TextView>
+
+    <EditText
+        android:inputType="textWebEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:hint="@string/login4"
+        android:textSize="16dp"></EditText>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nanumlight"
+        android:gravity="left"
+        android:text="@string/log_in"
+        android:textColor="#646464"
+        android:textSize="18sp"></TextView>
+    <EditText
+        android:inputType="textWebPassword"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:textSize="16dp"></EditText>
+
+
+
+
+
+<!-- 패스워드 / 싸인업-->
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/nanumregular"
+            android:layout_marginBottom="16dp"
+            android:textSize="14sp"
+            android:layout_weight="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/login5"
+            ></TextView>
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/nanumregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="left"
+            android:text="@string/login6"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp"></TextView>
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_grad"
+        android:fontFamily="@font/nanumextra"
+        android:text="@string/log_in"
+        android:textColor="#ffffff"
+        android:textSize="18sp"></Button>
+
+
+</LinearLayout>
