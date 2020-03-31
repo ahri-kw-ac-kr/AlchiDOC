@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:fontFamily="@font/nanumextra"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#286794"
+        android:textSize="40sp"
+       />
+
+
+
+    <TextView
+        android:letterSpacing="0.05"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:id="@+id/item_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#707070"
+        android:textSize="17sp"
+        android:fontFamily="@font/nanumregular"
+        android:textStyle="bold" />
+    <TextView
+        android:letterSpacing="0.05"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:drawableLeft="@drawable/ic_access_time_black_24dp"
+        android:id="@+id/item_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#707070"
+        android:textSize="17sp"
+        android:fontFamily="@font/nanumregular"
+        android:textStyle="bold" />
+</FrameLayout>

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.jms.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
 public class Bottom extends AppCompatActivity {

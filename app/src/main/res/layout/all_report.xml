@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/default1"
+            android:elevation="1dp"
+            android:fontFamily="@font/nanumextra"
+            >
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:text="인지행동 종합플랜"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"></TextView>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:fillViewport="true"
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center|top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nanumregular"
+                android:text="5월 17일 목요일 달성률"
+                android:textColor="#646464"
+                android:textSize="20sp"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:padding="3dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="#ffffff"
+                    android:layout_width="118dp"
+                    android:layout_height="118dp">
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:layout_gravity="center"
+                android:id="@+id/arc_progress1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:arc_bottom_text="햇빛량"
+                app:arc_bottom_text_size="13sp"
+                app:arc_finished_color="#FA7033"
+                app:arc_progress="75"
+                app:arc_stroke_width="8dp"
+                app:arc_text_color="#707070"
+                app:arc_unfinished_color="#E6E6E6" />
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="#ffffff"
+                    android:layout_width="118dp"
+                    android:layout_height="118dp">
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:layout_gravity="center"
+                android:id="@+id/arc_progress2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:arc_bottom_text="활동량"
+                app:arc_bottom_text_size="13sp"
+                app:arc_finished_color="#329035"
+                app:arc_progress="80"
+                app:arc_stroke_width="8dp"
+                app:arc_text_color="#707070"
+                app:arc_unfinished_color="#E6E6E6" />
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="#ffffff"
+                    android:layout_width="118dp"
+                    android:layout_height="118dp">
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:layout_gravity="center"
+                android:id="@+id/arc_progress3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:arc_bottom_text="수면량"
+                app:arc_bottom_text_size="13sp"
+                app:arc_finished_color="#7476B3"
+                app:arc_progress="55"
+                app:arc_stroke_width="8dp"
+                app:arc_text_color="#707070"
+                app:arc_unfinished_color="#E6E6E6" />
+            </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nanumregular"
+                android:text="세부사항별 인지행동 종합플랜"
+                android:textColor="#646464"
+                android:textSize="20sp"
+                android:textStyle="bold"></TextView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginBottom="35dp"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#ffffff"
+                android:layout_gravity="center"
+                android:layout_width="365dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_bed"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="평균 뒤척임"
+                    android:textAlignment="viewStart"
+                    android:textColor="#7476B3"
+                    android:textSize="22sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="42dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="33"
+                    android:textColor="#7476B3"
+                    android:textSize="22sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="%"
+                    android:textColor="#707070"
+                    android:textSize="19sp"></TextView>
+                <TextView
+                    android:lineSpacingExtra="6dp"
+                    android:layout_marginTop="58dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:textColor="#5A5959"
+                    android:fontFamily="@font/nanumregular"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="연령에 맞는 적당한 수면 시간입니다. 오늘도 평균 수면 시간을 유지하도록 하세요.">
+                </TextView>
+                <View
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="120dp"
+                    android:layout_width="320dp"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC"/>
+
+
+
+                <TextView
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_moon"
+                    android:layout_marginTop="140dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:lines="1"
+                    android:text="총 수면 시간"
+                    android:textAlignment="viewStart"
+                    android:textColor="#7476B3"
+                    android:textSize="22sp"></TextView>
+                <TextView
+                android:layout_gravity="right"
+                android:layout_marginTop="140dp"
+                android:layout_marginRight="94dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbold"
+                android:text="7"
+                android:textColor="#7476B3"
+                android:textSize="22sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="143dp"
+                    android:layout_marginRight="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="시간"
+                    android:textColor="#707070"
+                    android:textSize="19sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="140dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="51"
+                    android:textColor="#7476B3"
+                    android:textSize="22sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="143dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="분"
+                    android:textColor="#707070"
+                    android:textSize="19sp"></TextView>
+                <TextView
+                    android:lineSpacingExtra="6dp"
+                    android:layout_marginTop="173dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:textColor="#5A5959"
+                    android:fontFamily="@font/nanumregular"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="어제의 수면 시간당 평균 뒤척임이 수면 장애 수준의 수치입니다. 오늘의 숙면을 취하기 위해
+서 오전의 햇빛양과 오전 활동량을 반드시 어제
+보다 많이 늘려야 수면 시간이 늘어나고 숙면을
+취할 수 있습니다. 일주일 내에 4회 이상 같은
+현상이 발생하면 수면 장애 증세로 의심할 수
+있습니다. 수면 장애 개선을 위하여 적극적으로
+수면 위생 행동을 따라해 주십시오.">
+                </TextView>
+                <View
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="380dp"
+                    android:layout_width="320dp"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC"/>
+
+                <TextView
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_sprint"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="주간 활동량"
+                    android:textAlignment="viewStart"
+                    android:textColor="#329035"
+                    android:textSize="22sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginRight="42dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="68"
+                    android:textColor="#329035"
+                    android:textSize="22sp"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="%"
+                    android:textColor="#707070"
+                    android:textSize="19sp"></TextView>
+                <TextView
+                    android:lineSpacingExtra="6dp"
+                    android:layout_marginTop="430dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:textColor="#5A5959"
+                    android:fontFamily="@font/nanumregular"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="어제 주간 활동량은 충분하였습니다.
+오늘도 유지하거나 조금씩 늘려보세요. 라라랄라라라라라 스크롤뷰가 되나요 안 되나요 궁금합니다 제발 됐으면 좋겠ㅅ다~랄라라라라라 스크롤뷰가 되나요 안 되나요 궁금합니다 내일 뭐먹지 맛있는 거 먹어야지 배고프다 음료수 콜라 사이다 제발랄라라라라라 스크롤뷰가 되나요 안 되나요 궁금합니다 제발랄라라라라라 스크롤뷰가 되나요 안 되나요 궁금합니다 제발랄라라라라라 스크롤뷰가 되나요 안 되나요 궁금합니다 제발">
+                </TextView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2B90D9"
+        android:padding="3dp"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_editor_absoluteX="16dp"
+        app:menu="@menu/bottom_menu" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

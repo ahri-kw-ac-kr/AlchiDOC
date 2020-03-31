@@ -9,13 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.jms.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DayLight">
+        </activity>
+        <activity android:name=".DayAct">
+        </activity>
+        <activity android:name=".DaySleep">
+        </activity>
+        <activity android:name=".Report">
+        </activity>
+
+
     </application>
 
 </manifest>

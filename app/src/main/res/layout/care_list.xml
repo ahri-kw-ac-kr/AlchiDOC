@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/default1"
+            android:elevation="1dp"
+            android:fontFamily="@font/nanumextra"
+            >
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:text="보호자 목록"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"></TextView>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nanumregular"
+            android:text="내가 케어하는 사람"
+            android:textColor="#646464"
+            android:textSize="18sp"></TextView>
+
+
+
+        <Button
+            android:textColor="#646464"
+            android:paddingLeft="22dp"
+            android:paddingRight="10dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/list"
+            android:fontFamily="@font/nanumregular"
+            android:textSize="20sp"
+            android:text="김승은 (010-****-4333)"
+            android:drawableRight="@drawable/ic_more_vert_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+        </Button>
+
+        <Button
+            android:textColor="#646464"
+            android:paddingLeft="22dp"
+            android:paddingRight="10dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/list"
+            android:fontFamily="@font/nanumregular"
+            android:textSize="20sp"
+            android:text="이진영 (010-****-9876)"
+            android:drawableRight="@drawable/ic_more_vert_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+        </Button>
+
+        <Button
+            android:textColor="#646464"
+            android:paddingLeft="22dp"
+            android:paddingRight="10dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/list"
+            android:fontFamily="@font/nanumregular"
+            android:textSize="20sp"
+            android:text="최정원 (010-****-5432)"
+            android:drawableRight="@drawable/ic_more_vert_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+        </Button>
+
+        <Button
+            android:textColor="#9C9FA6"
+            android:paddingLeft="22dp"
+            android:paddingRight="7dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/list"
+            android:fontFamily="@font/nanumregular"
+            android:textSize="20sp"
+            android:text="+  추가하기"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+        </Button>
+
+
+    </LinearLayout>
+
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2B90D9"
+        android:padding="3dp"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_editor_absoluteX="16dp"
+        app:menu="@menu/bottom_menu" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

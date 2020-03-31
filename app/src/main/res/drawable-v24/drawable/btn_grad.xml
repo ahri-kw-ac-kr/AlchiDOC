@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:startColor="@color/default1"
+                android:endColor="@color/default2"
+                android:angle="180" />
+            <corners
+                android:radius="10dp" />
+
+            <!--테두리하고 싶을 때!!
+                android:color="@color/stroke"
+                android:width="1pt"/-->
+        </shape>
+    </item>
+</selector>
