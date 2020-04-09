@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     //상단바!!!
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -20,13 +19,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/default1"
             android:elevation="1dp"
-            android:fontFamily="@font/nanumextra"
-            >
+            android:fontFamily="@font/nanumextra">
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
@@ -68,12 +66,9 @@
             android:text="월간" />
     </com.google.android.material.tabs.TabLayout>
 
-
-
-
     <ScrollView
         android:fillViewport="true"
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="630dp"
         android:layout_marginEnd="1dp"
@@ -82,11 +77,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-
-
         <LinearLayout
-            android:id="@+id/title"
+            android:id="@+id/title3"
             android:layout_marginTop="15dp"
             android:layout_gravity="center|top"
             android:layout_width="match_parent"
@@ -104,7 +96,7 @@
 
                     android:fontFamily="@font/nanumregular"
                     android:gravity="right"
-                    android:text="5월 17일 목요일 "
+                    android:text="5월 전체 평균  "
                     android:textColor="#646464"
                     android:textSize="22sp"
                     android:textStyle="bold"></TextView>
@@ -112,62 +104,147 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginBottom="14dp"
+                    android:background="#F3E8FE"
 
-                    android:fontFamily="@font/nanumregular"
+                    android:fontFamily="@font/nanumextra"
                     android:gravity="left"
-                    android:text=" 수면량 72%"
-                    android:textColor="#7476B3"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
+                    android:text="수면량 72%"
+                    android:textColor="#4E23A1"
+                    android:textSize="22sp"></TextView>
             </LinearLayout>
 
-
             <LinearLayout
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:padding="3dp"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="240dp"
                 android:orientation="horizontal">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:padding="10dp"
+                    android:id="@+id/piechart3"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="225dp"
+                    android:layout_height="225dp" />
                 <androidx.cardview.widget.CardView
-                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:cardElevation="0.8dp"
                     app:cardCornerRadius="0dp"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="242dp">
-                    <org.eazegraph.lib.charts.ValueLineChart
-                        android:id="@+id/cubiclinechart"
-                        android:layout_width="340dp"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center"
-                        app:egAxisTextSize="0sp"
-                        app:egCurveSmoothness="0.3"
-                        app:egLegendHeight="40dp"
-                        app:egLineStroke="3dp"
-                        app:egUseCubic="true"
-                        app:egUseOverlapFill="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                        <LinearLayout
+                            android:gravity="center|center_vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:textSize="20sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="■"
+                                android:textColor="#A991D8"></TextView>
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text=" 과다 "
+                                android:textColor="#5F5F5F"
+                                android:textSize="14sp"></TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumregular"
+                                android:gravity="left"
+                                android:text=" 04일"
+                                android:textColor="#5F5F5F"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:textSize="20sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="■"
+                                android:textColor="#C5AEEF"></TextView>
+                            <TextView
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 충분 "
+                                android:textColor="#5F5F5F"
+                                android:textSize="14sp"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumregular"
+                                android:gravity="left"
+                                android:text=" 15일"
+                                android:textColor="#5F5F5F"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:textSize="20sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="■"
+                                android:textColor="#E6CEFF"></TextView>
+                            <TextView
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 부족 "
+                                android:textColor="#5F5F5F"
+                                android:textSize="14sp"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanumregular"
+                                android:gravity="left"
+                                android:text=" 11일"
+                                android:textColor="#5F5F5F"
+                                android:textSize="16sp"
+                                android:textStyle="bold"></TextView>
+                        </LinearLayout>
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="15dp"
 
-                android:fontFamily="@font/nanumregular"
-                android:text="오늘의 수면 기록"
-                android:textColor="#646464"
-                android:textSize="20sp"
-                android:textStyle="bold"></TextView>
             <androidx.cardview.widget.CardView
                 android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
@@ -183,7 +260,7 @@
                     android:drawableLeft="@drawable/ic_bed"
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/nanumbold"
-                    android:text="총 수면시간"
+                    android:text="월평균 수면시간"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"
@@ -246,7 +323,7 @@
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="깊은 수면"
+                    android:text="월평균 깊은 수면"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"
@@ -307,7 +384,7 @@
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="얕은 수면"
+                    android:text="월평균 얕은 수면"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"
@@ -371,7 +448,7 @@
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="깨어남"
+                    android:text="월평균 깨어남"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"
@@ -416,7 +493,7 @@
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="평균 뒤척임"
+                    android:text="월평균 뒤척임"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"
@@ -449,7 +526,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nanumregular"
@@ -460,6 +537,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_marginBottom="70dp"
+                android:layout_marginTop="10dp"
                 app:cardElevation="10dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"

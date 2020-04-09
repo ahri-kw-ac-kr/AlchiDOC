@@ -54,7 +54,6 @@ public class SamplePagerAdapter extends PagerAdapter {
         tv2.setText("인천시 중구 영종해안남로321번길"); //user에 따라 수정
         tv3.setText("2020년 3월 19일 오후 3시 57분"); //user에 따라 수정
 
-
         container.addView(view);
         return view;
     }

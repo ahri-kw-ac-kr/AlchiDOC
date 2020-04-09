@@ -9,22 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name="com.example.jms.MainActivity">
+        </activity>
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".CareList">
+        </activity>
         <activity android:name=".DayLight">
         </activity>
         <activity android:name=".DayAct">
         </activity>
         <activity android:name=".DaySleep">
         </activity>
+        <activity android:name=".WeekLight">
+        </activity>
+        <activity android:name=".WeekAct">
+        </activity>
+        <activity android:name=".WeekSleep">
+        </activity>
+        <activity android:name=".MonthAct">
+        </activity>
+        <activity android:name=".MonthLight">
+        </activity>
+        <activity android:name=".MonthSleep">
+        </activity>
         <activity android:name=".Report">
         </activity>
+
 
 
     </application>

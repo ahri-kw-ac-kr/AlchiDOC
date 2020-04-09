@@ -24,14 +24,10 @@ public class Bottom extends AppCompatActivity {
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
             }
         });
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -41,11 +37,13 @@ public class Bottom extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.app_bar_location:
+                Toast.makeText(this, "지도 버튼 누름!", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.app_bar_settings:
-                Toast.makeText(this, "제발!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "설정 버튼 누름!!", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

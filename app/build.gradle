@@ -18,13 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
+    implementation 'com.diogobernardino:williamchart:3.3.0'
+    implementation 'com.ssomai:android.scalablelayout:2.1.6'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     implementation 'com.google.android.material:material:1.2.0-alpha01'
-
-
-
     implementation 'com.github.blackfizz:eazegraph:1.2.5l@aar'
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
     implementation 'cn.nightcoder:sliderindicator:1.0.1'

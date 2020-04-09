@@ -29,20 +29,19 @@ public class DayLight extends AppCompatActivity {
             }
         });
 
-
         BarChart mBarChart = (BarChart) findViewById(R.id.bar);
 
         mBarChart.addBar(new BarModel("09", 0.0f, Color.parseColor("#ffffff")));
         mBarChart.addBar(new BarModel("10", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("11", 1.2f, Color.parseColor("#F2EAB2")));
-        mBarChart.addBar(new BarModel("12", 2.1f, Color.parseColor("#F7E082")));
-        mBarChart.addBar(new BarModel("13", 3.3f, Color.parseColor("#D83909")));
-        mBarChart.addBar(new BarModel("14", 3.8f, Color.parseColor("#B02E06")));
-        mBarChart.addBar(new BarModel("15", 3.1f, Color.parseColor("#F8683C")));
-        mBarChart.addBar(new BarModel("16", 2.4f, Color.parseColor("#F99678")));
+        mBarChart.addBar(new BarModel("11", 1.2f, Color.parseColor("#ffd54f")));
+        mBarChart.addBar(new BarModel("12", 2.1f, Color.parseColor("#ffd54f")));
+        mBarChart.addBar(new BarModel("13", 3.3f, Color.parseColor("#fb8c00")));
+        mBarChart.addBar(new BarModel("14", 3.8f, Color.parseColor("#d84315")));
+        mBarChart.addBar(new BarModel("15", 3.1f, Color.parseColor("#fb8c00")));
+        mBarChart.addBar(new BarModel("16", 2.4f, Color.parseColor("#fb8c00")));
         mBarChart.addBar(new BarModel("17", 0.0f, Color.parseColor("#ffffff")));
         mBarChart.addBar(new BarModel("18", 0.0f, Color.parseColor("#ffffff")));
-
+        mBarChart.addBar(new BarModel("19", 0.0f, Color.parseColor("#ffffff")));
 
 
         mBarChart.startAnimation();

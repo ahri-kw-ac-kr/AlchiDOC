@@ -33,19 +33,20 @@ public class DaySleep extends AppCompatActivity {
 
         ValueLineSeries series = new ValueLineSeries();
         series.setColor(Color.parseColor("#7476B3"));
-        series.addPoint(new ValueLinePoint("23", 1.0f));
-        series.addPoint(new ValueLinePoint("24", 2.4f));
-        series.addPoint(new ValueLinePoint("01", 3.6f));
-        series.addPoint(new ValueLinePoint("02", 2.2f));
-        series.addPoint(new ValueLinePoint("03", 2.8f));
-        series.addPoint(new ValueLinePoint("04", 3.0f));
+        series.addPoint(new ValueLinePoint("23", 0.5f));
+        series.addPoint(new ValueLinePoint("24", 1.9f));
+        series.addPoint(new ValueLinePoint("01", 3.1f));
+        series.addPoint(new ValueLinePoint("02", 1.7f));
+        series.addPoint(new ValueLinePoint("03", 2.3f));
+        series.addPoint(new ValueLinePoint("04", 1.2f));
         series.addPoint(new ValueLinePoint("05", 2.3f));
-        series.addPoint(new ValueLinePoint("06", 2.1f));
-        series.addPoint(new ValueLinePoint("07", 1.2f));
+        series.addPoint(new ValueLinePoint("06", 1.9f));
+        series.addPoint(new ValueLinePoint("07", 1.5f));
 
 
         mCubicValueLineChart.addSeries(series);
         mCubicValueLineChart.startAnimation();
+
 
 
 

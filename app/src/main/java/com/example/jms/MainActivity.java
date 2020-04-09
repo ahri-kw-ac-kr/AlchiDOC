@@ -25,7 +25,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import cn.nightcode.sliderIndicator.SliderIndicator;
 
 public class MainActivity extends AppCompatActivity {
-
     private ViewPager mainViewPager;
     private SliderIndicator indicator;
     private com.example.jms.SamplePagerAdapter pagerAdapter;
@@ -44,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         //메인화면 상단에 사용자 옆으로 넘겨서 볼 수 있게 하는 역할
         mainViewPager = findViewById(R.id.main_view_pager);
         pagerAdapter = new com.example.jms.SamplePagerAdapter(this);
@@ -54,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         indicator = findViewById(R.id.main_slide_indicator);
         pagerAdapter.setCount(5); //나중에 이 부분을 보호자 숫자대로 바꿔야함..
         indicator.setupWithViewPager(mainViewPager);
-
-
 
         //각 버튼 누르면 다른 페이지로 이동하는 역할!!
         button1 = findViewById(R.id.button1);
@@ -73,14 +68,14 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DayAct.class);
+                Intent intent = new Intent(MainActivity.this, MonthAct.class);
                 startActivity(intent);
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DaySleep.class);
+                Intent intent = new Intent(MainActivity.this, WeekSleep.class);
                 startActivity(intent);
             }
         });
@@ -114,12 +109,7 @@ public class MainActivity extends AppCompatActivity {
         fragHome = new FragHome();
         fragMap = new FragMap();
         fragSettings = new FragSettings();
-
-
-
     }
-
-
 
     //프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n) {
@@ -139,9 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit(); //저장의미
                 break;
         }
-
-
-
     }
 }
 

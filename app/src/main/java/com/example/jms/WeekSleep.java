@@ -1,5 +1,6 @@
 package com.example.jms;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -30,39 +31,39 @@ public class WeekSleep extends AppCompatActivity {
         StackedBarChart mStackedBarChart = (StackedBarChart) findViewById(R.id.stackedbarchart);
 
         StackedBarModel s1 = new StackedBarModel("월");
-        s1.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s1.addBar(new BarModel(2.3f, 0xFF56B7F1));
-        s1.addBar(new BarModel(2.3f, 0xFFCDA67F));
+        s1.addBar(new BarModel(21, Color.parseColor("#7851C3")));
+        s1.addBar(new BarModel(60, Color.parseColor("#AC89EB")));
+        s1.addBar(new BarModel(19, Color.parseColor("#D7B6F9")));
 
         StackedBarModel s2 = new StackedBarModel("화");
-        s2.addBar(new BarModel(1.1f, 0xFF63CBB0));
-        s2.addBar(new BarModel(2.7f, 0xFF56B7F1));
-        s2.addBar(new BarModel(0.7f, 0xFFCDA67F));
+        s2.addBar(new BarModel(10, Color.parseColor("#7851C3")));
+        s2.addBar(new BarModel(25, Color.parseColor("#AC89EB")));
+        s2.addBar(new BarModel(22, Color.parseColor("#D7B6F9")));
 
         StackedBarModel s3 = new StackedBarModel("수");
-        s3.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s3.addBar(new BarModel(2.f, 0xFF56B7F1));
-        s3.addBar(new BarModel(3.3f, 0xFFCDA67F));
+        s3.addBar(new BarModel(35, Color.parseColor("#7851C3")));
+        s3.addBar(new BarModel(27, Color.parseColor("#AC89EB")));
+        s3.addBar(new BarModel(38, Color.parseColor("#D7B6F9")));
 
         StackedBarModel s4 = new StackedBarModel("목");
-        s4.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s4.addBar(new BarModel(2.f, 0xFF56B7F1));
-        s4.addBar(new BarModel(3.3f, 0xFFCDA67F));
+        s4.addBar(new BarModel(21, Color.parseColor("#7851C3")));
+        s4.addBar(new BarModel(60, Color.parseColor("#AC89EB")));
+        s4.addBar(new BarModel(19, Color.parseColor("#D7B6F9")));
 
         StackedBarModel s5 = new StackedBarModel("금");
-        s5.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s5.addBar(new BarModel(2.f, 0xFF56B7F1));
-        s5.addBar(new BarModel(3.3f, 0xFFCDA67F));
+        s5.addBar(new BarModel(35, Color.parseColor("#7851C3")));
+        s5.addBar(new BarModel(27, Color.parseColor("#AC89EB")));
+        s5.addBar(new BarModel(38, Color.parseColor("#D7B6F9")));
 
         StackedBarModel s6 = new StackedBarModel("토");
-        s6.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s6.addBar(new BarModel(2.f, 0xFF56B7F1));
-        s6.addBar(new BarModel(3.3f, 0xFFCDA67F));
+        s6.addBar(new BarModel(21, Color.parseColor("#7851C3")));
+        s6.addBar(new BarModel(60, Color.parseColor("#AC89EB")));
+        s6.addBar(new BarModel(19, Color.parseColor("#D7B6F9")));
 
         StackedBarModel s7 = new StackedBarModel("일");
-        s7.addBar(new BarModel(2.3f, 0xFF63CBB0));
-        s7.addBar(new BarModel(2.f, 0xFF56B7F1));
-        s7.addBar(new BarModel(3.3f, 0xFFCDA67F));
+        s7.addBar(new BarModel(35, Color.parseColor("#7851C3")));
+        s7.addBar(new BarModel(27, Color.parseColor("#AC89EB")));
+        s7.addBar(new BarModel(38, Color.parseColor("#D7B6F9")));
 
         mStackedBarChart.addBar(s1);
         mStackedBarChart.addBar(s2);

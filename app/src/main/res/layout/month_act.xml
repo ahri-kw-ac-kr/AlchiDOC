@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     //상단바!!!
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:text="햇빛량 통계"
+                android:text="활동량 통계"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"></TextView>
@@ -67,7 +66,6 @@
             android:text="월간" />
     </com.google.android.material.tabs.TabLayout>
 
-
     <ScrollView
         android:fillViewport="true"
         android:id="@+id/scrollView2"
@@ -80,20 +78,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
         <LinearLayout
-            android:id="@+id/title"
+            android:id="@+id/title2"
             android:layout_marginTop="15dp"
             android:layout_gravity="center|top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
-
             <LinearLayout
-                android:layout_weight="0.6"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,7 +96,7 @@
 
                     android:fontFamily="@font/nanumregular"
                     android:gravity="right"
-                    android:text="5월 17일 목요일  "
+                    android:text="5월 전체 평균  "
                     android:textColor="#646464"
                     android:textSize="22sp"
                     android:textStyle="bold"></TextView>
@@ -110,141 +104,247 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginBottom="14dp"
+                    android:background="#E1EFCF"
+
                     android:fontFamily="@font/nanumextra"
                     android:gravity="left"
-                    android:text="햇빛량 97%"
-                    android:textColor="#F75321"
-                    android:textSize="22sp"
-                    ></TextView>
+                    android:text="활동량 84%"
+                    android:textColor="#4A7913"
+                    android:textSize="22sp"></TextView>
             </LinearLayout>
 
-
             <LinearLayout
-                android:layout_weight="3"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:padding="3dp"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="240dp"
                 android:orientation="horizontal">
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:padding="10dp"
+                        android:id="@+id/piechart"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="225dp"
+                        android:layout_height="225dp" />
                 <androidx.cardview.widget.CardView
-                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center_vertical"
+                    app:cardElevation="0.8dp"
                     app:cardCornerRadius="0dp"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="242dp">
-                    <org.eazegraph.lib.charts.BarChart
-                        android:layout_gravity="center"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="230dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
                         android:layout_marginTop="10dp"
-                        android:padding="10dp"
-                        app:egEmptyDataText=""
-                        app:egShowValues="false"
-                        app:egLegendTextSize="12dp"
-                        app:egFixedBarWidth="true"
-                        app:egBarWidth="28dp"
-                        app:egLegendHeight="40dp"/>
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                    <LinearLayout
+                        android:gravity="center|center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+                    <TextView
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="■"
+                        android:textColor="#6EAD22"></TextView>
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=" 과다 "
+                            android:textColor="#5F5F5F"
+                            android:textSize="14sp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:gravity="left"
+                            android:text=" 04일"
+                            android:textColor="#5F5F5F"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+                        <TextView
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="■"
+                            android:textColor="#8bc34a"></TextView>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 충분 "
+                            android:textColor="#5F5F5F"
+                            android:textSize="14sp"></TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:gravity="left"
+                            android:text=" 10일"
+                            android:textColor="#5F5F5F"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+                        <TextView
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="■"
+                            android:textColor="#C0E296"></TextView>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 부족 "
+                            android:textColor="#5F5F5F"
+                            android:textSize="14sp"></TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:gravity="left"
+                            android:text=" 16일"
+                            android:textColor="#5F5F5F"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                    </LinearLayout>
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_weight="0.5"
-                android:gravity="right"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#ffffff"
+                android:layout_gravity="center"
+                android:layout_width="365dp"
+                android:layout_height="130dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="25dp"
+                    android:drawableLeft="@drawable/ic_sprint"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="월평균 걸음수"
+                    android:textAlignment="viewStart"
+                    android:textColor="#329035"
+                    android:textSize="22sp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="55dp"
+                    android:fontFamily="@font/nanumextra"
+                    android:text="5,391"
+                    android:textColor="#329035"
+                    android:textSize="22sp"
+                    android:textStyle="bold"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="걸음"
+                    android:textColor="#707070"
+                    android:textSize="19sp"></TextView>
+
+                <View
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="65dp"
+                    android:layout_width="320dp"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="83dp"
+                    android:drawableLeft="@drawable/ic_calories"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nanumbold"
+                    android:lines="1"
+                    android:text="월평균 칼로리"
+                    android:textAlignment="viewStart"
+                    android:textColor="#329035"
+                    android:textSize="22sp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="83dp"
+                    android:layout_marginRight="60dp"
+                    android:fontFamily="@font/nanumextra"
+                    android:text="147"
+                    android:textColor="#329035"
+                    android:textSize="22sp"
+                    android:textStyle="bold"></TextView>
+                <TextView
+                    android:layout_gravity="right"
+                    android:layout_marginTop="86dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumbold"
+                    android:text="kcal"
+                    android:textColor="#707070"
+                    android:textSize="19sp"></TextView>
+                <View
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="300dp"
+                    android:layout_width="320dp"
+                    android:layout_height="2dp"
+                    android:background="#ECECEC"/>
+            </androidx.cardview.widget.CardView>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="■"
-                android:textColor="#ffd54f"
-                android:textSize="15sp"
-                android:textStyle="bold"></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="부족"
-                    android:textColor="#646464"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="■"
-                    android:textColor="#fb8c00"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="충분"
-                    android:textColor="#646464"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="■"
-                    android:textColor="#d84315"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="과다"
-                    android:textColor="#646464"
-                    android:textSize="15sp"
-                    android:textStyle="bold"></TextView>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_weight="4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="@font/nanumregular"
-                android:text="햇빛량 인지행동 플랜"
+                android:text="활동량 인지행동 플랜"
                 android:textColor="#646464"
                 android:textSize="20sp"
                 android:textStyle="bold"></TextView>
@@ -260,15 +360,15 @@
 
                 <TextView
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_whatshot_black_24dp"
+                    android:drawableLeft="@drawable/ic_sprint"
                     android:layout_marginTop="25dp"
-                    android:layout_marginLeft="23dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
-                    android:text="주간 조도량"
+                    android:text="월평균 주간 활동량"
                     android:textAlignment="viewStart"
-                    android:textColor="#F75321"
+                    android:textColor="#329035"
                     android:textSize="22sp"></TextView>
                 <TextView
                     android:layout_gravity="right"
@@ -276,9 +376,9 @@
                     android:layout_marginRight="42dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="27"
-                    android:textColor="#F75321"
+                    android:fontFamily="@font/nanumextra"
+                    android:text="51"
+                    android:textColor="#329035"
                     android:textSize="22sp"></TextView>
                 <TextView
                     android:layout_gravity="right"
@@ -300,7 +400,7 @@
                     android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="낮 시간대의 조도량이 부족합니다. 오후에는 많은 활동을 필요로 합니다.">
+                    android:text="낮 시간대의 활동량이 충분합니다. 오후에는 무리한 활동을 자제해 주세요.">
                 </TextView>
                 <View
                     android:layout_gravity="center|top"
@@ -310,16 +410,16 @@
                     android:background="#ECECEC"/>
                 <TextView
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_highlight_black_24dp"
+                    android:drawableLeft="@drawable/ic_calories"
                     android:layout_marginTop="140dp"
                     android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="야간 조명 밝기"
+                    android:text="월평균 야간 활동량"
                     android:textAlignment="viewStart"
-                    android:textColor="#F75321"
+                    android:textColor="#329035"
                     android:textSize="22sp"></TextView>
                 <TextView
                     android:layout_gravity="right"
@@ -327,9 +427,9 @@
                     android:layout_marginRight="42dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="52"
-                    android:textColor="#F75321"
+                    android:fontFamily="@font/nanumextra"
+                    android:text="33"
+                    android:textColor="#329035"
                     android:textSize="22sp"></TextView>
                 <TextView
                     android:layout_gravity="right"
@@ -352,11 +452,9 @@
                     android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.
- 스크롤 확인 스크롤 확인 레포트레포트 햇빛량 통계 인지행동 플랜 등등등">
+                    android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.">
                 </TextView>
             </androidx.cardview.widget.CardView>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

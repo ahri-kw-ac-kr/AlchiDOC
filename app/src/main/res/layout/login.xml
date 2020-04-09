@@ -63,9 +63,11 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/nanumlight"
         android:gravity="left"
-        android:text="@string/log_in"
+        android:text="@string/password"
         android:textColor="#646464"
         android:textSize="18sp"></TextView>
+
+
     <EditText
         android:inputType="textWebPassword"
         android:layout_width="match_parent"

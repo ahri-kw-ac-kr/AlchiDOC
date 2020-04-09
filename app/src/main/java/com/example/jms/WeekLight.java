@@ -29,13 +29,13 @@ public class WeekLight extends AppCompatActivity {
 
         BarChart mBarChart = (BarChart) findViewById(R.id.bar);
 
-        mBarChart.addBar(new BarModel("월", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("화", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("수", 1.2f, Color.parseColor("#F2EAB2")));
-        mBarChart.addBar(new BarModel("목", 2.1f, Color.parseColor("#F7E082")));
-        mBarChart.addBar(new BarModel("금", 3.3f, Color.parseColor("#D83909")));
-        mBarChart.addBar(new BarModel("토", 3.8f, Color.parseColor("#B02E06")));
-        mBarChart.addBar(new BarModel("일", 3.1f, Color.parseColor("#F8683C")));
+        mBarChart.addBar(new BarModel("월", 0.5f, Color.parseColor("#ffd54f")));
+        mBarChart.addBar(new BarModel("화", 0.8f, Color.parseColor("#ffd54f")));
+        mBarChart.addBar(new BarModel("수", 1.2f, Color.parseColor("fb8c00")));
+        mBarChart.addBar(new BarModel("목", 2.1f, Color.parseColor("fb8c00")));
+        mBarChart.addBar(new BarModel("금", 3.3f, Color.parseColor("#d84315")));
+        mBarChart.addBar(new BarModel("토", 2.4f, Color.parseColor("fb8c00")));
+        mBarChart.addBar(new BarModel("일", 3.1f, Color.parseColor("#d84315")));
 
         mBarChart.startAnimation();
 

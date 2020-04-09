@@ -7,15 +7,14 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.ValueLineChart;
+import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
 
 public class DayAct extends AppCompatActivity {
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +31,22 @@ public class DayAct extends AppCompatActivity {
             }
         });
 
+        BarChart mBarChart = (BarChart) findViewById(R.id.bar);
 
-        ValueLineChart mCubicValueLineChart = (ValueLineChart) findViewById(R.id.cubiclinechart);
+        mBarChart.addBar(new BarModel("09", 0.0f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("10", 0.0f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("11", 1.2f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("12", 2.1f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("13", 3.3f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("14", 3.8f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("15", 3.1f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("16", 2.4f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("17", 0.0f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("18", 0.0f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("19", 0.0f, Color.parseColor("#5F9919")));
 
-        ValueLineSeries series = new ValueLineSeries();
-        series.setColor(Color.parseColor("#329035"));
-        series.addPoint(new ValueLinePoint("09", 2.4f));
-        series.addPoint(new ValueLinePoint("10", 3.4f));
-        series.addPoint(new ValueLinePoint("11", .4f));
-        series.addPoint(new ValueLinePoint("12", 1.2f));
-        series.addPoint(new ValueLinePoint("13", 2.6f));
-        series.addPoint(new ValueLinePoint("14", 1.0f));
-        series.addPoint(new ValueLinePoint("15", 3.5f));
-        series.addPoint(new ValueLinePoint("16", 2.4f));
-        series.addPoint(new ValueLinePoint("17", 1.2f));
-        series.addPoint(new ValueLinePoint("18", 1.8f));
 
-        mCubicValueLineChart.addSeries(series);
-        mCubicValueLineChart.startAnimation();
+        mBarChart.startAnimation();
+
     }
 }

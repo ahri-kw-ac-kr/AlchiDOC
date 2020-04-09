@@ -5,10 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--이 경우엔 button객체를 그냥 쓰는 것 보단.
-    linearlayout 안에 image view와 textview를 배치하고
-    image view 버튼 클릭시, 원하는 이벤트를 수행-->
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -25,13 +21,15 @@
             android:elevation="1dp"
             android:fontFamily="@font/nanumextra"
             >
+
+
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:text="보호자 목록"
+                android:text="기기 설정"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"></TextView>
@@ -41,9 +39,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -51,78 +51,54 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="7dp"
             android:fontFamily="@font/nanumregular"
-            android:text="내가 케어하는 사람"
+            android:text="연결 가능한 디바이스"
             android:textColor="#646464"
             android:textSize="18sp"></TextView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="365dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp">
 
 
-        <Button
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="10dp"
-            android:gravity="left|center_vertical"
-            android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="김승은 (010-****-4333)"
-            android:drawableRight="@drawable/ic_more_vert_black_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </Button>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_d5"></ImageView>
 
-        <Button
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="10dp"
-            android:gravity="left|center_vertical"
-            android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="이진영 (010-****-9876)"
-            android:drawableRight="@drawable/ic_more_vert_black_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </Button>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="80dp"
+                android:fontFamily="@font/nanumregular"
+                android:text="AlchiDOC1"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btn3"
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="10dp"
-            android:gravity="left|center_vertical"
-            android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="최정원 (010-****-5432)"
-            android:drawableRight="@drawable/ic_more_vert_black_24dp"
-
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </Button>
-
-        <Button
-            android:textColor="#9C9FA6"
-            android:paddingLeft="22dp"
-            android:paddingRight="7dp"
-            android:gravity="left|center_vertical"
-            android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="+  추가하기"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </Button>
-
-
+            <Button
+                android:layout_width="95dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="240dp"
+                android:background="@drawable/btn_grad"
+                android:fontFamily="@font/nanumregular"
+                android:gravity="center"
+                android:text="연결 하기"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
-
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
