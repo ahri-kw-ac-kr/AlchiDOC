@@ -18,11 +18,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <androidx.viewpager.widget.ViewPager
                 android:layout_gravity="center"
                 android:id="@+id/main_view_pager"
                 android:layout_width="350dp"
                 android:layout_height="240dp" />
+
             <cn.nightcode.sliderIndicator.SliderIndicator
                 android:id="@+id/main_slide_indicator"
                 android:layout_width="wrap_content"
@@ -41,37 +43,46 @@
         </LinearLayout>
 
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/gulimr"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/tvnbold"
             android:text="AlchiDOC"
             android:textColor="#ffffff"
-            android:textSize="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="35dp">
+
+        </TextView>
 
         <ImageButton
-            android:background="@android:color/transparent"
             android:id="@+id/report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="360dp"
-            android:layout_marginTop="23dp"
-            android:src="@drawable/ic_event_note_black_24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="98dp"
+            android:layout_marginTop="24dp"
+            android:layout_toRightOf="@+id/textView2"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_event_note_black_24dp">
 
+        </ImageButton>
 
-
-    <TextView
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textView2"
             android:fontFamily="@font/nanumregular"
             android:text="※ 활동량이 부족합니다. 오후에 많은 활동이 필요합니다."
             android:textColor="#ffffff"
@@ -80,30 +91,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-
         <Button
-            android:clickable="true"
             android:id="@+id/button1"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="360dp"
             android:layout_height="72dp"
+            android:layout_marginTop="270dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/main_grad"
+            android:clickable="true"
             android:drawableLeft="@drawable/ic_light"
             android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
             android:drawablePadding="-20dp"
             android:elevation="15dp"
             android:fontFamily="@font/nanumbold"
-            android:gravity="left|center_vertical"
+            android:layout_below="@+id/textView3"
             android:paddingStart="-12dp"
             android:paddingRight="8dp"
             android:text="햇빛량 확인하기"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            android:layout_centerHorizontal="true">
+
+        </Button>
 
         <Button
             android:id="@+id/button2"
@@ -117,16 +127,13 @@
             android:drawablePadding="3dp"
             android:elevation="15dp"
             android:fontFamily="@font/nanumbold"
-            android:gravity="left|center_vertical"
+            android:layout_below="@+id/button1"
             android:paddingStart="10dp"
             android:paddingRight="8dp"
             android:text="활동량 확인하기"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            android:layout_centerHorizontal="true"></Button>
 
         <Button
             android:id="@+id/button3"
@@ -140,16 +147,15 @@
             android:drawablePadding="0dp"
             android:elevation="15dp"
             android:fontFamily="@font/nanumbold"
-            android:gravity="left|center_vertical"
+            android:layout_below="@id/button2"
+            android:layout_centerHorizontal="true"
             android:paddingStart="13dp"
             android:paddingRight="8dp"
             android:text="수면량 확인하기"
             android:textColor="#ffffff"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"></Button>
+            android:textSize="18sp">
+        </Button>
+    </RelativeLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

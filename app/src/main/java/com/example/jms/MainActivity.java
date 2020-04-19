@@ -7,24 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.jms.DayAct;
-import com.example.jms.DayLight;
-import com.example.jms.DaySleep;
-import com.example.jms.FragHome;
-import com.example.jms.FragMap;
-import com.example.jms.FragSettings;
-import com.example.jms.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cn.nightcode.sliderIndicator.SliderIndicator;
 
 public class MainActivity extends AppCompatActivity {
+
     private ViewPager mainViewPager;
     private SliderIndicator indicator;
     private com.example.jms.SamplePagerAdapter pagerAdapter;
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         setFrag(0);
                         break;
                     case R.id.map:
-                        setContentView(R.layout.frag_map);
+                        setFrag(1);
                         break;
                     case R.id.settings:
                         setFrag(2);
@@ -120,11 +116,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, fragHome);
                 ft.commit(); //저장의미
                 break;
-                /*
             case 1:
                 ft.replace(R.id.main_frame, fragMap);
                 ft.commit(); //저장의미
-                break;   */
+                break;
             case 2:
                 ft.replace(R.id.main_frame, fragSettings);
                 ft.commit(); //저장의미
