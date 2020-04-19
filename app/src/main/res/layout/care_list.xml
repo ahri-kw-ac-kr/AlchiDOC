@@ -59,51 +59,72 @@
             android:textColor="#646464"
             android:textSize="18sp"></TextView>
 
-
-
-        <Button
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="10dp"
-            android:gravity="left|center_vertical"
+        <LinearLayout
             android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="김승은 (010-****-4333)"
-            android:drawableRight="@drawable/ic_more_vert_black_24dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="55dp">
-        </Button>
-
-        <Button
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="10dp"
-            android:gravity="left|center_vertical"
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="김승은 (010-****-4333)"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <ImageButton
+                android:id="@+id/del1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_more_vert_black_24dp"
+                android:paddingRight="10dp"></ImageButton>
+        </LinearLayout>
+        <LinearLayout
             android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="이진영 (010-****-9876)"
-            android:drawableRight="@drawable/ic_more_vert_black_24dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="55dp">
-        </Button>
-
-        <Button
-            android:id="@+id/btn3"
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="10dp"
-            android:gravity="left|center_vertical"
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="이진영 (010-****-9876)"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <ImageButton
+                android:id="@+id/del2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_more_vert_black_24dp"
+                android:paddingRight="10dp"></ImageButton>
+        </LinearLayout>
+        <LinearLayout
             android:background="@drawable/list"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="최정원 (010-****-5432)"
-            android:drawableRight="@drawable/ic_more_vert_black_24dp"
-
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="55dp">
-        </Button>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="최정원 (010-****-5432)"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <ImageButton
+                android:id="@+id/del3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_more_vert_black_24dp"
+                android:paddingRight="10dp"></ImageButton>
+        </LinearLayout>
 
         <Button
             android:textColor="#9C9FA6"

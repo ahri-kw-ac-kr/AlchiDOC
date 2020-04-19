@@ -128,10 +128,11 @@
                 android:padding="3dp"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:layout_gravity="center"
+                    app:cardElevation="6dp"
                     app:cardCornerRadius="0dp"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
@@ -160,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginBottom="15dp"
 
                 android:fontFamily="@font/nanumregular"
@@ -299,25 +300,24 @@
                     android:textAlignment="viewStart"
                     android:textColor="#329035"
                     android:textSize="22sp"></TextView>
-                <TextView
+                <ImageView
                     android:layout_gravity="right"
                     android:layout_marginTop="25dp"
-                    android:layout_marginRight="42dp"
+                    android:layout_marginRight="56dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="51"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
+                    android:tint="#329035"
+                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                    ></ImageView>
                 <TextView
                     android:layout_gravity="right"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="31dp"
                     android:layout_marginRight="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="%"
-                    android:textColor="#707070"
+                    android:fontFamily="@font/nanumregular"
+                    android:text="충분"
+                    android:textColor="#329035"
                     android:textSize="19sp"></TextView>
                 <TextView
                     android:lineSpacingExtra="6dp"
@@ -350,30 +350,29 @@
                     android:textAlignment="viewStart"
                     android:textColor="#329035"
                     android:textSize="22sp"></TextView>
-                <TextView
+                <ImageView
                     android:layout_gravity="right"
                     android:layout_marginTop="140dp"
-                    android:layout_marginRight="42dp"
+                    android:layout_marginRight="56dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="33"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
+                    android:tint="#329035"
+                    android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                    ></ImageView>
                 <TextView
                     android:layout_gravity="right"
-                    android:layout_marginTop="143dp"
+                    android:layout_marginTop="146dp"
                     android:layout_marginRight="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="%"
-                    android:textColor="#707070"
+                    android:fontFamily="@font/nanumregular"
+                    android:text="부족"
+                    android:textColor="#329035"
                     android:textSize="19sp"></TextView>
                 <TextView
                     android:lineSpacingExtra="6dp"
                     android:layout_marginTop="173dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="25dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:textColor="#5A5959"

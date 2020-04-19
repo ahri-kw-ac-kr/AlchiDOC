@@ -7,32 +7,19 @@
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="20dp"
-    >
-
-    <ImageView
-        android:contentDescription="@string/StringValue"
-        android:layout_marginBottom="16dp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-        android:gravity="start"
-        ></ImageView>
-
+    android:paddingTop="20dp" >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/nanumregular"
         android:gravity="left"
         android:text="@string/login1"
         android:textColor="#646464"
-        android:textSize="30sp"></TextView>
-
+        android:textSize="30sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -43,7 +30,7 @@
         android:gravity="left"
         android:text="@string/email"
         android:textColor="#646464"
-        android:textSize="18sp"></TextView>
+        android:textSize="18sp" />
 
     <EditText
         android:inputType="textWebEmailAddress"
@@ -52,7 +39,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:hint="@string/login4"
-        android:textSize="16dp"></EditText>
+        android:textSize="16dp" />
 
 
 
@@ -65,7 +52,7 @@
         android:gravity="left"
         android:text="@string/password"
         android:textColor="#646464"
-        android:textSize="18sp"></TextView>
+        android:textSize="18sp" />
 
 
     <EditText
@@ -74,13 +61,8 @@
         android:layout_height="40dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:textSize="16dp"></EditText>
+        android:textSize="16dp" />
 
-
-
-
-
-<!-- 패스워드 / 싸인업-->
     <LinearLayout
         android:layout_marginTop="30dp"
         android:weightSum="10"
@@ -97,10 +79,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="@string/login5"
-            ></TextView>
+            android:text="@string/login5" />
 
         <TextView
+            android:id="@+id/find"
             android:layout_marginLeft="5dp"
             android:fontFamily="@font/nanumregular"
             android:layout_width="wrap_content"
@@ -109,11 +91,11 @@
             android:gravity="left"
             android:text="@string/login6"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="14sp"></TextView>
+            android:textSize="14sp" />
     </LinearLayout>
 
-
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="12dp"
@@ -125,7 +107,5 @@
         android:text="@string/log_in"
         android:gravity="center"
         android:textColor="#ffffff"
-        android:textSize="18sp"></Button>
-
-
+        android:textSize="18sp" />
 </LinearLayout>

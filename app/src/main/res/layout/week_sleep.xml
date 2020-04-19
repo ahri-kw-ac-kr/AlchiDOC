@@ -522,7 +522,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nanumregular"
                 android:text="수면량 인지행동 플랜"
                 android:textColor="#646464"
@@ -539,13 +539,13 @@
                 android:layout_height="match_parent">
                 <TextView
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_bed"
+                    android:drawableLeft="@drawable/ic_moon"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
-                    android:text="평균 뒤척임"
+                    android:text="총 수면 시간"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"></TextView>
@@ -579,7 +579,7 @@
                     android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="연령에 맞는 적당한 수면 시간입니다. 오늘도 평균 수면 시간을 유지하도록 하세요.">
+                    android:text="연령에 맞는 적당한 수면 시간입니다. 다음주도 평균 수면 시간을 유지하도록 하세요.">
                 </TextView>
                 <View
                     android:layout_gravity="center|top"
@@ -592,14 +592,14 @@
 
                 <TextView
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_moon"
+                    android:drawableLeft="@drawable/ic_bed"
                     android:layout_marginTop="140dp"
                     android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="총 수면 시간"
+                    android:text="평균 뒤척임"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"></TextView>

@@ -546,13 +546,13 @@
                 android:layout_height="match_parent">
                 <TextView
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_bed"
+                    android:drawableLeft="@drawable/ic_moon"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
-                    android:text="평균 뒤척임"
+                    android:text="총 수면 시간"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"></TextView>
@@ -599,14 +599,14 @@
 
                 <TextView
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_moon"
+                    android:drawableLeft="@drawable/ic_bed"
                     android:layout_marginTop="140dp"
                     android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
                     android:lines="1"
-                    android:text="총 수면 시간"
+                    android:text="평균 뒤척임"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"></TextView>

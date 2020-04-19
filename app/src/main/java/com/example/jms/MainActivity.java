@@ -68,14 +68,14 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MonthAct.class);
+                Intent intent = new Intent(MainActivity.this, DayAct.class);
                 startActivity(intent);
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WeekSleep.class);
+                Intent intent = new Intent(MainActivity.this, DaySleep.class);
                 startActivity(intent);
             }
         });
@@ -120,10 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, fragHome);
                 ft.commit(); //저장의미
                 break;
+                /*
             case 1:
                 ft.replace(R.id.main_frame, fragMap);
                 ft.commit(); //저장의미
-                break;
+                break;   */
             case 2:
                 ft.replace(R.id.main_frame, fragSettings);
                 ft.commit(); //저장의미
@@ -131,5 +132,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-

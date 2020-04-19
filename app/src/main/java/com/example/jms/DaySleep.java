@@ -7,10 +7,15 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import org.eazegraph.lib.charts.ValueLineChart;
-import org.eazegraph.lib.models.ValueLinePoint;
-import org.eazegraph.lib.models.ValueLineSeries;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
+import java.util.ArrayList;
 
 public class DaySleep extends AppCompatActivity {
 
@@ -20,7 +25,7 @@ public class DaySleep extends AppCompatActivity {
         setContentView(R.layout.day_sleep);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,27 +33,80 @@ public class DaySleep extends AppCompatActivity {
             }
         });
 
+        LineChart lineChart = (LineChart) findViewById(R.id.chart);
 
-        ValueLineChart mCubicValueLineChart = (ValueLineChart) findViewById(R.id.cubiclinechart);
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(new Entry(4f, 0));
+        entries.add(new Entry(8f, 1));
+        entries.add(new Entry(6f, 2));
+        entries.add(new Entry(10f, 3));
+        entries.add(new Entry(18f, 4));
+        entries.add(new Entry(9f, 5));
+        entries.add(new Entry(16f, 6));
+        entries.add(new Entry(12f, 7));
+        entries.add(new Entry(4f, 8));
+        entries.add(new Entry(8f, 9));
+        entries.add(new Entry(6f, 10));
+        entries.add(new Entry(10f, 11));
+        entries.add(new Entry(18f, 12));
+        entries.add(new Entry(9f, 13));
+        entries.add(new Entry(16f, 14));
 
-        ValueLineSeries series = new ValueLineSeries();
-        series.setColor(Color.parseColor("#7476B3"));
-        series.addPoint(new ValueLinePoint("23", 0.5f));
-        series.addPoint(new ValueLinePoint("24", 1.9f));
-        series.addPoint(new ValueLinePoint("01", 3.1f));
-        series.addPoint(new ValueLinePoint("02", 1.7f));
-        series.addPoint(new ValueLinePoint("03", 2.3f));
-        series.addPoint(new ValueLinePoint("04", 1.2f));
-        series.addPoint(new ValueLinePoint("05", 2.3f));
-        series.addPoint(new ValueLinePoint("06", 1.9f));
-        series.addPoint(new ValueLinePoint("07", 1.5f));
+        LineDataSet dataset = new LineDataSet(entries, "");
 
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("11시");
+        labels.add("");
+        labels.add("12시");
+        labels.add("");
+        labels.add("1시");
+        labels.add("");
+        labels.add("2시");
+        labels.add("");
+        labels.add("3시");
+        labels.add("");
+        labels.add("4시");
+        labels.add("");
+        labels.add("5시");
+        labels.add("");
+        labels.add("6시");
 
-        mCubicValueLineChart.addSeries(series);
-        mCubicValueLineChart.startAnimation();
+        LineData data = new LineData(labels, dataset);
+        dataset.setDrawValues(false);
+        dataset.setDrawCircles(false);
+        dataset.setColor(Color.parseColor("#7610C0"));
 
+        dataset.setDrawCubic(true);
+        dataset.setDrawFilled(true);
+        dataset.setFillColor(Color.parseColor("#EBD8FB"));
+        dataset.setLineWidth(3f);
 
+        /* 점 찍기
+        dataset.setCircleColor(Color.parseColor("#7610C0"));
+        dataset.setCircleColorHole(Color.parseColor("#7610C0"));
+        dataset.setCircleSize(3f); */
 
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(10f);
+        xAxis.setTextColor(Color.parseColor("#707070"));
 
+        YAxis yAxisLeft = lineChart.getAxisLeft();
+        yAxisLeft.setDrawLabels(false);
+        yAxisLeft.setDrawAxisLine(false);
+        yAxisLeft.setDrawGridLines(false);
+
+        YAxis yAxisRight = lineChart.getAxisRight();
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+
+        lineChart.setDescription(null);
+
+        Legend legend = lineChart.getLegend();
+        legend.setEnabled(false);
+
+        lineChart.setData(data);
+        lineChart.animateY(5000);
     }
 }

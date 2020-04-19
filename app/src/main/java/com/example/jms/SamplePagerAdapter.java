@@ -52,7 +52,7 @@ public class SamplePagerAdapter extends PagerAdapter {
         TextView tv3 = view.findViewById(R.id.item_text3);
         tv.setText(position + " 님"); //user에 따라 수정(현재 0, 1, 2.. 이렇게 보임)
         tv2.setText("인천시 중구 영종해안남로321번길"); //user에 따라 수정
-        tv3.setText("2020년 3월 19일 오후 3시 57분"); //user에 따라 수정
+        tv3.setText("2020년 5월 17일 오후 3시 57분"); //user에 따라 수정
 
         container.addView(view);
         return view;

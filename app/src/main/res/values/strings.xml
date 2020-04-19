@@ -1,4 +1,8 @@
 <resources>
+    <string name="format_map_click">지도 클릭\n(%1$.5f, %2$.5f)</string>
+    <string name="format_map_long_click">지도 롱 클릭\n(%1$.5f, %2$.5f)</string>
+
+
     <string name="app_name">My Application55</string>
 
     <string name="StringValue">이미지가 열리지 않습니다.</string>
@@ -13,11 +17,11 @@
     <string name="login1">로그인</string>
     <string name="login4">ex. mhse8919@gmail.com</string>
     <string name="login5">비밀번호를 잊어버리셨나요?</string>
-    <string name="login6">비밀번호 찾기</string>
+    <string name="login6">비밀번호 재설정</string>
 
-    <string name="password_find1">비밀번호 찾기</string>
+    <string name="password_find1">비밀번호 재설정</string>
     <string name="password_find2">AlchiDOC에 가입된 이메일을 입력해 주세요.\n
-    입력된 이메일로 비밀번호를 전송해 드립니다.</string>
+    입력된 이메일로 인증번호를 전송해 드립니다.</string>
     <string name="password_find3">전송하기</string>
 
     <string name="sign_up1">회원가입</string>

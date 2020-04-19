@@ -347,7 +347,7 @@
                     android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.">
+                    android:text="조명 색의 온도가 적당합니다. 현재의 밝기를 유지하세요.">
                 </TextView>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
