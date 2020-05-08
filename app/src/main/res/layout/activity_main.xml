@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="100">
+<<<<<<< HEAD
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,11 +65,19 @@
             android:layout_marginTop="10dp"
             android:layout_weight="50"
             android:weightSum="50"
+=======
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="10"
+>>>>>>> 9d82f5c156e14d1f7879c020915c76a7a3d3bb6a
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout">
 
+<<<<<<< HEAD
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/main_view_pager"
                 android:layout_width="match_parent"
@@ -214,5 +223,187 @@
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
             app:layout_editor_absoluteX="16dp"
             app:menu="@menu/bottom_menu" />
+=======
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/gulimr"
+                android:text="AlchiDOC"
+                android:textColor="#ffffff"
+                android:textSize="26dp"/>
+
+            <ImageButton
+                android:id="@+id/report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="22dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_event_note_black_24dp">
+            </ImageButton>
+        </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_marginTop="10dp"
+        android:layout_weight="50"
+        android:weightSum="50"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/main_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="45"/>
+
+        <cn.nightcode.sliderIndicator.SliderIndicator
+            android:id="@+id/main_slide_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:diaDimension="8dp"
+            app:isAnimation="true"
+            app:isShadow="false"
+            app:selectedIndicatorColor="#2B90D9"
+            app:selectedWidthDimension="8dp"
+            app:spaceDimension="10dp"
+            app:unselectedIndicatorColor="#DDDDDD"
+            app:unselectedWidthDimension="8dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="40"
+        android:weightSum="106"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="10dp"
+            app:autoSizePresetSizes="@array/font_size"
+            android:background="@drawable/main_grad"
+            android:clickable="true"
+            android:drawableLeft="@drawable/ic_light"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:drawablePadding="-20dp"
+            android:elevation="15dp"
+            android:fontFamily="@font/nanumbold"
+            android:paddingStart="-33dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
+            android:text="햇빛량 확인하기"
+            android:textColor="#ffffff">
+        </Button>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"/>
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:layout_below="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="10dp"
+            app:autoSizePresetSizes="@array/font_size"
+            android:background="@drawable/main_grad"
+            android:drawableLeft="@drawable/ic_actact"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:drawablePadding="3dp"
+            android:elevation="15dp"
+            android:fontFamily="@font/nanumbold"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
+            android:text="활동량 확인하기"
+            android:textColor="#ffffff">
+        </Button>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"/>
+
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="30"
+            android:layout_below="@id/button2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="10dp"
+            app:autoSizePresetSizes="@array/font_size"
+            android:background="@drawable/main_grad"
+            android:drawableLeft="@drawable/ic_nights_stay_24px"
+            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:drawablePadding="0dp"
+            android:elevation="15dp"
+            android:fontFamily="@font/nanumbold"
+            android:paddingStart="13dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
+            android:text="수면량 확인하기"
+            android:textColor="#ffffff">
+        </Button>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2B90D9"
+        android:padding="3dp"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_editor_absoluteX="16dp"
+        app:menu="@menu/bottom_menu" />
+>>>>>>> 9d82f5c156e14d1f7879c020915c76a7a3d3bb6a
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

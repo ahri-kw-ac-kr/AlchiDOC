@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
+=======
+>>>>>>> 9d82f5c156e14d1f7879c020915c76a7a3d3bb6a
 <resources>
 
     <array name="font_size">
@@ -10,7 +13,14 @@
         <item>12sp</item>
         <item>14sp</item>
         <item>16sp</item>
+<<<<<<< HEAD
         <item>18sp</item>
     </array>
 
 </resources>
+=======
+    </array>
+
+
+</resources>
+>>>>>>> 9d82f5c156e14d1f7879c020915c76a7a3d3bb6a
