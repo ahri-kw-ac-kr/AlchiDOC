@@ -77,14 +77,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_marginTop="22dp"
                 android:layout_marginLeft="80dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="AlchiDOC1"
+                android:text="AlchiDOC3"
                 android:textSize="20sp" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/nanumregular"
+                android:text="배터리: 90%"
+                android:textSize="14sp" />
+
+
+
             <Button
-                android:id="@+id/connect"
                 android:layout_width="95dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center_vertical"
@@ -92,7 +103,7 @@
                 android:background="@drawable/btn_grad"
                 android:fontFamily="@font/nanumregular"
                 android:gravity="center"
-                android:text="연결 하기"
+                android:text="연결 끊기"
                 android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="bold" />

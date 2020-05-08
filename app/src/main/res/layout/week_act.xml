@@ -126,14 +126,16 @@
 
 
             <LinearLayout
+
                 android:padding="3dp"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
-                    android:layout_gravity="center"
+                    app:cardElevation="6dp"
                     app:cardCornerRadius="0dp"
+                    android:layout_gravity="center"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="242dp">

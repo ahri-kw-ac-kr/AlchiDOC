@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/cardview_light_background">
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -54,6 +53,7 @@
             android:textColor="#646464"
             android:textSize="18sp"></TextView>
 
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
@@ -80,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:drawableRight="@drawable/ic_chevron_right_black_24dp"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -88,13 +89,51 @@
                     android:gravity="left|center_vertical"
                     android:fontFamily="@font/nanumregular"
                     android:textColor="#646464"
+                    android:paddingRight="7dp"
                     android:paddingLeft="22dp"></TextView>
-            <ImageButton
-                android:id="@+id/del1"
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_gravity="center|top"
+            android:background="#707070" />
+        <LinearLayout
+            android:background="@drawable/list"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+            <TextView
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_chevron_right_black_24dp"
-                android:paddingRight="7dp"></ImageButton>
+                android:text="회원정보 수정"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:gravity="left|center_vertical"
+                    android:fontFamily="@font/nanumregular"
+                    android:textColor="#646464"
+                    android:paddingLeft="22dp"></TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:paddingRight="7dp"></ImageView>
             </LinearLayout>
         </LinearLayout>
 
@@ -103,98 +142,161 @@
             android:layout_height="0.2dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
+        <LinearLayout
+            android:background="@drawable/list"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="기기 설정"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:gravity="left|center_vertical"
+                    android:fontFamily="@font/nanumregular"
+                    android:textColor="#646464"
+                    android:paddingLeft="22dp"></TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:paddingRight="7dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:background="@drawable/list"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="보호자 목록"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:gravity="left|center_vertical"
+                    android:fontFamily="@font/nanumregular"
+                    android:textColor="#646464"
+                    android:paddingLeft="22dp"></TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:paddingRight="7dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
 
         <View
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
-        <Button
-            android:id="@+id/device_set"
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="7dp"
-            android:gravity="left|center_vertical"
-            android:background="#ffffff"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="기기 설정"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+        <LinearLayout
+            android:background="@drawable/list"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="55dp">
-        </Button>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="도움말 보기"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:gravity="left|center_vertical"
+                    android:fontFamily="@font/nanumregular"
+                    android:textColor="#646464"
+                    android:paddingLeft="22dp"></TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:paddingRight="7dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_gravity="center|top"
-            android:background="#707070" />
-        <Button
-            android:id="@+id/carelist"
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="7dp"
-            android:gravity="left|center_vertical"
-            android:background="#ffffff"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="보호자 목록"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+
+        <LinearLayout
+            android:background="@drawable/list"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="55dp">
-        </Button>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_gravity="center|top"
-            android:background="#707070" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_gravity="center|top"
-            android:background="#707070" />
-        <Button
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="7dp"
-            android:gravity="left|center_vertical"
-            android:background="#ffffff"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="도움말 보기"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </Button>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_gravity="center|top"
-            android:background="#707070" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_gravity="center|top"
-            android:background="#707070" />
-        <Button
-            android:id="@+id/terms"
-            android:textColor="#646464"
-            android:paddingLeft="22dp"
-            android:paddingRight="7dp"
-            android:gravity="left|center_vertical"
-            android:background="#ffffff"
-            android:fontFamily="@font/nanumregular"
-            android:textSize="20sp"
-            android:text="이용약관"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </Button>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="이용약관"
+                android:textSize="20sp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/nanumregular"
+                android:textColor="#646464"
+                android:paddingLeft="22dp"></TextView>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:gravity="left|center_vertical"
+                    android:fontFamily="@font/nanumregular"
+                    android:textColor="#646464"
+                    android:paddingLeft="22dp"></TextView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_chevron_right_black_24dp"
+                    android:paddingRight="7dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="0.2dp"

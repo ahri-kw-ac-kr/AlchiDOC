@@ -1,6 +1,8 @@
 package com.example.jms;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageButton;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private FragSettings fragSettings;
 
     Button button1, button2, button3;
-    ImageButton report;
+    ImageButton sleepStart, report;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,27 +47,32 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new com.example.jms.SamplePagerAdapter(this);
         mainViewPager.setAdapter(pagerAdapter);
 
+
         indicator = findViewById(R.id.main_slide_indicator);
         pagerAdapter.setCount(5); //나중에 이 부분을 보호자 숫자대로 바꿔야함..
         indicator.setupWithViewPager(mainViewPager);
+
+
 
         //각 버튼 누르면 다른 페이지로 이동하는 역할!!
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
         report = findViewById(R.id.report);
+        sleepStart = findViewById(R.id.sleepStart);
+
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DayLight.class);
+                Intent intent = new Intent(MainActivity.this, MonthLight.class);
                 startActivity(intent);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DayAct.class);
+                Intent intent = new Intent(MainActivity.this, WeekAct.class);
                 startActivity(intent);
             }
         });
@@ -75,6 +83,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        sleepStart.setOnClickListener(new View.OnClickListener() {
+
+
+
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder ad = new AlertDialog.Builder(MainActivity.this);
+                ad.setMessage("취침을 시작하시겠습니까?");
+
+                ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+            }
+        });
+
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

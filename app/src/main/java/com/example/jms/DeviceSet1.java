@@ -8,9 +8,12 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class DeviceSet1 extends AppCompatActivity {
 
-    Button plus;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +29,11 @@ public class DeviceSet1 extends AppCompatActivity {
             }
         });
 
-        plus = findViewById(R.id.plus);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        plus.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(DeviceSet1.this, DeviceSet2.class);
                 startActivity(intent);
             }

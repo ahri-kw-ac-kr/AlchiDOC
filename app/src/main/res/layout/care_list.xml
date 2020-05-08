@@ -39,13 +39,24 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+
+
+
+
+
+
+
+
+
+
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
@@ -55,7 +66,7 @@
             android:layout_marginTop="75dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nanumregular"
-            android:text="내가 케어하는 사람"
+            android:text="나를 케어하는 사람"
             android:textColor="#646464"
             android:textSize="18sp"></TextView>
 
@@ -68,19 +79,65 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="김승은 (010-****-4333)"
+                android:text="홍길동 (010-****-2384)"
                 android:textSize="20sp"
                 android:gravity="left|center_vertical"
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:paddingLeft="22dp"></TextView>
-            <ImageButton
-                android:id="@+id/del1"
+            <ImageView
+                android:id="@+id/del"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_more_vert_black_24dp"
-                android:paddingRight="10dp"></ImageButton>
+                android:paddingRight="10dp"></ImageView>
         </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/nanumregular"
+        android:text="내가 케어하는 사람"
+        android:textColor="#646464"
+        android:textSize="18sp"></TextView>
+
+    <LinearLayout
+        android:background="@drawable/list"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="김승은 (010-****-4333)"
+            android:textSize="20sp"
+            android:gravity="left|center_vertical"
+            android:fontFamily="@font/nanumregular"
+            android:textColor="#646464"
+            android:paddingLeft="22dp"></TextView>
+        <ImageView
+            android:id="@+id/del1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:paddingRight="10dp"></ImageView>
+    </LinearLayout>
         <LinearLayout
             android:background="@drawable/list"
             android:orientation="horizontal"
@@ -96,12 +153,12 @@
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:paddingLeft="22dp"></TextView>
-            <ImageButton
+            <ImageView
                 android:id="@+id/del2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_more_vert_black_24dp"
-                android:paddingRight="10dp"></ImageButton>
+                android:paddingRight="10dp"></ImageView>
         </LinearLayout>
         <LinearLayout
             android:background="@drawable/list"
@@ -118,12 +175,12 @@
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:paddingLeft="22dp"></TextView>
-            <ImageButton
+            <ImageView
                 android:id="@+id/del3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_more_vert_black_24dp"
-                android:paddingRight="10dp"></ImageButton>
+                android:paddingRight="10dp"></ImageView>
         </LinearLayout>
 
         <Button
