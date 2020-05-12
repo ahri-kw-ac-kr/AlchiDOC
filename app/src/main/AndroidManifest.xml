@@ -13,35 +13,35 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="nu6972ffum" />
-        <activity android:name="com.example.jms.MainActivity">
+        <activity android:name="com.example.jms.home.MainActivity">
         </activity>
-        <activity android:name=".IntroActivity">
+        <activity android:name=".etc.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CareList">
+        <activity android:name=".settings.CareList">
         </activity>
-        <activity android:name=".DayLight">
+        <activity android:name=".home.DayLight">
         </activity>
-        <activity android:name=".DayAct">
+        <activity android:name=".home.DayAct">
         </activity>
-        <activity android:name=".DaySleep">
+        <activity android:name=".home.DaySleep">
         </activity>
-        <activity android:name=".WeekLight">
+        <activity android:name=".home.WeekLight">
         </activity>
-        <activity android:name=".WeekAct">
+        <activity android:name=".home.WeekAct">
         </activity>
-        <activity android:name=".WeekSleep">
+        <activity android:name=".home.WeekSleep">
         </activity>
-        <activity android:name=".MonthAct">
+        <activity android:name=".home.MonthAct">
         </activity>
-        <activity android:name=".MonthLight">
+        <activity android:name=".home.MonthLight">
         </activity>
-        <activity android:name=".MonthSleep">
+        <activity android:name=".home.MonthSleep">
         </activity>
-        <activity android:name=".Report">
+        <activity android:name=".home.Report">
         </activity>
 
     </application>
