@@ -7,147 +7,203 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp"
+    android:weightSum="100"
     >
 
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nanumregular"
-        android:gravity="left"
-        android:text="@string/sign_up1"
-        android:textColor="#646464"
-        android:textSize="30sp"></TextView>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanumlight"
-        android:gravity="left"
-        android:text="@string/sign_up2"
-        android:textColor="#646464"
-        android:textSize="18sp"></TextView>
-    <EditText
-        android:inputType="textWebEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:textSize="16dp"></EditText>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanumlight"
-        android:gravity="left"
-        android:text="@string/sign_up3"
-        android:textColor="#646464"
-        android:textSize="18sp"></TextView>
-    <EditText
-        android:inputType="textWebEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:hint="@string/sign_up6"
-        android:textSize="16dp"></EditText>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanumlight"
-        android:gravity="left"
-        android:text="@string/email"
-        android:textColor="#646464"
-        android:textSize="18sp"></TextView>
-    <EditText
-        android:inputType="textWebEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:hint="@string/login4"
-        android:textSize="16dp"></EditText>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanumlight"
-        android:gravity="left"
-        android:text="@string/password"
-        android:textColor="#646464"
-        android:textSize="18sp"></TextView>
-    <EditText
-        android:inputType="textWebEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:textSize="16dp"></EditText>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/nanumlight"
-        android:gravity="left"
-        android:text="@string/sex"
-        android:textColor="#646464"
-        android:textSize="18sp"></TextView>
-
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_height="wrap_content"
-        android:weightSum="10"
-        android:orientation="vertical">
-        <RadioGroup android:id="@+id/radioGroup"
-            android:orientation="horizontal"
-            android:layout_height="30dp"
-            android:layout_width="match_parent">
-            <RadioButton android:layout_weight="5"
-                android:fontFamily="@font/nanumlight"
-                android:text="@string/man"
-                android:id="@+id/rg_btn1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-            <RadioButton android:layout_weight="5"
-                android:fontFamily="@font/nanumlight"
-                android:text="@string/woman"
-                android:id="@+id/rg_btn2" android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-        </RadioGroup> </LinearLayout>
-
-
-
-
-
-<!-- 패스워드 / 싸인업-->
     <LinearLayout
-        android:layout_marginTop="30dp"
-        android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0px"
+        android:layout_weight="13">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nanumregular"
+            android:layout_gravity="left|bottom"
+            android:text="@string/sign_up1"
+            android:textColor="#646464"
+            android:textSize="30sp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="9">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:fontFamily="@font/nanumlight"
+            android:gravity="left"
+            android:text="@string/sign_up2"
+            android:textColor="#646464"
+            android:textSize="16sp"> </TextView>
+        <EditText
+            android:id="@+id/name"
+            android:inputType="textWebEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="14dp"> </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="11">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanumlight"
+            android:gravity="left"
+            android:text="@string/sign_up3"
+            android:textColor="#646464"
+            android:textSize="16sp"> </TextView>
+        <EditText
+            android:id="@+id/birth"
+            android:inputType="textWebEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:hint="@string/sign_up6"
+            android:textSize="14dp"> </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="11">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanumlight"
+            android:gravity="left"
+            android:text="@string/email"
+            android:textColor="#646464"
+            android:textSize="16sp"> </TextView>
+        <EditText
+            android:id="@+id/email"
+            android:inputType="textWebEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:hint="@string/login4"
+            android:textSize="14sp"> </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="11">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanumlight"
+            android:gravity="left"
+            android:text="@string/password"
+            android:textColor="#646464"
+            android:textSize="16sp"> </TextView>
+        <EditText
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="14dp"> </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="11">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanumlight"
+            android:gravity="left"
+            android:text="비밀번호 확인"
+            android:textColor="#646464"
+            android:textSize="16sp"> </TextView>
+        <EditText
+            android:id="@+id/checkPassword"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="14sp"> </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="11">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nanumlight"
+            android:gravity="left"
+            android:text="@string/sex"
+            android:textColor="#646464"
+            android:textSize="16sp"> </TextView>
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:orientation="vertical">
+            <RadioGroup android:id="@+id/radioGroup"
+                android:orientation="horizontal"
+                android:layout_height="25dp"
+                android:layout_width="match_parent">
+                <RadioButton android:layout_weight="5"
+                    android:fontFamily="@font/nanumlight"
+                    android:text="@string/man"
+                    android:id="@+id/rg_btn1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <RadioButton android:layout_weight="5"
+                    android:fontFamily="@font/nanumlight"
+                    android:text="@string/woman"
+                    android:id="@+id/rg_btn2" android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- 패스워드 / 싸인업-->
+    <LinearLayout
+        android:weightSum="10"
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="horizontal"
+        android:layout_weight="8">
 
         <TextView
             android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
             android:fontFamily="@font/nanumregular"
-            android:layout_marginBottom="16dp"
             android:textSize="14sp"
             android:layout_weight="5"
             android:layout_width="wrap_content"
@@ -158,6 +214,7 @@
 
         <TextView
             android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
             android:fontFamily="@font/nanumregular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -165,22 +222,26 @@
             android:gravity="left"
             android:text="@string/log_in"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="14sp"></TextView>
+            android:textSize="14sp"
+            android:onClick="goLogin"></TextView>
     </LinearLayout>
 
-
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_grad"
-        android:fontFamily="@font/nanumextra"
-        android:text="@string/sign_up5"
-        android:textColor="#ffffff"
-        android:textSize="18sp"></Button>
-
+        android:layout_height="0px"
+        android:layout_weight="12">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_grad"
+            android:fontFamily="@font/nanumextra"
+            android:text="@string/sign_up5"
+            android:textColor="#ffffff"
+            android:textSize="18sp"></Button>
+    </LinearLayout>
 
 </LinearLayout>
