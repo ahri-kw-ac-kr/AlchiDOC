@@ -184,7 +184,8 @@
                 <RadioButton android:layout_weight="5"
                     android:fontFamily="@font/nanumlight"
                     android:text="@string/woman"
-                    android:id="@+id/rg_btn2" android:layout_width="0dp"
+                    android:id="@+id/rg_btn2"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content" />
             </RadioGroup>
         </LinearLayout>
@@ -241,7 +242,8 @@
             android:fontFamily="@font/nanumextra"
             android:text="@string/sign_up5"
             android:textColor="#ffffff"
-            android:textSize="18sp"></Button>
+            android:textSize="18sp"
+            android:onClick="signUp"></Button>
     </LinearLayout>
 
 </LinearLayout>
