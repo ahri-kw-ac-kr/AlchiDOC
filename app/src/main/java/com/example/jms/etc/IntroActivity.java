@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.jms.R;
-import com.example.jms.home.MainActivity;
+
 
 public class IntroActivity extends Activity {
     @Override
@@ -17,7 +17,7 @@ public class IntroActivity extends Activity {
         handler.postDelayed(new Runnable(){
             @Override
             public void run() {
-                Intent intent = new Intent (getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent (getApplicationContext(), Login.class);
                 startActivity(intent);
                 finish();
             }

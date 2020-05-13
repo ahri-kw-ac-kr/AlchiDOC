@@ -13,36 +13,27 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="nu6972ffum" />
-        <activity android:name="com.example.jms.home.MainActivity">
-        </activity>
+        <activity android:name=".home.MainActivity"> </activity>
         <activity android:name=".etc.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".settings.CareList">
-        </activity>
-        <activity android:name=".home.DayLight">
-        </activity>
-        <activity android:name=".home.DayAct">
-        </activity>
-        <activity android:name=".home.DaySleep">
-        </activity>
-        <activity android:name=".home.WeekLight">
-        </activity>
-        <activity android:name=".home.WeekAct">
-        </activity>
-        <activity android:name=".home.WeekSleep">
-        </activity>
-        <activity android:name=".home.MonthAct">
-        </activity>
-        <activity android:name=".home.MonthLight">
-        </activity>
-        <activity android:name=".home.MonthSleep">
-        </activity>
-        <activity android:name=".home.Report">
-        </activity>
+        <activity android:name=".settings.CareList"> </activity>
+        <activity android:name=".home.DayLight"> </activity>
+        <activity android:name=".home.DayAct"> </activity>
+        <activity android:name=".home.DaySleep"> </activity>
+        <activity android:name=".home.WeekLight"> </activity>
+        <activity android:name=".home.WeekAct"> </activity>
+        <activity android:name=".home.WeekSleep"> </activity>
+        <activity android:name=".home.MonthAct"> </activity>
+        <activity android:name=".home.MonthLight"> </activity>
+        <activity android:name=".home.MonthSleep"> </activity>
+        <activity android:name=".home.Report"> </activity>
+        <activity android:name=".etc.Login"> </activity>
+        <activity android:name=".etc.SignUp"> </activity>
+        <activity android:name=".settings.PasswordFind1"> </activity>
 
     </application>
 </manifest>
