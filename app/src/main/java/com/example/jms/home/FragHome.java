@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
 
 import cn.nightcode.sliderIndicator.SliderIndicator;
 
@@ -68,7 +69,7 @@ public class FragHome extends Fragment {
         mainViewPager.setAdapter(pagerAdapter);
 
         indicator = (SliderIndicator) view.findViewById(R.id.main_slide_indicator);
-        pagerAdapter.setCount(5); //나중에 이 부분을 보호자 숫자대로 바꿔야함..
+        pagerAdapter.setCount(RestfulAPI.principalUser.getFriend().size()+1); //나중에 이 부분을 보호자 숫자대로 바꿔야함..
         indicator.setupWithViewPager(mainViewPager);
 
 
