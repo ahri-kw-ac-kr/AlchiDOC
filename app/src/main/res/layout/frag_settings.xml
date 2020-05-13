@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:background="#FAFAFA"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
-
 
     <!--상단 프레임-->
     <com.google.android.material.appbar.AppBarLayout
@@ -56,8 +55,6 @@
             android:text="사용자 계정"
             android:textColor="#646464"
             android:textSize="18sp"></TextView>
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
@@ -65,291 +62,296 @@
             android:background="#707070" />
 
         <LinearLayout
-            android:background="@drawable/list"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="55dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="mhse8919@gmail.com"
-                android:textSize="20sp"
-                android:gravity="left|center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="mhse8919@gmail.com"
                 android:textColor="#646464"
-                android:paddingLeft="22dp"></TextView>
+                android:textSize="20sp"></TextView>
 
             <!--로그아웃 버튼-->
             <LinearLayout
-                android:id = "@+id/logoutButton"
-                android:layout_gravity="center_vertical"
+                android:id="@+id/logoutButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
 
                 <TextView
-                    android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="로그아웃"
-                    android:textSize="16sp"
-                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_chevron_right_black_24dp"
                     android:fontFamily="@font/nanumregular"
-                    android:textColor="#646464"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
                     android:paddingRight="7dp"
-                    android:paddingLeft="22dp"></TextView>
+                    android:text="로그아웃"
+                    android:textColor="#646464"
+                    android:textSize="16sp"></TextView>
             </LinearLayout>
         </LinearLayout>
 
-
         <View
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
-            android:layout_height="0.2dp"
+            android:layout_height="0.3dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
 
+
         <!--회원정보 수정 버튼-->
+        <View
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_gravity="center|bottom"
+            android:background="#707070" />
+
         <LinearLayout
-            android:background="@drawable/list"
-            android:orientation="horizontal"
+
+            android:id="@+id/setButton1"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:id = "@+id/setButton1">
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="회원정보 수정"
-                android:textSize="20sp"
-                android:gravity="left|center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="회원정보 수정"
                 android:textColor="#646464"
-                android:paddingLeft="22dp"></TextView>
-
+                android:textSize="20sp"></TextView>
             <LinearLayout
-
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
                     android:textColor="#646464"
-                    android:paddingLeft="22dp"></TextView>
+                    android:textSize="16sp"></TextView>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_chevron_right_black_24dp"
-                    android:paddingRight="7dp"></ImageView>
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.2dp"
+            android:layout_height="0.3dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
-
         <!--기기 설정 버튼 -->
         <LinearLayout
-            android:background="@drawable/list"
-            android:orientation="horizontal"
+            android:id="@+id/setButton2"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:id = "@+id/setButton2">
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="기기 설정"
-                android:textSize="20sp"
-                android:gravity="left|center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/nanumregular"
-                android:textColor="#646464"
+                android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                >
+                android:text="기기 설정"
+                android:textColor="#646464"
+                android:textSize="20sp">
 
             </TextView>
 
             <LinearLayout
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
+                android:layout_gravity="center_vertical">
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
                     android:textColor="#646464"
-                    android:paddingLeft="22dp">
-                </TextView>
+                    android:textSize="16sp"></TextView>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_chevron_right_black_24dp"
-                    android:paddingRight="7dp">
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp">
 
                 </ImageView>
             </LinearLayout>
         </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_gravity="center|top"
+            android:background="#707070" />
 
         <!--보호자 목록 버튼-->
         <LinearLayout
-            android:background="@drawable/list"
-            android:orientation="horizontal"
+            android:id="@+id/setButton3"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:id = "@+id/setButton3">
-
+            android:background="#ffffff"
+            android:orientation="horizontal">
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="보호자 목록"
-                android:textSize="20sp"
-                android:gravity="left|center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="보호자 목록"
                 android:textColor="#646464"
-                android:paddingLeft="22dp"></TextView>
-
+                android:textSize="20sp"></TextView>
             <LinearLayout
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
+                android:layout_gravity="center_vertical">
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
                     android:textColor="#646464"
-                    android:paddingLeft="22dp"></TextView>
+                    android:textSize="16sp"></TextView>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_chevron_right_black_24dp"
-                    android:paddingRight="7dp"></ImageView>
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.2dp"
+            android:layout_height="0.3dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
 
         <!--도움말 보기 버튼-->
         <LinearLayout
-            android:background="@drawable/list"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="55dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="도움말 보기"
-                android:textSize="20sp"
-                android:gravity="left|center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="도움말 보기"
                 android:textColor="#646464"
-                android:paddingLeft="22dp"></TextView>
+                android:textSize="20sp"></TextView>
 
             <LinearLayout
-                android:layout_gravity="center_vertical"
+                android:id="@+id/setButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id = "@+id/setButton4">
+                android:layout_gravity="center_vertical">
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
                     android:textColor="#646464"
-                    android:paddingLeft="22dp"></TextView>
+                    android:textSize="16sp"></TextView>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_chevron_right_black_24dp"
-                    android:paddingRight="7dp"></ImageView>
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
             </LinearLayout>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.2dp"
+            android:layout_height="0.3dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
 
         <!--이용약관 버튼-->
         <LinearLayout
-            android:background="@drawable/list"
-            android:orientation="horizontal"
+            android:id="@+id/setButton5"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:id = "@+id/setButton5">
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="이용약관"
-                android:textSize="20sp"
-                android:gravity="left|center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="이용약관"
                 android:textColor="#646464"
-                android:paddingLeft="22dp"></TextView>
+                android:textSize="20sp"></TextView>
 
             <LinearLayout
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
+                android:layout_gravity="center_vertical">
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
                     android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
                     android:textColor="#646464"
-                    android:paddingLeft="22dp"></TextView>
+                    android:textSize="16sp"></TextView>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_chevron_right_black_24dp"
-                    android:paddingRight="7dp"></ImageView>
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
             </LinearLayout>
         </LinearLayout>
-
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.2dp"
+            android:layout_height="0.3dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
-
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
