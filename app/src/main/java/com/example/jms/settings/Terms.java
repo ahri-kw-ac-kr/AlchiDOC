@@ -1,6 +1,5 @@
-package com.example.jms.etc;
+package com.example.jms.settings;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
