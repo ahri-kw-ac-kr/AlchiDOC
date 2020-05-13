@@ -15,14 +15,14 @@ public class PasswordFind1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.password_find);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        /*Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow2_back_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        });*/
 
 
 
