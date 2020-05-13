@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void signUp(View view){
+    public void goSignUp(View view){
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
         startActivity(intent);
     }
