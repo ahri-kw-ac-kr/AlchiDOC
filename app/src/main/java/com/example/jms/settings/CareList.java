@@ -20,7 +20,7 @@ public class CareList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.care_list);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar3);
         toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,13 +12,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar3"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@color/default1"
             android:elevation="1dp"
-            android:fontFamily="@font/nanumextra" >
+            android:fontFamily="@font/nanumextra"
+            >
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"

@@ -19,7 +19,7 @@ public class DeviceSet1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.device1);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar3);
         toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
