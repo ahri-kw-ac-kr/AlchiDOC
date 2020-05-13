@@ -12,7 +12,7 @@ public class UserDTO implements Serializable {
     private Long id;
     private String username;
     private String fullname;
-    private char sex;
+    private String sex;
     private String birth;
     private String phone;
     private String password;
@@ -22,7 +22,7 @@ public class UserDTO implements Serializable {
 
     public UserDTO(){    }
 
-    public UserDTO(Long id, String username, String fullname, char sex, String birth, String phone, String password, String newpassword, String number, List<UserDTO> freind){
+    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newpassword, String number, List<UserDTO> freind){
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -44,8 +44,8 @@ public class UserDTO implements Serializable {
     public String getFullname() { return fullname; }
     public void setFullname(String fullname){ this.fullname = fullname; }
 
-    public char getSex() { return sex; }
-    public void setSex(char sex){ this.sex = sex; }
+    public String getSex() { return sex; }
+    public void setSex(String sex){ this.sex = sex; }
 
     public String getBirth() { return birth; }
     public void setBirth(String birth){ this.birth = birth; }

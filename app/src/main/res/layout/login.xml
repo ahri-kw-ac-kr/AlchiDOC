@@ -33,6 +33,7 @@
         android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/login_email"
         android:inputType="textWebEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -56,6 +57,7 @@
 
 
     <EditText
+        android:id="@+id/login_password"
         android:inputType="textWebPassword"
         android:layout_width="match_parent"
         android:layout_height="40dp"
