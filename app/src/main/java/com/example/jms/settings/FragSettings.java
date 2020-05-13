@@ -12,17 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.jms.settings.CareList;
-import com.example.jms.settings.DeviceSet1;
-import com.example.jms.home.MainActivity;
-import com.example.jms.settings.Profile;
 import com.example.jms.R;
-import com.example.jms.settings.Terms;
+import com.example.jms.home.MainActivity;
 
 public class FragSettings extends Fragment {
 
     private View view;
     MainActivity mainActivity;
+    Profile profile;
     LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5;
 
 

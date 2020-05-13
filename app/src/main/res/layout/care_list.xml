@@ -40,16 +40,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -131,13 +121,15 @@
             android:fontFamily="@font/nanumregular"
             android:textColor="#646464"
             android:paddingLeft="22dp"></TextView>
-        <ImageView
+
+        <ImageButton
             android:id="@+id/del1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_more_vert_black_24dp"
-            android:paddingRight="10dp"></ImageView>
+            android:paddingRight="10dp"></ImageButton>
     </LinearLayout>
+
         <LinearLayout
             android:background="@drawable/list"
             android:orientation="horizontal"
@@ -153,12 +145,12 @@
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:paddingLeft="22dp"></TextView>
-            <ImageView
+            <ImageButton
                 android:id="@+id/del2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_more_vert_black_24dp"
-                android:paddingRight="10dp"></ImageView>
+                android:paddingRight="10dp"></ImageButton>
         </LinearLayout>
         <LinearLayout
             android:background="@drawable/list"
@@ -175,12 +167,12 @@
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:paddingLeft="22dp"></TextView>
-            <ImageView
+            <ImageButton
                 android:id="@+id/del3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_more_vert_black_24dp"
-                android:paddingRight="10dp"></ImageView>
+                android:paddingRight="10dp"></ImageButton>
         </LinearLayout>
 
         <Button
