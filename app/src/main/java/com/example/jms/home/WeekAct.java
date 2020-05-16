@@ -2,10 +2,13 @@ package com.example.jms.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 
@@ -13,24 +16,18 @@ import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
 
-public class WeekAct extends AppCompatActivity {
+public class WeekAct extends Fragment {
 
+    View view;
+
+    public WeekAct(){}
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.week_act);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.week_act, container, false);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-
-        BarChart mBarChart = (BarChart) findViewById(R.id.bar);
+        BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
 
         mBarChart.addBar(new BarModel("월", 0.5f, Color.parseColor("#CAEBA2")));
         mBarChart.addBar(new BarModel("화", 0.8f, Color.parseColor("#CAEBA2")));
@@ -42,5 +39,8 @@ public class WeekAct extends AppCompatActivity {
 
         mBarChart.startAnimation();
 
+        return view;
+
     }
+
 }

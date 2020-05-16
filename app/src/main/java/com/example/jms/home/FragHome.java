@@ -84,7 +84,7 @@ public class FragHome extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), WeekAct.class);
+                Intent intent = new Intent(getActivity(), ActButtonActivity.class);
                 startActivity(intent);
             }
         });

@@ -2,9 +2,13 @@ package com.example.jms.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -12,27 +16,22 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+
 import java.util.ArrayList;
 
-public class MonthAct extends AppCompatActivity {
+public class MonthAct extends Fragment {
 
-    int[] colorArray = new int[] {Color.parseColor("#6EAD22"), Color.parseColor("#8bc34a"), Color.parseColor("#C0E296")};
+    View view;
+    public MonthAct(){}
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.month_act);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.month_act, container, false);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        int[] colorArray = new int[] {Color.parseColor("#6EAD22"), Color.parseColor("#8bc34a"), Color.parseColor("#C0E296")};
 
-        PieChart pieChart = findViewById(R.id.piechart);
+        PieChart pieChart = view.findViewById(R.id.piechart);
         ArrayList NoOfEmp = new ArrayList();
 
         NoOfEmp.add(new Entry(4, 0));
@@ -74,5 +73,8 @@ public class MonthAct extends AppCompatActivity {
         pieChart.notifyDataSetChanged(); // 차트에 데이터가 바뀌었다고 알림
         pieChart.invalidate(); // 차트 다시 그려! 명령하는 코드
         */
+
+
+        return view;
     }
 }

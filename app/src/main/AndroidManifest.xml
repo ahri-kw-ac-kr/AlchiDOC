@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jms">
+    <!--인터넷 접속을 위한 권한-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 블루투스 권한-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--기기 검색을 위한 권한-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -23,13 +29,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".home.ActButtonActivity"></activity>
         <activity android:name=".home.DayLight"> </activity>
-        <activity android:name=".home.DayAct"> </activity>
+        <!--<activity android:name=".home.DayAct"> </activity>-->
         <activity android:name=".home.DaySleep"> </activity>
         <activity android:name=".home.WeekLight"> </activity>
-        <activity android:name=".home.WeekAct"> </activity>
+        <!--<activity android:name=".home.WeekAct"> </activity>-->
         <activity android:name=".home.WeekSleep"> </activity>
-        <activity android:name=".home.MonthAct"> </activity>
+        <!--<activity android:name=".home.MonthAct"> </activity>-->
         <activity android:name=".home.MonthLight"> </activity>
         <activity android:name=".home.MonthSleep"> </activity>
         <activity android:name=".home.Report"> </activity>
