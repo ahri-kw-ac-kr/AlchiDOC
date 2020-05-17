@@ -97,6 +97,9 @@ public class FragHome extends Fragment {
         });
 
         sleepStart.setOnClickListener(new View.OnClickListener() {
+
+            //https://loveiskey.tistory.com/206
+            //취침 중 서비스 해당 게시글 참조해서 구현
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());

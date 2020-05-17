@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ public class FragSettings extends Fragment {
     MainActivity mainActivity;
     Profile profile;
     LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5;
+    TextView logoutButton;
 
 
     @Override
@@ -48,7 +50,16 @@ public class FragSettings extends Fragment {
         layButton3 = (LinearLayout) view.findViewById(R.id.setButton3);
         layButton4 = (LinearLayout) view.findViewById(R.id.setButton4);
         layButton5 = (LinearLayout) view.findViewById(R.id.setButton5);
+        logoutButton = (TextView) view.findViewById(R.id.logout_button);
 
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Profile.class);
+                startActivity(intent);
+            }
+        });
 
         layButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +88,7 @@ public class FragSettings extends Fragment {
         layButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Terms.class);
+                Intent intent = new Intent(getActivity(), Guide.class);
                 startActivity(intent);
             }
         });

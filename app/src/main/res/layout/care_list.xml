@@ -23,8 +23,8 @@
             android:layout_height="55dp"
             android:background="@color/default1"
             android:elevation="1dp"
-            android:fontFamily="@font/nanumextra"
-            >
+            android:fontFamily="@font/nanumextra">
+
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
@@ -39,15 +39,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+    <!--상단바 이후-->
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/care_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!--나를 케어하는 사람 -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,16 +87,7 @@
         </LinearLayout>
 
 
-
-
-
-
-
-
-
-
-
-
+        <!--내가 케어하는 사람 -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -111,6 +105,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="55dp">
+
         <TextView
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -127,7 +122,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_more_vert_black_24dp"
-            android:paddingRight="10dp"></ImageButton>
+            android:paddingRight="10dp">
+
+        </ImageButton>
     </LinearLayout>
 
         <LinearLayout
@@ -152,6 +149,7 @@
                 android:src="@drawable/ic_more_vert_black_24dp"
                 android:paddingRight="10dp"></ImageButton>
         </LinearLayout>
+
         <LinearLayout
             android:background="@drawable/list"
             android:orientation="horizontal"
@@ -175,7 +173,10 @@
                 android:paddingRight="10dp"></ImageButton>
         </LinearLayout>
 
+        <!-- 추가하기-->
+
         <Button
+            android:id="@+id/add_person"
             android:textColor="#9C9FA6"
             android:paddingLeft="22dp"
             android:paddingRight="7dp"

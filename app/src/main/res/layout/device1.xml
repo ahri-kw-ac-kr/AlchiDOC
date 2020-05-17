@@ -161,8 +161,6 @@
     </LinearLayout>
 
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -170,9 +168,10 @@
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="84dp"
-        android:backgroundTint="#ffffff"
         android:background="#ffffff"
+        android:backgroundTint="#ffffff"
         android:clickable="true"
+        app:backgroundTint="#2B90D9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_black_24dp" />

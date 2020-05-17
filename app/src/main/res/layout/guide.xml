@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:text="이용 약관"
+                android:text="도움말 보기"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"></TextView>
@@ -43,8 +43,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

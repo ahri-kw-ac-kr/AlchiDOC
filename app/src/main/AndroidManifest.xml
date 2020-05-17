@@ -49,6 +49,7 @@
         <activity android:name=".settings.DeviceSet3"> </activity>
         <activity android:name=".settings.Profile"> </activity>
         <activity android:name=".settings.Terms"> </activity>
+        <activity android:name=".settings.Guide"> </activity>
 
 
 

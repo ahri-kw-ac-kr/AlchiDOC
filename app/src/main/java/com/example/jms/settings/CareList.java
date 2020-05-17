@@ -1,11 +1,17 @@
 package com.example.jms.settings;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,14 +20,22 @@ import com.example.jms.R;
 public class CareList extends AppCompatActivity {
 
     private ImageButton del1, del2, del3;
+    Button add;
+    LinearLayout listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.care_list);
 
+        listView = (LinearLayout) findViewById(R.id.care_list_view);
+        add = (Button) findViewById(R.id.add_person);
+        LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = vi.inflate(R.layout.care_person, null);
+
         Toolbar toolbar = findViewById(R.id.toolbar3);
         toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,18 +67,34 @@ public class CareList extends AppCompatActivity {
                 showFilterPopup(v);
             }
         });
+
+
+        //추가하기 버튼
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout careperson = (LinearLayout) findViewById(R.id.care_individ);
+                //careperson.get;
+                listView.addView(careperson);
+            }
+        });
     }
+
+
+
 
     // '삭제하기'를 누르면 실행되는 작업. 현재는 "삭제 되었습니다"라는 토스트 메세지만 띄우도록 함.
     // 목록에서 사라지는 작업도 추가해야 함
     private void showFilterPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         popup.inflate(R.menu.delete);
+
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu_delete:
                         Toast.makeText(CareList.this, "삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+                        listView.removeView((ViewGroup) v.getParent());
                         return true;
                     default:
                         return false;

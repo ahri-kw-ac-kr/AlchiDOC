@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/care_individ"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/list"
+    android:orientation="horizontal"
+    android:layout_height="55dp">
+
+<!--care list에 추가될 양식 -->
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="랄랄라 (010-****-4333)"
+        android:textSize="20sp"
+        android:gravity="left|center_vertical"
+        android:fontFamily="@font/nanumregular"
+        android:textColor="#646464"
+        android:paddingLeft="22dp"></TextView>
+
+    <ImageButton
+        android:id="@+id/del1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_more_vert_black_24dp"
+        android:paddingRight="10dp"></ImageButton>
+</LinearLayout>
+
+
