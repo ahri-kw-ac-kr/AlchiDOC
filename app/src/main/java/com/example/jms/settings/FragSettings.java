@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
 
 public class FragSettings extends Fragment {
@@ -56,8 +57,8 @@ public class FragSettings extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Profile.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), Login.class);
+
             }
         });
 
