@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:text="설정"
+                android:text="@string/set1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
@@ -52,7 +52,7 @@
             android:layout_marginTop="75dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nanumregular"
-            android:text="사용자 계정"
+            android:text="@string/set2"
             android:textColor="#646464"
             android:textSize="18sp"></TextView>
         <View
@@ -96,7 +96,7 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="22dp"
                     android:paddingRight="7dp"
-                    android:text="로그아웃"
+                    android:text="@string/set3"
                     android:textColor="#646464"
                     android:textSize="16sp"></TextView>
             </LinearLayout>
@@ -132,7 +132,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                android:text="회원정보 수정"
+                android:text="@string/profile"
                 android:textColor="#646464"
                 android:textSize="20sp"></TextView>
             <LinearLayout
@@ -177,7 +177,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                android:text="기기 설정"
+                android:text="@string/device1"
                 android:textColor="#646464"
                 android:textSize="20sp">
 
@@ -227,7 +227,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                android:text="보호자 목록"
+                android:text="@string/care_list1"
                 android:textColor="#646464"
                 android:textSize="20sp"></TextView>
             <LinearLayout
@@ -273,7 +273,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                android:text="도움말 보기"
+                android:text="@string/tuto"
                 android:textColor="#646464"
                 android:textSize="20sp"></TextView>
 
@@ -323,7 +323,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                android:text="이용약관"
+                android:text="@string/terms"
                 android:textColor="#646464"
                 android:textSize="20sp"></TextView>
 

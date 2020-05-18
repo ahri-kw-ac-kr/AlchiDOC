@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:text="인지행동 종합플랜"
+                android:text="@string/all_report1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"></TextView>
@@ -45,15 +45,16 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <LinearLayout
-
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_gravity="center|top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nanumregular"
@@ -63,24 +64,24 @@
                 android:textStyle="bold"></TextView>
             <LinearLayout
                 android:weightSum="3"
-
                 android:layout_gravity="center"
-                android:layout_width="365dp"
+                android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
-                    android:layout_width="118dp"
+                    android:layout_width="match_parent"
                     android:layout_height="118dp">
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:arc_bottom_text="햇빛량"
+                app:arc_bottom_text="@string/light"
                 app:arc_bottom_text_size="13sp"
                 app:arc_finished_color="#FA7033"
                 app:arc_progress="75"
@@ -90,21 +91,18 @@
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
-                    android:layout_width="118dp"
+                    android:layout_width="match_parent"
                     android:layout_height="118dp">
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                app:arc_bottom_text="활동량"
+                app:arc_bottom_text="@string/act"
                 app:arc_bottom_text_size="13sp"
                 app:arc_finished_color="#329035"
                 app:arc_progress="80"
@@ -117,14 +115,14 @@
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
-                    android:layout_width="118dp"
+                    android:layout_width="match_parent"
                     android:layout_height="118dp">
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress3"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:arc_bottom_text="수면량"
+                app:arc_bottom_text="@string/sleep"
                 app:arc_bottom_text_size="13sp"
                 app:arc_finished_color="#7476B3"
                 app:arc_progress="55"
@@ -135,60 +133,71 @@
             </LinearLayout>
 
             <TextView
+                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="세부사항별 인지행동 종합플랜"
+                android:text="@string/all_report2"
                 android:textColor="#646464"
                 android:textSize="20sp"
                 android:textStyle="bold"></TextView>
             <androidx.cardview.widget.CardView
                 android:layout_marginBottom="100dp"
-                app:cardElevation="10dp"
+                app:cardElevation="3dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
                 android:layout_gravity="center"
-                android:layout_width="365dp"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                 <TextView
+                    android:layout_weight="6"
                     android:drawablePadding="5dp"
                     android:drawableLeft="@drawable/ic_moon"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbold"
-                    android:text="총 수면 시간"
+                    android:text="@string/sleep2"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
                     android:textSize="22sp"></TextView>
                 <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="56dp"
+                    android:layout_weight="0.3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:tint="#7476B3"
                     android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                     ></ImageView>
                 <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumregular"
-                    android:text="충분"
+                    android:text="@string/good"
                     android:textColor="#7476B3"
                     android:textSize="19sp"></TextView>
+                    </LinearLayout>
                 <TextView
                     android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
                     android:textColor="#5A5959"
                     android:fontFamily="@font/nanumregular"
                     android:textSize="20sp"
@@ -198,266 +207,282 @@
                 </TextView>
                 <View
                     android:layout_gravity="center|top"
-                    android:layout_marginTop="120dp"
-                    android:layout_width="320dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_bed"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:lines="1"
-                    android:text="평균 뒤척임"
-                    android:textAlignment="viewStart"
-                    android:textColor="#7476B3"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="#7476B3"
-                    android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
-                    ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="146dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="부족"
-                    android:textColor="#7476B3"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="173dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="어제의 수면 시간당 평균 뒤척임이 수면 장애 수준의 수치입니다. 오늘의 숙면을 취하기 위해
+
+
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_bed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/sleep3"
+                            android:textAlignment="viewStart"
+                            android:textColor="#7476B3"
+                            android:textSize="22sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#7476B3"
+                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/bad"
+                            android:textColor="#7476B3"
+                            android:textSize="19sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="어제의 수면 시간당 평균 뒤척임이 수면 장애 수준의 수치입니다. 오늘의 숙면을 취하기 위해
 서 오전의 햇빛양과 오전 활동량을 반드시 어제
 보다 많이 늘려야 수면 시간이 늘어나고 숙면을
 취할 수 있습니다. 일주일 내에 4회 이상 같은
 현상이 발생하면 수면 장애 증세로 의심할 수
 있습니다. 수면 장애 개선을 위하여 적극적으로
 수면 위생 행동을 따라해 주십시오.">
-                </TextView>
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="380dp"
-                    android:layout_width="310dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_sprint"
-                    android:layout_marginTop="400dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="주간 활동량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="400dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="#329035"
-                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                    ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="406dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="충분"
-                    android:textColor="#329035"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="430dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="어제 주간 활동량은 충분하였습니다.
-오늘도 유지하거나 조금씩 늘려보세요.">
-                </TextView>
+                    </TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
 
 
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="490dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_calories"
-                    android:layout_marginTop="510dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="야간 활동량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="510dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="#329035"
-                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                    ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="516dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="충분"
-                    android:textColor="#329035"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="540dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="어제 야간 활동량은 숙면을 취하기에 적당하였습니다.
-오늘도 유지하도록 하세요.">
-                </TextView>
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_sprint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/act2"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="22sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#329035"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/good"
+                            android:textColor="#329035"
+                            android:textSize="19sp"></TextView>
+                    </LinearLayout>
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="어제 주간 활동량은 @string/good하였습니다. 오늘도 유지하거나 조금씩 늘려보세요.">
+                    </TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
 
 
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="600dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_whatshot_black_24dp"
-                    android:layout_marginTop="620dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="주간 조도량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#F75321"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="620dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                    ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="626dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="충분"
-                    android:textColor="#F75321"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="650dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="어제 주간 햇빛량은 충분하였습니다.
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_calories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/act3"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="22sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#329035"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/good"
+                            android:textColor="#329035"
+                            android:textSize="19sp"></TextView>
+                    </LinearLayout>
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="어제 야간 활동량은 숙면을 취하기에 적당하였습니다. 오늘도 유지하도록 하세요.">
+                    </TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+
+
+
+
+
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_whatshot_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/light2"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="22sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#F75321"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/good"
+                            android:textColor="#F75321"
+                            android:textSize="19sp"></TextView>
+                    </LinearLayout>
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="어제 주간 햇빛량은 @string/good하였습니다.
 오늘도 어제와 같이 햇빛량을 유지하거나 늘리세요.">
-                </TextView>
+                    </TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
 
 
 
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="710dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_highlight_black_24dp"
-                    android:layout_marginTop="730dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="야간 조도량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#F75321"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="730dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                    ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="736dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="충분"
-                    android:textColor="#F75321"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginTop="760dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="어제 야간 조명은 숙면을 취하기에 적당하였습니다.
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_whatshot_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/light3"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="22sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#F75321"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/good"
+                            android:textColor="#F75321"
+                            android:textSize="19sp"></TextView>
+                    </LinearLayout>
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="20sp"
+                        android:layout_marginBottom="22dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="어제 야간 조명은 숙면을 취하기에 적당하였습니다.
  오늘도 유지하도록 하세요.">
-                </TextView>
+                    </TextView>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
