@@ -79,7 +79,7 @@ public class APIViewModel extends ViewModel {
         return restfulAPIService.myDoctor(id, page);
     }
 
-    public String delFriend(Long proId, Long patId){
+    public Single<UserDTO> delFriend(Long proId, Long patId){
         return restfulAPIService.delFriend(proId, patId);
     }
 

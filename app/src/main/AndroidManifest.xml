@@ -44,6 +44,7 @@
         <activity android:name=".etc.SignUp"> </activity>
         <activity android:name=".settings.PasswordFind1"> </activity>
         <activity android:name=".settings.CareList"> </activity>
+        <activity android:name=".settings.CareListSub"> </activity>
         <activity android:name=".settings.DeviceSet1"> </activity>
         <activity android:name=".settings.DeviceSet2"> </activity>
         <activity android:name=".settings.DeviceSet3"> </activity>

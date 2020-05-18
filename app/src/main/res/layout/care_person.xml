@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/care_individ"
+    android:id="@+id/careId"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/list"
@@ -9,6 +9,7 @@
 
 <!--care list에 추가될 양식 -->
     <TextView
+        android:id = "@+id/careText"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -17,14 +18,14 @@
         android:gravity="left|center_vertical"
         android:fontFamily="@font/nanumregular"
         android:textColor="#646464"
-        android:paddingLeft="22dp"></TextView>
+        android:paddingLeft="22dp"> </TextView>
 
     <ImageButton
-        android:id="@+id/del1"
+        android:id="@+id/careDel"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:src="@drawable/ic_more_vert_black_24dp"
-        android:paddingRight="10dp"></ImageButton>
+        android:paddingRight="10dp"> </ImageButton>
 </LinearLayout>
 
 
