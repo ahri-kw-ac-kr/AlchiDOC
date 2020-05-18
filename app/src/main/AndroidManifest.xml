@@ -3,11 +3,15 @@
     package="com.example.jms">
 
     <!-- 인터넷 접속을 위한 권한 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 블루투스 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 블루투스 권한 -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- 기기 검색을 위한 권한 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!-- 기기 검색을 위한 권한 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- foreground 실행을 위한 권한-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -21,7 +25,14 @@
         <service
             android:name=".home.SleepService"
             android:enabled="true"
+            android:stopWithTask="true"
             android:exported="true"></service>
+
+        <service
+            android:name=".etc.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
+
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
@@ -35,7 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".home.ActButtonActivity" />
         <activity android:name=".home.DayLight"></activity> <!-- <activity android:name=".home.DayAct"> </activity> -->
         <activity android:name=".home.DaySleep"></activity>
@@ -56,4 +66,8 @@
         <activity android:name=".settings.Guide"></activity>
         <activity android:name=".home.SleepActivity"></activity>
     </application>
+
+
+
+
 </manifest>

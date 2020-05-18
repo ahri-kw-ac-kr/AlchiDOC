@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,22 +103,20 @@ public class FragHome extends Fragment {
         });
 
         sleepStart.setOnClickListener(new View.OnClickListener() {
-
             //https://loveiskey.tistory.com/206
             //취침 중 서비스 해당 게시글 참조해서 구현
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
                 ad.setMessage("취침을 시작하시겠습니까?");
-
                 ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //확인버튼을 누르면 다이얼로그가 사라지고 SleepActivity가 실행되도록
+                        dialog.dismiss();
                         Intent intent = new Intent(getActivity(), SleepActivity.class);
                         startActivity(intent);
-                        dialog.dismiss();
-
+                        Log.d("D","버튼클릭됨");
                     }
                 });
 
