@@ -1,6 +1,7 @@
 package com.example.jms.settings;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +12,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
+import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
 
 public class FragSettings extends Fragment {
@@ -59,8 +63,25 @@ public class FragSettings extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Profile.class);
-                startActivity(intent);
+                AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+                ad.setMessage("로그아웃 하시겠습니까?");
+                ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(getActivity(), Login.class);
+                        startActivity(intent);
+                        RestfulAPI.logout();
+                    }
+                });
+
+                ad.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
             }
         });
 
@@ -106,7 +127,5 @@ public class FragSettings extends Fragment {
 
         return view;
     }
-
-
 
 }

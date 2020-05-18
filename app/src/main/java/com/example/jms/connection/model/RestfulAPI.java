@@ -19,6 +19,11 @@ public class RestfulAPI {
     public static String token;
     public static UserDTO principalUser;
 
+    public static synchronized void logout(){
+        restfulAPIService = null;
+        token = null;
+        principalUser = null;
+    }
     public static synchronized RestfulAPIService getInstance() {
         if (restfulAPIService == null) {
             Retrofit retrofit = new Retrofit.Builder()
