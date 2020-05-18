@@ -69,7 +69,12 @@ public class FragHome extends Fragment {
         mainViewPager.setAdapter(pagerAdapter);
 
         indicator = (SliderIndicator) view.findViewById(R.id.main_slide_indicator);
-        pagerAdapter.setCount(RestfulAPI.principalUser.getFriend().size()+1); //나중에 이 부분을 보호자 숫자대로 바꿔야함..
+        if(RestfulAPI.principalUser.getFriend()!=null){
+            pagerAdapter.setCount(RestfulAPI.principalUser.getFriend().size()+1);//나중에 이 부분을 보호자 숫자대로 바꿔야함..
+        }
+        else{
+            pagerAdapter.setCount(1);
+        }
         indicator.setupWithViewPager(mainViewPager);
 
 

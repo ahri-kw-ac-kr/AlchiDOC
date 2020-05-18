@@ -1,6 +1,7 @@
 package com.example.jms.settings;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,9 +12,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+<<<<<<< HEAD
+=======
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
+>>>>>>> b13c555bf66f643c6df3f318a734b50b5d91b21f
 import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
 
@@ -21,9 +28,9 @@ public class FragSettings extends Fragment {
 
     private View view;
     MainActivity mainActivity;
-    Profile profile;
     LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5;
     TextView logoutButton;
+    TextView myInfo;
 
 
     @Override
@@ -52,13 +59,37 @@ public class FragSettings extends Fragment {
         layButton4 = (LinearLayout) view.findViewById(R.id.setButton4);
         layButton5 = (LinearLayout) view.findViewById(R.id.setButton5);
         logoutButton = (TextView) view.findViewById(R.id.logout_button);
+        myInfo = (TextView)view.findViewById(R.id.myInfo);
 
+        myInfo.setText(RestfulAPI.principalUser.getUsername());
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 Intent intent = new Intent(getActivity(), Login.class);
 
+=======
+                AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+                ad.setMessage("로그아웃 하시겠습니까?");
+                ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(getActivity(), Login.class);
+                        startActivity(intent);
+                        RestfulAPI.logout();
+                    }
+                });
+
+                ad.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+>>>>>>> b13c555bf66f643c6df3f318a734b50b5d91b21f
             }
         });
 
@@ -104,7 +135,5 @@ public class FragSettings extends Fragment {
 
         return view;
     }
-
-
 
 }

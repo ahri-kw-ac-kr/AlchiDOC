@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
+    android:weightSum="8.9"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,22 +37,20 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
-
-
     <LinearLayout
-        android:layout_weight="3.7"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <androidx.cardview.widget.CardView
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="15dp"
-            app:cardElevation="10dp"
+            app:cardElevation="3dp"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,73 +65,101 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-                <TextView
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:fontFamily="@font/nanumlight"
-                    android:gravity="left"
-                    android:text="@string/sign_up2"
-                    android:textColor="#646464"
-                    android:textSize="12sp"></TextView>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:inputType="textWebEmailAddress"
-                    android:textSize="11dp"></EditText>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="18dp"
-                    android:fontFamily="@font/nanumlight"
-                    android:gravity="left"
-                    android:text="@string/sign_up3"
-                    android:textColor="#646464"
-                    android:textSize="12sp"></TextView>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:inputType="textWebEmailAddress"
-                    android:textSize="11dp"></EditText>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/nanumlight"
-                    android:gravity="left"
-                    android:text="@string/sex"
-                    android:textColor="#646464"
-                    android:textSize="12sp"></TextView>
 
                 <LinearLayout
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:orientation="vertical"
-                    android:weightSum="10">
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="7.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
 
+                        android:text="@string/sign_up2"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
+                    <EditText
+                        android:layout_weight="2.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="11dp"></EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="7.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
+                        android:text="생년월일"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
+                    <EditText
+                        android:layout_weight="2.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="11dp"></EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="7.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
+                        android:text="휴대전화"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
+                    <EditText
+                        android:layout_weight="2.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="11dp"></EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="6.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
+                        android:text="성별"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
                     <RadioGroup
+                        android:layout_weight="3.5"
                         android:id="@+id/radioGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
                         android:orientation="horizontal">
-
                         <RadioButton
                             android:id="@+id/rg_btn1"
                             android:layout_width="0dp"
@@ -142,7 +168,6 @@
                             android:fontFamily="@font/nanumlight"
                             android:text="@string/man"
                             android:textSize="11sp" />
-
                         <RadioButton
                             android:id="@+id/rg_btn2"
                             android:layout_width="0dp"
@@ -158,15 +183,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_weight="0.5"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <TextView
+            android:layout_marginTop="18dp"
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:fontFamily="@font/nanumregular"
             android:gravity="center"
             android:text="※ 비밀번호를 변경하실 분만 아래 내용을 입력해 주세요."
@@ -178,12 +202,12 @@
             app:layout_constraintStart_toStartOf="parent"></TextView>
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_weight="3.7"
+        android:layout_weight="2.4"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <androidx.cardview.widget.CardView
+            android:layout_gravity="center"
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -191,7 +215,7 @@
             android:layout_marginRight="30dp"
             app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="15dp"
-            app:cardElevation="10dp"
+            app:cardElevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -206,72 +230,84 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/nanumlight"
-                    android:gravity="left"
-                    android:text="현재 비밀번호"
-                    android:textColor="#646464"
-                    android:textSize="11sp"></TextView>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="7.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
 
-                <EditText
+                        android:text="현재 비밀번호"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
+                    <EditText
+                        android:layout_weight="2.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="11dp"></EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:inputType="textWebEmailAddress"
-                    android:textSize="11dp"></EditText>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="18dp"
-                    android:fontFamily="@font/nanumlight"
-                    android:gravity="left"
-                    android:text="새 비밀번호"
-                    android:textColor="#646464"
-                    android:textSize="11sp"></TextView>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:inputType="textWebEmailAddress"
-                    android:textSize="11dp"></EditText>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="18dp"
-                    android:fontFamily="@font/nanumlight"
-                    android:gravity="left"
-                    android:text="새 비밀번호 확인"
-                    android:textColor="#646464"
-                    android:textSize="11sp"></TextView>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="7.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
+                        android:text="새 비밀번호"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
+                    <EditText
+                        android:layout_weight="2.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="11dp"></EditText>
+                </LinearLayout>
+                <LinearLayout
                     android:layout_marginBottom="8dp"
-                    android:inputType="textWebEmailAddress"
-                    android:textSize="11dp"></EditText>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_weight="7.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/nanumlight"
+                        android:text="비밀번호 확인"
+                        android:textColor="#646464"
+                        android:textSize="12sp"></TextView>
+                    <EditText
+                        android:layout_weight="2.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="11dp"></EditText>
+                </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <Button
@@ -280,6 +316,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/btn_grad"
             android:fontFamily="@font/nanumextra"
             android:text="수정하기"
@@ -287,5 +324,4 @@
             android:textColor="#ffffff"
             android:textSize="18sp" />
     </LinearLayout>
-
 </LinearLayout>

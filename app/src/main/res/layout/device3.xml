@@ -1,62 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar3"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@color/default1"
-            android:elevation="1dp"
-            android:fontFamily="@font/nanumextra"
-            >
-
-
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:text="기기 설정"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"></TextView>
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginBottom="7dp"
-            android:fontFamily="@font/nanumregular"
-            android:text="연결 가능한 디바이스"
-            android:textColor="#646464"
-            android:textSize="18sp"></TextView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="365dp"
@@ -80,11 +35,12 @@
                 android:layout_marginTop="22dp"
                 android:layout_marginLeft="80dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="AlchiDOC3"
+                android:text="AlchiDOC"
                 android:textSize="20sp" />
 
 
             <TextView
+                android:id="@+id/deviceBattery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
@@ -93,9 +49,8 @@
                 android:text="배터리: 90%"
                 android:textSize="14sp" />
 
-
-
             <Button
+                android:id="@+id/deviceFinish"
                 android:layout_width="95dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center_vertical"
@@ -110,19 +65,4 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#2B90D9"
-        android:padding="3dp"
-        app:itemIconTint="#ffffff"
-        app:itemTextColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_editor_absoluteX="16dp"
-        app:menu="@menu/bottom_menu" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

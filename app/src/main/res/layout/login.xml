@@ -9,18 +9,32 @@
     android:paddingRight="20dp"
     android:paddingTop="20dp" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" >
     <TextView
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="75dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/nanumregular"
         android:gravity="left"
         android:text="@string/login1"
         android:textColor="#646464"
         android:textSize="30sp" />
+    </LinearLayout>
 
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +45,6 @@
         android:text="@string/email"
         android:textColor="#646464"
         android:textSize="18sp" />
-
     <EditText
         android:id="@+id/login_email"
         android:inputType="textWebEmailAddress"
@@ -41,9 +54,6 @@
         android:layout_marginRight="12dp"
         android:hint="@string/login4"
         android:textSize="16dp" />
-
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,8 +64,6 @@
         android:text="@string/password"
         android:textColor="#646464"
         android:textSize="18sp" />
-
-
     <EditText
         android:id="@+id/login_password"
         android:inputType="textWebPassword"
@@ -64,14 +72,52 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:textSize="16dp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    <LinearLayout
+        android:layout_marginLeft="12dp"
+
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"></CheckBox>
+        <TextView
+            android:id="@+id/auto_login"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/nanumregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="left"
+            android:text="@string/login7"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp"
+            android:onClick="findPassword"/>
+    </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
     <LinearLayout
         android:layout_marginTop="30dp"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:layout_marginRight="5dp"
             android:fontFamily="@font/nanumregular"
@@ -96,7 +142,6 @@
             android:textSize="14sp"
             android:onClick="findPassword"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_marginTop="5dp"
         android:weightSum="10"
@@ -113,7 +158,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="아직 회원이 아니신가요?" />
+            android:text="@string/login2" />
 
         <TextView
             android:id="@+id/signup"
@@ -123,21 +168,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="left"
-            android:text="회원가입 하러가기"
+            android:text="@string/login3"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="14sp"
             android:onClick="goSignUp" />
     </LinearLayout>
+    </LinearLayout>
+
+
 
     <LinearLayout
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/btn_grad"

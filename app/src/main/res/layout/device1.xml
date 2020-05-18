@@ -46,8 +46,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,108 +55,17 @@
             android:fontFamily="@font/nanumregular"
             android:text="연결된 디바이스"
             android:textColor="#646464"
-            android:textSize="18sp"></TextView>
+            android:textSize="18sp"> </TextView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="365dp"
-            android:layout_height="88dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp">
+        <LinearLayout
+            android:id="@+id/deviceList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_d2"></ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="80dp"
-                android:fontFamily="@font/nanumregular"
-                android:text="AlchiDOC1"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/nanumregular"
-                android:text="배터리: 30%"
-                android:textSize="14sp" />
-
-
-
-            <Button
-                android:layout_width="95dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="240dp"
-                android:background="@drawable/btn_grad"
-                android:fontFamily="@font/nanumregular"
-                android:gravity="center"
-                android:text="연결 끊기"
-                android:textColor="#ffffff"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="365dp"
-            android:layout_height="88dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_d2"></ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="80dp"
-                android:fontFamily="@font/nanumregular"
-                android:text="AlchiDOC2"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/nanumregular"
-                android:text="배터리: 70%"
-                android:textSize="14sp" />
-
-            <Button
-                android:layout_width="95dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="240dp"
-                android:background="@drawable/btn_grad"
-                android:fontFamily="@font/nanumregular"
-                android:gravity="center"
-                android:text="연결 끊기"
-                android:textColor="#ffffff"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </androidx.cardview.widget.CardView>
     </LinearLayout>
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -174,7 +81,8 @@
         app:backgroundTint="#2B90D9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        android:onClick="connectDevice"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

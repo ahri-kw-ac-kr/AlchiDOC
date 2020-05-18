@@ -115,7 +115,7 @@ public interface RestfulAPIService {
      *  BaseURL/user/delfriend
      *  친구 삭제 **/
     @DELETE("user/delfriend")
-    String delFriend(@Query("protectId") Long proId, @Query("patientId") Long patId);
+    Single<UserDTO> delFriend(@Query("protectId") Long proId, @Query("patientId") Long patId);
 
     /******************************  GPS  ************************************/
     /** GET

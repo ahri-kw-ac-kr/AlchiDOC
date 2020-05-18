@@ -1,12 +1,7 @@
 <resources>
-    <string name="format_map_click">지도 클릭\n(%1$.5f, %2$.5f)</string>
-    <string name="format_map_long_click">지도 롱 클릭\n(%1$.5f, %2$.5f)</string>
-
-
-    <string name="app_name">My Application55</string>
+    <string name="app_name">AlchiDOC</string>
 
     <string name="StringValue">이미지가 열리지 않습니다.</string>
-
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
     <string name="log_in">로그인하기</string>
@@ -15,14 +10,30 @@
     <string name="sex">성별</string>
 
     <string name="login1">로그인</string>
+    <string name="login2">아직 회원이 아니신가요?</string>
+    <string name="login3">회원가입 하기</string>
     <string name="login4">ex. mhse8919@gmail.com</string>
     <string name="login5">비밀번호를 잊어버리셨나요?</string>
     <string name="login6">비밀번호 재설정</string>
+    <string name="login7">자동 로그인</string>
 
     <string name="password_find1">비밀번호 재설정</string>
     <string name="password_find2">AlchiDOC에 가입된 이메일을 입력해 주세요.\n
     입력된 이메일로 인증번호를 전송해 드립니다.</string>
     <string name="password_find3">전송하기</string>
+    <string name="password_find4">인증요청</string>
+    <string name="password_find5">인증번호</string>
+    <string name="password_find6">6자리 숫자를 입력하세요.</string>
+    <string name="password_find7">확인하기</string>
+    <string name="password_find8">이메일 인증이 완료되었습니다.</string>
+    <string name="password_find9">새 비밀번호</string>
+    <string name="password_find10">새롭게 설정할 비밀번호를 입력해 주세요.</string>
+    <string name="password_find11">비밀번호 확인</string>
+    <string name="password_find12">비밀번호를 한 번 더 입력해 주세요.</string>
+    <string name="password_find13">변경하기</string>
+    <string name="password_change">※ 비밀번호를 변경하실 분만 아래 내용을 입력해 주세요.</string>
+    <string name="current_password">현재 비밀번호</string>
+    <string name="modify">수정하기</string>
 
     <string name="sign_up1">회원가입</string>
     <string name="sign_up2">이름</string>
@@ -30,5 +41,50 @@
     <string name="sign_up4">이미 계정이 존재하나요?</string>
     <string name="sign_up5">회원가입하기</string>
     <string name="sign_up6">ex. 19950809</string>
+    <string name="sign_up7">AlchiDOC 서비스를 이용하시려면 \n약관 동의가 필요합니다.</string>
+    <string name="sign_up8">이용약관 및 개인정보 취급방침 동의</string>
+    <string name="sign_up9">다음으로</string>
+    <string name="sign_up10">전화번호</string>
 
+    <string name="act">활동량</string>
+    <string name="act2">주간 활동량</string>
+    <string name="act3">야간 활동량</string>
+    <string name="light">햇빛량</string>
+    <string name="light2">주간 햇빛량</string>
+    <string name="light3">야간 조도량</string>
+    <string name="sleep">수면량</string>
+    <string name="sleep2">총 수면 시간</string>
+    <string name="sleep3">평균 뒤척임</string>
+    <string name="good">충분</string>
+    <string name="bad">부족</string>
+
+    <string name="all_report1">인지행동 종합플랜</string>
+    <string name="all_report2">세부사항별 인지행동 종합플랜</string>
+
+    <string name="care_list1">보호자 목록</string>
+    <string name="care_list2">나를 케어하는 사람</string>
+    <string name="care_list3">내가 케어하는 사람</string>
+    <string name="care_list4">+  추가하기</string>
+
+    <string name="device1">기기 설정</string>
+    <string name="device2">연결된 디바이스</string>
+    <string name="device3">연결 끊기</string>
+    <string name="device4">기기를 검색하는 중입니다.</string>
+    <string name="device5">검색중\n...</string>
+    <string name="device6">휴대폰과 기기의 거리를 가깝게 유지하세요.</string>
+    <string name="device7">기기를 연결하는 중입니다.</string>
+
+    <string name="sleep_ing1">현재 취침 상태입니다.</string>
+    <string name="sleep_ing2">8시간이 지나면 자동으로 종료됩니다.</string>
+    <string name="sleep_ing3">취침 종료</string>
+
+    <string name="map1">현 위치</string>
+
+    <string name="set1">설정</string>
+    <string name="set2">사용자 계정</string>
+    <string name="set3">로그아웃</string>
+
+    <string name="profile">회원 정보 수정</string>
+    <string name="tuto">도움말 보기</string>
+    <string name="terms">이용약관</string>
 </resources>

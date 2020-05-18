@@ -42,6 +42,10 @@ public class SleepDoc {
         bleManager = BleManager.getInstance();
     }
 
+    public boolean deviceCon(){
+        return isConnected;
+    }
+
     public Completable connect() {
         return Completable.create(observer -> {
             Log.i("Sleepdoc", "connect start");
