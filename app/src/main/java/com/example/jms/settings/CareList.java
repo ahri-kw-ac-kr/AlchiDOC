@@ -1,6 +1,8 @@
 package com.example.jms.settings;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -39,7 +42,7 @@ public class CareList extends AppCompatActivity {
     LinearLayout doctorList;
     LinearLayout careList;
 
-    //Button add;
+    Button addPerson;
     //LinearLayout listView;
 
 
@@ -64,6 +67,29 @@ public class CareList extends AppCompatActivity {
             }
         });
 
+
+        addPerson = (Button) findViewById(R.id.add_person);
+        addPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout linear = (LinearLayout) View.inflate(CareList.this, R.layout.friends_plus, null);
+                new AlertDialog.Builder(CareList.this)
+                        .setView(linear)
+                        .setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                EditText id = (EditText) linear.findViewById(R.id.input_id);
+                                String value = id.getText().toString();
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
 
         doctorList = (LinearLayout)findViewById(R.id.doctor);
         apiViewModel.myDoctor(user.getId(),"0")
