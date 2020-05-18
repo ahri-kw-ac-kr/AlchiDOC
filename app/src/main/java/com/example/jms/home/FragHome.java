@@ -113,7 +113,11 @@ public class FragHome extends Fragment {
                 ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //확인버튼을 누르면 다이얼로그가 사라지고 SleepActivity가 실행되도록
+                        Intent intent = new Intent(getActivity(), SleepActivity.class);
+                        startActivity(intent);
                         dialog.dismiss();
+
                     }
                 });
 

@@ -1,10 +1,14 @@
 package com.example.jms.home;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,12 +19,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private static final int MY_PERMISSION_STORAGE = 1111;
+    private static final int PERMISSION_ALL = 1;
+    private String[] PERMISSIONS = {
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN
+    };
+
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
     private FragHome fragHome = new FragHome();
-    private FragMap fragMap= new FragMap();
+    private FragMap fragMap = new FragMap();
     private FragSettings fragSettings = new FragSettings();
 
     @Override
@@ -28,18 +39,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //checkPermission();
+        if (!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
 
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-        ft.replace(R.id.frameLayout,fragHome).commit();
+        ft.replace(R.id.frameLayout, fragHome).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.home:
                         setFrag(0);
                         break;
@@ -81,59 +94,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     ///권한 설정 하는 코드를 가져와봤는데... 실행이 안되네요
-    ///https://g-y-e-o-m.tistory.com/47 - 여기를 참조했습니다
-
-    /*
-    private void checkPermission(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-            // 다시 보지 않기 버튼을 만드려면 이 부분에 바로 요청을 하도록 하면 됨 (아래 else{..} 부분 제거)
-            // ActivityCompat.requestPermissions((Activity)mContext, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSION_CAMERA);
-
-            // 처음 호출시엔 if()안의 부분은 false로 리턴 됨 -> else{..}의 요청으로 넘어감
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.BLUETOOTH)) {
-                new AlertDialog.Builder(this)
-                        .setTitle("알림")
-                        .setMessage("저장소 권한이 거부되었습니다. 사용을 원하시면 설정에서 해당 권한을 직접 허용하셔야 합니다.")
-                        .setNeutralButton("설정", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                intent.setData(Uri.parse("package:" + getPackageName()));
-                                startActivity(intent);
-                            }
-                        })
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        })
-                        .setCancelable(false)
-                        .create()
-                        .show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_STORAGE);
+    ///https://stackoverflow.com/questions/34342816/android-6-0-multiple-permissions - 여기를 참조했습니다
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
             }
         }
+        return true;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSION_STORAGE:
-                for (int i = 0; i < grantResults.length; i++) {
-                    // grantResults[] : 허용된 권한은 0, 거부한 권한은 -1
-                    if (grantResults[i] < 0) {
-                        Toast.makeText(MainActivity.this, "해당 권한을 활성화 하셔야 합니다.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                // 허용했다면 이 부분에서..
-
-                break;
-        }
 
 
-    }*/
-
-}
+  }

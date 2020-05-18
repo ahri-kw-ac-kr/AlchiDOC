@@ -16,8 +16,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+<<<<<<< HEAD
+=======
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
+>>>>>>> b13c555bf66f643c6df3f318a734b50b5d91b21f
 import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
 
@@ -63,6 +66,10 @@ public class FragSettings extends Fragment {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
+                Intent intent = new Intent(getActivity(), Login.class);
+
+=======
                 AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
                 ad.setMessage("로그아웃 하시겠습니까?");
                 ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
@@ -82,6 +89,7 @@ public class FragSettings extends Fragment {
                     }
                 });
                 ad.show();
+>>>>>>> b13c555bf66f643c6df3f318a734b50b5d91b21f
             }
         });
 
