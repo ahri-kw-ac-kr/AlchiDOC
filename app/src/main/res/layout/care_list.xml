@@ -89,6 +89,7 @@
         <!--내가 케어하는 사람 -->
 
         <TextView
+            android:id="@+id/patient_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
@@ -97,7 +98,7 @@
             android:fontFamily="@font/nanumregular"
             android:text="내가 케어하는 사람"
             android:textColor="#646464"
-            android:textSize="18sp"></TextView>
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,9 +107,6 @@
             android:id = "@+id/patient">
 
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 
