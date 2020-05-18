@@ -11,14 +11,18 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.jms.R;
+
 public class SleepService extends Service {
 
     public SleepService() { } // 생성자
+
 
     @Override
     public IBinder onBind(Intent intent) {
        return null;
     }
+
 
     @Override
     public void onCreate() {
@@ -28,25 +32,27 @@ public class SleepService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if("startForeground".equals(intent.getAction())){
-            startForegroundService();
+        if("startForeground".equals(intent.getAction())){ //해당 인텐트로 이와 같은 커맨드가 온다면
+            startForegroundService(); // 아래의 함수를 실행하시오
         }
 
         Log.d("D","수면 서비스 시작");
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
+
         Log.d("D","수면서비스 종료");
         super.onDestroy();
 
     }
 
+
     private void startForegroundService() {
         // 노피티케이션컴팻 빌더 선언
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-        //builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setContentTitle("수면중입니다");
         builder.setContentText("수면중 내용입니다");
 
@@ -63,6 +69,11 @@ public class SleepService extends Service {
         }
             startForeground(1, builder.build()); // 실행이됩니다.
 
+    }
+
+    private void stopForegroundService(){
+        Log.d("D","수면서비스 종료");
+        stopForeground(true);
     }
 
 
