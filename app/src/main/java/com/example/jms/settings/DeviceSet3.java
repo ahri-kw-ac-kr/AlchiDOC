@@ -1,30 +1,38 @@
 package com.example.jms.settings;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.jms.R;
 
-public class DeviceSet3 extends AppCompatActivity {
+public class DeviceSet3 extends LinearLayout {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.device3);
+    View view;
+    TextView textView;
+    Button button;
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+    public DeviceSet3(Context context, AttributeSet attributeSet){
+        super(context,attributeSet);
+        init(context);
+    }
 
-        // 1. '연결하기' 버튼 누른 경우: 페이지는 device4.xml로 이동
-        // => 연결되면 메인 화면으로 이동과 동시에 '연결 완료'와 같은 토스트 메세지 띄울 것(이거는 DeviceSet4.java 에서!)
+    public DeviceSet3(Context context){
+        super(context);
+        init(context);
+    }
+    private void init(Context context){
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(R.layout.device3, this, true);
+        textView = (TextView)view.findViewById(R.id.deviceBattery);
+        button = (Button)view.findViewById(R.id.deviceFinish);
     }
 }

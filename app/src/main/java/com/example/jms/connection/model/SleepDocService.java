@@ -11,6 +11,10 @@ public class SleepDocService {
     private SleepDoc sleepDoc;
     private static SleepDocService sleepDocService;
 
+    public boolean deviceCon(){
+        return sleepDoc.deviceCon();
+    }
+
     public Observable<RawdataDTO> getRawdata() {
         return sleepDoc.getRawdata();
     }
