@@ -14,15 +14,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.home.MainActivity;
 
 public class FragSettings extends Fragment {
 
     private View view;
     MainActivity mainActivity;
-    Profile profile;
     LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5;
     TextView logoutButton;
+    TextView myInfo;
 
 
     @Override
@@ -51,7 +52,9 @@ public class FragSettings extends Fragment {
         layButton4 = (LinearLayout) view.findViewById(R.id.setButton4);
         layButton5 = (LinearLayout) view.findViewById(R.id.setButton5);
         logoutButton = (TextView) view.findViewById(R.id.logout_button);
+        myInfo = (TextView)view.findViewById(R.id.myInfo);
 
+        myInfo.setText(RestfulAPI.principalUser.getUsername());
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
