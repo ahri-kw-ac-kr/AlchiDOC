@@ -35,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <activity android:name=".home.ActButtonActivity" />
         <activity android:name=".home.DayLight"></activity> <!-- <activity android:name=".home.DayAct"> </activity> -->
         <activity android:name=".home.DaySleep"></activity>
@@ -56,32 +56,4 @@
         <activity android:name=".settings.Guide"></activity>
         <activity android:name=".home.SleepActivity"></activity>
     </application>
-=======
-
-        <activity android:name=".home.ActButtonActivity"></activity>
-        <activity android:name=".home.DayLight"> </activity>
-        <!--<activity android:name=".home.DayAct"> </activity>-->
-        <activity android:name=".home.DaySleep"> </activity>
-        <activity android:name=".home.WeekLight"> </activity>
-        <!--<activity android:name=".home.WeekAct"> </activity>-->
-        <activity android:name=".home.WeekSleep"> </activity>
-        <!--<activity android:name=".home.MonthAct"> </activity>-->
-        <activity android:name=".home.MonthLight"> </activity>
-        <activity android:name=".home.MonthSleep"> </activity>
-        <activity android:name=".home.Report"> </activity>
-        <activity android:name=".etc.Login"> </activity>
-        <activity android:name=".etc.SignUp"> </activity>
-        <activity android:name=".settings.PasswordFind1"> </activity>
-        <activity android:name=".settings.CareList"> </activity>
-        <activity android:name=".settings.CareListSub"> </activity>
-        <activity android:name=".settings.DeviceSet1"> </activity>
-        <activity android:name=".settings.DeviceSet2"> </activity>
-        <activity android:name=".settings.DeviceSet3"> </activity>
-        <activity android:name=".settings.Profile"> </activity>
-        <activity android:name=".settings.Terms"> </activity>
-        <activity android:name=".settings.Guide"> </activity>
-
->>>>>>> b13c555bf66f643c6df3f318a734b50b5d91b21f
-
-
 </manifest>
