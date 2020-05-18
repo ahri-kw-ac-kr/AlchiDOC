@@ -49,12 +49,11 @@ public class Login extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(data -> {
                     RestfulAPI.setToken(data);
-                    Log.d("Login",data.getUser().getUsername()+"로그인 성공");
+                    Log.d("Login", data.getUser().getUsername() + "로그인 성공");
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    finish(); }, Throwable -> {
-                    Toast.makeText(getApplicationContext(),
-                            "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
+                    finish(); }, Throwable -> { Toast.makeText(getApplicationContext(),
+                        "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
                 });
     }
 

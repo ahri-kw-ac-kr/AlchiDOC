@@ -1,6 +1,7 @@
 package com.example.jms.connection.model;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.example.jms.connection.model.dto.AuthDTO;
 import com.example.jms.connection.model.dto.UserDTO;
@@ -18,11 +19,13 @@ public class RestfulAPI {
     private static RestfulAPIService restfulAPIService;
     public static String token;
     public static UserDTO principalUser;
+    public static List<UserDTO> myDoctor;
 
     public static synchronized void logout(){
         restfulAPIService = null;
         token = null;
         principalUser = null;
+        myDoctor = null;
     }
     public static synchronized RestfulAPIService getInstance() {
         if (restfulAPIService == null) {

@@ -30,15 +30,15 @@ public class CareListSub extends LinearLayout {
 
     public CareListSub(Context context, AttributeSet attributeSet){
         super(context,attributeSet);
-        init(context, 0);
+        init(context);
     }
 
-    public CareListSub(Context context, int i){
+    public CareListSub(Context context){
         super(context);
-        init(context, i);
+        init(context);
     }
 
-    private void init(Context context,int i) {
+    private void init(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.care_person, this, true);
         linearLayout = (LinearLayout) view.findViewById(R.id.careId);
