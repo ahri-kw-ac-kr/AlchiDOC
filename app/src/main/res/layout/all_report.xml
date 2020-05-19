@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="@string/all_report1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
@@ -56,11 +56,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="6dp"
                 android:fontFamily="@font/nanumregular"
                 android:text="5월 17일 목요일 달성률"
                 android:textColor="#646464"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"></TextView>
             <LinearLayout
                 android:weightSum="3"
@@ -69,7 +69,7 @@
                 android:layout_height="130dp"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
-                    android:layout_marginRight="10dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
@@ -79,8 +79,8 @@
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 app:arc_bottom_text="@string/light"
                 app:arc_bottom_text_size="13sp"
                 app:arc_finished_color="#FA7033"
@@ -90,8 +90,8 @@
                 app:arc_unfinished_color="#E6E6E6" />
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="10dp"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
@@ -100,8 +100,8 @@
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 app:arc_bottom_text="@string/act"
                 app:arc_bottom_text_size="13sp"
                 app:arc_finished_color="#329035"
@@ -111,6 +111,7 @@
                 app:arc_unfinished_color="#E6E6E6" />
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
@@ -120,8 +121,8 @@
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 app:arc_bottom_text="@string/sleep"
                 app:arc_bottom_text_size="13sp"
                 app:arc_finished_color="#7476B3"
@@ -137,11 +138,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nanumregular"
                 android:text="@string/all_report2"
                 android:textColor="#646464"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"></TextView>
             <androidx.cardview.widget.CardView
                 android:layout_marginBottom="100dp"
@@ -151,17 +152,12 @@
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
                 <LinearLayout
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-
-
                     <LinearLayout
                         android:weightSum="7"
                         android:layout_marginTop="25dp"
@@ -179,7 +175,7 @@
                     android:text="@string/sleep2"
                     android:textAlignment="viewStart"
                     android:textColor="#7476B3"
-                    android:textSize="22sp"></TextView>
+                    android:textSize="18sp"></TextView>
                 <ImageView
                     android:layout_weight="0.3"
                     android:layout_width="wrap_content"
@@ -194,16 +190,20 @@
                     android:fontFamily="@font/nanumregular"
                     android:text="@string/good"
                     android:textColor="#7476B3"
-                    android:textSize="19sp"></TextView>
+                    android:textSize="15sp"></TextView>
                     </LinearLayout>
                 <TextView
                     android:lineSpacingExtra="6dp"
                     android:textColor="#5A5959"
                     android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="연령에 맞는 적당한 수면 시간입니다. 오늘도 평균 수면 시간을 유지하도록 하세요.">
+                    <!--
+                     android:autoSizeTextType="uniform"
+                     app:autoSizePresetSizes="@array/auto_text_sizes"
+                     -->
                 </TextView>
                 <View
                     android:layout_gravity="center|top"
@@ -232,7 +232,7 @@
                             android:text="@string/sleep3"
                             android:textAlignment="viewStart"
                             android:textColor="#7476B3"
-                            android:textSize="22sp"></TextView>
+                            android:textSize="18sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
@@ -247,14 +247,14 @@
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/bad"
                             android:textColor="#7476B3"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="15sp"></TextView>
                     </LinearLayout>
 
                     <TextView
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="어제의 수면 시간당 평균 뒤척임이 수면 장애 수준의 수치입니다. 오늘의 숙면을 취하기 위해
@@ -290,7 +290,7 @@
                             android:text="@string/act2"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
-                            android:textSize="22sp"></TextView>
+                            android:textSize="18sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
@@ -305,16 +305,16 @@
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/good"
                             android:textColor="#329035"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <TextView
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="어제 주간 활동량은 @string/good하였습니다. 오늘도 유지하거나 조금씩 늘려보세요.">
+                        android:text="어제 주간 활동량은 충분하였습니다. 오늘도 유지하거나 조금씩 늘려보세요.">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"
@@ -342,7 +342,7 @@
                             android:text="@string/act3"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
-                            android:textSize="22sp"></TextView>
+                            android:textSize="18sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
@@ -357,13 +357,13 @@
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/good"
                             android:textColor="#329035"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <TextView
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="어제 야간 활동량은 숙면을 취하기에 적당하였습니다. 오늘도 유지하도록 하세요.">
@@ -399,7 +399,7 @@
                             android:text="@string/light2"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
-                            android:textSize="22sp"></TextView>
+                            android:textSize="18sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
@@ -414,16 +414,16 @@
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/good"
                             android:textColor="#F75321"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <TextView
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="어제 주간 햇빛량은 @string/good하였습니다.
+                        android:text="어제 주간 햇빛량은 충분하였습니다.
 오늘도 어제와 같이 햇빛량을 유지하거나 늘리세요.">
                     </TextView>
                     <View
@@ -454,7 +454,7 @@
                             android:text="@string/light3"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
-                            android:textSize="22sp"></TextView>
+                            android:textSize="18sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
@@ -469,13 +469,13 @@
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/good"
                             android:textColor="#F75321"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <TextView
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_marginBottom="22dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
