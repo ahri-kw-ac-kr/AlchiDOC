@@ -42,18 +42,20 @@ public class DeviceSet1 extends AppCompatActivity {
 
 
         deviceList = (LinearLayout)findViewById(R.id.deviceList);
-        if(BleManager.getInstance().getAllConnectedDevice() != null){
-            DeviceSet3 myDevice = new DeviceSet3(getApplicationContext());
-            deviceList.addView(myDevice);
-            sleepDocViewModel.battery()
-                    .observeOn(Schedulers.io())
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .subscribe(data -> {
-                        Log.i("MainActivity", "배터리 "+ data);
-                        String battery = "배터리: "+data+"%";
-                        myDevice.textView.setText(battery);},Throwable->{
-                        Log.d("DeviceSet1","배터리 실패");
-                    });
+        if(BleManager.getInstance().getAllConnectedDevice()!=null) {
+            if(sleepDocViewModel.deviceCon()){
+                DeviceSet3 myDevice = new DeviceSet3(getApplicationContext());
+                deviceList.addView(myDevice);
+                sleepDocViewModel.battery()
+                        .observeOn(Schedulers.io())
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .subscribe(data -> {
+                            Log.i("MainActivity", "배터리 "+ data);
+                            String battery = "배터리: "+data+"%";
+                            myDevice.textView.setText(battery);},Throwable->{
+                            Log.d("DeviceSet1","배터리 실패");
+                        });
+            }
         }
 
 

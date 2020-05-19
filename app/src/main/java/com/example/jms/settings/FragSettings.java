@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
 
