@@ -6,6 +6,13 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
+import com.example.jms.connection.viewmodel.SleepDocViewModel;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 // 실행될 작업에 대한 정의.
 public class JobSchedulerService extends JobService {
 
@@ -34,6 +41,8 @@ public class JobSchedulerService extends JobService {
 
     private static class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
         private final JobService jobService;
+        APIViewModel apiViewModel = new APIViewModel();
+        SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
 
         public JobTask(JobService jobService) {
             this.jobService = jobService;
@@ -45,7 +54,21 @@ public class JobSchedulerService extends JobService {
         //여기에 백그ㅏ운드에서 실행할 코드를 집어넣는다.
             /*여기에 코드코드코드*/
 
+            sleepDocViewModel.getRawdataFromSleepDoc()
+                    .observeOn(Schedulers.io())
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe(data -> {
+                        data.setUser(RestfulAPI.principalUser);
+                        apiViewModel.postRawdata(data)
+                                .observeOn(Schedulers.io())
+                                .subscribeOn(AndroidSchedulers.mainThread())
+                                .subscribe(result->{},Throwable->{Log.d("JopScheculerService","집어넣기 오류 "+Throwable.getMessage());});
+                    },Throwable->Log.d("JopScheculerService","데이터 불러오기 오류 "+Throwable.getMessage()));
+
+
+
             //밑에거 지워도 되나...?
+            //지우자
             for(int i=1;i<=10;i++)
             {
                 Log.e("number","num"+i);
