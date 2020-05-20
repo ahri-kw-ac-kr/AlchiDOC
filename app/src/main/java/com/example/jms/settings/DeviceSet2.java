@@ -14,6 +14,7 @@ import com.clj.fastble.BleManager;
 import com.example.jms.R;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
+import com.example.jms.etc.MyJobScheduler;
 
 import io.reactivex.Maybe;
 import io.reactivex.MaybeObserver;

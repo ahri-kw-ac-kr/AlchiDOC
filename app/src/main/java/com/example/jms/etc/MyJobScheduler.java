@@ -22,11 +22,12 @@ import java.util.concurrent.TimeUnit;
 public class MyJobScheduler {
     private static final int JOB_ID = 0x1000;
 
-    public void setUpdateJob(Context context) {
 
+    public void setUpdateJob(Context context) {
         final JobInfo jobInfo;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
             jobInfo = new JobInfo.Builder(JOB_ID, new ComponentName(context, JobSchedulerService.class))
                     .setPeriodic(TimeUnit.MINUTES.toMillis(15), TimeUnit.MINUTES.toMillis(16))
                     .build();

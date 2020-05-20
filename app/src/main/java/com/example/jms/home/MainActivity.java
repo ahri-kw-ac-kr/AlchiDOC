@@ -13,12 +13,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.jms.R;
+import com.example.jms.etc.MyJobScheduler;
 import com.example.jms.map.FragMap;
 import com.example.jms.settings.FragSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    MyJobScheduler myJobScheduler = new MyJobScheduler();
 
 
     private static final int PERMISSION_ALL = 1;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myJobScheduler.setUpdateJob(this);
 
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);

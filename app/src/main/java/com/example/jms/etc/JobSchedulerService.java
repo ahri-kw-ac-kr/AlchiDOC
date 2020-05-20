@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.clj.fastble.BleManager;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
@@ -29,7 +30,7 @@ public class JobSchedulerService extends JobService {
         // true를 반환할 경우 finishJob()의 호출을 통해 작업 종료를 선언하거나,
         // 시스템이 필요 onStopJob()를 호출하여 작업을 중지할 수 있습니다.
         Toast.makeText(getApplicationContext(), "Job started ", Toast.LENGTH_LONG).show();
-        jobTask.execute();
+        jobTask.execute(jobParameters);
         return false;
     }
 
@@ -56,16 +57,21 @@ public class JobSchedulerService extends JobService {
         //여기에 백그ㅏ운드에서 실행할 코드를 집어넣는다.
             /*여기에 코드코드코드*/
 
-            sleepDocViewModel.getRawdataFromSleepDoc()
-                    .observeOn(Schedulers.io())
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .subscribe(data -> {
-                        data.setUser(RestfulAPI.principalUser);
-                        apiViewModel.postRawdata(data)
-                                .observeOn(Schedulers.io())
-                                .subscribeOn(AndroidSchedulers.mainThread())
-                                .subscribe(result->{},Throwable->{Log.d("JopScheculerService","집어넣기 오류 "+Throwable.getMessage());});
-                    },Throwable->Log.d("JopScheculerService","데이터 불러오기 오류 "+Throwable.getMessage()));
+            if(BleManager.getInstance().getAllConnectedDevice()!=null&&RestfulAPI.principalUser!=null) {
+                sleepDocViewModel.getRawdataFromSleepDoc()
+                        .observeOn(Schedulers.io())
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .subscribe(data -> {
+                            data.setUser(RestfulAPI.principalUser);
+                            apiViewModel.postRawdata(data)
+                                    .observeOn(Schedulers.io())
+                                    .subscribeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(result -> {
+                                    }, Throwable -> {
+                                        Log.d("JopScheculerService", "집어넣기 오류 " + Throwable.getMessage());
+                                    });
+                        }, Throwable -> Log.d("JopScheculerService", "데이터 불러오기 오류 " + Throwable.getMessage()));
+            }
 
 
 
