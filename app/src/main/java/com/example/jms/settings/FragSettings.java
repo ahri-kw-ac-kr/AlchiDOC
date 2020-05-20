@@ -3,6 +3,7 @@ package com.example.jms.settings;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ public class FragSettings extends Fragment {
     TextView logoutButton;
     TextView myInfo;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     public void onAttach(Context context) {
@@ -70,6 +73,8 @@ public class FragSettings extends Fragment {
 
         myInfo.setText(RestfulAPI.principalUser.getUsername());
 
+        sharedPreferences = getActivity().getSharedPreferences("boot",0);
+        editor = sharedPreferences.edit();
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +87,10 @@ public class FragSettings extends Fragment {
                         dialog.dismiss();
                         Intent intent = new Intent(getActivity(), Login.class);
                         startActivity(intent);
+                        editor.clear();
+                        editor.commit();
                         RestfulAPI.logout();
+                        getActivity().finish();
                     }
                 });
 

@@ -1,9 +1,12 @@
 package com.example.jms.etc;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,13 @@ public class Login extends AppCompatActivity {
 
     EditText txtEmail;
     EditText txtPassword;
+    CheckBox checkBox;
+    Button loginBtn;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    String check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +44,19 @@ public class Login extends AppCompatActivity {
 
         txtEmail = (EditText)findViewById(R.id.login_email);
         txtPassword = (EditText)findViewById(R.id.login_password);
+        checkBox = (CheckBox)findViewById(R.id.login_checkbox);
+        loginBtn = (Button)findViewById(R.id.login);
 
+        sharedPreferences = getSharedPreferences("boot",0);
+        editor = sharedPreferences.edit();
+
+        check = sharedPreferences.getString("isCheck","");
+        if(check.equals("true")){
+            checkBox.setChecked(true);
+            txtEmail.setText(sharedPreferences.getString("id",""));
+            txtPassword.setText(sharedPreferences.getString("pwd",""));
+            loginBtn.performClick();
+        }
     }
     public void loginClick(View view){
         String email = txtEmail.getText().toString();
@@ -43,6 +65,16 @@ public class Login extends AppCompatActivity {
         UserDTO user = new UserDTO();
         user.setUsername(email);
         user.setPassword(password);
+
+        if(checkBox.isChecked()){
+            editor.putString("id",email);
+            editor.putString("pwd",password);
+            editor.putString("isCheck","true");
+            editor.commit();
+        } else{
+            editor.clear();
+            editor.commit();
+        }
 
         apiViewModel.postAuth(user)
                 .subscribeOn(Schedulers.io())
@@ -66,4 +98,5 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
         startActivity(intent);
     }
+
 }
