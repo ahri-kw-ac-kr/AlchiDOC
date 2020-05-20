@@ -1,5 +1,6 @@
 package com.example.jms.etc;
 
+import android.annotation.SuppressLint;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.AsyncTask;
@@ -52,6 +53,7 @@ public class JobSchedulerService extends JobService {
             this.jobService = jobService;
         }
 
+        @SuppressLint("CheckResult")
         @Override
         protected JobParameters doInBackground(JobParameters... params) {
 
@@ -66,11 +68,8 @@ public class JobSchedulerService extends JobService {
                             data.setUser(RestfulAPI.principalUser);
                             apiViewModel.postRawdata(data)
                                     .observeOn(Schedulers.io())
-                                    .subscribeOn(AndroidSchedulers.mainThread())
                                     .subscribe(result -> {
-                                    }, Throwable -> {
-                                        Log.d("JopScheculerService", "집어넣기 오류 " + Throwable.getMessage());
-                                    });
+                                    }, Throwable -> { Log.d("JopScheculerService", "집어넣기 오류 " + Throwable.getMessage()); });
                         }, Throwable -> Log.d("JopScheculerService", "데이터 불러오기 오류 " + Throwable.getMessage()));
             }
 
