@@ -4,6 +4,8 @@ import android.util.Log;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+
+import com.clj.fastble.data.BleDevice;
 import com.example.jms.connection.sleep_doc.SleepDoc;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
@@ -14,6 +16,8 @@ public class SleepDocService {
     public boolean deviceCon(){
         return sleepDoc.deviceCon();
     }
+
+    public void disconnect(){sleepDoc.disconnect();}
 
     public Observable<RawdataDTO> getRawdata() {
         return sleepDoc.getRawdata();

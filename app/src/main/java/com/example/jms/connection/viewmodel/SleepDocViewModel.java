@@ -17,6 +17,8 @@ public class SleepDocViewModel extends ViewModel {
         this.sleepDocService = SleepDocService.getInstance();
     }
 
+    public void disconnect(){sleepDocService.disconnect();}
+
     public boolean deviceCon(){ return sleepDocService.deviceCon(); }
 
     public Completable connectSleepDoc(String mac) {

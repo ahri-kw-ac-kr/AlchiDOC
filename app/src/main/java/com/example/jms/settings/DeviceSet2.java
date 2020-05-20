@@ -3,6 +3,8 @@ package com.example.jms.settings;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.clj.fastble.BleManager;
 import com.example.jms.R;
+import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.etc.MyJobScheduler;
@@ -47,45 +50,61 @@ public class DeviceSet2 extends AppCompatActivity {
         Log.d("DeviceSet2","들어옴");
 
         BleManager.getInstance().init(getApplication());
-        //try {
+
             bleViewModel.scanBle()
                     .observeOn(Schedulers.io())
                     .subscribeOn(AndroidSchedulers.mainThread())
-                    .doOnComplete(() -> Log.i("MainActivity", "블루투스 기기 스캔"))
+                    .doOnComplete(() -> {
+                        Log.i("DeviceSet2", "블루투스 기기 스캔");
+                        if(BleService.principalDevice == null){
+                            Log.d("Device2","스캔했지만 기기없음.1");
+                            Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                            startActivity(intent);
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            },0);
+                            finish();
+                        }
+                    })
                     .subscribe(BleDeviceDTO -> {
-                        Log.d("Device2","1차성공");
-                        Log.d("Device2","1차성공 후 "+BleDeviceDTO.getName());
-                            if (BleDeviceDTO.getName().equals("SleepDoc")) {
-                                Log.d("Device2","슬립닥 찾음");
-                                sleepDocViewModel.connectSleepDoc(BleDeviceDTO.getMacAddress())
-                                        .observeOn(Schedulers.io())
-                                        .subscribeOn(AndroidSchedulers.mainThread())
-                                        .doOnComplete(() -> Log.i("MainActivity", "on Complete"))
-                                        .subscribe(() -> {
-                                            Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }, Throwable -> {
-                                            Toast.makeText(getApplicationContext(),
-                                                    "기기 연결 실패", Toast.LENGTH_SHORT).show();
-                                        });
-                            }
-                            else {
-                                Log.d("Device2","뭐야");
+                        //try{
+                            Log.d("Device2","1차성공");
+                            Log.d("Device2","1차성공 후 "+BleDeviceDTO.getName());
+                                if (BleDeviceDTO.getName().equals("SleepDoc")) {
+                                    Log.d("Device2","슬립닥 찾음");
+                                    sleepDocViewModel.connectSleepDoc(BleDeviceDTO.getMacAddress())
+                                            .observeOn(Schedulers.io())
+                                            .subscribeOn(AndroidSchedulers.mainThread())
+                                            .doOnComplete(() -> Log.i("DeviceSet2", "on Complete"))
+                                            .subscribe(() -> {
+                                                Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }, Throwable -> {
+                                                Toast.makeText(getApplicationContext(),
+                                                        "기기 연결 실패", Toast.LENGTH_SHORT).show();
+                                            });
+                                }
+                                else {
+                                    Log.d("Device2","뭐야");
+                                    Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            /*}catch (Exception e){
+                                Log.d("Device2","스캔했지만 기기없음.");
                                 Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                                 startActivity(intent);
                                 finish();
-                            }
-
-                    });//,Throwable -> {Log.d("Device2","혹시 여기");
+                        }*/
+                    },Throwable::printStackTrace);//,Throwable -> {Log.d("Device2","혹시 여기");
                         //Log.d("Device2","에러: "+Throwable.getMessage());});
-           /* }catch (Exception e){
-                Log.d("Device2","스캔했지만 기기없음.");
-                Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
-                startActivity(intent);
-                finish();
-            }*/
+
     }
 }

@@ -46,6 +46,13 @@ public class SleepDoc {
         return isConnected;
     }
 
+    public void disconnect(){
+        Log.i("Sleepdoc", "연결끊기");
+        bleManager.disconnect(bleDevice);
+        bleDevice = null;
+        isConnected = false;
+    }
+
     public Completable connect() {
         return Completable.create(observer -> {
             Log.i("Sleepdoc", "connect start");
@@ -189,7 +196,7 @@ public class SleepDoc {
                     @Override
                     public void onWriteSuccess(int current, int total, byte[] justWrite) {
                         Log.i("타임셋", "timeSet: 성공");
-                        bleDevice = _bleDevice;
+                        //bleDevice = _bleDevice;
                     }
 
                     @Override

@@ -14,9 +14,12 @@ public class BleService {
     private BleManager bleManager;
     private static BleService bleService;
 
+    public static BleDeviceDTO principalDevice;
+
     public static synchronized BleService getInstance() {
         if (bleService == null) {
             bleService = new BleService();
+            principalDevice = null;
         }
         return bleService;
     }
@@ -38,6 +41,7 @@ public class BleService {
                 @Override
                 public void onScanning(BleDevice bleDevice) {
                     BleDeviceDTO bleDeviceDTO = new BleDeviceDTO(bleDevice);
+                    if(bleDeviceDTO.getName().equals("SleepDoc")){ principalDevice = bleDeviceDTO; }
                     observer.onNext(bleDeviceDTO);
                 }
 
