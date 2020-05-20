@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -135,7 +136,7 @@ public class CareList extends AppCompatActivity {
                 Log.d("CareList","친구 "+friendInfo);
                 doctorList.addView(subD[i]);
 
-                ImageButton del = subD[i].imageButton;
+                ImageView del = subD[i].imageView;
                 del.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -158,7 +159,7 @@ public class CareList extends AppCompatActivity {
                 subP[i].textView.setText(friendInfo);
                 careList.addView(subP[i]);
 
-                ImageButton del = subP[i].imageButton;
+                ImageView del = subP[i].imageView;
                 del.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

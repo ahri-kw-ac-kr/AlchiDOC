@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -22,11 +23,10 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class CareListSub extends LinearLayout {
-    APIViewModel apiViewModel;
     View view;
     LinearLayout linearLayout;
     TextView textView;
-    ImageButton imageButton;
+    ImageView imageView;
 
     public CareListSub(Context context, AttributeSet attributeSet){
         super(context,attributeSet);
@@ -43,6 +43,6 @@ public class CareListSub extends LinearLayout {
         view = inflater.inflate(R.layout.care_person, this, true);
         linearLayout = (LinearLayout) view.findViewById(R.id.careId);
         textView = (TextView) view.findViewById(R.id.careText);
-        imageButton = (ImageButton) view.findViewById(R.id.careDel);
+        imageView = (ImageView) view.findViewById(R.id.careDel);
     }
 }
