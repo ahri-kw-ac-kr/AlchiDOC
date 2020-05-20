@@ -14,10 +14,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.clj.fastble.BleManager;
 import com.example.jms.R;
+import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.model.dto.BleDeviceDTO;
 import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
+import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.home.MainActivity;
 import com.example.jms.settings.PasswordFind1;
 
@@ -26,6 +30,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class Login extends AppCompatActivity {
     APIViewModel apiViewModel = new APIViewModel();
+    SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
 
     EditText txtEmail;
     EditText txtPassword;
@@ -34,6 +39,8 @@ public class Login extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences2;
+    SharedPreferences.Editor editor2;
 
     String check;
 
@@ -49,6 +56,9 @@ public class Login extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("boot",0);
         editor = sharedPreferences.edit();
+
+        sharedPreferences2 = getSharedPreferences("ble",0);
+        editor2 = sharedPreferences.edit();
 
         check = sharedPreferences.getString("isCheck","");
         if(check.equals("true")){
@@ -76,6 +86,21 @@ public class Login extends AppCompatActivity {
             editor.commit();
         }
 
+        String ble = sharedPreferences2.getString("mac","");
+        if(!ble.equals("")){
+            BleManager.getInstance().init(getApplication());
+            sleepDocViewModel.connectSleepDoc(ble)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(()->{
+                        BleDeviceDTO bleDeviceDTO = new BleDeviceDTO();
+                        bleDeviceDTO.setMacAddress(ble);
+                        bleDeviceDTO.setKey(sharedPreferences2.getString("key",""));
+                        bleDeviceDTO.setName(sharedPreferences2.getString("name",""));
+                        bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi",0));
+                        BleService.principalDevice = bleDeviceDTO;
+                    },Throwable::printStackTrace);
+        }
         apiViewModel.postAuth(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

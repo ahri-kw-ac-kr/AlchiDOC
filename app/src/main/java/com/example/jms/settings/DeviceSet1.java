@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,8 @@ public class DeviceSet1 extends AppCompatActivity {
     FloatingActionButton fab;
     DeviceSet3 myDevice;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class DeviceSet1 extends AppCompatActivity {
         });
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        sharedPreferences = getSharedPreferences("ble",0);
+        editor = sharedPreferences.edit();
 
         deviceList = (LinearLayout)findViewById(R.id.deviceList);
         if(BleService.principalDevice!=null) {
@@ -96,6 +101,8 @@ public class DeviceSet1 extends AppCompatActivity {
                 BleService.principalDevice = null;
                 sleepDocViewModel.disconnect();
                 deviceList.removeAllViews();
+                editor.clear();
+                editor.commit();
                 dialog.dismiss();
                 Log.d("DeviceSet1","연결끊기 확인");
             }

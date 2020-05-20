@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.clj.fastble.BleManager;
+import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
@@ -57,7 +58,7 @@ public class JobSchedulerService extends JobService {
         //여기에 백그ㅏ운드에서 실행할 코드를 집어넣는다.
             /*여기에 코드코드코드*/
 
-            if(BleManager.getInstance().getAllConnectedDevice()!=null&&RestfulAPI.principalUser!=null) {
+            if(BleService.principalDevice !=null&&RestfulAPI.principalUser!=null) {
                 sleepDocViewModel.getRawdataFromSleepDoc()
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())

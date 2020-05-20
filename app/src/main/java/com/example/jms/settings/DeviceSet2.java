@@ -2,6 +2,7 @@ package com.example.jms.settings;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -25,11 +26,17 @@ public class DeviceSet2 extends AppCompatActivity {
     BleViewModel bleViewModel = new BleViewModel();
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.device2);
+
+        sharedPreferences = getSharedPreferences("ble",0);
+        editor = sharedPreferences.edit();
 
         Log.d("DeviceSet2","들어옴");
 
@@ -60,6 +67,11 @@ public class DeviceSet2 extends AppCompatActivity {
                                 .subscribeOn(AndroidSchedulers.mainThread())
                                 .doOnComplete(() -> Log.i("DeviceSet2", "on Complete"))
                                 .subscribe(() -> {
+                                    editor.putString("mac",BleDeviceDTO.getMacAddress());
+                                    editor.putString("key",BleDeviceDTO.getKey());
+                                    editor.putString("name",BleDeviceDTO.getName());
+                                    editor.putInt("rssi",BleDeviceDTO.getRssi());
+                                    editor.commit();
                                     Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                                     startActivity(intent);
                                     finish();
