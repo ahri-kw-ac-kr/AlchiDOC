@@ -18,6 +18,7 @@ public class SleepService extends Service {
     public SleepService() { } // 생성자
 
 
+    //이거 뭐였지
     @Override
     public IBinder onBind(Intent intent) {
        return null;
@@ -27,7 +28,6 @@ public class SleepService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        //startForegroundService();
     }
 
     @Override
@@ -55,6 +55,7 @@ public class SleepService extends Service {
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setContentTitle("수면중입니다");
         builder.setContentText("수면중 내용입니다");
+
 
         //클릭시 시작되는 인텐트 - 바로 일반인텐트 실행 불가 노티피케이션을 클릭했을 때 슬립액티비티로 돌아가도록.
         Intent notificationIntent = new Intent(this, SleepActivity.class);

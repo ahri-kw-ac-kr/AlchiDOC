@@ -5,6 +5,9 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
+
+import java.util.concurrent.TimeUnit;
 
 
 /*
@@ -19,21 +22,23 @@ import android.os.Build;
 public class MyJobScheduler {
     private static final int JOB_ID = 0x1000;
 
-    static void setUpdateJob(Context context) {
+    public void setUpdateJob(Context context) {
 
         final JobInfo jobInfo;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             jobInfo = new JobInfo.Builder(JOB_ID, new ComponentName(context, JobSchedulerService.class))
-                    .setPeriodic(1 * 60 * 1000, 2 * 60 * 1000)
+                    .setPeriodic(TimeUnit.MINUTES.toMillis(15), TimeUnit.MINUTES.toMillis(16))
                     .build();
+            Log.d("D", "Scheduled JobA with version higher than N");
 
         }
 
         else {
             jobInfo = new JobInfo.Builder(JOB_ID, new ComponentName(context, JobSchedulerService.class))
-                    .setPeriodic(3000)
+                    .setPeriodic(TimeUnit.MINUTES.toMillis(15))
                     .build();
+            Log.d("D", "Scheduled JobA with version lower than N");
         }
 
         // JobScheduler 서비스

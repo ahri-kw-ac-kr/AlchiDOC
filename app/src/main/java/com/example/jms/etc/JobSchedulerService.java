@@ -23,12 +23,13 @@ public class JobSchedulerService extends JobService {
 
     @Override
     public boolean onStartJob(final JobParameters jobParameters) {
+        JobTask jobTask = new JobTask(this);
         // 신규 Job 수행 조건이 만족되었을 때 호출됩니다.
         // onStartJob()의 종료 후에도 지속할 동작이 있다면 true, 여기에서 완료되면 false를 반환합니다.
         // true를 반환할 경우 finishJob()의 호출을 통해 작업 종료를 선언하거나,
         // 시스템이 필요 onStopJob()를 호출하여 작업을 중지할 수 있습니다.
         Toast.makeText(getApplicationContext(), "Job started ", Toast.LENGTH_LONG).show();
-        new JobTask(this).execute(jobParameters);
+        jobTask.execute();
         return false;
     }
 
@@ -39,8 +40,9 @@ public class JobSchedulerService extends JobService {
         return false;
     }
 
-    private static class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
+    private class JobTask extends AsyncTask<JobParameters, Void, JobParameters> {
         private final JobService jobService;
+
         APIViewModel apiViewModel = new APIViewModel();
         SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
 
