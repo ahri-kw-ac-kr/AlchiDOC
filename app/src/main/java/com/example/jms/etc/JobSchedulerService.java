@@ -1,15 +1,23 @@
 package com.example.jms.etc;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+
 import com.clj.fastble.BleManager;
 import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.model.dto.GPSDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 
@@ -57,10 +65,10 @@ public class JobSchedulerService extends JobService {
         @Override
         protected JobParameters doInBackground(JobParameters... params) {
 
-        //여기에 백그ㅏ운드에서 실행할 코드를 집어넣는다.
+            //여기에 백그ㅏ운드에서 실행할 코드를 집어넣는다.
             /*여기에 코드코드코드*/
 
-            if(BleService.principalDevice !=null&&RestfulAPI.principalUser!=null) {
+            if (BleService.principalDevice != null && RestfulAPI.principalUser != null) {
                 sleepDocViewModel.getRawdataFromSleepDoc()
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())
@@ -69,8 +77,35 @@ public class JobSchedulerService extends JobService {
                             apiViewModel.postRawdata(data)
                                     .observeOn(Schedulers.io())
                                     .subscribe(result -> {
-                                    }, Throwable -> { Log.d("JopScheculerService", "집어넣기 오류 " + Throwable.getMessage()); });
-                        }, Throwable -> Log.d("JopScheculerService", "데이터 불러오기 오류 " + Throwable.getMessage()));
+                                    }, Throwable -> {
+                                        Log.d("JobSchedulerService", "집어넣기 오류 " + Throwable.getMessage());
+                                    });
+                        }, Throwable -> Log.d("JobSchedulerService", "데이터 불러오기 오류 " + Throwable.getMessage()));
+            }
+            if (RestfulAPI.principalUser != null) {
+                final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    //return TODO;
+                    Log.d("JobSchedulerService","퍼미션 확인 막힘");
+                }
+                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                double lat = location.getLatitude();
+                double lon = location.getLongitude();
+                GPSDTO gpsdto = new GPSDTO();
+                gpsdto.setLat(Double.toString(lat));
+                gpsdto.setLon(Double.toString(lon));
+                gpsdto.setUser(RestfulAPI.principalUser);
+                Log.d("JobSchedulerService","현위치: "+gpsdto.getLat()+", "+gpsdto.getLon()+", "+gpsdto.getUser());
+                apiViewModel.postGPS(gpsdto)
+                        .observeOn(Schedulers.io())
+                        .subscribe(result -> {},Throwable::printStackTrace); //-> Log.d("JobSchedulerService","GPS 집어넣기 오류 "+Throwable.getMessage()));
             }
 
 
