@@ -145,10 +145,11 @@ public class SleepDoc {
                                             rawdataDTO.getVectorY(),
                                             rawdataDTO.getVectorZ()));
                                     if(rawdataDTO.getStartTick()==0){ break; }
+                                    observer.onNext(syncDataDTO.rawdataDTOArray[i]);
                                     count += 1;
                                 }
                                 if(count == 0){ observer.onNext(syncDataDTO.rawdataDTOArray[count]); }
-                                else { observer.onNext(syncDataDTO.rawdataDTOArray[count-1]); }
+                                //else { observer.onNext(syncDataDTO.rawdataDTOArray[count-1]); }
                                 bleManager.write(bleDevice, ServiceUUID.SYNC.toString(), CharacteristicUUID.SYNC_CONTROL.toString(), new byte[]{Command.SYNC_CONTROL_PREPARE_NEXT}, logWriteCallback);
                             } catch (ZeroLengthException e) {
                                 Log.i("SleepDoc", "Sync data has 0 length, Sync is done.");

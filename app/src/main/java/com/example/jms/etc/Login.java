@@ -31,6 +31,7 @@ import io.reactivex.schedulers.Schedulers;
 public class Login extends AppCompatActivity {
     APIViewModel apiViewModel = new APIViewModel();
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
+    MyJobScheduler myJobScheduler = new MyJobScheduler();
 
     EditText txtEmail;
     EditText txtPassword;
@@ -99,6 +100,7 @@ public class Login extends AppCompatActivity {
                         bleDeviceDTO.setName(sharedPreferences2.getString("name",""));
                         bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi",0));
                         BleService.principalDevice = bleDeviceDTO;
+                        myJobScheduler.setUpdateJob(this);
                     },Throwable::printStackTrace);
         }
         apiViewModel.postAuth(user)
