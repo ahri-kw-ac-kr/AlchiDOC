@@ -93,6 +93,7 @@ public class Login extends AppCompatActivity {
             sleepDocViewModel.connectSleepDoc(ble)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete(()->{myJobScheduler.setUpdateJob(this);})
                     .subscribe(()->{
                         BleDeviceDTO bleDeviceDTO = new BleDeviceDTO();
                         bleDeviceDTO.setMacAddress(ble);
@@ -100,7 +101,6 @@ public class Login extends AppCompatActivity {
                         bleDeviceDTO.setName(sharedPreferences2.getString("name",""));
                         bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi",0));
                         BleService.principalDevice = bleDeviceDTO;
-                        myJobScheduler.setUpdateJob(this);
                     },Throwable::printStackTrace);
         }
         apiViewModel.postAuth(user)
