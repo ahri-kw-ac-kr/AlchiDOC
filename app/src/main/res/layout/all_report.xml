@@ -52,15 +52,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/textView"
                 android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="5월 17일 목요일 달성률"
                 android:textColor="#646464"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:textStyle="bold"></TextView>
             <LinearLayout
                 android:weightSum="3"
@@ -69,13 +69,13 @@
                 android:layout_height="130dp"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="118dp">
+                    android:layout_height="110dp">
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress1"
@@ -90,13 +90,13 @@
                 app:arc_unfinished_color="#E6E6E6" />
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="118dp">
+                    android:layout_height="110dp">
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress2"
@@ -111,13 +111,13 @@
                 app:arc_unfinished_color="#E6E6E6" />
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardElevation="1dp"
                     app:cardCornerRadius="15dp"
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="118dp">
+                    android:layout_height="110dp">
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:layout_gravity="center"
                 android:id="@+id/arc_progress3"
@@ -137,16 +137,16 @@
                 android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nanumregular"
                 android:text="@string/all_report2"
                 android:textColor="#646464"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:textStyle="bold"></TextView>
             <androidx.cardview.widget.CardView
                 android:layout_marginBottom="100dp"
-                app:cardElevation="3dp"
+                app:cardElevation="5dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
                 android:layout_gravity="center"

@@ -41,14 +41,21 @@
 
     <!--상단바 이후-->
 
-    <LinearLayout
-        android:id="@+id/care_list_view"
+    <ScrollView
+        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+    <LinearLayout
+        android:id="@+id/care_list_view"
+        android:layout_gravity="center|top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <!--나를 케어하는 사람 -->
 
@@ -56,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nanumregular"
             android:text="나를 케어하는 사람"
@@ -107,8 +114,8 @@
             android:id = "@+id/patient">
 
         </LinearLayout>
-
     </LinearLayout>
+    </ScrollView>
 
 
 

@@ -5,27 +5,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class DayAct extends Fragment {
 
+    long mNow;
+    Date mDate;
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 M월 dd일");
+    TextView mTextView;
     View view;
+
     public DayAct(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.day_act, container, false);
-
 
         BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
 
@@ -41,9 +50,7 @@ public class DayAct extends Fragment {
         mBarChart.addBar(new BarModel("18", 0.0f, Color.parseColor("#5F9919")));
         mBarChart.addBar(new BarModel("19", 0.0f, Color.parseColor("#5F9919")));
 
-
         mBarChart.startAnimation();
-
 
         return view;
     }

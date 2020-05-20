@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AlchiDOC</string>
+    <string name="app_name">Alchi Doc</string>
 
     <string name="StringValue">이미지가 열리지 않습니다.</string>
     <string name="email">이메일</string>
@@ -12,7 +12,7 @@
     <string name="login1">로그인</string>
     <string name="login2">아직 회원이 아니신가요?</string>
     <string name="login3">회원가입 하기</string>
-    <string name="login4">ex. mhse8919@gmail.com</string>
+    <string name="login4">ex. AlchiDoc@gmail.com</string>
     <string name="login5">비밀번호를 잊어버리셨나요?</string>
     <string name="login6">비밀번호 재설정</string>
     <string name="login7">자동 로그인</string>
@@ -49,6 +49,8 @@
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>
+    <string name="act4">활동량 인지행동 플랜</string>
+    <string name="act5">오늘의 활동량 기록</string>
     <string name="light">햇빛량</string>
     <string name="light2">주간 햇빛량</string>
     <string name="light3">야간 조도량</string>

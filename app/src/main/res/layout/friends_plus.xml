@@ -5,18 +5,25 @@
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="match_parent"
-    android:padding="30dp">
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="10dp">
+
     <TextView
-        android:layout_marginBottom="10dp"
-        android:textColor="#000000"
         android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/nanumregular"
-        android:text="친구 추가할 아이디를 입력하세요."
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="내 정보를 보여줄 친구의\n이메일을 입력해 주세요."
+        android:textColor="#000000"
         android:textSize="16dp" />
     <EditText
+        android:gravity="center"
+        android:hint="ex. AlchiDoc@gmail.com"
         android:id="@+id/input_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
