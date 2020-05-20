@@ -35,7 +35,6 @@ public class SleepService extends Service {
         if("startForeground".equals(intent.getAction())){ //해당 인텐트로 이와 같은 커맨드가 온다면
             startForegroundService(); // 아래의 함수를 실행하시오
         }
-
         Log.d("D","수면 서비스 시작");
         return START_STICKY;
     }
@@ -59,7 +58,8 @@ public class SleepService extends Service {
 
         //클릭시 시작되는 인텐트 - 바로 일반인텐트 실행 불가 노티피케이션을 클릭했을 때 슬립액티비티로 돌아가도록.
         Intent notificationIntent = new Intent(this, SleepActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,0);
+
         builder.setContentIntent(pendingIntent); // 다엮여있음.
 
 
