@@ -3,7 +3,6 @@ package com.example.jms.settings;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,12 +29,9 @@ public class FragSettings extends Fragment {
 
     private View view;
     MainActivity mainActivity;
-    LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5;
+    LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5, layButton6;
     TextView logoutButton;
     TextView myInfo;
-
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     @Override
     public void onAttach(Context context) {
@@ -68,13 +64,12 @@ public class FragSettings extends Fragment {
         layButton3 = (LinearLayout) view.findViewById(R.id.setButton3);
         layButton4 = (LinearLayout) view.findViewById(R.id.setButton4);
         layButton5 = (LinearLayout) view.findViewById(R.id.setButton5);
+        layButton6 = (LinearLayout) view.findViewById(R.id.setButton6);
         logoutButton = (TextView) view.findViewById(R.id.logout_button);
         myInfo = (TextView)view.findViewById(R.id.myInfo);
 
         myInfo.setText(RestfulAPI.principalUser.getUsername());
 
-        sharedPreferences = getActivity().getSharedPreferences("boot",0);
-        editor = sharedPreferences.edit();
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,10 +82,7 @@ public class FragSettings extends Fragment {
                         dialog.dismiss();
                         Intent intent = new Intent(getActivity(), Login.class);
                         startActivity(intent);
-                        editor.clear();
-                        editor.commit();
                         RestfulAPI.logout();
-                        getActivity().finish();
                     }
                 });
 
@@ -141,6 +133,29 @@ public class FragSettings extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Terms.class);
                 startActivity(intent);
+            }
+        });
+
+        layButton6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Login.class);
+                AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+                ad.setMessage("회원을 탈퇴하시겠습니까?");
+                ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ad.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
             }
         });
 

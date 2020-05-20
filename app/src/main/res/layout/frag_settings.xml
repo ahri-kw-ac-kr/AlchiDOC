@@ -354,6 +354,53 @@
             android:layout_height="0.3dp"
             android:layout_gravity="center|top"
             android:background="#707070" />
-    </LinearLayout>
 
+
+
+        <LinearLayout
+            android:id="@+id/setButton6"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="@string/set4"
+                android:textColor="#646464"
+                android:textSize="20sp"></TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
+                    android:textColor="#646464"
+                    android:textSize="16sp"></TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_gravity="center|top"
+            android:background="#707070" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
