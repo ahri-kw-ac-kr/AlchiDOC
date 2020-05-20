@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         //myJobScheduler.setUpdateJob(this);
 
-        if (!hasPermissions(this, PERMISSIONS)) {
+        /*if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
-        }
+        }*/
 
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);

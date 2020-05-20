@@ -1,8 +1,11 @@
 package com.example.jms.etc;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 import com.clj.fastble.BleManager;
 import com.example.jms.R;
@@ -30,6 +34,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class Login extends AppCompatActivity {
+    private static final int PERMISSION_ALL = 1;
+    private String[] PERMISSIONS = {
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN
+    };
+
     APIViewModel apiViewModel = new APIViewModel();
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
     MyJobScheduler myJobScheduler = new MyJobScheduler();
@@ -51,23 +63,28 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        txtEmail = (EditText)findViewById(R.id.login_email);
-        txtPassword = (EditText)findViewById(R.id.login_password);
-        checkBox = (CheckBox)findViewById(R.id.login_checkbox);
-        loginBtn = (Button)findViewById(R.id.login);
+        if (!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+        else{
+            txtEmail = (EditText)findViewById(R.id.login_email);
+            txtPassword = (EditText)findViewById(R.id.login_password);
+            checkBox = (CheckBox)findViewById(R.id.login_checkbox);
+            loginBtn = (Button)findViewById(R.id.login);
 
-        sharedPreferences = getSharedPreferences("boot",0);
-        editor = sharedPreferences.edit();
+            sharedPreferences = getSharedPreferences("boot",0);
+            editor = sharedPreferences.edit();
 
-        sharedPreferences2 = getSharedPreferences("ble",0);
-        editor2 = sharedPreferences.edit();
+            sharedPreferences2 = getSharedPreferences("ble",0);
+            editor2 = sharedPreferences.edit();
 
-        check = sharedPreferences.getString("isCheck","");
-        if(check.equals("true")){
-            checkBox.setChecked(true);
-            txtEmail.setText(sharedPreferences.getString("id",""));
-            txtPassword.setText(sharedPreferences.getString("pwd",""));
-            loginBtn.performClick();
+            check = sharedPreferences.getString("isCheck","");
+            if(check.equals("true")){
+                checkBox.setChecked(true);
+                txtEmail.setText(sharedPreferences.getString("id",""));
+                txtPassword.setText(sharedPreferences.getString("pwd",""));
+                loginBtn.performClick();
+            }
         }
     }
     @SuppressLint("CheckResult")
@@ -141,4 +158,14 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
