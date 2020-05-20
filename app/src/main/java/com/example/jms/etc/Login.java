@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import com.clj.fastble.BleManager;
@@ -158,6 +156,7 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //로그인과 관련없은 권한 관련임.
     public static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
