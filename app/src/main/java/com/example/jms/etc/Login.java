@@ -1,5 +1,6 @@
 package com.example.jms.etc;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class Login extends AppCompatActivity {
             loginBtn.performClick();
         }
     }
+    @SuppressLint("CheckResult")
     public void loginClick(View view){
         String email = txtEmail.getText().toString();
         String password = txtPassword.getText().toString();
@@ -93,7 +95,7 @@ public class Login extends AppCompatActivity {
             sleepDocViewModel.connectSleepDoc(ble)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnComplete(()->{myJobScheduler.setUpdateJob(this);})
+                    .doOnComplete(()->myJobScheduler.setUpdateJob(this))
                     .subscribe(()->{
                         BleDeviceDTO bleDeviceDTO = new BleDeviceDTO();
                         bleDeviceDTO.setMacAddress(ble);
@@ -102,7 +104,18 @@ public class Login extends AppCompatActivity {
                         bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi",0));
                         BleService.principalDevice = bleDeviceDTO;
                     },Throwable::printStackTrace);
-        }
+            apiViewModel.postAuth(user)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(data -> {
+                        RestfulAPI.setToken(data);
+                        Log.d("Login", data.getUser().getUsername() + "로그인 성공");
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish(); }, Throwable -> { Toast.makeText(getApplicationContext(),
+                            "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
+                    });
+        }else{
         apiViewModel.postAuth(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -111,9 +124,11 @@ public class Login extends AppCompatActivity {
                     Log.d("Login", data.getUser().getUsername() + "로그인 성공");
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    finish(); }, Throwable -> { Toast.makeText(getApplicationContext(),
+                    finish();
+                    myJobScheduler.setUpdateJob(this);}, Throwable -> { Toast.makeText(getApplicationContext(),
                         "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
                 });
+        }
     }
 
     public void findPassword(View view){

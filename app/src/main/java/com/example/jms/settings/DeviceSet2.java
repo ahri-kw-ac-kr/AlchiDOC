@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.clj.fastble.BleManager;
 import com.example.jms.R;
 import com.example.jms.connection.model.BleService;
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 
@@ -25,6 +27,7 @@ public class DeviceSet2 extends AppCompatActivity {
 
     BleViewModel bleViewModel = new BleViewModel();
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
+    APIViewModel apiViewModel = new APIViewModel();
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -75,9 +78,18 @@ public class DeviceSet2 extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                                     startActivity(intent);
                                     finish();
-                                    },
+                                    sleepDocViewModel.getRawdataFromSleepDoc()
+                                            .observeOn(Schedulers.io())
+                                            .subscribeOn(AndroidSchedulers.mainThread())
+                                            .subscribe(data -> {
+                                                data.setUser(RestfulAPI.principalUser);
+                                                apiViewModel.postRawdata(data)
+                                                        .observeOn(Schedulers.io())
+                                                        .subscribe(result -> {
+                                                            }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
+                                                }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage())); },
                                         Throwable -> { Toast.makeText(getApplicationContext(), "기기 연결 실패", Toast.LENGTH_SHORT).show();
-                                            });
+                                                    });
                     } },Throwable::printStackTrace);
 
     }
