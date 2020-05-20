@@ -95,17 +95,19 @@ public class JobSchedulerService extends JobService {
                     //return TODO;
                     Log.d("JobSchedulerService","퍼미션 확인 막힘");
                 }
-                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                double lat = location.getLatitude();
-                double lon = location.getLongitude();
-                GPSDTO gpsdto = new GPSDTO();
-                gpsdto.setLat(Double.toString(lat));
-                gpsdto.setLon(Double.toString(lon));
-                gpsdto.setUser(RestfulAPI.principalUser);
-                Log.d("JobSchedulerService","현위치: "+gpsdto.getLat()+", "+gpsdto.getLon()+", "+gpsdto.getUser());
-                apiViewModel.postGPS(gpsdto)
-                        .observeOn(Schedulers.io())
-                        .subscribe(result -> {},Throwable::printStackTrace); //-> Log.d("JobSchedulerService","GPS 집어넣기 오류 "+Throwable.getMessage()));
+                else{
+                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    double lat = location.getLatitude();
+                    double lon = location.getLongitude();
+                    GPSDTO gpsdto = new GPSDTO();
+                    gpsdto.setLat(Double.toString(lat));
+                    gpsdto.setLon(Double.toString(lon));
+                    gpsdto.setUser(RestfulAPI.principalUser);
+                    Log.d("JobSchedulerService","현위치: "+gpsdto.getLat()+", "+gpsdto.getLon()+", "+gpsdto.getUser());
+                    apiViewModel.postGPS(gpsdto)
+                            .observeOn(Schedulers.io())
+                            .subscribe(result -> {},Throwable::printStackTrace); //-> Log.d("JobSchedulerService","GPS 집어넣기 오류 "+Throwable.getMessage()));
+                }
             }
 
 
