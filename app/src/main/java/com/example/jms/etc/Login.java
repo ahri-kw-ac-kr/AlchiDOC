@@ -64,28 +64,27 @@ public class Login extends AppCompatActivity {
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
-        else{
-            txtEmail = (EditText)findViewById(R.id.login_email);
-            txtPassword = (EditText)findViewById(R.id.login_password);
-            checkBox = (CheckBox)findViewById(R.id.login_checkbox);
-            loginBtn = (Button)findViewById(R.id.login);
 
-            sharedPreferences = getSharedPreferences("boot",0);
-            editor = sharedPreferences.edit();
+        txtEmail = (EditText)findViewById(R.id.login_email);
+        txtPassword = (EditText)findViewById(R.id.login_password);
+        checkBox = (CheckBox)findViewById(R.id.login_checkbox);
+        loginBtn = (Button)findViewById(R.id.login);
 
-            sharedPreferences2 = getSharedPreferences("ble",0);
-            editor2 = sharedPreferences.edit();
+        sharedPreferences = getSharedPreferences("boot",0);
+        editor = sharedPreferences.edit();
 
-            check = sharedPreferences.getString("isCheck","");
-            if(check.equals("true")){
-                checkBox.setChecked(true);
-                txtEmail.setText(sharedPreferences.getString("id",""));
-                txtPassword.setText(sharedPreferences.getString("pwd",""));
-                loginBtn.performClick();
-            }
+        sharedPreferences2 = getSharedPreferences("ble",0);
+        editor2 = sharedPreferences.edit();
+
+        check = sharedPreferences.getString("isCheck","");
+        if(check.equals("true")){
+            checkBox.setChecked(true);
+            txtEmail.setText(sharedPreferences.getString("id",""));
+            txtPassword.setText(sharedPreferences.getString("pwd",""));
+            loginBtn.performClick();
         }
     }
-    @SuppressLint("CheckResult")
+
     public void loginClick(View view){
         String email = txtEmail.getText().toString();
         String password = txtPassword.getText().toString();
