@@ -355,8 +355,6 @@
             android:layout_gravity="center|top"
             android:background="#707070" />
 
-
-
         <LinearLayout
             android:id="@+id/setButton6"
             android:layout_width="match_parent"
@@ -371,7 +369,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="22dp"
-                android:text="@strings/set4"
+                android:text="@string/set4"
                 android:textColor="#646464"
                 android:textSize="20sp"></TextView>
 

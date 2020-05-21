@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <ScrollView
         android:fillViewport="true"
         android:id="@+id/scrollView2"
@@ -14,34 +15,33 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-
+        app:layout_constraintStart_toStartOf="parent" >
 
         <LinearLayout
             android:id="@+id/title"
-            android:layout_marginTop="15dp"
             android:layout_gravity="center|top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="14dp"
-
                     android:fontFamily="@font/nanumregular"
                     android:gravity="right"
-                    android:text="5월 셋째주 "
+                    android:text="5월 셋째주"
                     android:textColor="#646464"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"></TextView>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,28 +51,27 @@
 
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
-                    android:text="평균 활동량 84%"
+                    android:text=" 평균 활동량 84%"
                     android:textColor="#329035"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"></TextView>
             </LinearLayout>
 
 
-            <LinearLayout
 
+            <LinearLayout
                 android:padding="3dp"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
+                    android:layout_gravity="center"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="0dp"
-                    android:layout_gravity="center"
                     app:cardBackgroundColor="#ffffff"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="242dp">
-
                     <org.eazegraph.lib.charts.BarChart
                         android:layout_gravity="center"
                         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -171,232 +170,258 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
 
                 android:fontFamily="@font/nanumregular"
-                android:text="오늘의 활동량 기록"
+                android:text="이주의 활동량 기록"
                 android:textColor="#646464"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold"></TextView>
 
-            <androidx.cardview.widget.CardView
 
+            <androidx.cardview.widget.CardView
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="30dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
                 android:layout_gravity="center"
-                android:layout_width="365dp"
-                android:layout_height="128dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
                     android:layout_marginLeft="25dp"
-                    android:layout_marginTop="25dp"
-                    android:drawableLeft="@drawable/ic_sprint"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="평균 걸음수"
-                    android:textAlignment="viewStart"
-                    android:textColor="#329035"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="60dp"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="5,391"
-                    android:textColor="#329035"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="28dp"
                     android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="걸음"
-                    android:textColor="#707070"
-                    android:textSize="19sp"></TextView>
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="65dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
+                    <LinearLayout
+                        android:weightSum="10"
+                        android:layout_marginTop="20dp"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="83dp"
-                    android:drawableLeft="@drawable/ic_calories"
-                    android:drawablePadding="5dp"
-                    android:fontFamily="@font/nanumbold"
-                    android:lines="1"
-                    android:text="평균 칼로리"
-                    android:textAlignment="viewStart"
-                    android:textColor="#329035"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_sprint"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="평균 걸음수"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="18sp"
+                            android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="83dp"
-                    android:layout_marginRight="65dp"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="147"
-                    android:textColor="#329035"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="86dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="kcal"
-                    android:textColor="#707070"
-                    android:textSize="19sp"></TextView>
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="300dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="5,391"
+                            android:textColor="#329035"
+                            android:textSize="18sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="걸음"
+                            android:textColor="#707070"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
+
+
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+                    <LinearLayout
+                        android:weightSum="10"
+
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_calories"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="평균 칼로리"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="18sp"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="147"
+                            android:textColor="#329035"
+                            android:textSize="18sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="kcal"
+                            android:textColor="#707070"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="활동량 인지행동 플랜"
+                android:text="@string/act4"
                 android:textColor="#646464"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold"></TextView>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginBottom="70dp"
-                app:cardElevation="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="100dp"
+                app:cardElevation="6dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
                 android:layout_gravity="center"
-                android:layout_width="365dp"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_sprint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="주간 평균 활동량"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="18sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#329035"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/good"
+                            android:textColor="#329035"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
 
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_sprint"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="주간 평균 활동량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="42dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="51"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="28dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="%"
-                    android:textColor="#707070"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="낮 시간대의 활동량이 충분합니다. 오후에는 무리한 활동을 자제해 주세요.">
-                </TextView>
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="120dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_calories"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:lines="1"
-                    android:text="야간 평균 활동량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginRight="42dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="33"
-                    android:textColor="#329035"
-                    android:textSize="22sp"></TextView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="143dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="%"
-                    android:textColor="#707070"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="173dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.">
-                </TextView>
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="이번주 활동량이 충분합니다. 다음주에는 무리한 활동을 자제해 주세요(???)"></TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_calories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="야간 평균 활동량"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="18sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#329035"
+                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:gravity="bottom"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/bad"
+                            android:textColor="#329035"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginBottom="22dp"
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="지난주보다 야간 활동량이 부족합니다. 다음주에는 더 많은 활동이 필요합니다.">
+                    </TextView>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
