@@ -91,7 +91,9 @@ public class SignUp extends AppCompatActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(data -> {
-                        Log.d("SignUp",data.getUsername()+" 회원가입 완료");
+                                Toast.makeText(getApplicationContext(),
+                                        "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                Log.d("SignUp",data.getUsername()+" 회원가입 완료");
                                 Intent intent = new Intent(getApplicationContext(), Login.class);
                                 startActivity(intent);
                                 finish();

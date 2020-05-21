@@ -83,7 +83,7 @@ public interface RestfulAPIService {
      *  BaseURL/user/{id}
      *  user delete **/
     @DELETE("user/{id}")
-    Single<UserDTO> deleteUser(@Path("id") Long id);
+    Single<Boolean> deleteUser(@Path("id") Long id);
 
     /** Patch
      *  BaseURL/user/forget

@@ -59,7 +59,7 @@ public class APIViewModel extends ViewModel {
         return restfulAPIService.patchAllUser(user);
     }
 
-    public Single<UserDTO> deleteUser(Long id){
+    public Single<Boolean> deleteUser(Long id){
         return restfulAPIService.deleteUser(id);
     }
 

@@ -1,5 +1,6 @@
 package com.example.jms.settings;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,6 +42,8 @@ public class FragSettings extends Fragment {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences2;
+    SharedPreferences.Editor editor2;
 
     @Override
     public void onAttach(Context context) {
@@ -80,6 +83,9 @@ public class FragSettings extends Fragment {
 
         sharedPreferences = getActivity().getSharedPreferences("boot",0);
         editor = sharedPreferences.edit();
+        sharedPreferences2 = getActivity().getSharedPreferences("ble",0);
+        editor2 = sharedPreferences.edit();
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +100,8 @@ public class FragSettings extends Fragment {
                         startActivity(intent);
                         editor.clear();
                         editor.commit();
+                        editor2.clear();
+                        editor2.commit();
                         RestfulAPI.logout();
                         getActivity().finish();
                     }
@@ -149,7 +157,6 @@ public class FragSettings extends Fragment {
             }
         });
 
-
         layButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,9 +165,26 @@ public class FragSettings extends Fragment {
                 new android.app.AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @SuppressLint("CheckResult")
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 EditText id = (EditText) view.findViewById(R.id.input_string);
                                 String value = id.getText().toString();
+                                if(value.equals("탈퇴")){
+                                    apiViewModel.deleteUser(RestfulAPI.principalUser.getId())
+                                            .subscribeOn(Schedulers.io())
+                                            .observeOn(AndroidSchedulers.mainThread())
+                                            .subscribe(data->{
+                                                Log.d("설정","회원탈퇴");
+                                                editor.clear();
+                                                editor.commit();
+                                                editor2.clear();
+                                                editor2.commit();
+                                                RestfulAPI.logout();
+                                                Intent intent = new Intent(getActivity(), Login.class);
+                                                startActivity(intent);
+                                                getActivity().finish();
+                                            },Throwable::printStackTrace);
+                                }
                                 dialog.dismiss();
                             }
                         })
