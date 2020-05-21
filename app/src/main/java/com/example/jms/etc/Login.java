@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,23 +25,21 @@ import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.BleDeviceDTO;
 import com.example.jms.connection.model.dto.UserDTO;
-import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.home.MainActivity;
 import com.example.jms.home.UserDataModel;
 import com.example.jms.settings.PasswordFind1;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import io.reactivex.Observable;
-import io.reactivex.Scheduler;
-import io.reactivex.Single;
+import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -145,7 +145,7 @@ public class Login extends AppCompatActivity {
                             //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             //startActivity(intent);
                             //finish();
-                            dataaa();
+                            meAndyou();
                         }, Throwable -> {
                             Toast.makeText(getApplicationContext(),
                                     "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
@@ -162,8 +162,8 @@ public class Login extends AppCompatActivity {
                             //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             //startActivity(intent);
                             //finish();
+                            meAndyou();
                             myJobScheduler.setUpdateJob(this);
-                            dataaa();
                         }, Throwable -> {
                             Toast.makeText(getApplicationContext(),
                                     "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
@@ -183,23 +183,27 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void dataaa() throws ParseException {
+    @SuppressLint("CheckResult")
+    public void meAndyou() throws ParseException {
         UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
-        //UserDataModel.userDataModels =
+
         getData(userDataModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    UserDataModel.userDataModels = result;
+                .doOnComplete(()->{
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    finish();},Throwable::printStackTrace);}
-    public Observable<UserDataModel[]> getData(UserDataModel[] userDataModel) throws ParseException {
-        return Observable.create(observer -> {
+                    finish();
+                })
+                .subscribe();}
+
+    @SuppressLint("CheckResult")
+    public Completable getData(UserDataModel[] userDataModel) throws ParseException {
+        return Completable.create(observer -> {
             APIViewModel apiViewModel = new APIViewModel();
 
             Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
             String date = transFormat.format(calendar.getTime());
             Date today = transFormat.parse(date);
             calendar.setTime(today);
@@ -207,19 +211,43 @@ public class Login extends AppCompatActivity {
             lastDate = date.substring(0,6)+lastDate;
             Log.d("MainActivity","오늘: "+date+"오늘1: "+today+", 이번달 마지막: "+lastDate);
 
+            AtomicInteger count = new AtomicInteger();
             //UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
             for(int i=0; i< RestfulAPI.principalUser.getFriend().size()+1; i++){
                 int finalI = i;
                 userDataModel[i] = new UserDataModel();
-
+                userDataModel[i].setPosition(i);
                 if(i==0){
                     apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",date,lastDate)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(data -> {
                                 if(data.getContent()!=null){ userDataModel[finalI].setDataList(data.getContent()); }
-                                userDataModel[finalI].setPosition(finalI);
+                                //userDataModel[finalI].setPosition(finalI);
                                 Log.d("MainActivity","i 확인: "+finalI);
+                                count.getAndIncrement();
+                                if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                    UserDataModel.userDataModels = userDataModel;
+                                    observer.onComplete();
+                                }
+                            },Throwable::printStackTrace);
+                    apiViewModel.getGPSById(RestfulAPI.principalUser.getId(),"0")
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(data-> {
+                                if(data.getContent()!=null){
+                                    userDataModel[finalI].setGpsList(data.getContent());
+                                    userDataModel[finalI].setAddresses(
+                                            toAdd(Double.parseDouble(data.getContent().get(0).getLat()),
+                                                    Double.parseDouble(data.getContent().get(0).getLon())));
+                                    Log.d("로그인","i 확인: "+finalI);
+                                    count.getAndIncrement();
+                                    Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                        UserDataModel.userDataModels = userDataModel;
+                                        observer.onComplete();
+                                    }
+                                }
                             },Throwable::printStackTrace);
                 }
                 else{
@@ -228,13 +256,48 @@ public class Login extends AppCompatActivity {
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(data -> {
                                 if(data.getContent()!=null){ userDataModel[finalI].setDataList(data.getContent()); }
-                                userDataModel[finalI].setPosition(finalI);
+                                //userDataModel[finalI].setPosition(finalI);
                                 Log.d("MainActivity","i 확인: "+finalI);
+                                count.getAndIncrement();
+                                if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                    UserDataModel.userDataModels = userDataModel;
+                                    observer.onComplete();
+                                }
+                            },Throwable::printStackTrace);
+                    apiViewModel.getGPSById(RestfulAPI.principalUser.getFriend().get(i-1).getId(),"0")
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(data-> {
+                                if(data.getContent()!=null){
+                                    userDataModel[finalI].setGpsList(data.getContent());
+                                    userDataModel[finalI].setAddresses(
+                                            toAdd(Double.parseDouble(data.getContent().get(0).getLat()),
+                                                    Double.parseDouble(data.getContent().get(0).getLon())));
+                                    Log.d("로그인","i 확인: "+finalI);
+                                    count.getAndIncrement();
+                                    Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                        UserDataModel.userDataModels = userDataModel;
+                                        observer.onComplete();
+                                    }
+                                }
                             },Throwable::printStackTrace);
                 }
             }
-            observer.onNext(userDataModel);
+            Log.d("Login","카운트 확인: "+count.get()+", "+(RestfulAPI.principalUser.getFriend().size()+1)*2);
         });
+    }
+
+    public String toAdd(double lat, double lon){
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> add = null;
+        try{ add = geocoder.getFromLocation(lat,lon,10); }
+        catch (IOException e) {
+            e.printStackTrace();
+            Log.e("MainActivity","주소변환 불가 "+lat+", "+lon);
+        }
+        Address address = add.get(0);
+        return address.getAddressLine(0).substring(5);
     }
 
     //로그인과 관련없은 권한 관련임.

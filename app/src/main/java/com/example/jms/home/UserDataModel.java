@@ -1,7 +1,10 @@
 package com.example.jms.home;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 
+import com.example.jms.connection.model.dto.GPSDTO;
 import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
@@ -18,25 +21,34 @@ public class UserDataModel {
     private List<RawdataDTO> dataList;
     private List<RawdataDTO> todayList;
     private List<RawdataDTO> weekList;
+    private List<GPSDTO> gpsList;
+    private String addresses;
     private int position;
 
 
     public UserDataModel(){}
-    public UserDataModel(List<RawdataDTO> dataList, List<RawdataDTO> todayList, List<RawdataDTO> weekList, int position){
+    public UserDataModel(List<RawdataDTO> dataList, List<RawdataDTO> todayList, List<RawdataDTO> weekList, List<GPSDTO> gpsList, String addresses, int position){
         this.dataList = dataList;
         this.todayList = todayList;
         this.weekList = weekList;
+        this.gpsList = gpsList;
+        this.addresses = addresses;
         this.position = position;
     }
 
     public List<RawdataDTO> getDataList() { return dataList; }
     public List<RawdataDTO> getTodayList() { return todayList; }
     public List<RawdataDTO> getWeekList() { return weekList; }
+    public List<GPSDTO> getGpsList() { return gpsList; }
+    public String getAddresses() {return addresses;}
     public int getPosition() { return position; }
 
     public void setDataList(List<RawdataDTO> dataList) { this.dataList = dataList; }
     public void setTodayList(List<RawdataDTO> todayList) { this.todayList = todayList; }
     public void setWeekList(List<RawdataDTO> weekList) { this.weekList = weekList; }
+    public void setGpsList(List<GPSDTO> gpsList) { this.gpsList = gpsList; }
+    public void setAddresses(String addresses) { this.addresses = addresses; }
+
     public void setPosition(int position) { this.position = position; }
 
 
@@ -73,4 +85,5 @@ public class UserDataModel {
             }
         }
     }
+
 }

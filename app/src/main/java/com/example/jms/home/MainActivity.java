@@ -1,6 +1,9 @@
 package com.example.jms.home;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,9 @@ import com.example.jms.R;
 import com.example.jms.map.FragMap;
 import com.example.jms.settings.FragSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -54,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         fragMap = new FragMap();
         fragSettings = new FragSettings();
     }
+
 
     //하단바를 통해 프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n) {

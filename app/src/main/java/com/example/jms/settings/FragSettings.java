@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
+import com.example.jms.home.UserDataModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -59,7 +61,7 @@ public class FragSettings extends Fragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(body -> { RestfulAPI.myDoctor = body.getContent();},Throwable::printStackTrace);
-
+        //Log.d("메인확인",""+ UserDataModel.userDataModels[0].getGpsList().get(0).getLat());
         view = inflater.inflate(R.layout.frag_settings, container, false);
 
         layButton1 = (LinearLayout) view.findViewById(R.id.setButton1);
