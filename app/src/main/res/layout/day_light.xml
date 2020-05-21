@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
@@ -22,12 +21,10 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintStart_toStartOf="parent" >
 
         <LinearLayout
             android:id="@+id/title"
-            android:layout_marginTop="15dp"
             android:layout_gravity="center|top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,10 +33,25 @@
 
 
             <LinearLayout
-                android:layout_weight="0.6"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="@font/nanumregular"
+                    android:gravity="right"
+                    android:text="5월 17일 목요일 "
+                    android:textColor="#646464"
+                    android:textSize="18sp"
+                    android:textStyle="bold"></TextView>
+
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,39 +59,26 @@
                     android:layout_marginBottom="14dp"
 
                     android:fontFamily="@font/nanumregular"
-                    android:gravity="right"
-                    android:text="5월 17일 목요일  "
-                    android:textColor="#646464"
-                    android:textSize="22sp"
-                    android:textStyle="bold"></TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="14dp"
-                    android:fontFamily="@font/nanumextra"
                     android:gravity="left"
-                    android:text="햇빛량 47%"
+                    android:text=" 햇빛량 47%"
                     android:textColor="#F75321"
-                    android:textSize="22sp"
-                    ></TextView>
+                    android:textSize="18sp"
+                    android:textStyle="bold"></TextView>
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_weight="3"
                 android:padding="3dp"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:layout_gravity="center"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="0dp"
                     app:cardBackgroundColor="#ffffff"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="242dp">
                     <org.eazegraph.lib.charts.BarChart
                         android:layout_gravity="center"
@@ -99,130 +98,136 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_weight="4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nanumregular"
                 android:text="햇빛량 인지행동 플랜"
                 android:textColor="#646464"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold"></TextView>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginBottom="90dp"
-                app:cardElevation="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="100dp"
+                app:cardElevation="6dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
                 android:layout_gravity="center"
-                android:layout_width="365dp"
-                android:layout_height="240dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_whatshot_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/act2"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="18sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#F75321"
+                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/bad"
+                            android:textColor="#F75321"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
 
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_whatshot_black_24dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginLeft="23dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:text="주간 햇빛량"
-                    android:textAlignment="viewStart"
-                    android:textColor="#F75321"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
-                ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="28dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="부족"
-                    android:textColor="#F75321"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="낮 시간대의 햇빛량이 부족합니다. 오후에는 많은 활동을 필요로 합니다.">
-                </TextView>
-                <View
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="120dp"
-                    android:layout_width="320dp"
-                    android:layout_height="2dp"
-                    android:background="#ECECEC"/>
-                <TextView
-                    android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_highlight_black_24dp"
-                    android:layout_marginTop="137dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumbold"
-                    android:lines="1"
-                    android:text="야간 조명 밝기"
-                    android:textAlignment="viewStart"
-                    android:textColor="#F75321"
-                    android:textSize="22sp"></TextView>
-                <ImageView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="137dp"
-                    android:layout_marginRight="56dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                    ></ImageView>
-                <TextView
-                    android:layout_gravity="right"
-                    android:layout_marginTop="143dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumregular"
-                    android:text="충분"
-                    android:textColor="#F75321"
-                    android:textSize="19sp"></TextView>
-                <TextView
-                    android:lineSpacingExtra="6dp"
-                    android:layout_marginTop="173dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textColor="#5A5959"
-                    android:fontFamily="@font/nanumregular"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="조명 색의 온도가 적당합니다. 현재의 밝기를 유지하세요.">
-                </TextView>
+                    <TextView
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="낮 시간대의 햇빛량이 부족합니다. 오후에는 야외 활동을 늘려주세요."></TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_highlight_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="@string/act3"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="18sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#F75321"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:gravity="bottom"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/good"
+                            android:textColor="#F75321"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginBottom="22dp"
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="조명 색의 온도가 적당합니다. 현재의 조명 밝기를 유지하세요.">
+                    </TextView>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

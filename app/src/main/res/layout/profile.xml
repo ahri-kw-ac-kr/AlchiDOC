@@ -23,13 +23,12 @@
             android:background="@color/default1"
             android:elevation="1dp"
             android:fontFamily="@font/nanumextra" >
-
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="회원정보 수정"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
@@ -80,7 +79,7 @@
 
                         android:text="@string/sign_up2"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <EditText
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -104,7 +103,7 @@
                         android:fontFamily="@font/nanumlight"
                         android:text="생년월일"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <EditText
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -128,7 +127,7 @@
                         android:fontFamily="@font/nanumlight"
                         android:text="휴대전화"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <EditText
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -153,7 +152,7 @@
                         android:fontFamily="@font/nanumlight"
                         android:text="성별"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <RadioGroup
                         android:layout_weight="4"
                         android:id="@+id/radioGroup"
@@ -167,7 +166,7 @@
                             android:layout_weight="5"
                             android:fontFamily="@font/nanumlight"
                             android:text="@string/man"
-                            android:textSize="11sp" />
+                            android:textSize="12sp" />
                         <RadioButton
                             android:id="@+id/rg_btn2"
                             android:layout_width="0dp"
@@ -175,7 +174,7 @@
                             android:layout_weight="5"
                             android:fontFamily="@font/nanumlight"
                             android:text="@string/woman"
-                            android:textSize="11sp" />
+                            android:textSize="12sp" />
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
@@ -192,7 +191,7 @@
             android:fontFamily="@font/nanumregular"
             android:gravity="center"
             android:text="※ 비밀번호를 변경하실 분만 아래 내용을 입력해 주세요."
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -201,7 +200,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="3"
         android:layout_width="match_parent"
@@ -224,7 +223,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="14dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -242,10 +244,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:fontFamily="@font/nanumlight"
-
                         android:text="현재 비밀번호"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <EditText
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -269,7 +270,7 @@
                         android:fontFamily="@font/nanumlight"
                         android:text="새 비밀번호"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <EditText
                         android:layout_weight="3"
                         android:layout_width="match_parent"
@@ -280,7 +281,7 @@
                         android:textSize="11dp"></EditText>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -292,7 +293,7 @@
                         android:fontFamily="@font/nanumlight"
                         android:text="비밀번호 확인"
                         android:textColor="#646464"
-                        android:textSize="12sp"></TextView>
+                        android:textSize="14sp"></TextView>
                     <EditText
                         android:layout_weight="3"
                         android:layout_width="match_parent"

@@ -6,14 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="100">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0px"
@@ -116,13 +114,11 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="30"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="27dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="27dp"
-                android:layout_marginBottom="10dp"
-                app:autoSizePresetSizes="@array/font_size"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="30"
                 android:background="@drawable/main_grad"
                 android:clickable="true"
                 android:drawableLeft="@drawable/ic_light"
@@ -130,13 +126,13 @@
                 android:drawablePadding="-20dp"
                 android:elevation="3dp"
                 android:fontFamily="@font/nanumbold"
-                android:paddingStart="-33dp"
+                android:paddingStart="-14dp"
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
                 android:text="햇빛량 충분"
-                android:textColor="#ffffff">
-            </Button>
+                android:textColor="#ffffff"
+                app:autoSizePresetSizes="@array/font_size"></Button>
 
             <TextView
                 android:layout_width="match_parent"
@@ -147,12 +143,12 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="30"
+                android:layout_weight="28"
                 android:layout_below="@+id/button1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 app:autoSizePresetSizes="@array/font_size"
                 android:background="@drawable/main_grad"
                 android:drawableLeft="@drawable/ic_actact"
@@ -164,7 +160,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="활동량 부족"
+                android:text="   활동량 부족"
                 android:textColor="#ffffff">
             </Button>
 
@@ -178,12 +174,12 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
-                android:layout_weight="30"
+                android:layout_weight="28"
                 android:layout_below="@id/button2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="14dp"
                 app:autoSizePresetSizes="@array/font_size"
                 android:background="@drawable/main_grad"
                 android:drawableLeft="@drawable/ic_nights_stay_24px"
@@ -195,7 +191,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="수면량 충분"
+                android:text="   수면량 충분"
                 android:textColor="#ffffff">
             </Button>
         </LinearLayout>

@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--상단바!!!-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"></androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
     <ScrollView
         android:fillViewport="true"
@@ -171,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginBottom="15dp"
 
                 android:fontFamily="@font/nanumregular"
@@ -363,7 +370,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="이번주 활동량이 충분합니다. 다음주에는 무리한 활동을 자제해 주세요(???)"></TextView>
+                        android:text="이번주 활동량이 충분합니다. 다음주에는 무리한 활동을 자제해 주세요."></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
