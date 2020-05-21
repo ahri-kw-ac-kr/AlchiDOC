@@ -1,11 +1,8 @@
 package com.example.jms.home;
 
-import android.location.Address;
-import android.location.Geocoder;
 import android.util.Log;
 
 import com.example.jms.connection.model.dto.GPSDTO;
-import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
 import java.text.ParseException;
@@ -43,6 +40,7 @@ public class UserDataModel {
     public String getAddresses() {return addresses;}
     public int getPosition() { return position; }
 
+    //사용을 금지한다... 모아둔 데이터 날아간다 임마...
     public void setDataList(List<RawdataDTO> dataList) { this.dataList = dataList; }
     public void setTodayList(List<RawdataDTO> todayList) { this.todayList = todayList; }
     public void setWeekList(List<RawdataDTO> weekList) { this.weekList = weekList; }
