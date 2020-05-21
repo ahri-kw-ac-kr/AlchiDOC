@@ -145,8 +145,9 @@ public class SleepDoc {
                                             rawdataDTO.getVectorY(),
                                             rawdataDTO.getVectorZ()));
                                     if(rawdataDTO.getStartTick()==0){ break; }
+                                    else{
                                     observer.onNext(syncDataDTO.rawdataDTOArray[i]);
-                                    count += 1;
+                                    count += 1;}
                                 }
                                 if(count == 0){ observer.onNext(syncDataDTO.rawdataDTOArray[count]); }
                                 //else { observer.onNext(syncDataDTO.rawdataDTOArray[count-1]); }
