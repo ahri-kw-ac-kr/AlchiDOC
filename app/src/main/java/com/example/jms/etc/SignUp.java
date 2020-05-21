@@ -90,7 +90,12 @@ public class SignUp extends AppCompatActivity {
             apiViewModel.postRegister(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(data -> {Log.d("SignUp",data.getUsername()+" 회원가입 완료");},
+                    .subscribe(data -> {
+                        Log.d("SignUp",data.getUsername()+" 회원가입 완료");
+                                Intent intent = new Intent(getApplicationContext(), Login.class);
+                                startActivity(intent);
+                                finish();
+                        },
                             Throwable -> {
                                 if(Throwable instanceof HttpException){
                                     HttpException e = (HttpException) Throwable;
@@ -98,9 +103,9 @@ public class SignUp extends AppCompatActivity {
                                         case 409:
                                             Toast.makeText(getApplicationContext(),
                                                     "이미 존재하는 이메일입니다. 다른 이메일을 작성해 주세요.", Toast.LENGTH_SHORT).show();
-                                        case 500:
-                                            Toast.makeText(getApplicationContext(),
-                                                    "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
+                                        //case 500:
+                                          //  Toast.makeText(getApplicationContext(),
+                                            //        "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
