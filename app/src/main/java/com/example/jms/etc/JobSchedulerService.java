@@ -107,6 +107,7 @@ public class JobSchedulerService extends JobService {
             }
             if (RestfulAPI.principalUser != null) {
                 Location location = getLastKnownLocation();
+                if(location != null){
                     double lat = location.getLatitude();
                     double lon = location.getLongitude();
                     GPSDTO gpsdto = new GPSDTO();
@@ -116,9 +117,9 @@ public class JobSchedulerService extends JobService {
                     Log.d("JobSchedulerService","현위치: "+gpsdto.getLat()+", "+gpsdto.getLon()+", "+gpsdto.getUser());
                     apiViewModel.postGPS(gpsdto)
                             .observeOn(Schedulers.io())
-                            .subscribe(result -> {},Throwable::printStackTrace); //-> Log.d("JobSchedulerService","GPS 집어넣기 오류 "+Throwable.getMessage()));
+                            .subscribe(result -> {},Throwable-> Log.d("JobSchedulerService","GPS 집어넣기 오류 "+Throwable.getMessage()));
                 }
-            //}
+            }
 
 
 
