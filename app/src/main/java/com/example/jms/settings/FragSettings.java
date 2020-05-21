@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +28,7 @@ import com.example.jms.home.UserDataModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 public class FragSettings extends Fragment {
     APIViewModel apiViewModel = new APIViewModel();
@@ -146,30 +149,31 @@ public class FragSettings extends Fragment {
             }
         });
 
+
         layButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Login.class);
-                AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
-                ad.setMessage("회원을 탈퇴하시겠습니까?");
-                ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                ad.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                ad.show();
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                View view = inflater.inflate(R.layout.member_secession, null);
+                new android.app.AlertDialog.Builder(getActivity())
+                        .setView(view)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                EditText id = (EditText) view.findViewById(R.id.input_string);
+                                String value = id.getText().toString();
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
 
+
         return view;
     }
-
 }

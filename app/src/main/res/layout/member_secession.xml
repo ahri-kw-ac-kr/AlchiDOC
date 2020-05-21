@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="308dp"
+    android:layout_height="match_parent"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/nanumregular"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="회원을 탈퇴하려면 '탈퇴'를 입력해 주세요."
+        android:textColor="#000000"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/nanumregular"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="※ 탈퇴 시 모든 정보는 사라집니다."
+        android:textColor="#000000"
+        android:textSize="15dp" />
+    <EditText
+        android:gravity="center"
+        android:id="@+id/input_string"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
