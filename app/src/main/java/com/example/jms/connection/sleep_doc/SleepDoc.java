@@ -216,7 +216,7 @@ public class SleepDoc {
                 public void onReadSuccess(byte[] data) {
                     observer.onNext(data[0]);
                     Log.i("SleepDoc", "배터리 "+ data[0]);
-                    setTimeAndZone(bleDevice);
+                    //setTimeAndZone(bleDevice);
                 }
                 @Override
                 public void onReadFailure(BleException exception) {
