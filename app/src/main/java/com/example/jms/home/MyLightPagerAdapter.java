@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class MyPagerAdapter extends FragmentPagerAdapter {
+public class MyLightPagerAdapter extends FragmentPagerAdapter {
 
     int mNumOfTabs;
 
-    public MyPagerAdapter(FragmentManager fm, int numOfTabs) {
+    public MyLightPagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.mNumOfTabs = numOfTabs;
 
@@ -20,14 +20,14 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position) {
             case 0:
-                DayAct dayAct = new DayAct();
-                return dayAct;
+                DayLight dayLight = new DayLight();
+                return dayLight;
             case 1:
-                WeekAct weekAct = new WeekAct();
-                return weekAct;
+                WeekLight weekLight = new WeekLight();
+                return weekLight;
             case 2:
-                MonthAct monthAct = new MonthAct();
-                return monthAct;
+                MonthLight monthLight = new MonthLight();
+                return monthLight;
             default:
                 return null;
         }

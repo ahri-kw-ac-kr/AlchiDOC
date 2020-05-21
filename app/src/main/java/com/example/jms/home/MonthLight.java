@@ -2,10 +2,13 @@ package com.example.jms.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,25 +19,18 @@ import com.github.mikephil.charting.data.PieDataSet;
 
 import java.util.ArrayList;
 
-public class MonthLight extends AppCompatActivity {
+public class MonthLight extends Fragment {
+
+    public MonthLight() {}
+
+    View view;
 
     int[] colorArray = new int[] {Color.parseColor("#F8683C"), Color.parseColor("#F99678"), Color.parseColor("#FFB59F")};
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.month_light);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.month_light, container, false);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        PieChart pieChart = findViewById(R.id.piechart2);
+        PieChart pieChart = (PieChart) view.findViewById(R.id.piechart2);
         ArrayList NoOfEmp = new ArrayList();
 
         NoOfEmp.add(new Entry(14, 0));
@@ -76,5 +72,6 @@ public class MonthLight extends AppCompatActivity {
         pieChart.notifyDataSetChanged(); // 차트에 데이터가 바뀌었다고 알림
         pieChart.invalidate(); // 차트 다시 그려! 명령하는 코드
         */
+        return view;
     }
 }

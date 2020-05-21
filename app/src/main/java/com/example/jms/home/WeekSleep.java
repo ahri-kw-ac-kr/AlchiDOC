@@ -2,10 +2,13 @@ package com.example.jms.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 
@@ -14,23 +17,17 @@ import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.StackedBarModel;
 
 
-public class WeekSleep extends AppCompatActivity {
+public class WeekSleep extends Fragment {
 
+    public WeekSleep(){}
+    View view;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.week_sleep);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.week_sleep, container, false);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        StackedBarChart mStackedBarChart = (StackedBarChart) findViewById(R.id.stackedbarchart);
+        StackedBarChart mStackedBarChart = (StackedBarChart) view.findViewById(R.id.stackedbarchart);
 
         StackedBarModel s1 = new StackedBarModel("월");
         s1.addBar(new BarModel(21, Color.parseColor("#7851C3")));
@@ -76,5 +73,6 @@ public class WeekSleep extends AppCompatActivity {
         mStackedBarChart.addBar(s7);
 
         mStackedBarChart.startAnimation();
+        return view;
     }
 }

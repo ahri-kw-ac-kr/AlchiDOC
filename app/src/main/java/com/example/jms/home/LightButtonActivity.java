@@ -10,12 +10,13 @@ import com.google.android.material.tabs.TabLayout;
 
 
 /*아직 ACT 버튼만 test로 만든 상태입니다.*/
-public class ActButtonActivity extends AppCompatActivity {
+public class LightButtonActivity extends AppCompatActivity {
 
+    String code = "Light";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actbutton_activity);
+        setContentView(R.layout.lightbutton_activity);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
@@ -33,7 +34,7 @@ public class ActButtonActivity extends AppCompatActivity {
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        final MyActPagerAdapter myPagerAdapter = new MyActPagerAdapter(getSupportFragmentManager(),3);
+        final MyLightPagerAdapter myPagerAdapter = new MyLightPagerAdapter(getSupportFragmentManager(),3);
         viewPager.setAdapter(myPagerAdapter);
 
         tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));

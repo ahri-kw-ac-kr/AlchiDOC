@@ -46,13 +46,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.ActButtonActivity" />
-        <activity android:name=".home.DayLight"></activity> <!-- <activity android:name=".home.DayAct"> </activity> -->
-        <activity android:name=".home.DaySleep"></activity>
-        <activity android:name=".home.WeekLight"></activity> <!-- <activity android:name=".home.WeekAct"> </activity> -->
-        <activity android:name=".home.WeekSleep"></activity> <!-- <activity android:name=".home.MonthAct"> </activity> -->
-        <activity android:name=".home.MonthLight"></activity>
-        <activity android:name=".home.MonthSleep"></activity>
+        <activity android:name=".home.ActButtonActivity"></activity>
+        <activity android:name=".home.LightButtonActivity"></activity>
+        <activity android:name=".home.SleepButtonActivity"></activity>
         <activity android:name=".home.Report"></activity>
         <activity android:name=".etc.Login"></activity>
         <activity android:name=".etc.SignUp"></activity>
@@ -67,8 +63,5 @@
         <activity android:name=".home.SleepActivity"
             android:launchMode="singleInstance"></activity>
     </application>
-
-
-
 
 </manifest>

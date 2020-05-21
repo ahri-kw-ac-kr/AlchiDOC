@@ -2,10 +2,13 @@ package com.example.jms.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 
@@ -13,25 +16,18 @@ import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
 
-public class DayLight extends AppCompatActivity {
+public class DayLight extends Fragment {
 
+    View view;
+    public DayLight(){}
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.day_light);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.day_light, container, false);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        BarChart mBarChart = (BarChart) findViewById(R.id.bar);
+        BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
 
         mBarChart.addBar(new BarModel("09", 0.0f, Color.parseColor("#ffffff")));
         mBarChart.addBar(new BarModel("10", 0.0f, Color.parseColor("#ffffff")));
@@ -48,9 +44,6 @@ public class DayLight extends AppCompatActivity {
 
         mBarChart.startAnimation();
 
-
-
-
-
+        return view;
     }
 }

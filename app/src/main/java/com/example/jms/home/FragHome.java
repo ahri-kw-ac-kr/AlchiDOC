@@ -19,16 +19,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
-import com.example.jms.connection.viewmodel.APIViewModel;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import cn.nightcode.sliderIndicator.SliderIndicator;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class FragHome extends Fragment {
 
@@ -91,7 +83,7 @@ public class FragHome extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MonthLight.class);
+                Intent intent = new Intent(getActivity(), LightButtonActivity.class);
                 startActivity(intent);
             }
         });
@@ -105,7 +97,7 @@ public class FragHome extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DaySleep.class);
+                Intent intent = new Intent(getActivity(), SleepButtonActivity.class);
                 startActivity(intent);
             }
         });

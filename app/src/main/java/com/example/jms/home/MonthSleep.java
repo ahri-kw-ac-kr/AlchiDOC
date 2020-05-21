@@ -2,10 +2,13 @@ package com.example.jms.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 import com.github.mikephil.charting.charts.PieChart;
@@ -16,25 +19,19 @@ import com.github.mikephil.charting.data.PieDataSet;
 
 import java.util.ArrayList;
 
-public class MonthSleep extends AppCompatActivity {
+public class MonthSleep extends Fragment {
 
+    public MonthSleep(){}
+
+    View view;
     int[] colorArray = new int[] {Color.parseColor("#A991D8"), Color.parseColor("#C5AEEF"), Color.parseColor("#E6CEFF")};
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.month_sleep);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.month_sleep, container, false);
 
-        Toolbar toolbar = findViewById(R.id.toolbar3);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        PieChart pieChart = findViewById(R.id.piechart3);
+        PieChart pieChart = (PieChart) view.findViewById(R.id.piechart3);
         ArrayList NoOfEmp = new ArrayList();
 
         NoOfEmp.add(new Entry(4, 0));
@@ -76,5 +73,6 @@ public class MonthSleep extends AppCompatActivity {
         pieChart.notifyDataSetChanged(); // 차트에 데이터가 바뀌었다고 알림
         pieChart.invalidate(); // 차트 다시 그려! 명령하는 코드
         */
+        return view;
     }
 }
