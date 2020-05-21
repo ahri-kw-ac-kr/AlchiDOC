@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -12,6 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.jms.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
 * foreground service 참고링크
@@ -23,29 +27,37 @@ import com.example.jms.R;
 public class SleepActivity extends AppCompatActivity {
 
     Button sleepEnd;
+    String startTime, endTime;
     Chronometer chronometer;
     long stopTime = 0;
 
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sleep_activity); //승은이가 올려준 액티비티가 나오도록.
 
-
-        chronometer = (Chronometer) findViewById(R.id.chronometer);
         sleepEnd = (Button) findViewById(R.id.sleep_end);
+        chronometer = (Chronometer) findViewById(R.id.ellapse);
         Intent intent = new Intent(this, SleepService.class);
-        intent.setAction("startForeground");
+        intent.setAction("startForeground"); //포그라운드 서비스 실행
 
         chronometer.setBase(SystemClock.elapsedRealtime() + stopTime);
         chronometer.start();
+
+        Date sDate = new Date(System.currentTimeMillis());
+        startTime = simpleDateFormat.format(sDate);
+        Log.e("SleepActivity - start",startTime);
 
         sleepEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                chronometer.setBase(SystemClock.elapsedRealtime());
-                stopTime = 0;
+                Date eDate = new Date(System.currentTimeMillis());
+                endTime = simpleDateFormat.format(eDate);
+                Log.e("SleepActivity - end",endTime);
                 chronometer.stop();
                 stopService(intent);
                 finish();
@@ -55,9 +67,15 @@ public class SleepActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(intent);
         }
+
         else {
             startService(intent);
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 }
