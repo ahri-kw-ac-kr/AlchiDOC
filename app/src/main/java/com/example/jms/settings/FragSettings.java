@@ -60,7 +60,6 @@ public class FragSettings extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(body -> { RestfulAPI.myDoctor = body.getContent();},Throwable::printStackTrace);
 
-
         view = inflater.inflate(R.layout.frag_settings, container, false);
 
         layButton1 = (LinearLayout) view.findViewById(R.id.setButton1);

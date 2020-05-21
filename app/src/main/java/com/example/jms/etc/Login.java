@@ -23,11 +23,23 @@ import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.BleDeviceDTO;
 import com.example.jms.connection.model.dto.UserDTO;
+import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.home.MainActivity;
+import com.example.jms.home.UserDataModel;
 import com.example.jms.settings.PasswordFind1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -85,63 +97,79 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    public void loginClick(View view){
+    @SuppressLint("CheckResult")
+    public void loginClick(View view) {
         String email = txtEmail.getText().toString();
         String password = txtPassword.getText().toString();
 
-        UserDTO user = new UserDTO();
-        user.setUsername(email);
-        user.setPassword(password);
+        if(email.equals("")||email.equals(null)) { Toast.makeText(getApplicationContext(), "이메일을 입력하세요.", Toast.LENGTH_SHORT).show(); }
+        else if(password.equals("")||password.equals(null)) { Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show(); }
+        else {
+            UserDTO user = new UserDTO();
+            user.setUsername(email);
+            user.setPassword(password);
 
-        if(checkBox.isChecked()){
-            editor.putString("id",email);
-            editor.putString("pwd",password);
-            editor.putString("isCheck","true");
-            editor.commit();
-        } else{
-            editor.clear();
-            editor.commit();
-        }
+            if (checkBox.isChecked()) {
+                editor.putString("id", email);
+                editor.putString("pwd", password);
+                editor.putString("isCheck", "true");
+                editor.commit();
+            } else {
+                editor.clear();
+                editor.commit();
+            }
 
-        String ble = sharedPreferences2.getString("mac","");
-        if(!ble.equals("")){
-            BleManager.getInstance().init(getApplication());
-            sleepDocViewModel.connectSleepDoc(ble)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnComplete(()->myJobScheduler.setUpdateJob(this))
-                    .subscribe(()->{
-                        BleDeviceDTO bleDeviceDTO = new BleDeviceDTO();
-                        bleDeviceDTO.setMacAddress(ble);
-                        bleDeviceDTO.setKey(sharedPreferences2.getString("key",""));
-                        bleDeviceDTO.setName(sharedPreferences2.getString("name",""));
-                        bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi",0));
-                        BleService.principalDevice = bleDeviceDTO;
-                    },Throwable::printStackTrace);
-            apiViewModel.postAuth(user)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(data -> {
-                        RestfulAPI.setToken(data);
-                        Log.d("Login", data.getUser().getUsername() + "로그인 성공");
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish(); }, Throwable -> { Toast.makeText(getApplicationContext(),
-                            "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
-                    });
-        }else{
-        apiViewModel.postAuth(user)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(data -> {
-                    RestfulAPI.setToken(data);
-                    Log.d("Login", data.getUser().getUsername() + "로그인 성공");
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    myJobScheduler.setUpdateJob(this);}, Throwable -> { Toast.makeText(getApplicationContext(),
-                        "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
-                });
+            String ble = sharedPreferences2.getString("mac", "");
+            if (!ble.equals("")) {
+                BleManager.getInstance().init(getApplication());
+                sleepDocViewModel.connectSleepDoc(ble)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnComplete(() -> myJobScheduler.setUpdateJob(this))
+                        .subscribe(() -> {
+                            BleDeviceDTO bleDeviceDTO = new BleDeviceDTO();
+                            bleDeviceDTO.setMacAddress(ble);
+                            bleDeviceDTO.setKey(sharedPreferences2.getString("key", ""));
+                            bleDeviceDTO.setName(sharedPreferences2.getString("name", ""));
+                            bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi", 0));
+                            BleService.principalDevice = bleDeviceDTO;
+                        }, Throwable::printStackTrace);
+                apiViewModel.postAuth(user)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(data -> {
+                            RestfulAPI.setToken(data);
+                            //UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
+                            //UserDataModel.userDataModels = getData(userDataModel);
+                            Log.d("Login", data.getUser().getUsername() + "로그인 성공");
+                            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            //startActivity(intent);
+                            //finish();
+                            dataaa();
+                        }, Throwable -> {
+                            Toast.makeText(getApplicationContext(),
+                                    "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
+                        });
+            } else {
+                apiViewModel.postAuth(user)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(data -> {
+                            RestfulAPI.setToken(data);
+                            //UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
+                            //UserDataModel.userDataModels = getData(userDataModel);
+                            Log.d("Login", data.getUser().getUsername() + "로그인 성공");
+                            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            //startActivity(intent);
+                            //finish();
+                            myJobScheduler.setUpdateJob(this);
+                            dataaa();
+                        }, Throwable -> {
+                            Toast.makeText(getApplicationContext(),
+                                    "이메일 또는 비밀번호가 잘못 되었습니다.", Toast.LENGTH_SHORT).show();
+                        });
+            }
+
         }
     }
 
@@ -153,6 +181,60 @@ public class Login extends AppCompatActivity {
     public void goSignUp(View view){
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
         startActivity(intent);
+    }
+
+    public void dataaa() throws ParseException {
+        UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
+        //UserDataModel.userDataModels =
+        getData(userDataModel)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> {
+                    UserDataModel.userDataModels = result;
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();},Throwable::printStackTrace);}
+    public Observable<UserDataModel[]> getData(UserDataModel[] userDataModel) throws ParseException {
+        return Observable.create(observer -> {
+            APIViewModel apiViewModel = new APIViewModel();
+
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+            String date = transFormat.format(calendar.getTime());
+            Date today = transFormat.parse(date);
+            calendar.setTime(today);
+            String lastDate = String.valueOf(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            lastDate = date.substring(0,6)+lastDate;
+            Log.d("MainActivity","오늘: "+date+"오늘1: "+today+", 이번달 마지막: "+lastDate);
+
+            //UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
+            for(int i=0; i< RestfulAPI.principalUser.getFriend().size()+1; i++){
+                int finalI = i;
+                userDataModel[i] = new UserDataModel();
+
+                if(i==0){
+                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",date,lastDate)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(data -> {
+                                if(data.getContent()!=null){ userDataModel[finalI].setDataList(data.getContent()); }
+                                userDataModel[finalI].setPosition(finalI);
+                                Log.d("MainActivity","i 확인: "+finalI);
+                            },Throwable::printStackTrace);
+                }
+                else{
+                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getFriend().get(i-1).getId(),"0",date,lastDate)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(data -> {
+                                if(data.getContent()!=null){ userDataModel[finalI].setDataList(data.getContent()); }
+                                userDataModel[finalI].setPosition(finalI);
+                                Log.d("MainActivity","i 확인: "+finalI);
+                            },Throwable::printStackTrace);
+                }
+            }
+            observer.onNext(userDataModel);
+        });
     }
 
     //로그인과 관련없은 권한 관련임.

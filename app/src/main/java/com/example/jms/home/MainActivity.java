@@ -1,35 +1,19 @@
 package com.example.jms.home;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.jms.R;
-import com.example.jms.etc.MyJobScheduler;
 import com.example.jms.map.FragMap;
 import com.example.jms.settings.FragSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
-    MyJobScheduler myJobScheduler = new MyJobScheduler();
-
-
-    private static final int PERMISSION_ALL = 1;
-    private String[] PERMISSIONS = {
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.BLUETOOTH,
-            Manifest.permission.BLUETOOTH_ADMIN
-    };
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
@@ -42,12 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //myJobScheduler.setUpdateJob(this);
-
-        /*if (!hasPermissions(this, PERMISSIONS)) {
-            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
-        }*/
 
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -101,17 +79,4 @@ public class MainActivity extends AppCompatActivity {
 
     ///권한 설정 하는 코드를 가져와봤는데... 실행이 안되네요
     ///https://stackoverflow.com/questions/34342816/android-6-0-multiple-permissions - 여기를 참조했습니다
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-
-
 }

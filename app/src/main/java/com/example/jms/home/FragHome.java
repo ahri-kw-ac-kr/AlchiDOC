@@ -19,8 +19,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import cn.nightcode.sliderIndicator.SliderIndicator;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class FragHome extends Fragment {
 
