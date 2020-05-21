@@ -98,8 +98,7 @@
             android:gravity="left"
             android:text="@string/login7"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="14sp"
-            android:onClick="findPassword"/>
+            android:textSize="14sp" />
     </LinearLayout>
     </LinearLayout>
 
