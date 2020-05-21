@@ -21,6 +21,8 @@ import com.example.jms.connection.model.dto.GPSDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -56,6 +58,27 @@ public class JobSchedulerService extends JobService {
 
         APIViewModel apiViewModel = new APIViewModel();
         SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
+        LocationManager mLocationManager;
+
+        private Location getLastKnownLocation() {
+            mLocationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+            List<String> providers = mLocationManager.getProviders(true);
+            Location bestLocation = null;
+            for (String provider : providers) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                }
+                Location l = mLocationManager.getLastKnownLocation(provider);
+                if (l == null) {
+                    continue; }
+                if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    // Found best last known location: %s", l);
+                    bestLocation = l; }
+            }
+            return bestLocation;
+        }
 
         public JobTask(JobService jobService) {
             this.jobService = jobService;
@@ -83,20 +106,7 @@ public class JobSchedulerService extends JobService {
                         }, Throwable -> Log.d("JobSchedulerService", "데이터 불러오기 오류 " + Throwable.getMessage()));
             }
             if (RestfulAPI.principalUser != null) {
-                final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    //return TODO;
-                    Log.d("JobSchedulerService","퍼미션 확인 막힘");
-                }
-                else{
-                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                Location location = getLastKnownLocation();
                     double lat = location.getLatitude();
                     double lon = location.getLongitude();
                     GPSDTO gpsdto = new GPSDTO();
@@ -108,7 +118,7 @@ public class JobSchedulerService extends JobService {
                             .observeOn(Schedulers.io())
                             .subscribe(result -> {},Throwable::printStackTrace); //-> Log.d("JobSchedulerService","GPS 집어넣기 오류 "+Throwable.getMessage()));
                 }
-            }
+            //}
 
 
 
