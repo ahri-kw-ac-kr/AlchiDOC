@@ -104,6 +104,7 @@ public class DeviceSet1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 dialog.dismiss();
+                fab.setVisibility(View.VISIBLE);
                 Log.d("DeviceSet1","연결끊기 확인");
             }
         });
