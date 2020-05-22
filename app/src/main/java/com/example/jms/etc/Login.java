@@ -237,9 +237,11 @@ public class Login extends AppCompatActivity {
                             .subscribe(data-> {
                                 if(data.getContent()!=null){
                                     userDataModel[finalI].setGpsList(data.getContent());
+                                    if(data.getContent().size()>0){
                                     userDataModel[finalI].setAddresses(
                                             toAdd(Double.parseDouble(data.getContent().get(0).getLat()),
                                                     Double.parseDouble(data.getContent().get(0).getLon())));
+                                    }
                                     Log.d("로그인","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
@@ -270,9 +272,11 @@ public class Login extends AppCompatActivity {
                             .subscribe(data-> {
                                 if(data.getContent()!=null){
                                     userDataModel[finalI].setGpsList(data.getContent());
-                                    userDataModel[finalI].setAddresses(
+                                    if(data.getContent().size()>0){
+                                        userDataModel[finalI].setAddresses(
                                             toAdd(Double.parseDouble(data.getContent().get(0).getLat()),
                                                     Double.parseDouble(data.getContent().get(0).getLon())));
+                                    }
                                     Log.d("로그인","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());

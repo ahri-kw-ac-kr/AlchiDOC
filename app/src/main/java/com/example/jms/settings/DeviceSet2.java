@@ -87,9 +87,18 @@ public class DeviceSet2 extends AppCompatActivity {
                                                         .observeOn(Schedulers.io())
                                                         .subscribe(result -> {
                                                             }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
-                                                }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage())); },
-                                        Throwable -> { Toast.makeText(getApplicationContext(), "기기 연결 실패", Toast.LENGTH_SHORT).show();
-                                                    });
+                                                }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage()));
+                                    }, Throwable -> {
+                                    Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                                    startActivity(intent);
+                                    Handler handler = new Handler(Looper.getMainLooper());
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "기기 연결 실패", Toast.LENGTH_SHORT).show();
+                                             }},0);
+                                    finish();
+                                });
                     } },Throwable::printStackTrace);
 
     }

@@ -40,13 +40,11 @@ public class UserDataModel {
     public String getAddresses() {return addresses;}
     public int getPosition() { return position; }
 
-    //사용을 금지한다... 모아둔 데이터 날아간다 임마...
     public void setDataList(List<RawdataDTO> dataList) { this.dataList = dataList; }
     public void setTodayList(List<RawdataDTO> todayList) { this.todayList = todayList; }
     public void setWeekList(List<RawdataDTO> weekList) { this.weekList = weekList; }
     public void setGpsList(List<GPSDTO> gpsList) { this.gpsList = gpsList; }
     public void setAddresses(String addresses) { this.addresses = addresses; }
-
     public void setPosition(int position) { this.position = position; }
 
 

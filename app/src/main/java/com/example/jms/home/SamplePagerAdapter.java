@@ -70,21 +70,31 @@ public class SamplePagerAdapter extends PagerAdapter {
         if(UserDataModel.userDataModels!=null){
             if(position ==0 ) {
                 tv.setText(RestfulAPI.principalUser.getFullname() + " 님"); //user에 따라 수정(현재 0, 1, 2.. 이렇게 보임)
-                tv2.setText(""+UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
-                tv3.setText(""+transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(0,4)+"년 "
-                +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(5,7)+"월 "
-                +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(8,10)+"일 "
-                +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(11,13)+"시 "
-                +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(14,16)+"분"); //user에 따라 수정
+                if(UserDataModel.userDataModels[0].getGpsList().size()==0){
+                    tv2.setText("현재 저장된 위치가 없습니다");
+                    tv3.setText("지도 탭을 눌러 현 위치를 확인하세요"); }
+                else {
+                    tv2.setText("" + UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
+                    tv3.setText("" + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(0, 4) + "년 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(5, 7) + "월 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(8, 10) + "일 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(11, 13) + "시 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(14, 16) + "분"); //user에 따라 수정
+                }
             }
             else{
-                tv.setText(RestfulAPI.principalUser.getFriend().get(position-1).getFullname() + " 님"); //user에 따라 수정(현재 0, 1, 2.. 이렇게 보임)
-                tv2.setText(""+UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
-                tv3.setText(""+transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(0,4)+"년 "
-                        +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(5,7)+"월 "
-                        +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(8,10)+"일 "
-                        +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(11,13)+"시 "
-                        +transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(14,16)+"분"); //user에 따라 수정
+                if(UserDataModel.userDataModels[position].getGpsList().size()==0){
+                    tv2.setText("현재 저장된 위치가 없습니다");
+                    tv3.setText("지도 탭을 눌러 현 위치를 확인하세요"); }
+                else {
+                    tv.setText(RestfulAPI.principalUser.getFriend().get(position - 1).getFullname() + " 님"); //user에 따라 수정(현재 0, 1, 2.. 이렇게 보임)
+                    tv2.setText("" + UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
+                    tv3.setText("" + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(0, 4) + "년 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(5, 7) + "월 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(8, 10) + "일 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(11, 13) + "시 "
+                            + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(14, 16) + "분"); //user에 따라 수정
+                }
             }
         }
 

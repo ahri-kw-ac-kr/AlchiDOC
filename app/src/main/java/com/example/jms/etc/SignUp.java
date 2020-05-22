@@ -1,8 +1,11 @@
 package com.example.jms.etc;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +57,7 @@ public class SignUp extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @SuppressLint("CheckResult")
     public void signUp(View view){
         btnSex = (RadioButton)findViewById(rg.getCheckedRadioButtonId());
 
@@ -91,11 +95,16 @@ public class SignUp extends AppCompatActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(data -> {
-                                Toast.makeText(getApplicationContext(),
-                                        "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                                 Log.d("SignUp",data.getUsername()+" 회원가입 완료");
-                                Intent intent = new Intent(getApplicationContext(), Login.class);
+                                Intent intent = new Intent(getApplicationContext(),Login.class);
                                 startActivity(intent);
+                                Handler handler = new Handler(Looper.getMainLooper());
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(),
+                                                "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }},0);
                                 finish();
                         },
                             Throwable -> {
@@ -110,6 +119,7 @@ public class SignUp extends AppCompatActivity {
                                             //        "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                                else{Log.d("회원가입",Throwable.getMessage());}
                             });
         }
 
