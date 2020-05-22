@@ -35,6 +35,7 @@ import com.example.jms.connection.sleep_doc.dto.SyncDataDTO;
 import com.example.jms.connection.sleep_doc.uuid.CharacteristicUUID;
 import com.example.jms.connection.sleep_doc.uuid.DescriptorUUID;
 import com.example.jms.connection.sleep_doc.uuid.ServiceUUID;
+import com.example.jms.home.UserDataModel;
 
 public class SleepDoc {
     private BleManager bleManager;
@@ -43,7 +44,7 @@ public class SleepDoc {
     private BluetoothGatt gatt;
     private boolean isConnected = false;
 
-    Activity activity;
+    private Context contextDoc;
 
     public SleepDoc(String macAddress) {
         this.macAddress = macAddress;
@@ -191,7 +192,8 @@ public class SleepDoc {
         Log.i("타임셋", "time: " + time + ", gmt : " + gmtOffset);
 
         byte[] op = new byte[9];
-        op[0] = (byte)0x06;
+        //op[0] = (byte)0x06;
+        op[0] = (byte)0x2A2B;
 
         ByteBuffer bb1 = ByteBuffer.wrap(new byte[4]);
         bb1.order(ByteOrder.LITTLE_ENDIAN);
@@ -207,12 +209,13 @@ public class SleepDoc {
                     @Override
                     public void onWriteSuccess(int current, int total, byte[] justWrite) {
                         Log.i("타임셋", "timeSet: 성공");
+                        contextDoc = UserDataModel.contextP;
                         if(isFactory){
-                            setUUID(_bleDevice, activity);
+                            //setUUID(_bleDevice, contextDoc);
                             //bleDevice = _bleDevice;
                         }
                         else{
-                            getUUID(_bleDevice, activity);
+                            //getUUID(_bleDevice, contextDoc);
                             //bleDevice = _bleDevice;
                         }
                     }
@@ -269,6 +272,7 @@ public class SleepDoc {
     };
 
     public void setUUID(final BleDevice bleDevice, Context context) {
+        Log.d("SleepDoc","셋유유아이디 들어옴");
         String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         UUID uuid = new UUID(androidId.hashCode(), androidId.hashCode());
         Log.i("SleepDoc", "setUUID "+ uuid.toString());
@@ -289,11 +293,14 @@ public class SleepDoc {
                         Log.i("SleepDoc", "setUUID : " + "current : " + current + " total : " + total + " justWrite :" + HexUtil.formatHexString(justWrite));
                     }
                     @Override
-                    public void onWriteFailure(BleException exception) { }
+                    public void onWriteFailure(BleException exception) {
+                        Log.d("SleepDoc","셋유유아이디 실패");
+                    }
                 });
     }
 
     public void getUUID(final BleDevice bleDevice, final Context c) {
+        Log.d("SleepDoc","겟유유아이디 들어옴");
         bleManager.write(bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), new byte[]{(byte)0x0B},
                 new BleWriteCallback() {
                     @Override
@@ -305,15 +312,18 @@ public class SleepDoc {
                                 String uData = HexUtil.formatHexString(data);
                                 Log.i("SleepDoc", "getUUID : " + "data : " + uData);
                                 if(uData.contains("00000000000000000")){
+                                    Log.d("SleepDoc","0만 나온다.");
                                     setUUID(bleDevice, c);
                                 }
                             }
                             @Override
-                            public void onReadFailure(BleException exception) { }
+                            public void onReadFailure(BleException exception) {
+                                Log.d("SleepDoc","겟유유아이디 실패");
+                            }
                         });
                     }
                     @Override
-                    public void onWriteFailure(BleException exception) { }
+                    public void onWriteFailure(BleException exception) { Log.d("SleepDoc","겟유유아이디 쓰기 실패");}
                 });
     }
 }

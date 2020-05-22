@@ -19,6 +19,7 @@ import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
+import com.example.jms.home.UserDataModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -38,6 +39,7 @@ public class DeviceSet2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.device2);
 
+        UserDataModel.contextP = getApplicationContext();
         sharedPreferences = getSharedPreferences("ble",0);
         editor = sharedPreferences.edit();
 

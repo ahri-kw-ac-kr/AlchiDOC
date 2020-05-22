@@ -1,5 +1,6 @@
 package com.example.jms.settings;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -104,7 +105,11 @@ public class DeviceSet1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 dialog.dismiss();
-                fab.setVisibility(View.VISIBLE);
+                Activity act = (Activity)getApplicationContext();
+                act.runOnUiThread(new Runnable(){
+                    @Override
+                    public void run() {
+                fab.setVisibility(View.VISIBLE);}});
                 Log.d("DeviceSet1","연결끊기 확인");
             }
         });

@@ -1,5 +1,7 @@
 package com.example.jms.home;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.example.jms.connection.model.dto.GPSDTO;
@@ -14,6 +16,7 @@ import java.util.List;
 public class UserDataModel {
     public static UserDataModel[] userDataModels;
     public static int currentP;
+    public static Context contextP;
 
     private List<RawdataDTO> dataList;
     private List<RawdataDTO> todayList;
