@@ -12,11 +12,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- foreground 실행을 위한 권한-->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <!-- 앱 아이콘 임시로 넣어둠! 나중에 잘 만들어서 바꿀 예정,, -->
     <application
         android:allowBackup="true"
-        android:icon="@drawable/test_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -27,7 +29,7 @@
             android:name=".home.SleepService"
             android:enabled="true"
             android:stopWithTask="true"
-            android:exported="true"></service>
+            android:exported="true"/>
 
         <service
             android:name=".etc.JobSchedulerService"
@@ -39,7 +41,7 @@
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="yw3d7fg70n" />
 
-        <activity android:name=".home.MainActivity"></activity>
+        <activity android:name=".home.MainActivity"/>
         <activity android:name=".etc.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,23 +49,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.ActButtonActivity"></activity>
-        <activity android:name=".home.LightButtonActivity"></activity>
-        <activity android:name=".home.SleepButtonActivity"></activity>
-        <activity android:name=".home.Report"></activity>
-        <activity android:name=".etc.Login"></activity>
-        <activity android:name=".etc.SignUp"></activity>
-        <activity android:name=".settings.LocationPermission"></activity>
-        <activity android:name=".settings.PasswordFind1"></activity>
-        <activity android:name=".settings.CareList"></activity>
-        <activity android:name=".settings.DeviceSet1"></activity>
-        <activity android:name=".settings.DeviceSet2"></activity>
-        <activity android:name=".settings.DeviceSet3"></activity>
-        <activity android:name=".settings.Profile"></activity>
-        <activity android:name=".settings.Terms"></activity>
-        <activity android:name=".settings.Guide"></activity>
+        <activity android:name=".home.ActButtonActivity"/>
+        <activity android:name=".home.LightButtonActivity"/>
+        <activity android:name=".home.SleepButtonActivity"/>
+        <activity android:name=".home.Report"/>
+        <activity android:name=".etc.Login"/>
+        <activity android:name=".etc.SignUp"/>
+        <activity android:name=".settings.LocationPermission"/>
+        <activity android:name=".settings.PasswordFind1"/>
+        <activity android:name=".settings.CareList"/>
+        <activity android:name=".settings.DeviceSet1"/>
+        <activity android:name=".settings.DeviceSet2"/>
+        <activity android:name=".settings.DeviceSet3"/>
+        <activity android:name=".settings.Profile"/>
+        <activity android:name=".settings.Terms"/>
+        <activity android:name=".settings.Guide"/>
         <activity android:name=".home.SleepActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance"/>
     </application>
 
 </manifest>

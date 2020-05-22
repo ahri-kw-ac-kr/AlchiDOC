@@ -1,8 +1,11 @@
 package com.example.jms.connection.sleep_doc;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
+import android.content.Context;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.clj.fastble.BleManager;
@@ -18,9 +21,12 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Calendar;
 import java.util.TimeZone;
+import java.util.UUID;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+
+import com.clj.fastble.utils.HexUtil;
 import com.example.jms.connection.exceptions.DataIsTooShortException;
 import com.example.jms.connection.exceptions.ZeroLengthException;
 import com.example.jms.connection.sleep_doc.command.Command;
@@ -36,6 +42,8 @@ public class SleepDoc {
     private BleDevice bleDevice;
     private BluetoothGatt gatt;
     private boolean isConnected = false;
+
+    Activity activity;
 
     public SleepDoc(String macAddress) {
         this.macAddress = macAddress;
@@ -74,6 +82,7 @@ public class SleepDoc {
                     bleDevice = _bleDevice;
                     isConnected = true;
                     gatt = bleManager.getBluetoothGatt(bleDevice);
+                    setTimeAndZone(bleDevice,false);
                     observer.onComplete();
                 }
 
@@ -174,7 +183,7 @@ public class SleepDoc {
         });
     }
 
-    public void setTimeAndZone(final BleDevice _bleDevice) {
+    public void setTimeAndZone(final BleDevice _bleDevice, final Boolean isFactory) {
         Calendar c = Calendar.getInstance();
         TimeZone tz = c.getTimeZone();
         int time = (int) (c.getTimeInMillis() / 1000);
@@ -198,7 +207,14 @@ public class SleepDoc {
                     @Override
                     public void onWriteSuccess(int current, int total, byte[] justWrite) {
                         Log.i("타임셋", "timeSet: 성공");
-                        //bleDevice = _bleDevice;
+                        if(isFactory){
+                            setUUID(_bleDevice, activity);
+                            //bleDevice = _bleDevice;
+                        }
+                        else{
+                            getUUID(_bleDevice, activity);
+                            //bleDevice = _bleDevice;
+                        }
                     }
 
                     @Override
@@ -251,4 +267,53 @@ public class SleepDoc {
             Log.i("SleepDoc", "Write Fail\n"+exception.toString());
         }
     };
+
+    public void setUUID(final BleDevice bleDevice, Context context) {
+        String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        UUID uuid = new UUID(androidId.hashCode(), androidId.hashCode());
+        Log.i("SleepDoc", "setUUID "+ uuid.toString());
+        byte[] op = new byte[17];
+
+        // uuid to bytes
+        ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
+        // must be little-endian
+        bb.putLong(uuid.getMostSignificantBits());
+        bb.putLong(uuid.getLeastSignificantBits());
+
+        op[0] = (byte)0x0A;
+        System.arraycopy(bb.array(), 0, op, 1, 16);
+        bleManager.write(bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), op,
+                new BleWriteCallback() {
+                    @Override
+                    public void onWriteSuccess(int current, int total, byte[] justWrite) {
+                        Log.i("SleepDoc", "setUUID : " + "current : " + current + " total : " + total + " justWrite :" + HexUtil.formatHexString(justWrite));
+                    }
+                    @Override
+                    public void onWriteFailure(BleException exception) { }
+                });
+    }
+
+    public void getUUID(final BleDevice bleDevice, final Context c) {
+        bleManager.write(bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), new byte[]{(byte)0x0B},
+                new BleWriteCallback() {
+                    @Override
+                    public void onWriteSuccess(int current, int total, byte[] justWrite) {
+                        Log.i("SleepDoc", "getUUID : " + "current : " + current + " total : " + total + " justWrite :" + HexUtil.formatHexString(justWrite));
+                        bleManager.read(bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), new BleReadCallback() {
+                            @Override
+                            public void onReadSuccess(byte[] data) {
+                                String uData = HexUtil.formatHexString(data);
+                                Log.i("SleepDoc", "getUUID : " + "data : " + uData);
+                                if(uData.contains("00000000000000000")){
+                                    setUUID(bleDevice, c);
+                                }
+                            }
+                            @Override
+                            public void onReadFailure(BleException exception) { }
+                        });
+                    }
+                    @Override
+                    public void onWriteFailure(BleException exception) { }
+                });
+    }
 }
