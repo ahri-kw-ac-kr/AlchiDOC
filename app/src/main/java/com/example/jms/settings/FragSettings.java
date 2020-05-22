@@ -36,7 +36,7 @@ public class FragSettings extends Fragment {
 
     private View view;
     MainActivity mainActivity;
-    LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5, layButton6;
+    LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5, layButton6, layButton7;
     TextView logoutButton;
     TextView myInfo;
 
@@ -76,6 +76,7 @@ public class FragSettings extends Fragment {
         layButton4 = (LinearLayout) view.findViewById(R.id.setButton4);
         layButton5 = (LinearLayout) view.findViewById(R.id.setButton5);
         layButton6 = (LinearLayout) view.findViewById(R.id.setButton6);
+        layButton7 = (LinearLayout) view.findViewById(R.id.setButton7);
         logoutButton = (TextView) view.findViewById(R.id.logout_button);
         myInfo = (TextView)view.findViewById(R.id.myInfo);
 
@@ -153,6 +154,14 @@ public class FragSettings extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Terms.class);
+                startActivity(intent);
+            }
+        });
+
+        layButton7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LocationPermission.class);
                 startActivity(intent);
             }
         });

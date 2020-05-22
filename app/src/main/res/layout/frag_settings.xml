@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="@string/set1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF"
@@ -36,20 +36,27 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <ScrollView
+        android:fillViewport="true"
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
+    <LinearLayout
+        android:layout_gravity="center|top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nanumregular"
             android:text="@string/set2"
@@ -180,7 +187,6 @@
                 android:text="@string/device1"
                 android:textColor="#646464"
                 android:textSize="20sp">
-
             </TextView>
 
             <LinearLayout
@@ -259,6 +265,52 @@
             android:layout_gravity="center|top"
             android:background="#707070" />
 
+        <!--위치 정보 버튼-->
+        <LinearLayout
+            android:id="@+id/setButton7"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumregular"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="22dp"
+                android:text="위치 정보"
+                android:textColor="#646464"
+                android:textSize="20sp"></TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumregular"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="22dp"
+                    android:textColor="#646464"
+                    android:textSize="16sp"></TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingRight="7dp"
+                    android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_gravity="center|top"
+            android:background="#707070" />
+
         <!--도움말 보기 버튼-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -299,10 +351,16 @@
                     android:paddingRight="7dp"
                     android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
             </LinearLayout>
-
         </LinearLayout>
 
         <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_gravity="center|top"
+            android:background="#707070" />
+
+        <View
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
             android:layout_gravity="center|top"
@@ -401,4 +459,5 @@
             android:layout_gravity="center|top"
             android:background="#707070" />
     </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
