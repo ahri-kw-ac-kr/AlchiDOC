@@ -213,6 +213,16 @@ public class Login extends AppCompatActivity {
             lastDate = date.substring(0,6)+lastDate;
             Log.d("MainActivity","오늘: "+date+"오늘1: "+today+", 이번달 마지막: "+lastDate);
 
+            String month = date.substring(4,6);
+            if(month == "01"){ month = "12"; }
+            else{
+                int monthI = Integer.parseInt(month)-1;
+                if(monthI < 10){ month = "0"+ monthI; }
+                else{ month = Integer.toString(monthI); }
+            }
+            String weekCause = date.substring(0,4)+month+"23";
+            Log.d("Login","시작날짜: "+weekCause);
+
             AtomicInteger count = new AtomicInteger();
             //UserDataModel[] userDataModel = new UserDataModel[RestfulAPI.principalUser.getFriend().size()+1];
             for(int i=0; i< RestfulAPI.principalUser.getFriend().size()+1; i++){
@@ -220,7 +230,7 @@ public class Login extends AppCompatActivity {
                 userDataModel[i] = new UserDataModel();
                 userDataModel[i].setPosition(i);
                 if(i==0){
-                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",date.substring(0,6)+"01",lastDate)
+                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",weekCause,lastDate)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(data -> {
@@ -255,7 +265,7 @@ public class Login extends AppCompatActivity {
                             },Throwable::printStackTrace);
                 }
                 else{
-                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getFriend().get(i-1).getId(),"0",date,lastDate)
+                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getFriend().get(i-1).getId(),"0",weekCause,lastDate)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(data -> {
