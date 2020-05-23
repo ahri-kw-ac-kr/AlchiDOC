@@ -229,6 +229,8 @@ public class SleepDoc {
         System.arraycopy(bb2.array(), 0, op, 5, 4);
         sysCmdChar.setValue(op);
         gatt.writeCharacteristic(sysCmdChar);
+        contextDoc = UserDataModel.contextP;
+        setUUID(_bleDevice, contextDoc);
         /*bleManager.write(_bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), op,
                 new BleWriteCallback() {
                     @Override
@@ -301,7 +303,7 @@ public class SleepDoc {
         String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         UUID uuid = new UUID(androidId.hashCode(), androidId.hashCode());
         Log.i("SleepDoc", "setUUID "+ uuid.toString());
-        byte[] op = new byte[17];
+        /*byte[] op = new byte[17];
 
         // uuid to bytes
         ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
@@ -321,7 +323,7 @@ public class SleepDoc {
                     public void onWriteFailure(BleException exception) {
                         Log.d("SleepDoc","셋유유아이디 실패");
                     }
-                });
+                });*/
     }
 
     public void getUUID(final BleDevice bleDevice, final Context c) {
