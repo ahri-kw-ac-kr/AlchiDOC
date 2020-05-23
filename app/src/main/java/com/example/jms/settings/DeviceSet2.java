@@ -101,7 +101,18 @@ public class DeviceSet2 extends AppCompatActivity {
                                              }},0);
                                     finish();
                                 });
-                    } },Throwable::printStackTrace);
+                    }
+                    else{
+                        Log.d("Device2","스캔했지만 기기없음.1");
+                        Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                        startActivity(intent);
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show(); }},0);
+                        finish();
+
+                    }},Throwable::printStackTrace);
 
     }
 }

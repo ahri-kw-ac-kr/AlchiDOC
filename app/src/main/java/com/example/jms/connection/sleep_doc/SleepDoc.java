@@ -6,8 +6,11 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.clj.fastble.BleManager;
 import com.clj.fastble.callback.BleGattCallback;
@@ -21,6 +24,7 @@ import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Calendar;
+import java.util.Observer;
 import java.util.TimeZone;
 import java.util.UUID;
 
@@ -86,13 +90,24 @@ public class SleepDoc {
                     bleDevice = _bleDevice;
                     isConnected = true;
                     gatt = bleManager.getBluetoothGatt(bleDevice);
+
                     //sysCmdChar는 아래처럼 초기 연결시 가져오고 있습니다.
                     generalService = gatt.getService(ServiceUUID.GENERAL);
                     if (generalService == null) { Log.d("SleepDoc","General service does not exists on the device"); }
                     sysCmdChar = generalService.getCharacteristic(CharacteristicUUID.SYS_CMD);
 
-                    setTimeAndZone(bleDevice,false);
-                    observer.onComplete();
+                    //공장초기화
+                    //byte[] op = new byte[] {(byte)0x06};
+                    //sysCmdChar.setValue(op);
+                    //gatt.writeCharacteristic(sysCmdChar);
+
+                    setTimeAndZone(bleDevice);
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            observer.onComplete();
+                        }},500);
 
                 }
 
@@ -193,7 +208,7 @@ public class SleepDoc {
         });
     }
 
-    public void setTimeAndZone(final BleDevice _bleDevice, final Boolean isFactory) {
+    public void setTimeAndZone(final BleDevice _bleDevice) {
         Calendar c = Calendar.getInstance();
         TimeZone tz = c.getTimeZone();
         int time = (int) (c.getTimeInMillis() / 1000);
@@ -201,7 +216,6 @@ public class SleepDoc {
         Log.i("타임셋", "time: " + time + ", gmt : " + gmtOffset);
 
         byte[] op = new byte[9];
-        //op[0] = (byte)0x06;
         op[0] = (byte)0x06;
 
         ByteBuffer bb1 = ByteBuffer.wrap(new byte[4]);
