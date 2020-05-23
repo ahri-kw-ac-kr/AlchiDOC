@@ -316,8 +316,63 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
+                            android:text="저녁 활동량"
+                            android:textAlignment="viewStart"
+                            android:textColor="#329035"
+                            android:textSize="18sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#329035"
+                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:gravity="bottom"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="@string/bad"
+                            android:textColor="#329035"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.">
+                    </TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_moon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
                             android:text="@string/act3"
                             android:textAlignment="viewStart"
+                            android:drawableTint="#329035"
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
