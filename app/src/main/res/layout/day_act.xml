@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/dayActDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -49,11 +49,11 @@
 
 
                 <TextView
+                    android:id="@+id/dayActPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="14dp"
-
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
                     android:text=" 활동량 84%"
@@ -147,6 +147,7 @@
                     android:textStyle="bold"></TextView>
 
                 <TextView
+                    android:id="@+id/dayActTotal"
                     android:layout_weight="0.5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -198,6 +199,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/dayActKal"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

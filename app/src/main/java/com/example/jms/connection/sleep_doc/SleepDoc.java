@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.provider.Settings;
 import android.util.Log;
@@ -45,6 +46,8 @@ public class SleepDoc {
     private boolean isConnected = false;
 
     private Context contextDoc;
+    private BluetoothGattService generalService;
+    private BluetoothGattCharacteristic sysCmdChar;
 
     public SleepDoc(String macAddress) {
         this.macAddress = macAddress;
@@ -83,8 +86,14 @@ public class SleepDoc {
                     bleDevice = _bleDevice;
                     isConnected = true;
                     gatt = bleManager.getBluetoothGatt(bleDevice);
+                    //sysCmdChar는 아래처럼 초기 연결시 가져오고 있습니다.
+                    generalService = gatt.getService(ServiceUUID.GENERAL);
+                    if (generalService == null) { Log.d("SleepDoc","General service does not exists on the device"); }
+                    sysCmdChar = generalService.getCharacteristic(CharacteristicUUID.SYS_CMD);
+
                     setTimeAndZone(bleDevice,false);
                     observer.onComplete();
+
                 }
 
                 @Override
@@ -193,7 +202,7 @@ public class SleepDoc {
 
         byte[] op = new byte[9];
         //op[0] = (byte)0x06;
-        op[0] = (byte)0x2A2B;
+        op[0] = (byte)0x06;
 
         ByteBuffer bb1 = ByteBuffer.wrap(new byte[4]);
         bb1.order(ByteOrder.LITTLE_ENDIAN);
@@ -204,7 +213,9 @@ public class SleepDoc {
 
         System.arraycopy(bb1.array(), 0, op, 1, 4);
         System.arraycopy(bb2.array(), 0, op, 5, 4);
-        bleManager.write(_bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), op,
+        sysCmdChar.setValue(op);
+        gatt.writeCharacteristic(sysCmdChar);
+        /*bleManager.write(_bleDevice, ServiceUUID.GENERAL.toString(), CharacteristicUUID.SYS_CMD.toString(), op,
                 new BleWriteCallback() {
                     @Override
                     public void onWriteSuccess(int current, int total, byte[] justWrite) {
@@ -224,7 +235,7 @@ public class SleepDoc {
                     public void onWriteFailure(BleException exception) {
                         Log.i("타임셋", "timeSet: 실패");
                     }
-                });
+                });*/
 
     }
 
