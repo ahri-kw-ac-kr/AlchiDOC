@@ -3,8 +3,6 @@ package com.example.jms.home;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
-import com.example.jms.connection.model.RestfulAPI;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,7 +54,8 @@ public class DayAct extends Fragment {
         UserDataModel user = UserDataModel.userDataModels[pos];
 
         if(user.getTodayList()==null){
-            try { user.parsingDay(pos); } catch (ParseException e) { e.printStackTrace(); }
+            try { user.parsingDay(pos); }
+            catch (ParseException e) { e.printStackTrace(); }
         }
 
         //else {
@@ -103,7 +100,7 @@ public class DayAct extends Fragment {
             kalT.setText(Integer.toString(kal));
 
             //주간일때
-            if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) {
+            if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) { //9시~18시 일 때
                 int sumD = 0;
                 for (int i = 9; i < 21; i++) {
                     if (9 <= i && i < 18) {//주간이므로 여기를 진하게
@@ -117,9 +114,10 @@ public class DayAct extends Fragment {
                 String dayP = "주간 활동량 " + percent + "%";
                 titlePercent.setText(dayP);
             }
+
             //야간일때
-            else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 21) {
-                int sumD = 0;
+            else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 21) { //18시~21시일 떄떄
+               int sumD = 0;
                 for (int i = 9; i < 21; i++) {
                     if (9 <= i && i < 18) {//지금은 야간인데 이건 주간이니까 연하게
                         mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
