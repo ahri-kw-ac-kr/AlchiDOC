@@ -53,11 +53,11 @@
 
 
                 <TextView
+                    android:id="@+id/weekActPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="14dp"
-
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
                     android:text="평균 활동량 84%"
@@ -228,6 +228,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekActAvgS"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -279,6 +280,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekActAvgK"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

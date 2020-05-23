@@ -103,7 +103,7 @@ public class DayAct extends Fragment {
             kalT.setText(Integer.toString(kal));
 
             //주간일때
-            if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) {
+            if (9 <= Integer.parseInt(curr.substring(9, 11)) && Integer.parseInt(curr.substring(9, 11)) < 18) {
                 int sumD = 0;
                 for (int i = 9; i < 21; i++) {
                     if (9 <= i && i < 18) {//주간이므로 여기를 진하게
@@ -118,7 +118,7 @@ public class DayAct extends Fragment {
                 titlePercent.setText(dayP);
             }
             //야간일때
-            else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 21) {
+            else if (18 <= Integer.parseInt(curr.substring(9, 11)) && Integer.parseInt(curr.substring(9, 11)) < 21) {
                 int sumD = 0;
                 for (int i = 9; i < 21; i++) {
                     if (9 <= i && i < 18) {//지금은 야간인데 이건 주간이니까 연하게
