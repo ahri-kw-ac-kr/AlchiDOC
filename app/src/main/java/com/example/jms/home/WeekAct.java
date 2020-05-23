@@ -15,6 +15,8 @@ import com.example.jms.R;
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
+import java.text.ParseException;
+
 
 public class WeekAct extends Fragment {
 
@@ -28,6 +30,10 @@ public class WeekAct extends Fragment {
         view = inflater.inflate(R.layout.week_act, container, false);
 
         BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
+
+        int pos = UserDataModel.currentP;
+        UserDataModel user = UserDataModel.userDataModels[pos];
+
 
         mBarChart.addBar(new BarModel("월", 0.5f, Color.parseColor("#CAEBA2")));
         mBarChart.addBar(new BarModel("화", 0.8f, Color.parseColor("#CAEBA2")));

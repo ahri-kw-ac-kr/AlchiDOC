@@ -220,7 +220,7 @@ public class Login extends AppCompatActivity {
                 userDataModel[i] = new UserDataModel();
                 userDataModel[i].setPosition(i);
                 if(i==0){
-                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",date,lastDate)
+                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",date.substring(0,6)+"01",lastDate)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(data -> {
