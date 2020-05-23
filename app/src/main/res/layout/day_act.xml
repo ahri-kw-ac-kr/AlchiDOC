@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_marginRight="10dp"
                     android:id="@+id/dayActDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/nanumregular"
                     android:gravity="right"
-                    android:text="5월 17일 목요일 "
+                    android:text="5월 17일 목요일"
                     android:textColor="#646464"
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
@@ -56,7 +57,7 @@
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
-                    android:text=" 활동량 84%"
+                    android:text="활동량 84%"
                     android:textColor="#329035"
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
