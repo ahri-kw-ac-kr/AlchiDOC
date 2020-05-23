@@ -37,7 +37,6 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:layout_marginRight="10dp"
                     android:id="@+id/date"
@@ -74,7 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <androidx.cardview.widget.CardView
                     android:layout_gravity="center"
                     app:cardElevation="6dp"
@@ -82,7 +80,6 @@
                     app:cardBackgroundColor="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="242dp">
-
                     <org.eazegraph.lib.charts.BarChart
                         android:layout_gravity="center"
                         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -144,7 +141,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="@string/light2"
+                            android:text="@string/act2"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
                             android:textSize="18sp"></TextView>
@@ -195,7 +192,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="@string/light3"
+                            android:text="@string/act3"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
                             android:textSize="18sp"></TextView>

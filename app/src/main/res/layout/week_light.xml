@@ -178,10 +178,251 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="28dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+
+                android:fontFamily="@font/nanumregular"
+                android:text="이주의 조도량 기록"
+                android:textColor="#646464"
+                android:textSize="17sp"
+                android:textStyle="bold"></TextView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="30dp"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#ffffff"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:weightSum="10"
+                        android:layout_marginTop="20dp"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:drawableTint="#F75321"
+                            android:layout_weight="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_whatshot_black_24dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="평균 아침 조도량"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/weeklux1"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="200"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="Lux"
+                            android:textColor="#707070"
+                            android:textSize="13sp"></TextView>
+                    </LinearLayout>
+
+
+
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+                    <LinearLayout
+                        android:weightSum="10"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:drawableTint="#F75321"
+                            android:layout_weight="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_calories"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="평균 저녁 조도량/색온도"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/weeklux2"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="14"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="Lux "
+                            android:textColor="#707070"
+                            android:textSize="13sp"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="/ "
+                            android:textColor="#707070"
+                            android:textSize="16sp"></TextView>
+                        <TextView
+                            android:id="@+id/weekK1"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="265"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="K"
+                            android:textColor="#707070"
+                            android:textSize="13sp"></TextView>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+                    <LinearLayout
+                        android:weightSum="10"
+
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:drawableTint="#F75321"
+                            android:layout_weight="9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_calories"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="평균 야간 조도량/색온도"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <TextView
+                            android:id="@+id/weeklux3"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="14"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="Lux "
+                            android:textColor="#707070"
+                            android:textSize="13sp"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="/ "
+                            android:textColor="#707070"
+                            android:textSize="16sp"></TextView>
+                        <TextView
+                            android:id="@+id/weekK2"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="265"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="K"
+                            android:textColor="#707070"
+                            android:textSize="13sp"></TextView>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nanumregular"
-                android:text="햇빛량 인지행동 플랜"
+                android:text="조도량 인지행동 플랜"
                 android:textColor="#646464"
                 android:textSize="17sp"
                 android:textStyle="bold"></TextView>
@@ -216,35 +457,36 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="주간 평균 햇빛량"
+                            android:text="평균 아침 조도량"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
-                            android:textSize="18sp"></TextView>
+                            android:textSize="16sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text="과다"
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/weekLightPlan1"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="이번주 주간 햇빛량이 충분합니다. 다음주에도 이번주와 비슷한 햇빛량을 유지하세요."></TextView>
+                        android:text="낮 시간대의 햇빛량이 부족합니다. 오후에는 야외 활동을 늘려주세요."></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -267,16 +509,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="야간 평균 조명 밝기"
+                            android:text="평균 저녁 조도량"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
-                            android:textSize="18sp"></TextView>
+                            android:textSize="16sp"></TextView>
                         <ImageView
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:gravity="bottom"
@@ -284,12 +526,67 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
+                            android:text="적정"
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/weekLightPlan2"
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#5A5959"
+                        android:fontFamily="@font/nanumregular"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="조명 색의 온도가 적당합니다. 현재의 조명 밝기를 유지하세요.">
+                    </TextView>
+                    <View
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#ECECEC"/>
+
+
+                    <LinearLayout
+                        android:weightSum="7"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="6"
+                            android:drawablePadding="5dp"
+                            android:drawableLeft="@drawable/ic_highlight_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="평균 야간 조도량"
+                            android:textAlignment="viewStart"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"></TextView>
+                        <ImageView
+                            android:layout_weight="0.3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="#F75321"
+                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                            ></ImageView>
+                        <TextView
+                            android:gravity="bottom"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumregular"
+                            android:text="적정"
+                            android:textColor="#F75321"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/weekLightPlan3"
                         android:layout_marginBottom="22dp"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
@@ -297,7 +594,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="이번주 야간 조명 밝기는 대체로 어두운 편입니다. 다음주에는 야간 조명의 밝기를 높이도록 하세요.">
+                        android:text="조명 색의 온도가 적당합니다. 현재의 조명 밝기를 유지하세요.">
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
