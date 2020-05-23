@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_marginRight="10dp"
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,10 +55,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="14dp"
-
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
-                    android:text=" 활동량 84%"
+                    android:text="활동량 84%"
                     android:textColor="#329035"
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>

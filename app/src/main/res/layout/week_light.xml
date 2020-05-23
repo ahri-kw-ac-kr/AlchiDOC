@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_marginRight="10dp"
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
 
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
-                    android:text=" 평균 햇빛량 84%"
+                    android:text="평균 햇빛량 84%"
                     android:textColor="#F75321"
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
