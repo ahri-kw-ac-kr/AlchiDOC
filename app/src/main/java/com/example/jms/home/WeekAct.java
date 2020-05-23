@@ -20,6 +20,12 @@ import org.eazegraph.lib.models.BarModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import hu.akarnokd.rxjava2.math.MathFlowable;
+import io.reactivex.Flowable;
 
 
 public class WeekAct extends Fragment {
@@ -47,10 +53,10 @@ public class WeekAct extends Fragment {
         //합산 준비
         Integer[] sumDay = {0, 0, 0, 0, 0, 0, 0};
         Integer[][] day = new Integer[7][];
-        for (int i = 0; i < user.getPerHour().size(); i++) {
+        for (int i = 0; i < user.getPerDay().size(); i++) {
             day[i] = new Integer[150];
-            for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
-                day[i][j] = (int) user.getPerHour().get(i).get(j).getSteps();
+            for (int j = 0; j < user.getPerDay().get(i).size(); j++) {
+                day[i][j] = (int) user.getPerDay().get(i).get(j).getSteps();
                 Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + day[i][j]);
                 sumDay[i] += day[i][j];
             }
@@ -58,23 +64,51 @@ public class WeekAct extends Fragment {
         }
 
         //현재시간
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
         String curr = transFormat.format(calendar.getTime());
+        int thisWeek = calendar.get(Calendar.WEEK_OF_MONTH);
 
-        //000님의 0월 0일
+
+        //000님의 0월 0주차
         titleDay = (TextView) view.findViewById(R.id.weekActDate);
-        String titleD = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        String titleD = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
         titleDay.setText(titleD);
 
+        //걸음수 구하는 곳
+        AtomicInteger total = new AtomicInteger();
+        Flowable<Integer> flowableS = Flowable.fromArray(sumDay).to(MathFlowable::sumInt);
+        flowableS.subscribe(sum -> {
+            total.set(sum);
+        }, Throwable::printStackTrace);
 
+        int avg = Math.round(total.intValue()/7);
+        avgT = (TextView) view.findViewById(R.id.weekActAvgS);
+        avgT.setText(Integer.toString(avg));
+
+        //칼로리 구하는 곳
+        int kal = avg / 30;
+        avgK = (TextView) view.findViewById(R.id.weekActAvgK);
+        avgK.setText(Integer.toString(kal));
+
+        String[] str = {"월","화","수","목","금","토","일"};
+        for(int i=0; i<7; i++){
+            mBarChart.addBar(new BarModel(str[i], sumDay[i], Color.parseColor("#CAEBA2")));
+        }
+
+        //평균 활동량 00%
+        titlePercent = (TextView) view.findViewById(R.id.weekActPercent);
+        int percent = avg / 6000 * 100;
+        String dayP = "평균 활동량 " + percent + "%";
+        titlePercent.setText(dayP);
+        /*
         mBarChart.addBar(new BarModel("월", 0.5f, Color.parseColor("#CAEBA2")));
         mBarChart.addBar(new BarModel("화", 0.8f, Color.parseColor("#CAEBA2")));
         mBarChart.addBar(new BarModel("수", 1.2f, Color.parseColor("#8CCA45")));
         mBarChart.addBar(new BarModel("목", 2.1f, Color.parseColor("#8CCA45")));
         mBarChart.addBar(new BarModel("금", 3.3f, Color.parseColor("#5F9919")));
         mBarChart.addBar(new BarModel("토", 2.4f, Color.parseColor("#8CCA45")));
-        mBarChart.addBar(new BarModel("일", 3.1f, Color.parseColor("#5F9919")));
+        mBarChart.addBar(new BarModel("일", 3.1f, Color.parseColor("#5F9919")));*/
 
         mBarChart.startAnimation();
 

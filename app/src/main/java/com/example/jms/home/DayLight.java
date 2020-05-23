@@ -51,16 +51,23 @@ public class DayLight extends Fragment {
 
         //else {
         //합산 준비
-        Integer[] sumHour = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        Integer[][] hour = new Integer[24][];
+        Integer[] sumHourLux = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Integer[][] hourLux = new Integer[24][];
+        Integer[] sumHourTemp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Integer[][] hourTemp = new Integer[24][];
         for (int i = 0; i < user.getPerHour().size(); i++) {
-            hour[i] = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
+            hourLux[i] = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
+            hourTemp[i] = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
             for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
-                hour[i][j] = (int) user.getPerHour().get(i).get(j).getTotalLux();
-                Log.d("DayLight", "i: " + i + ", j: " + j + ", hour: " + hour[i][j]);
-                sumHour[i] += hour[i][j];
+                hourLux[i][j] = (int) user.getPerHour().get(i).get(j).getTotalLux();
+                hourTemp[i][j] = (int) user.getPerHour().get(i).get(j).getAvgTemp();
+                Log.d("DayLight", "i: " + i + ", j: " + j + ", hour: " + hourLux[i][j]);
+                Log.d("DayLight", "i: " + i + ", j: " + j + ", hour: " + hourTemp[i][j]);
+                sumHourLux[i] += hourLux[i][j];
+                sumHourTemp[i] += hourTemp[i][j];
             }
-            Log.d("DayLight", i + ", " + sumHour[i]);//합산 잘 되었는지 확인
+            Log.d("DayLightLux", i + ", " + sumHourLux[i]);//합산 잘 되었는지 확인
+            Log.d("DayLightTemp", i + ", " + sumHourTemp[i]);//합산 잘 되었는지 확인
         }
 
         //현재시간
@@ -76,24 +83,22 @@ public class DayLight extends Fragment {
         //주간/야간 조도량 00% 60000Lux 중 얼마?
         titlePercent = (TextView) view.findViewById(R.id.dayActPercent);
 
-        //주간일때
+        //시간 상관없이 Y축높이는 Lux, 그래프 바 색상은 K
+
+        //주간 - 기상 ~ 수면 4시간 전
         if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) { //9시~18시 일 때
             int sumD = 0;
-            for (int i = 9; i < 21; i++) {
-                if (9 <= i && i < 18) {//주간이므로 여기를 진하게
-                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-                    sumD += sumHour[i];
-                } else {//지금은 주간인데 야간이니까 여기를 연하게인데 생각해보니까 0이니까 안나올듯
-                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-                }
+            for (int i = 9; i < 21; i++) { //아침9시~ 저녁6시
+                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#5F9919")));
+                    sumD += sumHourLux[i];
             }
-            percent = sumD / 6000 * 100;
-            String dayP = "주간 활동량 " + percent + "%";
+            percent = (sumD / 60000) * 100;
+            String dayP = "주간 조도량(Lux) " + percent + "%";
             titlePercent.setText(dayP);
         }
 
-        //야간일때
-        else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 21) { //18시~21시일 떄떄
+        //야간 - 수면 4시간전 ~ 수면 전
+        else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 22) { //18시~22시일 떄떄
             int sumD = 0;
             for (int i = 9; i < 21; i++) {
                 if (9 <= i && i < 18) {//지금은 야간인데 이건 주간이니까 연하게
@@ -107,7 +112,7 @@ public class DayLight extends Fragment {
             String dayP = "야간 활동량 " + percent + "%";
             titlePercent.setText(dayP);
         }
-        //주간도 야간도 아닌 여기는 그냥 모두 진하게
+        // 수면중
         else {
             for (int i = 9; i < 21; i++) {
                 mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
