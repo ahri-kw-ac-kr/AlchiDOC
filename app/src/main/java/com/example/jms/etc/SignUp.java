@@ -77,7 +77,17 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
             {
-                birth.setText(year + "년  " + (monthOfYear + 1) + "월  " + dayOfMonth + "일");
+                if((dayOfMonth < 10) && (monthOfYear < 10)){
+                    birth.setText(year + "0" + (monthOfYear + 1) + "0" + dayOfMonth);}
+                else if(dayOfMonth < 10){
+                    birth.setText(year + "" + (monthOfYear + 1) + "0" + dayOfMonth);
+                }
+                else if(monthOfYear < 10){
+                    birth.setText(year + "0" + (monthOfYear + 1) + "" + dayOfMonth);
+                }
+                else{
+                    birth.setText(year + "" + (monthOfYear + 1) + "" + dayOfMonth);
+                }
             }
         };
     }

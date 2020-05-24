@@ -6,7 +6,7 @@
     android:id="@+id/main_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_main">
+    android:background="@drawable/ic_main2">
 
     <RelativeLayout
         android:id="@+id/linearLayout"
