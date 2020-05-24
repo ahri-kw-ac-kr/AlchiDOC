@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     android:paddingTop="20dp"
     android:weightSum="100" >
 
@@ -38,20 +38,22 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="14dp"
                 android:fontFamily="@font/nanumlight"
                 android:gravity="left"
                 android:text="@string/sign_up2"
                 android:textColor="#646464"
                 android:textSize="16sp"> </TextView>
             <EditText
+                android:textColor="#000000"
+                android:fontFamily="@font/nanumlight"
                 android:id="@+id/name"
-                android:inputType="textWebEmailAddress"
+                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:textSize="14dp"> </EditText>
+                android:textSize="16sp"> </EditText>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0px"
@@ -61,7 +63,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="14dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/nanumlight"
                 android:gravity="left"
@@ -104,22 +106,51 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumlight"
             android:gravity="left"
             android:text="@string/sign_up3"
             android:textColor="#646464"
             android:textSize="16sp"> </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
         <EditText
+            android:textColor="#000000"
+            android:defaultFocusHighlightEnabled="false"
+            android:cursorVisible="false"
+            android:focusableInTouchMode="false"
+            android:clickable="false"
+            android:focusable="false"
             android:id="@+id/birth"
-            android:inputType="text|phone"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="@string/sign_up6"
-            android:textSize="14dp"> </EditText>
+            android:textColorHint="#646464"
+            android:fontFamily="@font/nanumlight"
+            android:hint="오른쪽 달력 아이콘을 통해 선택하세요."
+            android:textSize="16sp"> </EditText>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_weight="8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <ImageView
+            android:onClick="OnClickHandler"
+            android:id="@+id/birth_pick"
+            android:tint="#646464"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_event_note_black_24dp"
+            ></ImageView>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -138,14 +169,19 @@
             android:textColor="#646464"
             android:textSize="16sp"> </TextView>
         <EditText
+            android:textColor="#000000"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:digits="0123456789"
             android:id="@+id/phone"
-            android:inputType="text|phone"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="ex. 01012345678"
-            android:textSize="14sp"> </EditText>
+            android:textColorHint="#646464"
+            android:fontFamily="@font/nanumlight"
+            android:hint="'-'을 제외한 전화번호를 입력하세요."
+            android:textSize="16sp"> </EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -156,7 +192,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumlight"
             android:gravity="left"
@@ -164,6 +200,9 @@
             android:textColor="#646464"
             android:textSize="16sp"> </TextView>
         <EditText
+            android:textColor="#000000"
+            android:textColorHint="#646464"
+            android:fontFamily="@font/nanumlight"
             android:id="@+id/email"
             android:inputType="textWebEmailAddress"
             android:layout_width="match_parent"
@@ -171,7 +210,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:hint="@string/login4"
-            android:textSize="14sp"> </EditText>
+            android:textSize="16sp"> </EditText>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -181,7 +220,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumlight"
             android:gravity="left"
@@ -195,7 +234,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:textSize="14dp"> </EditText>
+            android:textSize="16sp"> </EditText>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -205,7 +244,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/nanumlight"
             android:gravity="left"
@@ -219,10 +258,8 @@
             android:layout_height="40dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:textSize="14sp"> </EditText>
+            android:textSize="16sp"> </EditText>
     </LinearLayout>
-
-
 
     <!-- 패스워드 / 싸인업-->
     <LinearLayout

@@ -1,6 +1,7 @@
 package com.example.jms.etc;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,11 +26,17 @@ import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.settings.PasswordFind1;
 
+import java.util.Calendar;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 
 public class SignUp extends AppCompatActivity {
+
+    private EditText birth;
+    private DatePickerDialog.OnDateSetListener callbackMethod;
+
     APIViewModel apiViewModel = new APIViewModel();
 
     EditText txtName;
@@ -44,6 +53,9 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
 
+        this.InitializeView();
+        this.InitializeListener();
+
         txtName = (EditText)findViewById(R.id.name);
         txtBirth = (EditText)findViewById(R.id.birth);
         txtEmail = (EditText)findViewById(R.id.email);
@@ -52,6 +64,35 @@ public class SignUp extends AppCompatActivity {
         txtChkPassword = (EditText)findViewById(R.id.checkPassword);
         rg = (RadioGroup)findViewById(R.id.radioGroup);
     }
+
+    public void InitializeView()
+    {
+        birth = (EditText)findViewById(R.id.birth);
+    }
+
+    public void InitializeListener()
+    {
+        callbackMethod = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+            {
+                birth.setText(year + "년  " + (monthOfYear + 1) + "월  " + dayOfMonth + "일");
+            }
+        };
+    }
+
+    final Calendar c = Calendar.getInstance();
+    int year = c.get(Calendar.YEAR);
+    int month = c.get(Calendar.MONTH);
+    int day = c.get(Calendar.DAY_OF_MONTH);
+
+    public void OnClickHandler(View view)
+    {
+        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, year, month, day);
+        dialog.show();
+    }
+
     public void goLogin(View view){
         Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
