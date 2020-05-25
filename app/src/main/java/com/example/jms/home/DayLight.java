@@ -92,6 +92,9 @@ public class DayLight extends Fragment {
 
                 sumHourLux[i] += hourLux[i][j];
                 avgHourTemp[i] += hourTemp[i][j];
+                if(j+1 == user.getPerHour().get(i).size()){
+                    avgHourTemp[i] = avgHourTemp[i]/(j+1);
+                }
             }
             Log.d("DayLightLux", i + ", " + sumHourLux[i]);//합산 잘 되었는지 확인
             Log.d("DayLightTemp", i + ", " + avgHourTemp[i]);//합산 잘 되었는지 확인
@@ -116,7 +119,7 @@ public class DayLight extends Fragment {
 
 
         totalT = (TextView) view.findViewById(R.id.dayLightPercent);
-        todayTotal = (total.intValue() / 60000) * 100;
+        todayTotal = (total.intValue() / 600000) * 100;
         totalT.setText("조도량  "+Integer.toString(todayTotal)+"%");
 
         //맨 위 일간 총합.

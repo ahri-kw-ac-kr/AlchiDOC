@@ -42,7 +42,7 @@ public class DayAct extends Fragment {
     TextView totalT;
     TextView kalT;
     View view;
-    int percent;
+    double percent;
 
     public DayAct(){}
 
@@ -113,7 +113,7 @@ public class DayAct extends Fragment {
                     mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
                 }
             }
-            percent = sumD / 6000 * 100;
+            percent = Math.round((sumD / 6000.0) * 100);
             String dayP = "주간 활동량 " + percent + "%";
             titlePercent.setText(dayP);
         }
@@ -128,7 +128,7 @@ public class DayAct extends Fragment {
                     sumD += sumHour[i];
                 }
             }
-            percent = sumD / 2000 * 100;
+            percent = (sumD / 2000.0) * 100;
             String dayP = "야간 활동량 " + percent + "%";
             titlePercent.setText(dayP);
         }
@@ -137,7 +137,8 @@ public class DayAct extends Fragment {
             for (int i = 9; i < 21; i++) {
                 mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
             }
-            percent = total.intValue() / 8000 * 100;
+            //Log.d("DayAct","토탈밸류 소수: "+total.doubleValue());
+            percent = (total.doubleValue() / 8000.0) * 100;
             String dayP = "오늘 활동량 " + percent + "%";
             titlePercent.setText(dayP);
         }
