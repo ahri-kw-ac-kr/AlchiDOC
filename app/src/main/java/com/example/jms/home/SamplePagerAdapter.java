@@ -2,9 +2,6 @@ package com.example.jms.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.location.Geocoder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +9,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
-import com.example.jms.connection.viewmodel.APIViewModel;
 
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class SamplePagerAdapter extends PagerAdapter {
 
@@ -64,8 +50,6 @@ public class SamplePagerAdapter extends PagerAdapter {
         TextView tv = view.findViewById(R.id.item_text);
         TextView tv2 = view.findViewById(R.id.item_text2);
         TextView tv3 = view.findViewById(R.id.item_text3);
-
-        UserDataModel.currentP = position;
 
         if(UserDataModel.userDataModels!=null){
             if(position ==0 ) {

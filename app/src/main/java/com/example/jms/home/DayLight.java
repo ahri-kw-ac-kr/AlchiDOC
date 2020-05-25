@@ -75,11 +75,21 @@ public class DayLight extends Fragment {
 
             for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
 
-                hourLux[i][j] = (int) user.getPerHour().get(i).get(j).getTotalLux();
-                hourTemp[i][j] = (int) user.getPerHour().get(i).get(j).getAvgTemp();
+                int raw = user.getPerHour().get(i).get(j).getAvgLux();
 
-                Log.d("DayLight", "i: " + i + ", j: " + j + ", hour: " + hourLux[i][j]);
-                Log.d("DayLight", "i: " + i + ", j: " + j + ", hour: " + hourTemp[i][j]);
+                // 2000이상이면 가중치 1, 노출시간 10분.
+                if (raw>=2000) {hourLux[i][j]= raw*1*10;}
+                else if(1800<=raw&&raw<2000){hourLux[i][j] = raw*9;} //가중치 0.9, 노출시간 10분
+                else if(1600<=raw&&raw<1800){hourLux[i][j]= raw*7;} //이하 동문.
+                else if(1400<=raw&&raw<1600){hourLux[i][j]= raw*4;}
+                else if(1000<=raw&&raw<1400){hourLux[i][j]= raw*1;}
+                else{hourLux[i][j]= raw*0*10;}
+
+                 // 시간마다 누적 - > 따라서 해당 시간의 최종 누적량을 가져와야한다.
+                hourTemp[i][j] = (int) user.getPerHour().get(i).get(j).getAvgTemp();
+                Log.d("DayLight for in Lux", "i: " + i + ", j: " + j + ", hour: " + hourLux[i][j]);
+                Log.d("DayLight for in Temp", "i: " + i + ", j: " + j + ", hour: " + hourTemp[i][j]);
+
                 sumHourLux[i] += hourLux[i][j];
                 avgHourTemp[i] += hourTemp[i][j];
             }
@@ -104,11 +114,10 @@ public class DayLight extends Fragment {
             total.set(sum);
         }, Throwable::printStackTrace);
 
-        todayTotal = (total.intValue() / 60000) * 100;
-        Log.e("DayLight",Integer.toString(todayTotal)+"입니다");
-        Log.e("DayLight", String.valueOf(total));
+
         totalT = (TextView) view.findViewById(R.id.dayLightPercent);
-        totalT.setText(Integer.toString(todayTotal));
+        todayTotal = (total.intValue() / 60000) * 100;
+        totalT.setText("조도량  "+Integer.toString(todayTotal)+"%");
 
         //맨 위 일간 총합.
         //titlePercent = (TextView) view.findViewById(R.id.dayLightPercent);
@@ -120,7 +129,8 @@ public class DayLight extends Fragment {
         if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) { //9시~18시 일 때
             int sumD = 0;
             int sumTemp = 0;
-            for (int i = 0; i < 23; i++) { //아침9시~ 저녁6시
+
+            for (int i = 0; i < 23; i++) {
 
                 if (avgHourTemp[i]>6000) {
                     //시간당 조도량이 6000K를 넘을 경우
@@ -162,17 +172,17 @@ public class DayLight extends Fragment {
             int sumTemp = 0;
             for (int i = 0; i < 23; i++) {
                 if (avgHourTemp[i]>6000) {
-                    //시간당 조도량이 6000K를 넘을 경우
+                    //시간당 조명온도가 6000K를 넘을 경우
                     mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#d84315")));
                 }
 
                 else if (3000 < avgHourTemp[i] || avgHourTemp[i]<= 6000) {
-                    //시간당 조도량이 3000~6000K
+                    //시간당 조명온도가 3000~6000K
                     mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#fb8c00")));
                 }
 
                 else if(avgHourTemp[i]<3000) {
-                    //시간당 조도량이 3000 미만
+                    //시간당 조명온도가 3000 미만
                     mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#fb8c00")));
                 }
 
@@ -194,7 +204,7 @@ public class DayLight extends Fragment {
         }
 
         // 야간 - 수면중 Lux총합 / K평균
-        else {
+        else { //23시 ~ 오전 8시
             int sumD = 0;
             int sumTemp = 0;
             for (int i = 0; i < 23; i++) {
@@ -213,23 +223,6 @@ public class DayLight extends Fragment {
 
         mBarChart.startAnimation();
 
-
-
-
-        mBarChart.addBar(new BarModel("09", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("10", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("11", 1.2f, Color.parseColor("#ffd54f")));
-        mBarChart.addBar(new BarModel("12", 2.1f, Color.parseColor("#ffd54f")));
-        mBarChart.addBar(new BarModel("13", 3.3f, Color.parseColor("#fb8c00")));
-        mBarChart.addBar(new BarModel("14", 3.8f, Color.parseColor("#d84315")));
-        mBarChart.addBar(new BarModel("15", 3.1f, Color.parseColor("#fb8c00")));
-        mBarChart.addBar(new BarModel("16", 2.4f, Color.parseColor("#fb8c00")));
-        mBarChart.addBar(new BarModel("17", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("18", 0.0f, Color.parseColor("#ffffff")));
-        mBarChart.addBar(new BarModel("19", 0.0f, Color.parseColor("#ffffff")));
-
-
-        mBarChart.startAnimation();
 
         return view;
     }

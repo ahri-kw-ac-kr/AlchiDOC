@@ -94,7 +94,7 @@
                         app:egShowValues="false"
                         app:egLegendTextSize="12dp"
                         app:egFixedBarWidth="true"
-                        app:egBarWidth="24dp"
+                        app:egBarWidth="5dp"
                         app:egLegendHeight="40dp"/>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

@@ -78,6 +78,18 @@ public class FragHome extends Fragment {
         }
         indicator.setupWithViewPager(mainViewPager);
 
+        mainViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+            @Override
+            public void onPageSelected(int position) {
+                UserDataModel.currentP = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
+        });
 
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -144,8 +156,5 @@ public class FragHome extends Fragment {
 
 
 }
-
-
-
 
 

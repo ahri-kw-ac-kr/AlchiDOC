@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +24,6 @@ import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.GPSDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
-import com.example.jms.etc.JobSchedulerService;
-import com.example.jms.etc.Login;
 import com.example.jms.home.UserDataModel;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
@@ -155,7 +152,7 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
         uiSettings.setLocationButtonEnabled(true);
 
         int friendNum = UserDataModel.userDataModels.length - 1;
-        Log.e("FragMap 친구수", Integer.toString(friendNum));
+        //Log.e("FragMap 친구수", Integer.toString(friendNum));
 
         for(int i=1;i<=friendNum;i++){
             String name = UserDataModel.userDataModels[i].getGpsList().get(0).getUser().getFullname();
