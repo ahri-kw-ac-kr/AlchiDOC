@@ -68,6 +68,8 @@ public class WeekAct extends Fragment {
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
         String curr = transFormat.format(calendar.getTime());
         int thisWeek = calendar.get(Calendar.WEEK_OF_MONTH);
+        int thisDay = calendar.get(Calendar.DAY_OF_WEEK);
+        Log.d("WeekAct","몇번째 요일: "+thisDay);
 
 
         //000님의 0월 0주차
@@ -82,7 +84,7 @@ public class WeekAct extends Fragment {
             total.set(sum);
         }, Throwable::printStackTrace);
 
-        int avg = Math.round(total.intValue()/7);
+        int avg = Math.round(total.intValue()/thisDay);
         avgT = (TextView) view.findViewById(R.id.weekActAvgS);
         avgT.setText(Integer.toString(avg));
 
@@ -91,7 +93,7 @@ public class WeekAct extends Fragment {
         avgK = (TextView) view.findViewById(R.id.weekActAvgK);
         avgK.setText(Integer.toString(kal));
 
-        String[] str = {"월","화","수","목","금","토","일"};
+        String[] str = {"일","월","화","수","목","금","토"};
         for(int i=0; i<7; i++){
             mBarChart.addBar(new BarModel(str[i], sumDay[i], Color.parseColor("#CAEBA2")));
         }

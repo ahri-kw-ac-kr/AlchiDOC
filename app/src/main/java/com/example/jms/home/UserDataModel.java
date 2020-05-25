@@ -87,7 +87,7 @@ public class UserDataModel {
         //int weekS = (int)(calendar.getTimeInMillis()/1000);
 
         calendar.setTime(tod);
-        calendar.add(calendar.DATE,8-calendar.get(Calendar.DAY_OF_WEEK)+1);
+        calendar.add(calendar.DATE,7-calendar.get(Calendar.DAY_OF_WEEK)+1);
         int weekE = (int)(calendar.getTimeInMillis()/1000);
 
         int weekS = weekE-604800;
@@ -188,19 +188,19 @@ public class UserDataModel {
             Log.d("UserDataModel","요일로 바꾼 값: "+day);
             switch (day){
                 case "월":
-                    perDay.get(0).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","월로 들어옴"); break;
+                    perDay.get(1).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","월로 들어옴"); break;
                 case "화":
-                    perDay.get(1).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","화로 들어옴"); break;
+                    perDay.get(2).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","화로 들어옴"); break;
                 case "수":
-                    perDay.get(2).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","수로 들어옴"); break;
+                    perDay.get(3).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","수로 들어옴"); break;
                 case "목":
-                    perDay.get(3).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","목로 들어옴"); break;
+                    perDay.get(4).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","목로 들어옴"); break;
                 case "금":
-                    perDay.get(4).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","금로 들어옴"); break;
+                    perDay.get(5).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","금로 들어옴"); break;
                 case "토":
-                    perDay.get(5).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","토로 들어옴"); break;
+                    perDay.get(6).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","토로 들어옴"); break;
                 case "일":
-                    perDay.get(6).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","일로 들어옴"); break;
+                    perDay.get(0).add(userDataModels[pos].getWeekList().get(i)); Log.d("UserDataModel","일로 들어옴"); break;
                 }
         }
         Log.d("UserDataMdel","perDay");
