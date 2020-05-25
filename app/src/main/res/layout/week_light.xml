@@ -119,7 +119,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nanumregular"
-                    android:text="부족"
+                    android:text="3000K 미만"
                     android:textColor="#646464"
                     android:textSize="15sp"
                     android:textStyle="bold"></TextView>
@@ -143,7 +143,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nanumregular"
-                    android:text="충분"
+                    android:text="3000K 이상"
                     android:textColor="#646464"
                     android:textSize="15sp"
                     android:textStyle="bold"></TextView>
@@ -167,7 +167,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nanumregular"
-                    android:text="과다"
+                    android:text="6000K 이상"
                     android:textColor="#646464"
                     android:textSize="15sp"
                     android:textStyle="bold"></TextView>

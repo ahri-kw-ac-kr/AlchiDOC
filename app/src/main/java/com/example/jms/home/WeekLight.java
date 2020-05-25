@@ -20,10 +20,6 @@ import org.eazegraph.lib.models.BarModel;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import hu.akarnokd.rxjava2.math.MathFlowable;
-import io.reactivex.Flowable;
 
 
 public class WeekLight extends Fragment {
@@ -46,30 +42,38 @@ public class WeekLight extends Fragment {
         //합산 준비
         Integer[] sumWeekLux = {0, 0, 0, 0, 0, 0, 0};
         Integer[][] weekLux = new Integer[7][];
+        Integer[][] weekDayLux = new Integer[7][];
+        Integer[][] weekEvenLux = new Integer[7][];
+        Integer[][] weekNightLux = new Integer[7][];
 
         Integer[] sumWeekTemp = {0, 0, 0, 0, 0, 0, 0};
         Integer[][] weekTemp = new Integer[7][];
+        Integer[][] weekDayTemp = new Integer[7][];
+        Integer[][] weekEvenTemp = new Integer[7][];
+        Integer[][] weekNightTemp = new Integer[7][];
 
         for (int i = 0; i < user.getPerDay().size(); i++) {
 
-            weekLux[i] = new Integer[150]; // 어째서 150칸짜리지
-            weekTemp[i] = new Integer[150]; // 어째서 150칸짜리지
+            weekLux[i] = new Integer[150];
+            weekDayLux[i] = new Integer[150];
+
+            weekTemp[i] = new Integer[150];
+
 
             for (int j = 0; j < user.getPerDay().get(i).size(); j++) {
 
                 weekLux[i][j] = (int) user.getPerDay().get(i).get(j).getAvgLux();
                 weekTemp[i][j] = (int) user.getPerDay().get(i).get(j).getAvgTemp();
 
-                Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + weekLux[i][j]);
-                Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + weekTemp[i][j]);
+                Log.d("WeekLightLux", "i: " + i + ", j: " + j + ", day: " + weekLux[i][j]);
+                Log.d("WeekLightTemp", "i: " + i + ", j: " + j + ", day: " + weekTemp[i][j]);
 
-                sumWeekLux[i] += weekLux[i][j];
-                sumWeekTemp[i] += weekTemp[i][j];
-
+                sumWeekLux[i] += weekLux[i][j]/user.getPerDay().get(i).size(); //size로 나눠서 하루동안 평균...
+                sumWeekTemp[i] += weekTemp[i][j]/user.getPerDay().get(i).size(); //size로 나눠서 하루동안 평균..
             }
 
-            Log.d("WeekAct", i + ", " + sumWeekLux[i]);//합산 잘 되었는지 확인
-            Log.d("WeekAct", i + ", " + sumWeekTemp[i]);//합산 잘 되었는지 확인
+            Log.d("WeekLightLuxSum", i + ", " + sumWeekLux[i]);//합산 잘 되었는지 확인
+            Log.d("WeekLightTempSum", i + ", " + sumWeekTemp[i]);//합산 잘 되었는지 확인
         }
 
         //현재시간
@@ -84,16 +88,14 @@ public class WeekLight extends Fragment {
         String titleW = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
         titleWeek.setText(titleW);
 
-        //조도량 구하는 곳
-        AtomicInteger total = new AtomicInteger();
-        Flowable<Integer> flowableS = Flowable.fromArray(sumWeekLux).to(MathFlowable::sumInt);
-        flowableS.subscribe(sum -> {
-            total.set(sum);
-        }, Throwable::printStackTrace);
+        //조도량 구하는
+        //Log.e("total week",  ", " + total);//합산 잘 되었는지 확인
+        //int avg = Math.round(total.intValue()/7)/60000*100;
+        //Log.e("total week",  ", " + avg);//합산 잘 되었는지 확인
+        avgT = (TextView) view.findViewById(R.id.weekLightPercent); // 상단 퍼센트
+        avgT.setText("조도량  "+Integer.toString(sumWeekLux[thisWeek]/60000)+"%");
 
-        int avg = Math.round(total.intValue()/7)/60000*100;
-        avgT = (TextView) view.findViewById(R.id.weekLightPercent);
-        avgT.setText("조도량  "+Integer.toString(avg)+"%");
+
 
         String[] str = {"월","화","수","목","금","토","일"};
         for(int i=0; i<7; i++){
@@ -118,13 +120,8 @@ public class WeekLight extends Fragment {
                 //이하밖에없겠지...?
                 mBarChart.addBar(new BarModel(str[i], sumWeekLux[i], Color.parseColor("#5F9919")));
             }
-            //mBarChart.addBar(new BarModel(str[i], sumWeekLux[i], Color.parseColor("#CAEBA2")));
+
         }
-        //평균 활동량 00%
-        titleWeek = (TextView) view.findViewById(R.id.weekLightPercent);
-        int percent = avg / 6000 * 100;
-        String weekP = "평균 활동량 " + percent + "%";
-        titleWeek.setText(weekP);
 
         mBarChart.startAnimation();
 
