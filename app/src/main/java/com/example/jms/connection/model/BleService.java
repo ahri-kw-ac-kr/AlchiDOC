@@ -41,8 +41,8 @@ public class BleService {
                 @Override
                 public void onScanning(BleDevice bleDevice) {
                     BleDeviceDTO bleDeviceDTO = new BleDeviceDTO(bleDevice);
-                    try{ if(bleDeviceDTO.getName().equals("SleepDoc")){ principalDevice = bleDeviceDTO; }
-                    }catch (Exception e){ }
+                    //try{ if(bleDeviceDTO.getName().equals("SleepDoc")){ principalDevice = bleDeviceDTO; }
+                    //}catch (Exception e){ }
                     observer.onNext(bleDeviceDTO);
                 }
 
