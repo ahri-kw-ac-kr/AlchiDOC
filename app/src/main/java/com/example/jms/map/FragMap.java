@@ -3,6 +3,7 @@ package com.example.jms.map;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -34,6 +35,7 @@ import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.overlay.PathOverlay;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.util.MarkerIcons;
@@ -47,7 +49,6 @@ import io.reactivex.schedulers.Schedulers;
 import static android.content.Context.LOCATION_SERVICE;
 
 public class FragMap extends Fragment implements OnMapReadyCallback{
-
 
     private View view;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
@@ -160,8 +161,6 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
                     Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLon()));
             addMarker(name,latLng, naverMap);
         }
-
-
     }
 
     public Location getLastKnownLocation() {
@@ -188,7 +187,11 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
     //marker.setPosition(new LatLng(37.5670135, 126.9783740)) - 이런 형식을 가지고 있음
     public void addMarker(String name, LatLng latlon, NaverMap map) {
         Marker marker = new Marker();
-        marker.setIcon(MarkerIcons.LIGHTBLUE);
+        OverlayImage image = OverlayImage.fromResource(R.drawable.marker_icon);
+        marker.setIcon(image);
+        marker.setCaptionTextSize(18);
+        marker.setCaptionColor(Color.parseColor("#1169A9")); //글자색
+        marker.setCaptionHaloColor(Color.parseColor("#ffffff")); //글자 테두리색
         marker.setPosition(latlon);
         marker.setCaptionText(name);
         marker.setMap(map);
@@ -203,6 +206,4 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
        pathOverlay.setCoords(latLngs);
        pathOverlay.setMap(map);
     }
-
-
 }

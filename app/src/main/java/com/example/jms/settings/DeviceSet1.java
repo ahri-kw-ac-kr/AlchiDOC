@@ -68,7 +68,7 @@ public class DeviceSet1 extends AppCompatActivity {
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
-                            Log.i("MainActivity", "배터리 "+ data);
+                            Log.i("DeviceSet1", "배터리 "+ data);
                             String battery = "배터리: "+data+"%";
                             myDevice.textView.setText(battery);}
                             ,Throwable->{Log.d("DeviceSet1","배터리 실패");
@@ -105,12 +105,12 @@ public class DeviceSet1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 dialog.dismiss();
-                Activity act = (Activity)getApplicationContext();
+                /*Activity act = (Activity)getApplicationContext();
                 act.runOnUiThread(new Runnable(){
                     @Override
                     public void run() {
                 fab.setVisibility(View.VISIBLE);}});
-                Log.d("DeviceSet1","연결끊기 확인");
+                Log.d("DeviceSet1","연결끊기 확인");*/
             }
         });
 

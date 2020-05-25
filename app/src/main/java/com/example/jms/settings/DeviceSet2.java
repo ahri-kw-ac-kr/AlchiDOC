@@ -72,6 +72,7 @@ public class DeviceSet2 extends AppCompatActivity {
                                 .subscribeOn(AndroidSchedulers.mainThread())
                                 .doOnComplete(() -> Log.i("DeviceSet2", "on Complete"))
                                 .subscribe(() -> {
+                                    BleService.principalDevice = BleDeviceDTO;
                                     editor.putString("mac",BleDeviceDTO.getMacAddress());
                                     editor.putString("key",BleDeviceDTO.getKey());
                                     editor.putString("name",BleDeviceDTO.getName());
@@ -102,7 +103,7 @@ public class DeviceSet2 extends AppCompatActivity {
                                     finish();
                                 });
                     }
-                    else{
+                    /*else{
                         Log.d("Device2","스캔했지만 기기없음.1");
                         Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                         startActivity(intent);
@@ -112,7 +113,7 @@ public class DeviceSet2 extends AppCompatActivity {
                             public void run() { Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show(); }},0);
                         finish();
 
-                    }},Throwable::printStackTrace);
+                    }*/},Throwable::printStackTrace);
 
     }
 }
