@@ -69,9 +69,12 @@ public class DeviceSet1 extends AppCompatActivity {
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
                             Log.i("DeviceSet1", "배터리 "+ data);
-                            String battery = "배터리: "+data+"%";
-                            myDevice.textView.setText(battery);}
-                            ,Throwable->{Log.d("DeviceSet1","배터리 실패");
+                            BleService.battery = "배터리: "+data+"%";
+                            myDevice.textView.setText(BleService.battery);
+                            }
+                            ,Throwable->{
+                            myDevice.textView.setText(""+BleService.battery);
+                            Log.d("DeviceSet1","배터리 실패");
                         });
                 fab.setVisibility(View.GONE);
                 Button btn = myDevice.button;
@@ -100,6 +103,7 @@ public class DeviceSet1 extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 BleService.principalDevice = null;
+                BleService.battery = null;
                 sleepDocViewModel.disconnect();
                 deviceList.removeAllViews();
                 editor.clear();
@@ -108,9 +112,10 @@ public class DeviceSet1 extends AppCompatActivity {
                 /*Activity act = (Activity)getApplicationContext();
                 act.runOnUiThread(new Runnable(){
                     @Override
-                    public void run() {
-                fab.setVisibility(View.VISIBLE);}});
-                Log.d("DeviceSet1","연결끊기 확인");*/
+                    public void run() {*/
+                fab.setVisibility(View.VISIBLE);
+            //}});
+                Log.d("DeviceSet1","연결끊기 확인");
             }
         });
 

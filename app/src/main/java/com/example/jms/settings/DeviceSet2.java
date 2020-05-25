@@ -61,6 +61,11 @@ public class DeviceSet2 extends AppCompatActivity {
                             public void run() { Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show(); }},0);
                         finish();
                     }
+                    else{
+                        Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 })
                 .subscribe(BleDeviceDTO -> {
                     Log.d("Device2","1차성공");
@@ -70,7 +75,16 @@ public class DeviceSet2 extends AppCompatActivity {
                         sleepDocViewModel.connectSleepDoc(BleDeviceDTO.getMacAddress())
                                 .observeOn(Schedulers.io())
                                 .subscribeOn(AndroidSchedulers.mainThread())
-                                .doOnComplete(() -> Log.i("DeviceSet2", "on Complete"))
+                                .doOnComplete(() -> {
+                                    Log.i("DeviceSet2", "on Complete");
+                                    sleepDocViewModel.battery()
+                                            .observeOn(Schedulers.io())
+                                            .subscribeOn(AndroidSchedulers.mainThread())
+                                            .subscribe(batt -> {
+                                                Log.i("DeviceSet2", "배터리 "+ batt);
+                                                BleService.battery = "배터리: "+batt+"%";
+                                            },Throwable->{Log.d("DeviceSet2","배터리 실패"); });
+                                })
                                 .subscribe(() -> {
                                     BleService.principalDevice = BleDeviceDTO;
                                     editor.putString("mac",BleDeviceDTO.getMacAddress());
@@ -78,9 +92,6 @@ public class DeviceSet2 extends AppCompatActivity {
                                     editor.putString("name",BleDeviceDTO.getName());
                                     editor.putInt("rssi",BleDeviceDTO.getRssi());
                                     editor.commit();
-                                    Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
-                                    startActivity(intent);
-                                    finish();
                                     sleepDocViewModel.getRawdataFromSleepDoc()
                                             .observeOn(Schedulers.io())
                                             .subscribeOn(AndroidSchedulers.mainThread())
@@ -101,7 +112,8 @@ public class DeviceSet2 extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(), "기기 연결 실패", Toast.LENGTH_SHORT).show();
                                              }},0);
                                     finish();
-                                });
+                                }
+                                );
                     }
                     /*else{
                         Log.d("Device2","스캔했지만 기기없음.1");
