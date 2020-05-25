@@ -100,7 +100,7 @@ public class WeekAct extends Fragment {
 
         //평균 활동량 00%
         titlePercent = (TextView) view.findViewById(R.id.weekActPercent);
-        int percent = avg / 6000 * 100;
+        double percent = Math.round(avg / 6000.0 * 100);
         String dayP = "평균 활동량 " + percent + "%";
         titlePercent.setText(dayP);
         /*
