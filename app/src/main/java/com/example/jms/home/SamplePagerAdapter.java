@@ -65,8 +65,6 @@ public class SamplePagerAdapter extends PagerAdapter {
         TextView tv2 = view.findViewById(R.id.item_text2);
         TextView tv3 = view.findViewById(R.id.item_text3);
 
-        UserDataModel.currentP = position;
-
         if(UserDataModel.userDataModels!=null){
             if(position ==0 ) {
                 tv.setText(RestfulAPI.principalUser.getFullname() + " 님"); //user에 따라 수정(현재 0, 1, 2.. 이렇게 보임)
