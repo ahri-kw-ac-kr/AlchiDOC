@@ -146,7 +146,7 @@
                             android:drawableLeft="@drawable/ic_whatshot_black_24dp"
                             android:drawablePadding="5dp"
                             android:fontFamily="@font/nanumbold"
-                            android:text="아침 조도량"
+                            android:text="주간 조도량"
                             android:textAlignment="viewStart"
                             android:textColor="#F75321"
                             android:textSize="16sp"

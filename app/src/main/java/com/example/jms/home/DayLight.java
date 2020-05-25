@@ -37,6 +37,8 @@ public class DayLight extends Fragment {
     TextView nightSumLux;
     TextView nightAvgK;
 
+    int dL,eL,eK,nL,nK = 0;
+
     View view;
     int percent;
     int todayTotal;
@@ -64,9 +66,9 @@ public class DayLight extends Fragment {
         //else {
         //합산 준비
         Integer[] sumHourLux = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        Integer[][] hourLux = new Integer[24][];
+        Integer[][] hourLux = new Integer[24][]; //10분마다
         Integer[] avgHourTemp = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        Integer[][] hourTemp = new Integer[24][];
+        Integer[][] hourTemp = new Integer[24][]; //10분마다
 
         for (int i = 0; i < user.getPerHour().size(); i++) {
 
@@ -90,15 +92,56 @@ public class DayLight extends Fragment {
                 Log.d("DayLight for in Lux", "i: " + i + ", j: " + j + ", hour: " + hourLux[i][j]);
                 Log.d("DayLight for in Temp", "i: " + i + ", j: " + j + ", hour: " + hourTemp[i][j]);
 
-                sumHourLux[i] += hourLux[i][j];
+                //60분의 기록이 더해져서 1시간으로 저장된다.
+                sumHourLux[i] += hourLux[i][j]; // 위의 가중치 반영한 것을 더해준다.
                 avgHourTemp[i] += hourTemp[i][j];
+
                 if(j+1 == user.getPerHour().get(i).size()){
                     avgHourTemp[i] = avgHourTemp[i]/(j+1);
-                }
+                } //이건 전체 평균 K인데
             }
             Log.d("DayLightLux", i + ", " + sumHourLux[i]);//합산 잘 되었는지 확인
             Log.d("DayLightTemp", i + ", " + avgHourTemp[i]);//합산 잘 되었는지 확인
         }
+
+        //Log.e("SumEvenLux", ", " + sumEvenLux);//합산 잘 되었는지 확인
+        //Log.e("SumEvenLux", ", " + sumEvenTemp);//합산 잘 되었는지 확인
+
+        String EvenP = Integer.toString(percent);
+        daySumLux = (TextView) view.findViewById(R.id.daylux1) ;
+        evenSumLux = (TextView) view.findViewById(R.id.daylux2);
+        nightSumLux = (TextView) view.findViewById(R.id.daylux3);
+        evenAvgK = (TextView) view.findViewById(R.id.dayK1);
+        nightAvgK = (TextView) view.findViewById(R.id.dayK2);
+
+        for (int a = 0;a<9;a++){
+            nL += sumHourLux[a];
+            nK += avgHourTemp[a];
+
+        }
+        for (int a=8;a<19;a++){
+            dL += sumHourLux[a];
+        }
+        for (int a=19;a<23;a++){
+            eL += sumHourLux[a];
+            eK += avgHourTemp[a];
+        }
+        for (int a = 22;a<24;a++){
+            nL += sumHourLux[a];
+            nK += avgHourTemp[a];
+        }
+
+        Log.e("dL",  Integer.toString(dL));//합산 잘 되었는지 확인
+        Log.e("eL", Integer.toString(eL));//합산 잘 되었는지 확인
+        Log.e("eK", Integer.toString(eK));//합산 잘 되었는지 확인
+        Log.e("nL", Integer.toString(nL));//합산 잘 되었는지 확인
+        Log.e("nK", Integer.toString(nK));//합산 잘 되었는지 확인
+
+        daySumLux.setText(Integer.toString(dL));
+        evenSumLux.setText(Integer.toString(eL));
+        evenAvgK.setText(Integer.toString(eK/4));
+        nightSumLux.setText(Integer.toString(nL));
+        nightAvgK.setText(Integer.toString(nK/10));
 
         //현재시간
         Calendar calendar = Calendar.getInstance();
@@ -117,21 +160,16 @@ public class DayLight extends Fragment {
             total.set(sum);
         }, Throwable::printStackTrace);
 
-
+        Log.e("check now",Integer.toString(Integer.parseInt(curr.substring(9, 11))));
         totalT = (TextView) view.findViewById(R.id.dayLightPercent);
-        todayTotal = (total.intValue() / 600000) * 100;
+        todayTotal = (total.intValue() / 60000) * 100;
         totalT.setText("조도량  "+Integer.toString(todayTotal)+"%");
-
-        //맨 위 일간 총합.
-        //titlePercent = (TextView) view.findViewById(R.id.dayLightPercent);
-
-
 
         //시간 상관없이 Y축높이는 Lux, 그래프 바 색상은 K
         //주간 - 기상 ~ 수면 4시간 전 - Lux총합
-        if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) { //9시~18시 일 때
-            int sumD = 0;
-            int sumTemp = 0;
+        if (9 <= Integer.parseInt(curr.substring(9, 11)) && Integer.parseInt(curr.substring(9, 11)) < 18) { //9시~18시 일 때
+            Log.e("check","9~18 in!");
+            int sumDayLux = 0;
 
             for (int i = 0; i < 23; i++) {
 
@@ -156,23 +194,15 @@ public class DayLight extends Fragment {
                     mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#5F9919")));
                 }
 
-                //주간 합산
-                if (9 <= i && i < 18) {
-                    sumD += sumHourLux[i];
-                }
-
             }
-            //일간 조도량 60000Lux이상이 목표이므로
-            percent = (sumD / 60000) * 100;
-            String dayP = Integer.toString(sumD);
-            daySumLux = (TextView) view.findViewById(R.id.daylux1) ;
-            daySumLux.setText(dayP);
+
         }
 
         //저녁 - 수면 4시간전 ~ 수면 전 - Lux총합 / K평균
-        else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 22) { //18시~22시일 떄
-            int sumD = 0;
-            int sumTemp = 0;
+        if (18 <= Integer.parseInt(curr.substring(9, 11)) && Integer.parseInt(curr.substring(9, 11)) < 22) { //18시~22시일 떄
+            Log.e("check","18~22 in!");
+            int sumEvenLux = 0;
+            int sumEvenTemp = 0;
             for (int i = 0; i < 23; i++) {
                 if (avgHourTemp[i]>6000) {
                     //시간당 조명온도가 6000K를 넘을 경우
@@ -193,35 +223,24 @@ public class DayLight extends Fragment {
                     mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#5F9919")));
                 }
                 if (18 <= i && i < 22) {//주간이므로 여기를 진하게
-                    sumD += sumHourLux[i];
-                    sumTemp += avgHourTemp[i];
+                    sumEvenLux += sumHourLux[i];
+                    sumEvenTemp += avgHourTemp[i];
                 }
             }
-            percent = (sumD / 60000) * 100; // 전체 받은 조도량 나타내는 것 같은데... 안사용해도 될것 같음
-            sumTemp = sumTemp/4;
-            String dayP = Integer.toString(percent);
-            evenSumLux = (TextView) view.findViewById(R.id.daylux2);
-            evenAvgK = (TextView) view.findViewById(R.id.dayK1);
-            evenSumLux.setText(Integer.toString(sumD));
-            evenAvgK.setText(Integer.toString(sumTemp));
         }
 
         // 야간 - 수면중 Lux총합 / K평균
-        else { //23시 ~ 오전 8시
-            int sumD = 0;
-            int sumTemp = 0;
+        if(23 <= Integer.parseInt(curr.substring(9, 11)) || (0<=Integer.parseInt(curr.substring(9, 11)) &&Integer.parseInt(curr.substring(9, 11))<= 8)) { //23시 ~ 오전 8시
+            Log.e("check","else in!");
+            int sumNightLux = 0;
+            int sumNightTemp = 0;
             for (int i = 0; i < 23; i++) {
                 mBarChart.addBar(new BarModel(Integer.toString(i), sumHourLux[i], Color.parseColor("#5F9919")));
                 if (22 <= i && i < 24 && i >= 0 && i < 8) {//주간이므로 여기를 진하게
-                    sumD += sumHourLux[i];
-                    sumTemp += avgHourTemp[i];
+                    sumNightLux += sumHourLux[i];
+                    sumNightTemp += avgHourTemp[i];
                 }
             }
-            percent = total.intValue() / 8000 * 100;
-            nightSumLux = (TextView) view.findViewById(R.id.daylux3);
-            nightAvgK = (TextView) view.findViewById(R.id.dayK2);
-            nightSumLux.setText(Integer.toString(sumD));
-            nightAvgK.setText(Integer.toString(sumTemp/4));
         }
 
         mBarChart.startAnimation();
