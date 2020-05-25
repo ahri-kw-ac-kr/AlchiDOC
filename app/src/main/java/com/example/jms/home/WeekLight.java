@@ -27,6 +27,8 @@ public class WeekLight extends Fragment {
     TextView titleWeek;
     TextView avgT;
 
+    int dL,eL,eK,nL,nK = 0;
+
     public WeekLight(){}
     View view;
     @Nullable
@@ -56,7 +58,6 @@ public class WeekLight extends Fragment {
 
             weekLux[i] = new Integer[150];
             weekDayLux[i] = new Integer[150];
-
             weekTemp[i] = new Integer[150];
 
 
@@ -101,18 +102,18 @@ public class WeekLight extends Fragment {
         for(int i=0; i<7; i++){
 
             if (sumWeekTemp[i]>6000) {
-                //시간당 조도량이 6000K를 넘을 경우
+                //이 시간대 평균 조도량이 6000K를 넘을 경우
                 mBarChart.addBar(new BarModel(str[i], sumWeekLux[i], Color.parseColor("#d84315")));
 
             }
 
             else if (3000 < sumWeekTemp[i] || sumWeekTemp[i]<= 6000) {
-                //시간당 조도량이 3000~6000K
+                //이 시간대 평균 조도량이 3000~6000K
                 mBarChart.addBar(new BarModel(str[i], sumWeekLux[i], Color.parseColor("#fb8c00")));
             }
 
             else if(sumWeekTemp[i]<3000) {
-                //시간당 조도량이 3000 미만
+                //이 시간대 평균 조도량이 3000 미만
                 mBarChart.addBar(new BarModel(str[i], sumWeekLux[i], Color.parseColor("#fb8c00")));
             }
 
