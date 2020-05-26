@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -120,8 +123,8 @@ public class FragHome extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
-                ad.setMessage("취침을 시작하시겠습니까?");
-                ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                ad.setMessage("원하는 작업을 선택해 주세요.");
+                ad.setPositiveButton("취침모드 시작", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //확인버튼을 누르면 다이얼로그가 사라지고 SleepActivity가 실행되도록
@@ -131,11 +134,12 @@ public class FragHome extends Fragment {
                         Log.d("D","버튼클릭됨");
                     }
                 });
-
-                ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                ad.setNeutralButton("취침시간 설정", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        Intent intent = new Intent(getActivity(), SleepTime.class);
+                        startActivity(intent);
                     }
                 });
                 ad.show();
