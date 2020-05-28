@@ -26,8 +26,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="26dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/sleep"
                 android:tint="#ffffff"></ImageButton>
@@ -37,19 +37,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="26dp"
                 android:fontFamily="@font/gulimr"
                 android:text="AlchiDOC"
                 android:textColor="#ffffff"
-                android:textSize="24dp"/>
+                android:textSize="17dp"/>
 
             <ImageButton
                 android:id="@+id/report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="22dp"
-                android:layout_marginRight="22dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginRight="27dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_event_note_black_24dp">
             </ImageButton>
@@ -132,7 +132,8 @@
                 android:paddingBottom="10dp"
                 android:text="조도량 충분"
                 android:textColor="#ffffff"
-                app:autoSizePresetSizes="@array/font_size"></Button>
+                android:textSize="16sp"
+               ></Button>
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,7 +150,7 @@
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp"
                 android:layout_marginBottom="5dp"
-                app:autoSizePresetSizes="@array/font_size"
+                android:textSize="16sp"
                 android:background="@drawable/main_grad"
                 android:drawableLeft="@drawable/ic_actact"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -180,7 +181,7 @@
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp"
                 android:layout_marginBottom="14dp"
-                app:autoSizePresetSizes="@array/font_size"
+                android:textSize="16sp"
                 android:background="@drawable/main_grad"
                 android:drawableLeft="@drawable/ic_nights_stay_24px"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"

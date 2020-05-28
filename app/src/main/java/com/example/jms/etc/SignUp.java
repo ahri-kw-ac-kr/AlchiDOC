@@ -25,6 +25,7 @@ import com.example.jms.R;
 import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.settings.PasswordFind1;
+import com.example.jms.settings.Terms;
 
 import java.util.Calendar;
 
@@ -105,6 +106,11 @@ public class SignUp extends AppCompatActivity {
 
     public void goLogin(View view){
         Intent intent = new Intent(getApplicationContext(), Login.class);
+        startActivity(intent);
+    }
+
+    public void goTerms(View view){
+        Intent intent = new Intent(getApplicationContext(), Terms.class);
         startActivity(intent);
     }
 
