@@ -130,7 +130,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="햇빛량 충분"
+                android:text="조도량 충분"
                 android:textColor="#ffffff"
                 app:autoSizePresetSizes="@array/font_size"></Button>
 

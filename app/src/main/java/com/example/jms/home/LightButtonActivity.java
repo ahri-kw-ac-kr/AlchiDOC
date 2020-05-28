@@ -28,9 +28,9 @@ public class LightButtonActivity extends AppCompatActivity {
         });
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tab_layout);
-        tabs.addTab(tabs.newTab().setText("Day"));
-        tabs.addTab(tabs.newTab().setText("Week"));
-        tabs.addTab(tabs.newTab().setText("Month"));
+        tabs.addTab(tabs.newTab().setText("일간"));
+        tabs.addTab(tabs.newTab().setText("주간"));
+        tabs.addTab(tabs.newTab().setText("월간"));
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);

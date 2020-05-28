@@ -223,7 +223,7 @@
                 android:layout_marginBottom="15dp"
 
                 android:fontFamily="@font/nanumregular"
-                android:text="이달의 활동량 기록"
+                android:text="이 달의 활동량 기록"
                 android:textColor="#646464"
                 android:textSize="17sp"
                 android:textStyle="bold"></TextView>
@@ -261,7 +261,7 @@
                             android:drawableLeft="@drawable/ic_sprint"
                             android:drawablePadding="5dp"
                             android:fontFamily="@font/nanumbold"
-                            android:text="월평균 걸음수"
+                            android:text="월 평균 걸음수"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
                             android:textSize="18sp"
@@ -312,7 +312,7 @@
                             android:drawableLeft="@drawable/ic_calories"
                             android:drawablePadding="5dp"
                             android:fontFamily="@font/nanumbold"
-                            android:text="월평균 칼로리"
+                            android:text="월 평균 칼로리"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
                             android:textSize="18sp"
@@ -376,14 +376,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
-                            android:layout_weight="6"
-                            android:drawablePadding="5dp"
-                            android:drawableLeft="@drawable/ic_sprint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:drawableLeft="@drawable/ic_sprint"
+                            android:drawablePadding="5dp"
                             android:fontFamily="@font/nanumbold"
-                            android:text="월평균 주간 활동량"
+                            android:text="월 평균 주간 활동량"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
@@ -412,59 +413,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="이번 달의 활동량이 충분합니다. 다음 달에는 무리한 활동을 자제해 주세요."></TextView>
-                    <View
-                        android:layout_gravity="center|top"
-                        android:layout_marginTop="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#ECECEC"/>
 
-
-                    <LinearLayout
-                        android:weightSum="7"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_weight="6"
-                            android:drawablePadding="5dp"
-                            android:drawableLeft="@drawable/ic_calories"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbold"
-                            android:text="월평균 저녁 활동량"
-                            android:textAlignment="viewStart"
-                            android:textColor="#329035"
-                            android:textSize="18sp"></TextView>
-                        <ImageView
-                            android:layout_weight="0.3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:tint="#329035"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
-                            ></ImageView>
-                        <TextView
-                            android:gravity="bottom"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
-                            android:textColor="#329035"
-                            android:textSize="15sp"></TextView>
-                    </LinearLayout>
-
-                    <TextView
-                        android:lineSpacingExtra="6dp"
-                        android:textColor="#5A5959"
-                        android:fontFamily="@font/nanumregular"
-                        android:textSize="16sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="지난 달보다 야간 활동량이 부족합니다. 다음 달에는 더 많은 활동이 필요합니다.">
-                    </TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -487,7 +436,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="월평균 야간 활동량"
+                            android:text="월 평균 야간 활동량"
                             android:textAlignment="viewStart"
                             android:drawableTint="#329035"
                             android:textColor="#329035"

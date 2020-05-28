@@ -423,8 +423,8 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="어제 주간 햇빛량은 충분하였습니다.
-오늘도 어제와 같이 햇빛량을 유지하거나 늘리세요.">
+                        android:text="어제 주간 조도량은 충분하였습니다.
+오늘도 어제와 같이 조도량을 유지하거나 늘리세요.">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"

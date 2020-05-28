@@ -47,7 +47,7 @@ public class MonthLight extends Fragment {
         PieData data = new PieData(name, dataSet);
         pieChart.setData(data);
         pieChart.setUsePercentValues(true); // false로 바꾸면 데이터가 백분율이 아닌 원래 값으로 그려짐
-        pieChart.setCenterText("햇빛량");
+        pieChart.setCenterText("조도량");
         pieChart.setCenterTextSize(15);
         pieChart.setHoleRadius(25);
         pieChart.setDescription(null);

@@ -51,8 +51,8 @@
     <string name="act3">야간 활동량</string>
     <string name="act4">활동량 인지행동 플랜</string>
     <string name="act5">오늘의 활동량 기록</string>
-    <string name="light">햇빛량</string>
-    <string name="light2">주간 햇빛량</string>
+    <string name="light">조도량</string>
+    <string name="light2">주간 조도량</string>
     <string name="light3">야간 조도량</string>
     <string name="sleep">수면량</string>
     <string name="sleep2">총 수면 시간</string>

@@ -61,7 +61,7 @@
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
-                    android:text="햇빛량 47%"
+                    android:text="조도량 47%"
                     android:textColor="#F75321"
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
@@ -411,7 +411,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="낮 시간대의 햇빛량이 부족합니다. 오후에는 야외 활동을 늘려주세요."></TextView>
+                        android:text="낮 시간대의 조도량이 부족합니다. 오후에는 야외 활동을 늘려주세요."></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
