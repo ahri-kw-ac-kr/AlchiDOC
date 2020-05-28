@@ -74,7 +74,7 @@
                 android:layout_gravity="center_vertical">
 
                 <TextView
-                    android:text="위치"
+                    android:text="위치 공유 허용"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/nanumregular"
@@ -113,8 +113,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/nanumregular"
-            android:lineSpacingExtra="5sp"
-            android:text="위치 권한을 허용할 시에만 위치 정보가 나타납니다.\n해당 정보를 원치 않으시면 위치 권한 설정을 해제하세요."
+            android:lineSpacingExtra="6sp"
+            android:text="위치 권한을 허용할 시에만 최신 위치 정보가 나타납니다.\n해당 정보를 원치 않으시면 위치 권한 설정을 해제하세요.
+\n(내 위치를 나를 케어하는 사람에게 공개합니다.)"
             android:textColor="#646464"
             android:textSize="13dp"></TextView>
     </LinearLayout>
