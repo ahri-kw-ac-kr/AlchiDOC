@@ -90,7 +90,7 @@ public interface RestfulAPIService {
      *  비밀번호 찾기위해 username 입력 후 인증메일 발송 **/
     @FormUrlEncoded
     @PATCH("user/forget")
-    String forget(@Field("username") String username);
+    Single<String> forget(@Field("username") String username);
 
     /** Patch
      *  BaseURL/user/initpassword
