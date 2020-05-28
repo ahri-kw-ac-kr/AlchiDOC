@@ -103,7 +103,7 @@ public class DayAct extends Fragment {
         kalT.setText(Integer.toString(kal));
 
         //주간일때
-        if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) {
+        /*if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) {
             int sumD = 0;
             for (int i = 9; i < 21; i++) {
                 if (9 <= i && i < 18) {//주간이므로 여기를 진하게
@@ -131,17 +131,17 @@ public class DayAct extends Fragment {
             percent = (sumD / 2000.0) * 100;
             String dayP = "야간 활동량 " + percent + "%";
             titlePercent.setText(dayP);
-        }
+        }*/
         //주간도 야간도 아닌 여기는 그냥 모두 진하게
-        else {
+        //else {
             for (int i = 9; i < 21; i++) {
                 mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
             }
             //Log.d("DayAct","토탈밸류 소수: "+total.doubleValue());
-            percent = (total.doubleValue() / 8000.0) * 100;
-            String dayP = "오늘 활동량 " + percent + "%";
+            percent = (total.doubleValue() / 6000.0) * 100;
+            String dayP = "활동량 " + percent + "%";
             titlePercent.setText(dayP);
-        }
+        //}
 
         mBarChart.startAnimation();
 

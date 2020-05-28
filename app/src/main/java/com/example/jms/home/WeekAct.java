@@ -52,12 +52,16 @@ public class WeekAct extends Fragment {
 
         //합산 준비
         Integer[] sumDay = {0, 0, 0, 0, 0, 0, 0};
+        Integer[] sumDayMor = {0, 0, 0, 0, 0, 0, 0};
+        Integer[] sumDayDin = {0, 0, 0, 0, 0, 0, 0};
         Integer[][] day = new Integer[7][];
         for (int i = 0; i < user.getPerDay().size(); i++) {
             day[i] = new Integer[150];
             for (int j = 0; j < user.getPerDay().get(i).size(); j++) {
                 day[i][j] = (int) user.getPerDay().get(i).get(j).getSteps();
                 Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + day[i][j]);
+                if(j>=9 && j<18){sumDayMor[i]+=day[i][j];}
+                if(j>=18 && j<21){sumDayDin[i]+=day[i][j];}
                 sumDay[i] += day[i][j];
             }
             Log.d("WeekAct", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
@@ -95,7 +99,15 @@ public class WeekAct extends Fragment {
 
         String[] str = {"일","월","화","수","목","금","토"};
         for(int i=0; i<7; i++){
-            mBarChart.addBar(new BarModel(str[i], sumDay[i], Color.parseColor("#CAEBA2")));
+            if(sumDayMor[i]<6000 && sumDayDin[i]<2000){ //주간부족, 야간적정 -> 부족
+                mBarChart.addBar(new BarModel(str[i], sumDay[i], Color.parseColor("#CAEBA2")));
+            }
+            if(sumDayMor[i]>=6000 && sumDayDin[i]<2000){ //주간충분, 야간적정 -> 충분
+                mBarChart.addBar(new BarModel(str[i], sumDay[i], Color.parseColor("#8CCA45")));
+            }
+            if(sumDayMor[i]>=6000 && sumDayDin[i]>=2000){ //주간충분, 야간과다 -> 과다
+                mBarChart.addBar(new BarModel(str[i], sumDay[i], Color.parseColor("#5F9919")));
+            }
         }
 
         //평균 활동량 00%
