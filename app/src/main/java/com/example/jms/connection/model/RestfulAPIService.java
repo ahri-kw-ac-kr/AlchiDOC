@@ -90,12 +90,12 @@ public interface RestfulAPIService {
      *  비밀번호 찾기위해 username 입력 후 인증메일 발송 **/
     @FormUrlEncoded
     @PATCH("user/forget")
-    Single<String> forget(@Field("username") String username);
+    Single<UserDTO> forget(@Field("username") String username);
 
     /** Patch
      *  BaseURL/user/initpassword
      *  인증메일 번호가 확인되면 새로운 비밀번호 설정 **/
-    //@FormUrlEncoded
+    @FormUrlEncoded
     @PATCH("user/initpassword")
     Single<UserDTO> initPassword(@Field("username") String username, @Field("number") String number, @Field("password") String password);
 

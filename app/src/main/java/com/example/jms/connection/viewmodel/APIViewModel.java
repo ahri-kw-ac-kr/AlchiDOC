@@ -63,7 +63,7 @@ public class APIViewModel extends ViewModel {
         return restfulAPIService.deleteUser(id);
     }
 
-    public Single<String> forget(String username){
+    public Single<UserDTO> forget(String username){
         return restfulAPIService.forget(username);
     }
 

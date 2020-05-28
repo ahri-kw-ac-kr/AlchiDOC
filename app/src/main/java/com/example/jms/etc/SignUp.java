@@ -149,13 +149,13 @@ public class SignUp extends AppCompatActivity {
                                 Log.d("SignUp",data.getUsername()+" 회원가입 완료");
                                 Intent intent = new Intent(getApplicationContext(),Login.class);
                                 startActivity(intent);
-                                Handler handler = new Handler(Looper.getMainLooper());
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
+                                //Handler handler = new Handler(Looper.getMainLooper());
+                                //handler.postDelayed(new Runnable() {
+                                //    @Override
+                                //    public void run() {
                                         Toast.makeText(getApplicationContext(),
                                                 "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                                    }},0);
+                                //    }},0);
                                 finish();
                         },
                             Throwable -> {
@@ -165,9 +165,11 @@ public class SignUp extends AppCompatActivity {
                                         case 409:
                                             Toast.makeText(getApplicationContext(),
                                                     "이미 존재하는 이메일입니다. 다른 이메일을 작성해 주세요.", Toast.LENGTH_SHORT).show();
-                                        //case 500:
-                                          //  Toast.makeText(getApplicationContext(),
-                                            //        "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
+                                            break;
+                                        case 500:
+                                            Toast.makeText(getApplicationContext(),
+                                                    "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
+                                            break;
                                     }
                                 }
                                 else{Log.d("회원가입",Throwable.getMessage());}
