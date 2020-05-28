@@ -1,4 +1,4 @@
-package com.example.jms.home;
+package com.example.jms.home.button;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,17 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.example.jms.R;
+import com.example.jms.home.button.MySleepPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
 /*아직 ACT 버튼만 test로 만든 상태입니다.*/
-public class LightButtonActivity extends AppCompatActivity {
+public class SleepButtonActivity extends AppCompatActivity {
 
-    String code = "Light";
+    String code = "Sleep";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lightbutton_activity);
+        setContentView(R.layout.sleepbutton_activity);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow1_back_24dp);
@@ -34,8 +35,8 @@ public class LightButtonActivity extends AppCompatActivity {
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        final MyLightPagerAdapter myPagerAdapter = new MyLightPagerAdapter(getSupportFragmentManager(),3);
-        viewPager.setAdapter(myPagerAdapter);
+        final MySleepPagerAdapter myActPagerAdapter = new MySleepPagerAdapter(getSupportFragmentManager(),3);
+        viewPager.setAdapter(myActPagerAdapter);
 
         tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));

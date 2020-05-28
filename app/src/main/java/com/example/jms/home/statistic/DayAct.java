@@ -1,4 +1,4 @@
-package com.example.jms.home;
+package com.example.jms.home.statistic;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.home.UserDataModel;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;

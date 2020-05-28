@@ -1,4 +1,4 @@
-package com.example.jms.home;
+package com.example.jms.home.statistic;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,24 +19,24 @@ import com.github.mikephil.charting.data.PieDataSet;
 
 import java.util.ArrayList;
 
-public class MonthAct extends Fragment {
+public class MonthSleep extends Fragment {
+
+    public MonthSleep(){}
 
     View view;
-    public MonthAct(){}
+    int[] colorArray = new int[] {Color.parseColor("#A991D8"), Color.parseColor("#C5AEEF"), Color.parseColor("#E6CEFF")};
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.month_act, container, false);
+        view = inflater.inflate(R.layout.month_sleep, container, false);
 
-        int[] colorArray = new int[] {Color.parseColor("#6EAD22"), Color.parseColor("#8bc34a"), Color.parseColor("#C0E296")};
-
-        PieChart pieChart = view.findViewById(R.id.piechart);
+        PieChart pieChart = (PieChart) view.findViewById(R.id.piechart3);
         ArrayList NoOfEmp = new ArrayList();
 
         NoOfEmp.add(new Entry(4, 0));
-        NoOfEmp.add(new Entry(10, 1));
-        NoOfEmp.add(new Entry(16, 2));
+        NoOfEmp.add(new Entry(15, 1));
+        NoOfEmp.add(new Entry(11, 2));
 
         PieDataSet dataSet = new PieDataSet(NoOfEmp, "");
 
@@ -48,7 +48,7 @@ public class MonthAct extends Fragment {
         PieData data = new PieData(name, dataSet);
         pieChart.setData(data);
         pieChart.setUsePercentValues(true); // false로 바꾸면 데이터가 백분율이 아닌 원래 값으로 그려짐
-        pieChart.setCenterText("활동량");
+        pieChart.setCenterText("수면량");
         pieChart.setCenterTextSize(15);
         pieChart.setHoleRadius(25);
         pieChart.setDescription(null);
@@ -60,7 +60,7 @@ public class MonthAct extends Fragment {
         legend.setEnabled(false); // true로 바꾸면 범례 생김
 
         data.setValueTextSize(18); // 원 안에 퍼센트값 크기 조정
-        data.setValueTextColor(Color.parseColor("#064808")); // 퍼센트값 색상
+        data.setValueTextColor(Color.parseColor("#3B2760")); // 퍼센트값 색상
 
         dataSet.setColors(colorArray);
         pieChart.animateXY(5000, 5000);
@@ -73,8 +73,6 @@ public class MonthAct extends Fragment {
         pieChart.notifyDataSetChanged(); // 차트에 데이터가 바뀌었다고 알림
         pieChart.invalidate(); // 차트 다시 그려! 명령하는 코드
         */
-
-
         return view;
     }
 }

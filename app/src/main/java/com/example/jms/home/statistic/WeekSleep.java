@@ -1,4 +1,4 @@
-package com.example.jms.home;
+package com.example.jms.home.statistic;
 
 import android.graphics.Color;
 import android.os.Bundle;

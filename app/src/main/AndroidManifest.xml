@@ -47,9 +47,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.ActButtonActivity"/>
-        <activity android:name=".home.LightButtonActivity"/>
-        <activity android:name=".home.SleepButtonActivity"/>
+        <activity android:name=".home.button.ActButtonActivity"/>
+        <activity android:name=".home.button.LightButtonActivity"/>
+        <activity android:name=".home.button.SleepButtonActivity"/>
         <activity android:name=".home.Report"/>
         <activity android:name=".etc.Login"/>
         <activity android:name=".etc.SignUp"/>

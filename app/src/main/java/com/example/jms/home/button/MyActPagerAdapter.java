@@ -1,9 +1,13 @@
-package com.example.jms.home;
+package com.example.jms.home.button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.jms.home.statistic.DayAct;
+import com.example.jms.home.statistic.MonthAct;
+import com.example.jms.home.statistic.WeekAct;
 
 public class MyActPagerAdapter extends FragmentPagerAdapter {
 

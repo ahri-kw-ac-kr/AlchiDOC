@@ -1,4 +1,4 @@
-package com.example.jms.home;
+package com.example.jms.home.button;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.example.jms.R;
+import com.example.jms.home.button.MyActPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
