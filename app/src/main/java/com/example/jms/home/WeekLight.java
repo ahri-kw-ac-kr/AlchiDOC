@@ -85,7 +85,7 @@ public class WeekLight extends Fragment {
 
 
         //000님의 0월 0주차
-        titleWeek = (TextView) view.findViewById(R.id.weekLightPercent);
+        titleWeek = (TextView) view.findViewById(R.id.weekLightDate);
         String titleW = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
         titleWeek.setText(titleW);
 
@@ -94,7 +94,7 @@ public class WeekLight extends Fragment {
         //int avg = Math.round(total.intValue()/7)/60000*100;
         //Log.e("total week",  ", " + avg);//합산 잘 되었는지 확인
         avgT = (TextView) view.findViewById(R.id.weekLightPercent); // 상단 퍼센트
-        avgT.setText("조도량  "+Integer.toString(sumWeekLux[thisWeek]/60000)+"%");
+        avgT.setText("조도량  "+ sumWeekLux[thisWeek]/60000.0 +"%");
 
 
 

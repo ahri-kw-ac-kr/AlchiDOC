@@ -41,7 +41,7 @@ public class DayLight extends Fragment {
 
     View view;
     int percent;
-    int todayTotal;
+    double todayTotal;
 
     //constructor
     public DayLight(){}
@@ -162,8 +162,8 @@ public class DayLight extends Fragment {
 
         Log.e("check now",Integer.toString(Integer.parseInt(curr.substring(9, 11))));
         totalT = (TextView) view.findViewById(R.id.dayLightPercent);
-        todayTotal = (total.intValue() / 60000) * 100;
-        totalT.setText("조도량  "+Integer.toString(todayTotal)+"%");
+        todayTotal = (total.intValue() / 60000.0) * 100;
+        totalT.setText("조도량  "+ todayTotal +"%");
 
         //시간 상관없이 Y축높이는 Lux, 그래프 바 색상은 K
         //주간 - 기상 ~ 수면 4시간 전 - Lux총합
