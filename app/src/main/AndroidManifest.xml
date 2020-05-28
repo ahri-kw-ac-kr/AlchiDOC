@@ -54,7 +54,7 @@
         <activity android:name=".etc.Login"/>
         <activity android:name=".etc.SignUp"/>
         <activity android:name=".settings.LocationPermission"/>
-        <activity android:name=".settings.PasswordFind1"/>
+        <activity android:name=".etc.PasswordFind1"/>
         <activity android:name=".settings.CareList"/>
         <activity android:name=".settings.DeviceSet1"/>
         <activity android:name=".settings.DeviceSet2"/>

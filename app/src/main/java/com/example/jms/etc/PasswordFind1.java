@@ -1,4 +1,4 @@
-package com.example.jms.settings;
+package com.example.jms.etc;
 
 import android.os.Bundle;
 import android.view.View;
