@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.home.UserDataModel;
 
 import org.eazegraph.lib.charts.BarChart;
@@ -43,6 +44,7 @@ public class DayLight extends Fragment {
     View view;
     int percent;
     double todayTotal;
+    String titleD;
 
     //constructor
     public DayLight(){}
@@ -151,7 +153,12 @@ public class DayLight extends Fragment {
 
         //000님의 0월 0일
         titleDay = (TextView) view.findViewById(R.id.dayLightDate);
-        String titleD = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        if(pos == 0){
+            titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        }
+        else{
+            titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        }
         titleDay.setText(titleD);
 
         // 시간당 전체 Lux를 더하는 atomicinteger total
