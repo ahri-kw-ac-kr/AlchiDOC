@@ -18,11 +18,13 @@ public class UserDTO implements Serializable {
     private String password;
     private String newpassword;
     private String number;
+    private String sleep;
+    private String wake;
     private List<UserDTO> friend;
 
     public UserDTO(){    }
 
-    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newpassword, String number, List<UserDTO> freind){
+    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newpassword, String number, String sleep, String wake, List<UserDTO> freind){
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -32,6 +34,8 @@ public class UserDTO implements Serializable {
         this.password = password;
         this.newpassword = newpassword;
         this.number = number;
+        this.sleep = sleep;
+        this.wake = wake;
         this.friend = freind;
     }
 
@@ -61,6 +65,12 @@ public class UserDTO implements Serializable {
 
     public String getNumber() { return number; }
     public void setNumber(String number) { this.number = number; }
+
+    public String getSleep() { return sleep; }
+    public void setSleep(String sleep) { this.sleep = sleep; }
+
+    public String getWake() { return wake; }
+    public void setWake(String wake) { this.wake = wake; }
 
     public List<UserDTO> getFriend() { return friend; }
     public void setFriend(){ this.friend = friend;}
