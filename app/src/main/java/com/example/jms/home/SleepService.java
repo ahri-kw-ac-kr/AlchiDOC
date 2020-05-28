@@ -52,8 +52,10 @@ public class SleepService extends Service {
         // 노피티케이션컴팻 빌더 선언
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setContentTitle("수면중입니다");
-        builder.setContentText("수면중 내용입니다");
+
+        // 상황에 따라 바꿔야 됨
+        builder.setContentTitle("취침 4시간 전입니다.");
+        builder.setContentText("현재 활동량이 충분합니다. 숙면을 위해 무리한 활동을 자제해 주세요.");
 
 
         //클릭시 시작되는 인텐트 - 바로 일반인텐트 실행 불가 노티피케이션을 클릭했을 때 슬립액티비티로 돌아가도록.

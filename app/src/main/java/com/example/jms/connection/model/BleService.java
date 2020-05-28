@@ -15,6 +15,7 @@ public class BleService {
     private static BleService bleService;
 
     public static BleDeviceDTO principalDevice;
+    public static String battery;
 
     public static synchronized BleService getInstance() {
         if (bleService == null) {
