@@ -60,6 +60,10 @@ public class SleepActivity extends AppCompatActivity {
                 Log.e("SleepActivity - end",endTime);
                 chronometer.stop();
                 stopService(intent);
+                Intent intent = new Intent(SleepActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 finish();
             }
         });
