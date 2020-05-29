@@ -117,6 +117,14 @@
                         android:layout_marginRight="12dp"
                         android:inputType="textWebEmailAddress"
                         android:textSize="12dp"></EditText>
+                    <ImageView
+                        android:onClick="OnClickHandler"
+                        android:id="@+id/birth_pick"
+                        android:tint="#646464"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_event_note_black_24dp"
+                        ></ImageView>
                 </LinearLayout>
 
                 <LinearLayout
