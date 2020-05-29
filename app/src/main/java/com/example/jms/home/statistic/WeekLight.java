@@ -102,7 +102,7 @@ public class WeekLight extends Fragment {
         //int avg = Math.round(total.intValue()/7)/60000*100;
         //Log.e("total week",  ", " + avg);//합산 잘 되었는지 확인
         avgT = (TextView) view.findViewById(R.id.weekLightPercent); // 상단 퍼센트
-        avgT.setText("조도량  "+ sumWeekLux[thisWeek]/60000.0 +"%");
+        avgT.setText("조도량  "+ Math.round(sumWeekLux[thisWeek]/60000.0) +"%");
 
 
 
