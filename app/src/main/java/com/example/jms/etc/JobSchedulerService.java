@@ -4,17 +4,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
-import com.clj.fastble.BleManager;
 import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.GPSDTO;
@@ -41,7 +38,7 @@ public class JobSchedulerService extends JobService {
         // onStartJob()의 종료 후에도 지속할 동작이 있다면 true, 여기에서 완료되면 false를 반환합니다.
         // true를 반환할 경우 finishJob()의 호출을 통해 작업 종료를 선언하거나,
         // 시스템이 필요 onStopJob()를 호출하여 작업을 중지할 수 있습니다.
-        Toast.makeText(getApplicationContext(), "Job started ", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Job started ", Toast.LENGTH_LONG).show();
         jobTask.execute(jobParameters);
         return false;
     }

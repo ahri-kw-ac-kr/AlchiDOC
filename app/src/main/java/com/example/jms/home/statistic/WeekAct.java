@@ -18,10 +18,8 @@ import com.example.jms.home.UserDataModel;
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -44,7 +42,6 @@ public class WeekAct extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.week_act, container, false);
-
         BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
 
         int pos = UserDataModel.currentP;

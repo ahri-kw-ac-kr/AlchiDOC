@@ -25,16 +25,21 @@ import java.util.Locale;
 
 public class WeekLight extends Fragment {
 
+    View view;
     TextView titleWeek;
     TextView avgT;
+    TextView WeekDayLux;
+    TextView WeekNightLux;
+    TextView WeekNightTemp;
+    int dL,nL,nK = 0; //dayLinght eveningLight eveningK nightLight nightK
 
-    int dL,eL,eK,nL,nK = 0;
-
+    //constructor
     public WeekLight(){}
-    View view;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.week_light, container, false);
         BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
@@ -45,20 +50,16 @@ public class WeekLight extends Fragment {
         //합산 준비
         Integer[] sumWeekLux = {0, 0, 0, 0, 0, 0, 0};
         Integer[][] weekLux = new Integer[7][];
-        Integer[][] weekDayLux = new Integer[7][];
-        Integer[][] weekEvenLux = new Integer[7][];
-        Integer[][] weekNightLux = new Integer[7][];
+        Integer[] weekDayLux = {0, 0, 0, 0, 0, 0, 0};
+        Integer[] weekNightLux = {0, 0, 0, 0, 0, 0, 0};
 
         Integer[] sumWeekTemp = {0, 0, 0, 0, 0, 0, 0};
         Integer[][] weekTemp = new Integer[7][];
-        Integer[][] weekDayTemp = new Integer[7][];
-        Integer[][] weekEvenTemp = new Integer[7][];
-        Integer[][] weekNightTemp = new Integer[7][];
+        Integer[] weekNightTemp = {0, 0, 0, 0, 0, 0, 0};
 
         for (int i = 0; i < user.getPerDay().size(); i++) {
 
             weekLux[i] = new Integer[150];
-            weekDayLux[i] = new Integer[150];
             weekTemp[i] = new Integer[150];
 
 
@@ -72,18 +73,28 @@ public class WeekLight extends Fragment {
 
                 sumWeekLux[i] += weekLux[i][j]/user.getPerDay().get(i).size(); //size로 나눠서 하루동안 평균...
                 sumWeekTemp[i] += weekTemp[i][j]/user.getPerDay().get(i).size(); //size로 나눠서 하루동안 평균..
+                if(j>=9 && j<18){
+                    weekDayLux[i] += weekLux[i][j];
+                }
+
+                if(j>=18 && j<21){
+                    weekNightLux[i] += weekLux[i][j];
+                    weekNightTemp[i] += weekTemp[i][j];
+                }
             }
+
 
             Log.d("WeekLightLuxSum", i + ", " + sumWeekLux[i]);//합산 잘 되었는지 확인
             Log.d("WeekLightTempSum", i + ", " + sumWeekTemp[i]);//합산 잘 되었는지 확인
         }
+
 
         //현재시간
         Calendar calendar = Calendar.getInstance(Locale.KOREA);
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
         String curr = transFormat.format(calendar.getTime());
         int thisWeek = calendar.get(Calendar.WEEK_OF_MONTH);
-
+        int thisDay = calendar.get(Calendar.DAY_OF_WEEK);
 
         //000님의 0월 0주차
         titleWeek = (TextView) view.findViewById(R.id.weekLightDate);
@@ -91,15 +102,17 @@ public class WeekLight extends Fragment {
         titleWeek.setText(titleW);
 
         //조도량 구하는
-        //Log.e("total week",  ", " + total);//합산 잘 되었는지 확인
-        //int avg = Math.round(total.intValue()/7)/60000*100;
-        //Log.e("total week",  ", " + avg);//합산 잘 되었는지 확인
         avgT = (TextView) view.findViewById(R.id.weekLightPercent); // 상단 퍼센트
-        avgT.setText("조도량  "+ sumWeekLux[thisWeek]/60000.0 +"%");
+        avgT.setText("조도량  "+ sumWeekLux[thisWeek]/thisDay +"%");
+
+        WeekDayLux = (TextView) view.findViewById(R.id.weeklux1);
+        WeekNightLux = (TextView) view.findViewById(R.id.weeklux3);
+        WeekNightTemp = (TextView) view.findViewById(R.id.weekK2);
+        WeekDayLux.setText(sum());
 
 
 
-        String[] str = {"월","화","수","목","금","토","일"};
+        String[] str = {"일","월","화","수","목","금","토",};
         for(int i=0; i<7; i++){
 
             if (sumWeekTemp[i]>6000) {
