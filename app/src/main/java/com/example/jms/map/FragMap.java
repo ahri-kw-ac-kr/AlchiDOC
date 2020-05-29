@@ -156,10 +156,12 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
         //Log.e("FragMap 친구수", Integer.toString(friendNum));
 
         for(int i=1;i<=friendNum;i++){
-            String name = UserDataModel.userDataModels[i].getGpsList().get(0).getUser().getFullname();
-            LatLng latLng = new LatLng (Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLat()),
-                    Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLon()));
-            addMarker(name,latLng, naverMap);
+            if(UserDataModel.userDataModels[i].getGpsList().size() != 0) {
+                String name = UserDataModel.userDataModels[i].getGpsList().get(0).getUser().getFullname();
+                LatLng latLng = new LatLng(Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLat()),
+                        Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLon()));
+                addMarker(name, latLng, naverMap);
+            }
         }
     }
 

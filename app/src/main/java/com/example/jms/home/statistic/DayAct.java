@@ -44,6 +44,7 @@ public class DayAct extends Fragment {
     TextView kalT;
     View view;
     double percent;
+    String titleD;
 
     public DayAct(){}
 
@@ -83,7 +84,12 @@ public class DayAct extends Fragment {
 
         //000님의 0월 0일
         titleDay = (TextView) view.findViewById(R.id.dayActDate);
-        String titleD = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        if(pos == 0){
+            titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        }
+        else{
+            titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
+        }
         titleDay.setText(titleD);
 
         //주간/야간 활동량 00%
@@ -139,7 +145,7 @@ public class DayAct extends Fragment {
                 mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
             }
             //Log.d("DayAct","토탈밸류 소수: "+total.doubleValue());
-            percent = (total.doubleValue() / 6000.0) * 100;
+            percent = Math.round((total.doubleValue() / 6000.0) * 100);
             String dayP = "활동량 " + percent + "%";
             titlePercent.setText(dayP);
         //}
