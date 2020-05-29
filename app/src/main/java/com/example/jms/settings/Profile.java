@@ -55,7 +55,6 @@ public class Profile extends AppCompatActivity {
         birthT = (EditText)findViewById(R.id.editBirth);
         phoneT = (EditText)findViewById(R.id.editPhone);
         radioGroup = (RadioGroup)findViewById(R.id.editRadioGroup);
-        currPwdT = (EditText)findViewById(R.id.editCurrPwd);
         newPwdT = (EditText)findViewById(R.id.editNewPwd);
         chkPwdT = (EditText)findViewById(R.id.editChkPwd);
         editBtn = (Button)findViewById(R.id.editBtn);

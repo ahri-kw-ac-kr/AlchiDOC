@@ -53,29 +53,9 @@ public class DayAct extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.day_act, container, false);
-
         BarChart mBarChart = (BarChart) view.findViewById(R.id.bar);
-
         int pos = UserDataModel.currentP;
         UserDataModel user = UserDataModel.userDataModels[pos];
-
-        if(user.getTodayList()==null){
-            try { user.parsingDay(pos); } catch (ParseException e) { e.printStackTrace(); }
-        }
-
-        //else {
-        //합산 준비
-        Integer[] sumHour = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        Integer[][] hour = new Integer[24][];
-        for (int i = 0; i < user.getPerHour().size(); i++) {
-            hour[i] = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
-            for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
-                hour[i][j] = (int) user.getPerHour().get(i).get(j).getSteps();
-                Log.d("DayAct", "i: " + i + ", j: " + j + ", hour: " + hour[i][j]);
-                sumHour[i] += hour[i][j];
-            }
-            Log.d("DayAct", i + ", " + sumHour[i]);//합산 잘 되었는지 확인
-        }
 
         //현재시간
         Calendar calendar = Calendar.getInstance();
@@ -84,80 +64,36 @@ public class DayAct extends Fragment {
 
         //000님의 0월 0일
         titleDay = (TextView) view.findViewById(R.id.dayActDate);
-        if(pos == 0){
-            titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
-        }
-        else{
-            titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일";
-        }
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
         titleDay.setText(titleD);
 
-        //주간/야간 활동량 00%
+        // 활동량 00%(무조건 기준은 주간)
         titlePercent = (TextView) view.findViewById(R.id.dayActPercent);
+        percent = user.getStatAct().getDayPercent();
+        String dayP = "활동량 " + percent + "%";
+        titlePercent.setText(dayP);
 
-        //걸음수 구하는 곳
-        AtomicInteger total = new AtomicInteger();
-        Flowable<Integer> flowableS = Flowable.fromArray(sumHour).to(MathFlowable::sumInt);
-        flowableS.subscribe(sum -> {
-            total.set(sum);
-        }, Throwable::printStackTrace);
+        //걸음수
         totalT = (TextView) view.findViewById(R.id.dayActTotal);
-        totalT.setText(total.toString());
+        totalT.setText(""+user.getStatAct().getDaySum());
 
-        //칼로리 구하는 곳
-        int kal = total.intValue() / 30;
+        //칼로리
         kalT = (TextView) view.findViewById(R.id.dayActKal);
-        kalT.setText(Integer.toString(kal));
+        kalT.setText(""+user.getStatAct().getDayKal());
 
-        //주간일때
-        /*if (9 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 18) {
-            int sumD = 0;
-            for (int i = 9; i < 21; i++) {
-                if (9 <= i && i < 18) {//주간이므로 여기를 진하게
-                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-                    sumD += sumHour[i];
-                } else {//지금은 주간인데 야간이니까 여기를 연하게인데 생각해보니까 0이니까 안나올듯
-                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-                }
-            }
-            percent = Math.round((sumD / 6000.0) * 100);
-            String dayP = "주간 활동량 " + percent + "%";
-            titlePercent.setText(dayP);
-        }
-        //야간일때
-        else if (18 <= Integer.parseInt(curr.substring(9, 11)) || Integer.parseInt(curr.substring(9, 11)) < 21) {
-            int sumD = 0;
-            for (int i = 9; i < 21; i++) {
-                if (9 <= i && i < 18) {//지금은 야간인데 이건 주간이니까 연하게
-                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-                } else {//야간이므로 여기를 진하게
-                    mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-                    sumD += sumHour[i];
-                }
-            }
-            percent = (sumD / 2000.0) * 100;
-            String dayP = "야간 활동량 " + percent + "%";
-            titlePercent.setText(dayP);
-        }*/
-        //주간도 야간도 아닌 여기는 그냥 모두 진하게
-        //else {
-            for (int i = 9; i < 21; i++) {
-                mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
-            }
-            //Log.d("DayAct","토탈밸류 소수: "+total.doubleValue());
-            percent = Math.round((total.doubleValue() / 6000.0) * 100);
-            String dayP = "활동량 " + percent + "%";
-            titlePercent.setText(dayP);
-        //}
-
+        //그래프
+        for (int i = 9; i < 21; i++) { mBarChart.addBar(new BarModel(Integer.toString(i), user.getStatAct().getDaySumHour()[i], Color.parseColor("#5F9919"))); }
         mBarChart.startAnimation();
 
+
+        //코멘트
         if (percent < 100) {
             //부족
         } else {
             //충분
         }
-        //}
+
         return view;
     }
 }
