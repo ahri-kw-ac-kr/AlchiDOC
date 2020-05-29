@@ -116,6 +116,7 @@
                                 android:weightSum="1">
 
                                 <TextView
+                                    android:layout_weight="0.1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="■"
@@ -123,20 +124,21 @@
                                     android:textSize="18sp"></TextView>
 
                                 <TextView
-
+                                    android:layout_weight="0.2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center"
+                                    android:gravity="left"
                                     android:text=" 과다 "
                                     android:textColor="#5F5F5F"
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
-                                    android:gravity="left"
-                                    android:text=" 04일"
+                                    android:gravity="right"
+                                    android:text=" 4일"
                                     android:textColor="#5F5F5F"
                                     android:textSize="14sp"
                                     android:textStyle="bold"></TextView>
@@ -151,6 +153,7 @@
                                 android:weightSum="1">
 
                                 <TextView
+                                    android:layout_weight="0.1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="■"
@@ -158,18 +161,20 @@
                                     android:textSize="18sp"></TextView>
 
                                 <TextView
+                                    android:layout_weight="0.2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center"
+                                    android:gravity="left"
                                     android:text=" 충분 "
                                     android:textColor="#5F5F5F"
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
-                                    android:gravity="left"
+                                    android:gravity="right"
                                     android:text=" 10일"
                                     android:textColor="#5F5F5F"
                                     android:textSize="14sp"
@@ -185,6 +190,7 @@
                                 android:weightSum="1">
 
                                 <TextView
+                                    android:layout_weight="0.1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="■"
@@ -192,18 +198,20 @@
                                     android:textSize="18sp"></TextView>
 
                                 <TextView
+                                    android:layout_weight="0.2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center"
+                                    android:gravity="left"
                                     android:text=" 부족 "
                                     android:textColor="#5F5F5F"
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
-                                    android:gravity="left"
+                                    android:gravity="right"
                                     android:text=" 16일"
                                     android:textColor="#5F5F5F"
                                     android:textSize="14sp"
@@ -307,8 +315,6 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
-
-
 
                     <View
                         android:layout_gravity="center|top"
@@ -678,6 +684,3 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
