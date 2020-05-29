@@ -70,7 +70,7 @@ public class SamplePagerAdapter extends PagerAdapter {
                 tv.setText(RestfulAPI.principalUser.getFriend().get(position - 1).getFullname() + " 님");
                 if(UserDataModel.userDataModels[position].getGpsList().size()==0){
                     tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("위치공유를 허용하지 않았을 수도 있습니다."); }
+                    tv3.setText("위치공유를 허용하지 않았을 수도 있습니다"); }
                 else {
                     tv2.setText("" + UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
                     tv3.setText("" + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(0, 4) + "년 "
