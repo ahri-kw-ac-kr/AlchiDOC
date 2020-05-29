@@ -145,7 +145,7 @@ public class DayAct extends Fragment {
                 mBarChart.addBar(new BarModel(Integer.toString(i), sumHour[i], Color.parseColor("#5F9919")));
             }
             //Log.d("DayAct","토탈밸류 소수: "+total.doubleValue());
-            percent = (total.doubleValue() / 6000.0) * 100;
+            percent = Math.round((total.doubleValue() / 6000.0) * 100);
             String dayP = "활동량 " + percent + "%";
             titlePercent.setText(dayP);
         //}
