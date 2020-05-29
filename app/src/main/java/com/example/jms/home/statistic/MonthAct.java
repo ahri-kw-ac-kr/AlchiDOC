@@ -1,5 +1,6 @@
 package com.example.jms.home.statistic;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,11 +35,15 @@ public class MonthAct extends Fragment {
     TextView titlePercent;
     TextView avgT;
     TextView avgK;
+    TextView manyT;
+    TextView propT;
+    TextView lackT;
     String titleD;
 
     public MonthAct(){}
 
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +69,14 @@ public class MonthAct extends Fragment {
         int percent = user.getStatAct().getMonthPercent();
         String dayP = "활동량 " + percent + "%";
         titlePercent.setText(dayP);
+
+        //라벨 텍스트
+        manyT = (TextView)view.findViewById(R.id.monthActMany);
+        propT = (TextView)view.findViewById(R.id.monthActProp);
+        lackT = (TextView)view.findViewById(R.id.monthActLack);
+        manyT.setText(user.getStatAct().getMonthMany()+"일");
+        propT.setText(user.getStatAct().getMonthProper()+"일");
+        lackT.setText(user.getStatAct().getMonthLack()+"일");
 
         //걸음수
         avgT = (TextView) view.findViewById(R.id.monthActAvgS);

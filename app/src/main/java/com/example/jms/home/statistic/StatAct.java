@@ -182,23 +182,23 @@ public class StatAct {
             Log.d("StatAct-MonthAct", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
         }
 
-        //과다,충분,부족 별 날짜 개수
-        monthMany=0;
-        monthProper=0;
-        monthLack=0;
-
-        for(int i=0; i<31; i++){
-            if(sumDayMor[i]>=6000 && sumDayDin[i]<2000) { monthProper++; }
-            else if(sumDayMor[i]>=6000 && sumDayDin[i]>=2000) { monthMany++; }
-            else if(sumDayMor[i]<6000 && sumDayDin[i]<2000) { monthLack++; }
-            else if(sumDayMor[i]<6000 && sumDayDin[i]>=2000) { monthLack++; }
-        }
-
         //현재시간
         Calendar calendar = Calendar.getInstance(Locale.KOREA);
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
         String curr = transFormat.format(calendar.getTime());
         int thisDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        //과다,충분,부족 별 날짜 개수
+        monthMany=0;
+        monthProper=0;
+        monthLack=0;
+
+        for(int i=0; i<thisDay; i++){
+            if(sumDayMor[i]>=6000 && sumDayDin[i]<2000) { monthProper++; }
+            else if(sumDayMor[i]>=6000 && sumDayDin[i]>=2000) { monthMany++; }
+            else if(sumDayMor[i]<6000 && sumDayDin[i]<2000) { monthLack++; }
+            else if(sumDayMor[i]<6000 && sumDayDin[i]>=2000) { monthLack++; }
+        }
 
         //걸음수, 칼로리, 퍼센트 구하는 곳
         AtomicInteger total = new AtomicInteger();

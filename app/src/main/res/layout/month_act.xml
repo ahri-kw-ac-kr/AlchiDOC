@@ -132,6 +132,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthActMany"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
@@ -166,6 +167,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthActProp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
@@ -200,6 +202,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthActLack"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
