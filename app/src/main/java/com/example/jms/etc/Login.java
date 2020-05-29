@@ -208,18 +208,37 @@ public class Login extends AppCompatActivity {
             String date = transFormat.format(calendar.getTime());
             Date today = transFormat.parse(date);
             calendar.setTime(today);
-            String lastDate = String.valueOf(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-            lastDate = date.substring(0,6)+lastDate;
-            Log.d("MainActivity","오늘: "+date+"오늘1: "+today+", 이번달 마지막: "+lastDate);
+            String lastDate;
+            if(Integer.parseInt(date.substring(4,6))==12){
+                int year = Integer.parseInt(date.substring(0,4))+1;
+                lastDate = year+"0101";
+                Log.d("Login","다음달 첫날 확인 "+lastDate);
+            }else{
+                int month = Integer.parseInt(date.substring(4,6))+1;
+                lastDate = date.substring(0,4)+month+"01";
+                Log.d("Login","다음달 첫날 확인 "+lastDate);
+            }
+            //String lastDate = String.valueOf(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            //lastDate = date.substring(0,6)+lastDate;
+            Log.d("MainActivity","오늘: "+date+"오늘1: "+today+", 다음달 첫날: "+lastDate);
 
+            String weekCause;
             String month = date.substring(4,6);
-            if(month == "01"){ month = "12"; }
+            if(month == "01"){
+                int year = Integer.parseInt(date.substring(0,4))-1;
+                weekCause = year+"1223";
+            }
             else{
                 int monthI = Integer.parseInt(month)-1;
-                if(monthI < 10){ month = "0"+ monthI; }
-                else{ month = Integer.toString(monthI); }
+                if(monthI < 10){
+                    month = "0"+ monthI;
+                    weekCause = date.substring(0,4)+month+"23";
+                }
+                else{
+                    month = Integer.toString(monthI);
+                    weekCause = date.substring(0,4)+month+"23";
+                }
             }
-            String weekCause = date.substring(0,4)+month+"23";
             Log.d("Login","시작날짜: "+weekCause);
 
             AtomicInteger count = new AtomicInteger();

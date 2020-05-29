@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginRight="10dp"
-                    android:id="@+id/date"
+                    android:id="@+id/monthActDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -51,6 +51,7 @@
 
 
                 <TextView
+                    android:id="@+id/monthActPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -79,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/piechart"
+                        android:id="@+id/monthActPiechart"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
                         android:layout_gravity="center_vertical"
@@ -131,6 +132,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthActMany"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
@@ -165,6 +167,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthActProp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
@@ -199,6 +202,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthActLack"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
@@ -268,6 +272,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthActAvgS"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -319,6 +324,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthActAvgK"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

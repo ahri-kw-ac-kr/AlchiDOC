@@ -1,43 +1,98 @@
 package com.example.jms.home.statistic;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.home.UserDataModel;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MonthAct extends Fragment {
 
     View view;
+
+    TextView titleDay;
+    TextView titlePercent;
+    TextView avgT;
+    TextView avgK;
+    TextView manyT;
+    TextView propT;
+    TextView lackT;
+    String titleD;
+
     public MonthAct(){}
 
+
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.month_act, container, false);
+        PieChart pieChart = view.findViewById(R.id.monthActPiechart);
+        int pos = UserDataModel.currentP;
+        UserDataModel user = UserDataModel.userDataModels[pos];
 
+        //현재시간
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+        String curr = transFormat.format(calendar.getTime());
+        int thisMonth = Integer.parseInt(curr.substring(4,6));
+
+        //000님의 0월 전체 평균
+        titleDay = (TextView) view.findViewById(R.id.monthActDate);
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + thisMonth + "월 " + "전체 평균"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + thisMonth + "월 " + "전체 평균"; }
+        titleDay.setText(titleD);
+
+        //활동량 00%
+        titlePercent = (TextView) view.findViewById(R.id.monthActPercent);
+        int percent = user.getStatAct().getMonthPercent();
+        String dayP = "활동량 " + percent + "%";
+        titlePercent.setText(dayP);
+
+        //라벨 텍스트
+        manyT = (TextView)view.findViewById(R.id.monthActMany);
+        propT = (TextView)view.findViewById(R.id.monthActProp);
+        lackT = (TextView)view.findViewById(R.id.monthActLack);
+        manyT.setText(user.getStatAct().getMonthMany()+"일");
+        propT.setText(user.getStatAct().getMonthProper()+"일");
+        lackT.setText(user.getStatAct().getMonthLack()+"일");
+
+        //걸음수
+        avgT = (TextView) view.findViewById(R.id.monthActAvgS);
+        avgT.setText(""+user.getStatAct().getMonthAvg());
+
+        //칼로리
+        avgK = (TextView) view.findViewById(R.id.monthActAvgK);
+        avgK.setText(""+user.getStatAct().getMonthKal());
+
+        //그래프
         int[] colorArray = new int[] {Color.parseColor("#6EAD22"), Color.parseColor("#8bc34a"), Color.parseColor("#C0E296")};
 
-        PieChart pieChart = view.findViewById(R.id.piechart);
         ArrayList NoOfEmp = new ArrayList();
-
-        NoOfEmp.add(new Entry(4, 0));
-        NoOfEmp.add(new Entry(10, 1));
-        NoOfEmp.add(new Entry(16, 2));
-
+        NoOfEmp.add(new Entry(user.getStatAct().getMonthMany(), 0));
+        NoOfEmp.add(new Entry(user.getStatAct().getMonthProper(), 1));
+        NoOfEmp.add(new Entry(user.getStatAct().getMonthLack(), 2));
         PieDataSet dataSet = new PieDataSet(NoOfEmp, "");
 
         ArrayList name = new ArrayList();
