@@ -1,7 +1,9 @@
 package com.example.jms.settings;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,10 @@ public class Profile extends AppCompatActivity {
     EditText newPwdT;
     EditText chkPwdT;
     Button editBtn;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    String check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +83,6 @@ public class Profile extends AppCompatActivity {
                 String name = nameT.getText().toString();
                 String birth = birthT.getText().toString();
                 String phone = phoneT.getText().toString();
-                String currPwd = currPwdT.getText().toString();
                 String newPwd = newPwdT.getText().toString();
                 String chkPwd = chkPwdT.getText().toString();
 
@@ -94,17 +99,34 @@ public class Profile extends AppCompatActivity {
                 if(name.length()!=0){ user.setFullname(name); }
                 if(birth.length()!=0){ user.setBirth(birth); }
                 if(phone.length()!=0){ user.setPhone(phone); }
-                if(newPwd.length()!=0 && chkPwd.length()!=0 && newPwd.equals(chkPwd)){ user.setNewpassword(name); }
+                if(newPwd.length()!=0 && !newPwd.equals(chkPwd)){
+                    Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
+                if((newPwd.length()!=0 && newPwd.equals(chkPwd)) || (newPwd.length()==0 && chkPwd.length()==0)){
+                    user.setNewpassword(newPwd);
 
-                apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(result -> {
-                                    RestfulAPI.principalUser = result;
-                                    Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
-                                    onBackPressed();
-                                },
-                                Throwable::printStackTrace);
+                    Log.d("Profile",""+user.getNewpassword());
+                    sharedPreferences = getSharedPreferences("boot",0);
+                    editor = sharedPreferences.edit();
+                    check = sharedPreferences.getString("isCheck","");
+
+                    apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(result -> {
+                                        RestfulAPI.principalUser = result;
+                                        Log.d("Profile",""+result.getFullname());
+                                        if(check.equals("true")){
+                                            editor.putString("id", result.getUsername());
+                                            editor.putString("pwd", newPwd);
+                                            editor.putString("isCheck", "true");
+                                            editor.commit();
+                                        }
+                                        Toast.makeText(getApplicationContext(), "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                                        onBackPressed();
+                                    },
+                                    Throwable::printStackTrace);
+                }
             }
         });
 

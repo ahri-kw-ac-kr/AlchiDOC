@@ -16,7 +16,7 @@ public class UserDTO implements Serializable {
     private String birth;
     private String phone;
     private String password;
-    private String newpassword;
+    private String newPassword;
     private String number;
     private String sleep;
     private String wake;
@@ -24,7 +24,7 @@ public class UserDTO implements Serializable {
 
     public UserDTO(){    }
 
-    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newpassword, String number, String sleep, String wake, List<UserDTO> freind){
+    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newPassword, String number, String sleep, String wake, List<UserDTO> freind){
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -32,7 +32,7 @@ public class UserDTO implements Serializable {
         this.birth = birth;
         this.phone = phone;
         this.password = password;
-        this.newpassword = newpassword;
+        this.newPassword = newPassword;
         this.number = number;
         this.sleep = sleep;
         this.wake = wake;
@@ -60,8 +60,8 @@ public class UserDTO implements Serializable {
     public String getPassword() { return password; }
     public void setPassword(String password){ this.password = password; }
 
-    public String getNewpassword() { return newpassword; }
-    public void setNewpassword(String newpassword){ this.newpassword= newpassword; }
+    public String getNewpassword() { return newPassword; }
+    public void setNewpassword(String newPassword){ this.newPassword= newPassword; }
 
     public String getNumber() { return number; }
     public void setNumber(String number) { this.number = number; }
