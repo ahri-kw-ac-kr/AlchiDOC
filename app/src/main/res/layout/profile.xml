@@ -81,7 +81,7 @@
                         android:fontFamily="@font/nanumlight"
 
                         android:text="@string/sign_up2"
-                        android:textColor="#646464"
+                        android:textColor="#000000"
                         android:textSize="14sp"></TextView>
                     <EditText
                         android:id="@+id/editName"
@@ -100,27 +100,31 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_weight="7"
+                        android:layout_weight="5.5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:fontFamily="@font/nanumlight"
                         android:text="생년월일"
-                        android:textColor="#646464"
+                        android:textColor="#000000"
                         android:textSize="14sp"></TextView>
                     <EditText
+                        android:defaultFocusHighlightEnabled="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:id="@+id/editBirth"
                         android:layout_weight="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:inputType="textWebEmailAddress"
+                        android:layout_marginLeft="22dp"
                         android:textSize="12dp"></EditText>
                     <ImageView
+                        android:layout_marginRight="12dp"
+                        android:tint="#646464"
                         android:onClick="OnClickHandler"
                         android:id="@+id/birth_pick"
-                        android:tint="#646464"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/ic_event_note_black_24dp"
@@ -139,7 +143,7 @@
                         android:layout_marginLeft="12dp"
                         android:fontFamily="@font/nanumlight"
                         android:text="휴대전화"
-                        android:textColor="#646464"
+                        android:textColor="#000000"
                         android:textSize="14sp"></TextView>
                     <EditText
                         android:maxLength="11"
@@ -167,7 +171,7 @@
                         android:layout_marginLeft="12dp"
                         android:fontFamily="@font/nanumlight"
                         android:text="성별"
-                        android:textColor="#646464"
+                        android:textColor="#000000"
                         android:textSize="14sp"></TextView>
                     <RadioGroup
                         android:layout_weight="4"
@@ -259,7 +263,7 @@
                         android:layout_marginLeft="12dp"
                         android:fontFamily="@font/nanumlight"
                         android:text="새 비밀번호"
-                        android:textColor="#646464"
+                        android:textColor="#000000"
                         android:textSize="14sp"></TextView>
                     <EditText
                         android:id="@+id/editNewPwd"
@@ -283,7 +287,7 @@
                         android:layout_marginLeft="12dp"
                         android:fontFamily="@font/nanumlight"
                         android:text="비밀번호 확인"
-                        android:textColor="#646464"
+                        android:textColor="#000000"
                         android:textSize="14sp"></TextView>
                     <EditText
                         android:id="@+id/editChkPwd"
