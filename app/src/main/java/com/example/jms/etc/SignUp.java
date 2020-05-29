@@ -146,17 +146,10 @@ public class SignUp extends AppCompatActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(data -> {
-                                Log.d("SignUp",data.getUsername()+" 회원가입 완료");
-                                Intent intent = new Intent(getApplicationContext(),Login.class);
-                                startActivity(intent);
-                                //Handler handler = new Handler(Looper.getMainLooper());
-                                //handler.postDelayed(new Runnable() {
-                                //    @Override
-                                //    public void run() {
-                                        Toast.makeText(getApplicationContext(),
+                                Log.d("SignUp","회원가입 완료");
+                                Toast.makeText(getApplicationContext(),
                                                 "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                                //    }},0);
-                                finish();
+                                onBackPressed();
                         },
                             Throwable -> {
                                 if(Throwable instanceof HttpException){
@@ -173,7 +166,8 @@ public class SignUp extends AppCompatActivity {
                                     }
                                 }
                                 else{Log.d("회원가입",Throwable.getMessage());}
-                            });
+                            }
+                            );
         }
 
     }
