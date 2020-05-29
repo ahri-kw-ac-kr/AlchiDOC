@@ -19,9 +19,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.home.button.ActButtonActivity;
 import com.example.jms.home.button.LightButtonActivity;
 import com.example.jms.home.button.SleepButtonActivity;
+
+import java.text.ParseException;
 
 import cn.nightcode.sliderIndicator.SliderIndicator;
 
@@ -59,6 +62,12 @@ public class FragHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_home, container, false);
 
+        for(int i=0; i<RestfulAPI.principalUser.getFriend().size()+1; i++){
+            if(UserDataModel.userDataModels[i].getTodayList()==null){
+                try { UserDataModel.userDataModels[i].parsingDay(i); } catch (ParseException e) { e.printStackTrace(); }}
+        }
+
+
         //각 버튼 누르면 다른 페이지로 이동하는 역할!!
         button1 = (Button) view.findViewById(R.id.button1);
         button2 = (Button) view.findViewById(R.id.button2);
@@ -88,6 +97,8 @@ public class FragHome extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 UserDataModel.currentP = position;
+                if(UserDataModel.userDataModels[position].getStatAct().getDayPercent()<100){ button2.setText("활동량 부족"); }
+                else{ button2.setText("활동량 충분"); }
             }
 
             @Override
