@@ -73,8 +73,10 @@ public class WeekLight extends Fragment {
 
                 sumWeekLux[i] += weekLux[i][j]/user.getPerDay().get(i).size(); //size로 나눠서 하루동안 평균...
                 sumWeekTemp[i] += weekTemp[i][j]/user.getPerDay().get(i).size(); //size로 나눠서 하루동안 평균..
+
                 if(j>=9 && j<18){
                     weekDayLux[i] += weekLux[i][j];
+                    Log.d("WeekdayLux", weekDayLux[i]+"");
                 }
 
                 if(j>=18 && j<21){
@@ -105,10 +107,18 @@ public class WeekLight extends Fragment {
         avgT = (TextView) view.findViewById(R.id.weekLightPercent); // 상단 퍼센트
         avgT.setText("조도량  "+ sumWeekLux[thisWeek]/thisDay +"%");
 
+
+        for (int i = 0; i<=6; i++){
+            dL+=weekDayLux[i];
+            nL+=weekNightLux[i];
+            nK+=weekNightTemp[i];
+        }
         WeekDayLux = (TextView) view.findViewById(R.id.weeklux1);
         WeekNightLux = (TextView) view.findViewById(R.id.weeklux3);
         WeekNightTemp = (TextView) view.findViewById(R.id.weekK2);
-        WeekDayLux.setText(sum());
+        WeekDayLux.setText(dL/thisDay+"");
+        WeekNightLux.setText(nL/thisDay+"");
+        WeekNightTemp.setText(nK/thisDay+"");
 
 
 

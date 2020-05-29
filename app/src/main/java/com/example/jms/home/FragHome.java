@@ -19,7 +19,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
-import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.home.button.ActButtonActivity;
 import com.example.jms.home.button.LightButtonActivity;
 import com.example.jms.home.button.SleepButtonActivity;

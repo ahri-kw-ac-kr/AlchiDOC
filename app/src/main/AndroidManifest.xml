@@ -47,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".home.SleepTime"></activity>
         <activity android:name=".home.button.ActButtonActivity"/>
         <activity android:name=".home.button.LightButtonActivity"/>
         <activity android:name=".home.button.SleepButtonActivity"/>
@@ -62,7 +63,6 @@
         <activity android:name=".settings.Profile"/>
         <activity android:name=".settings.Terms"/>
         <activity android:name=".settings.Guide"/>
-        <activity android:name=".home.SleepTime"/>
         <activity android:name=".home.SleepActivity"
             android:launchMode="singleInstance"/>
     </application>
