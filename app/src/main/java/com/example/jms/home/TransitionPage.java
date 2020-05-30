@@ -49,6 +49,7 @@ public class TransitionPage extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         if (BleService.principalDevice != null && sleepDocViewModel.deviceCon()) {
+            Log.d("분석중","기기 있다");
             /////////////////기기데이터 받아오기//////////////////
             sleepDocViewModel.getRawdataFromSleepDoc()
                     .observeOn(Schedulers.io())
@@ -61,11 +62,12 @@ public class TransitionPage extends AppCompatActivity {
                         finish();
                     })
                     .subscribe(data -> {
+                        Log.d("SleepActivity","데이터 받아옴");
                         data.setUser(RestfulAPI.principalUser);
                         /////////////////받은 데이터 db로 전송//////////////////
                         apiViewModel.postRawdata(data)
                                 .observeOn(Schedulers.io())
-                                .subscribe(result2 -> {
+                                .doAfterTerminate(()->{
                                     /////////////////취침시간 동안의 데이터 갖고오기//////////////////
                                     apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
                                             .subscribeOn(Schedulers.io())
@@ -85,13 +87,18 @@ public class TransitionPage extends AppCompatActivity {
                                                             .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
                                                 }
                                                 Log.d("SleepActivity","데이터 "+data2.getContent());
-                                                }, Throwable::printStackTrace);/////api-getRawdataByID
+                                            }, Throwable::printStackTrace);/////api-getRawdataByID
+                                })//데이터 포스트 종료 후
+                                .subscribe(result2 -> {
+                                    Log.d("SleepActivity","raw데이터 포스트 완료");
+
                                 }, Throwable -> {
                                     Log.d("SleeActivity", "집어넣기 오류 " + Throwable.getMessage());
                                 });/////api = postRawdata
                     }, Throwable -> Log.d("SleeActivity", "데이터 불러오기 오류 " + Throwable.getMessage()));/////sleepDoc - getRawdataFromSleepDoc
         } //블루투스 연결 되어있을 때
         else {
+            Log.d("분석중","기기 없다");
             BleManager.getInstance().init(getApplication());
             /////////////////기기검색//////////////////
             bleViewModel.scanBle()
@@ -128,7 +135,7 @@ public class TransitionPage extends AppCompatActivity {
                                                     /////////////////받은 데이터 db로 전송//////////////////
                                                     apiViewModel.postRawdata(data)
                                                             .observeOn(Schedulers.io())
-                                                            .subscribe(result2 -> {
+                                                            .doAfterTerminate(()->{
                                                                 /////////////////취침시간 동안의 데이터 갖고오기//////////////////
                                                                 apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
                                                                         .subscribeOn(Schedulers.io())
@@ -148,8 +155,9 @@ public class TransitionPage extends AppCompatActivity {
                                                                                         .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
                                                                             }
                                                                             Log.d("SleepActivity","데이터 "+data2.getContent());
-                                                                            }, Throwable::printStackTrace);/////api-getRawdataByID
-                                                            }, Throwable -> {
+                                                                        }, Throwable::printStackTrace);/////api-getRawdataByID
+                                                            })
+                                                            .subscribe(result2 -> { }, Throwable -> {
                                                                 Log.d("SleeActivity", "집어넣기 오류 " + Throwable.getMessage());
                                                             });/////api = postRawdata
                                                 }, Throwable -> Log.d("SleeActivity", "데이터 불러오기 오류 " + Throwable.getMessage()));/////sleepDoc - getRawdataFromSleepDoc
