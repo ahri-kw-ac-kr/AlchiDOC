@@ -17,11 +17,13 @@ public class SleepDTO implements Serializable {
     private int light;
     private int turn;
     private int wake;
+    private int turnHour;
+    private int total;
     private UserDTO user;
 
     public SleepDTO(){    }
 
-    public SleepDTO(Long id, Date createdAt, String sleepTime, String wakeTime, int deep, int light, int turn, int wake, UserDTO user){
+    public SleepDTO(Long id, Date createdAt, String sleepTime, String wakeTime, int deep, int light, int turn, int wake, int turnHour, int total, UserDTO user){
         this.id = id;
         this.createdAt = createdAt;
         this.sleepTime = sleepTime;
@@ -30,6 +32,8 @@ public class SleepDTO implements Serializable {
         this.light = light;
         this.turn = turn;
         this.wake = wake;
+        this.turnHour = turnHour;
+        this.total = total;
         this.user = user;
     }
 
@@ -56,6 +60,12 @@ public class SleepDTO implements Serializable {
 
     public int getWake() { return wake; }
     public void setWake(int wake) { this.wake = wake; }
+
+    public int getTurnHour() { return turnHour; }
+    public void setTurnHour(int turnHour) { this.turnHour = turnHour; }
+
+    public int getTotal() { return total; }
+    public void setTotal(int total) { this.total = total; }
 
     public UserDTO getUser(){ return user;}
     public void setUser(UserDTO user){ this.user = user; }

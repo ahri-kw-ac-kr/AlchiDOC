@@ -20,6 +20,8 @@ import com.example.jms.connection.model.dto.SleepDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
+import com.example.jms.home.statistic.StatAct;
+import com.example.jms.home.statistic.StatSleep;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -60,6 +62,13 @@ public class TransitionPage extends AppCompatActivity {
             sleepDocViewModel.getRawdataFromSleepDoc()
                     .observeOn(Schedulers.io())
                     .subscribeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete(()->{
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        finish();
+                    })
                     .subscribe(data -> {
                         data.setUser(RestfulAPI.principalUser);
                         /////////////////받은 데이터 db로 전송//////////////////
@@ -74,6 +83,13 @@ public class TransitionPage extends AppCompatActivity {
                                                 if (data2.getContent() != null) {
                                                     UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
                                                     Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
+                                                    SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                                    sleepDTO1.setUser(RestfulAPI.principalUser);
+                                                    /////////////////분석결과 db에 저장//////////////////
+                                                    apiViewModel.postSleep(sleepDTO1)
+                                                            .subscribeOn(Schedulers.io())
+                                                            .observeOn(AndroidSchedulers.mainThread())
+                                                            .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
                                                 }
                                                 Log.d("SleepActivity","데이터 "+data2.getContent());
                                                 }, Throwable::printStackTrace);/////api-getRawdataByID
@@ -88,6 +104,13 @@ public class TransitionPage extends AppCompatActivity {
             bleViewModel.scanBle()
                     .observeOn(Schedulers.io())
                     .subscribeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete(()->{
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        finish();
+                    })
                     .subscribe(BleDeviceDTO->{
                         if (BleDeviceDTO.getName().equals("SleepDoc")) {
                             Log.d("SleepActivity","슬립닥 찾음");
@@ -121,6 +144,13 @@ public class TransitionPage extends AppCompatActivity {
                                                                             if (data2.getContent() != null) {
                                                                                 UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
                                                                                 Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
+                                                                                SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                                                                sleepDTO1.setUser(RestfulAPI.principalUser);
+                                                                                /////////////////분석결과 db에 저장//////////////////
+                                                                                apiViewModel.postSleep(sleepDTO1)
+                                                                                        .subscribeOn(Schedulers.io())
+                                                                                        .observeOn(AndroidSchedulers.mainThread())
+                                                                                        .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
                                                                             }
                                                                             Log.d("SleepActivity","데이터 "+data2.getContent());
                                                                             }, Throwable::printStackTrace);/////api-getRawdataByID
