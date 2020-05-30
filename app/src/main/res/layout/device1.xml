@@ -21,7 +21,6 @@
             android:elevation="1dp"
             android:fontFamily="@font/nanumextra"
             >
-
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
@@ -34,8 +33,6 @@
                 android:textStyle="bold"></TextView>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +52,7 @@
             android:fontFamily="@font/nanumregular"
             android:text="연결된 디바이스"
             android:textColor="#646464"
-            android:textSize="18sp"> </TextView>
+            android:textSize="20sp"> </TextView>
 
         <LinearLayout
             android:id="@+id/deviceList"
@@ -63,10 +60,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         </LinearLayout>
-
     </LinearLayout>
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bleRefactor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="112dp"
+        android:background="#ffffff"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        app:backgroundTint="#2B90D9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_refresh_black_24dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -74,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="34dp"
         android:background="#ffffff"
         android:backgroundTint="#ffffff"
         android:clickable="true"
