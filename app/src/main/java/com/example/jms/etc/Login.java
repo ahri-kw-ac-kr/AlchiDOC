@@ -211,11 +211,11 @@ public class Login extends AppCompatActivity {
             String lastDate;
             if(Integer.parseInt(date.substring(4,6))==12){
                 int year = Integer.parseInt(date.substring(0,4))+1;
-                lastDate = year+"0101";
+                lastDate = year+"0101 00:00:00";
                 Log.d("Login","다음달 첫날 확인 "+lastDate);
             }else{
                 int month = Integer.parseInt(date.substring(4,6))+1;
-                lastDate = date.substring(0,4)+month+"01";
+                lastDate = date.substring(0,4)+month+"01 00:00:00";
                 Log.d("Login","다음달 첫날 확인 "+lastDate);
             }
             //String lastDate = String.valueOf(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
@@ -232,11 +232,11 @@ public class Login extends AppCompatActivity {
                 int monthI = Integer.parseInt(month)-1;
                 if(monthI < 10){
                     month = "0"+ monthI;
-                    weekCause = date.substring(0,4)+month+"23";
+                    weekCause = date.substring(0,4)+month+"23 00:00:00";
                 }
                 else{
                     month = Integer.toString(monthI);
-                    weekCause = date.substring(0,4)+month+"23";
+                    weekCause = date.substring(0,4)+month+"23 00:00:00";
                 }
             }
             Log.d("Login","시작날짜: "+weekCause);
