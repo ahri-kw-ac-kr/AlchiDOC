@@ -3,6 +3,7 @@ package com.example.jms.home;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.home.button.ActButtonActivity;
 import com.example.jms.home.button.LightButtonActivity;
 import com.example.jms.home.button.SleepButtonActivity;
@@ -65,7 +67,6 @@ public class FragHome extends Fragment {
             if(UserDataModel.userDataModels[i].getTodayList()==null){
                 try { UserDataModel.userDataModels[i].parsingDay(i); } catch (ParseException e) { e.printStackTrace(); }}
         }
-
 
         //각 버튼 누르면 다른 페이지로 이동하는 역할!!
         button1 = (Button) view.findViewById(R.id.button1);
