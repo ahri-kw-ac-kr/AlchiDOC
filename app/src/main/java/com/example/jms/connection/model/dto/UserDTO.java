@@ -19,12 +19,12 @@ public class UserDTO implements Serializable {
     private String newPassword;
     private String number;
     private String sleep;
-    private String wake;
+    private String shareGPS;
     private List<UserDTO> friend;
 
     public UserDTO(){    }
 
-    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newPassword, String number, String sleep, String wake, List<UserDTO> freind){
+    public UserDTO(Long id, String username, String fullname, String sex, String birth, String phone, String password, String newPassword, String number, String sleep, String shareGPS, List<UserDTO> freind){
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -35,7 +35,7 @@ public class UserDTO implements Serializable {
         this.newPassword = newPassword;
         this.number = number;
         this.sleep = sleep;
-        this.wake = wake;
+        this.shareGPS = shareGPS;
         this.friend = freind;
     }
 
@@ -69,8 +69,8 @@ public class UserDTO implements Serializable {
     public String getSleep() { return sleep; }
     public void setSleep(String sleep) { this.sleep = sleep; }
 
-    public String getWake() { return wake; }
-    public void setWake(String wake) { this.wake = wake; }
+    public String getShareGPS() { return shareGPS; }
+    public void setShareGPS(String wake) { this.shareGPS = wake; }
 
     public List<UserDTO> getFriend() { return friend; }
     public void setFriend(){ this.friend = friend;}

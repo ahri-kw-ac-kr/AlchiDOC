@@ -85,6 +85,7 @@ public class SleepActivity extends AppCompatActivity {
                 Log.d("SleepActivity - end", endTime);
                 chronometer.stop();
 
+                /*
                 UserDTO user = new UserDTO();
                 user.setSleep(startTime);
                 user.setWake(endTime);
@@ -183,7 +184,7 @@ public class SleepActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }, Throwable::printStackTrace);
-
+*/
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(intent);

@@ -7,6 +7,7 @@ import com.example.jms.connection.model.RestfulAPIService;
 import com.example.jms.connection.model.dto.AuthDTO;
 import com.example.jms.connection.model.dto.GPSDTO;
 import com.example.jms.connection.model.dto.PageDTO;
+import com.example.jms.connection.model.dto.SleepDTO;
 import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
@@ -45,6 +46,10 @@ public class APIViewModel extends ViewModel {
 
     public Single<PageDTO<GPSDTO>> getGPSById(Long id, String page){
         return restfulAPIService.getGPSById(id, page);
+    }
+
+    public Single<PageDTO<SleepDTO>> getSleepById(Long id, String page){
+        return restfulAPIService.getSleepById(id, page);
     }
 
     public Single<UserDTO> postUser(UserDTO user){
@@ -131,5 +136,30 @@ public class APIViewModel extends ViewModel {
 
     public Single<RawdataDTO> deleteRawdata(Long id){
         return restfulAPIService.deleteRawdata(id);
+    }
+
+    /************************ Sleep ***********************/
+    public Single<PageDTO<SleepDTO>> getAllSleep() {
+        return restfulAPIService.getAllSleep();
+    }
+
+    public Single<SleepDTO> getSleep(Long id){
+        return restfulAPIService.getSleep(id);
+    }
+
+    public Single<SleepDTO> postSleep(SleepDTO sleep){
+        return restfulAPIService.postSleep(sleep);
+    }
+
+    public Single<SleepDTO> patchSleep(Long id, SleepDTO sleep){
+        return restfulAPIService.patchSleep(id, sleep);
+    }
+
+    public Single<List<SleepDTO>> patchAllSleep(List<SleepDTO> sleep){
+        return restfulAPIService.patchAllSleep(sleep);
+    }
+
+    public Single<SleepDTO> deleteSleep(Long id){
+        return restfulAPIService.deleteSleep(id);
     }
 }
