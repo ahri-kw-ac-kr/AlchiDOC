@@ -1,5 +1,6 @@
 package com.example.jms.home;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,8 +13,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.model.dto.UserDTO;
+import com.example.jms.connection.viewmodel.APIViewModel;
 
 import java.util.Calendar;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeChangedListener {
 
@@ -23,6 +30,8 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
     int setMin;
     Button button1;
     String AM_PM ;
+
+    APIViewModel apiViewModel = new APIViewModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,7 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
         //버전따라 사용되는 함수가 다름.
 
         button1.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("CheckResult")
             @Override
             public void onClick(View v) {
                 Log.e("TimePickerDemo",setHour+","+setMin);
@@ -50,6 +60,14 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
                     setHour = hourOfday;
                     setMin = minute;
                 }
+
+                UserDTO user = new UserDTO();
+                user.setSleep(Integer.toString(setHour)+Integer.toString(setMin));
+                apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(result->{RestfulAPI.principalUser = result;},Throwable::printStackTrace);
+
                 Toast.makeText(getApplicationContext(), "취침시간이 설정되었습니다. "+" "+setHour+"시"+setMin+"분", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SleepTime.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
