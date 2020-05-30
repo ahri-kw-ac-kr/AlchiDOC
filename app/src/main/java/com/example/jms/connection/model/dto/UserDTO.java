@@ -70,7 +70,7 @@ public class UserDTO implements Serializable {
     public void setSleep(String sleep) { this.sleep = sleep; }
 
     public String getShareGPS() { return shareGPS; }
-    public void setShareGPS(String wake) { this.shareGPS = wake; }
+    public void setShareGPS(String shareGPS) { this.shareGPS = shareGPS; }
 
     public List<UserDTO> getFriend() { return friend; }
     public void setFriend(){ this.friend = friend;}
