@@ -45,7 +45,12 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
             @Override
             public void onClick(View v) {
                 Log.e("TimePickerDemo",setHour+","+setMin);
-                Toast.makeText(getApplicationContext(), "취침시간이 설정되었습니다. "+AM_PM+" "+setHour+":"+setMin, Toast.LENGTH_LONG).show();
+                if (AM_PM == null && (setHour ==0 && setMin==0))
+                {
+                    setHour = hourOfday;
+                    setMin = minute;
+                }
+                Toast.makeText(getApplicationContext(), "취침시간이 설정되었습니다. "+" "+setHour+"시"+setMin+"분", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SleepTime.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
