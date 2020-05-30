@@ -29,6 +29,7 @@ public class UserDataModel {
     public static Context contextP;
 
     private List<RawdataDTO> dataList;
+    private List<RawdataDTO> sleepDataList;
     private List<RawdataDTO> todayList;
     private List<RawdataDTO> weekList;
     private List<RawdataDTO> monthList;
@@ -42,11 +43,12 @@ public class UserDataModel {
 
 
     public UserDataModel(){}
-    public UserDataModel(List<RawdataDTO> dataList, List<RawdataDTO> todayList, List<RawdataDTO> weekList, List<RawdataDTO> monthList,
+    public UserDataModel(List<RawdataDTO> dataList, List<RawdataDTO> sleepDataList, List<RawdataDTO> todayList, List<RawdataDTO> weekList, List<RawdataDTO> monthList,
                          List<List<RawdataDTO>> perHour, List<List<RawdataDTO>> perDay, List<List<RawdataDTO>> perMonthDay,
                          List<GPSDTO> gpsList, String addresses, int position,
                          StatAct statAct){
         this.dataList = dataList;
+        this.sleepDataList = sleepDataList;
         this.todayList = todayList;
         this.weekList = weekList;
         this.weekList = monthList;
@@ -60,6 +62,7 @@ public class UserDataModel {
     }
 
     public List<RawdataDTO> getDataList() { return dataList; }
+    public List<RawdataDTO> getSleepDataList() { return sleepDataList; }
     public List<RawdataDTO> getTodayList() { return todayList; }
     public List<RawdataDTO> getWeekList() { return weekList; }
     public List<RawdataDTO> getMonthList() { return monthList; }
@@ -72,6 +75,7 @@ public class UserDataModel {
     public void setStatAct(StatAct statAct) { this.statAct = statAct; }
 
     public void setDataList(List<RawdataDTO> dataList) { this.dataList = dataList; }
+    public void setSleepDataList(List<RawdataDTO> sleepDataList) { this.sleepDataList = sleepDataList; }
     public void setTodayList(List<RawdataDTO> todayList) { this.todayList = todayList; }
     public void setWeekList(List<RawdataDTO> weekList) { this.weekList = weekList; }
     public void setMonthList(List<RawdataDTO> monthList) { this.monthList = monthList; }
