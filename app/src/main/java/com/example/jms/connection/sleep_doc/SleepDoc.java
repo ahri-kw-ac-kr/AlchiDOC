@@ -41,6 +41,7 @@ import com.example.jms.connection.sleep_doc.uuid.CharacteristicUUID;
 import com.example.jms.connection.sleep_doc.uuid.DescriptorUUID;
 import com.example.jms.connection.sleep_doc.uuid.ServiceUUID;
 import com.example.jms.home.UserDataModel;
+import com.example.jms.settings.DeviceSet1;
 
 public class SleepDoc {
     private BleManager bleManager;
@@ -97,9 +98,11 @@ public class SleepDoc {
                     sysCmdChar = generalService.getCharacteristic(CharacteristicUUID.SYS_CMD);
 
                     //공장초기화
-                    //byte[] op = new byte[] {(byte)0x06};
-                    //sysCmdChar.setValue(op);
-                    //gatt.writeCharacteristic(sysCmdChar);
+                    if(DeviceSet1.refactorFlag){
+                        byte[] op = new byte[] {(byte)0x06};
+                        sysCmdChar.setValue(op);
+                        gatt.writeCharacteristic(sysCmdChar);
+                    }
 
                     setTimeAndZone(bleDevice);
                     Handler handler = new Handler(Looper.getMainLooper());

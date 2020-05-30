@@ -1,5 +1,6 @@
 package com.example.jms.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothClass;
 import android.content.Context;
@@ -23,6 +24,7 @@ import com.example.jms.R;
 import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.BleDeviceDTO;
+import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,14 +35,19 @@ import retrofit2.HttpException;
 public class DeviceSet1 extends AppCompatActivity {
 
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
+    BleViewModel bleViewModel = new BleViewModel();
     LinearLayout deviceList;
 
     FloatingActionButton fab;
+    FloatingActionButton refactor;
     DeviceSet3 myDevice;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+    public static boolean refactorFlag;
+
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,9 @@ public class DeviceSet1 extends AppCompatActivity {
         });
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        refactor = (FloatingActionButton)findViewById(R.id.bleRefactor);
+        refactor.setVisibility(View.GONE);
+
         sharedPreferences = getSharedPreferences("ble",0);
         editor = sharedPreferences.edit();
 
@@ -77,6 +87,7 @@ public class DeviceSet1 extends AppCompatActivity {
                             Log.d("DeviceSet1","배터리 실패");
                         });
                 fab.setVisibility(View.GONE);
+                refactor.setVisibility(View.VISIBLE);
                 Button btn = myDevice.button;
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -124,6 +135,50 @@ public class DeviceSet1 extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 Log.d("DeviceSet1","연결끊기 취소");
+            }
+        });
+        ad.show();
+    }
+
+    public void refactorBle(View view){
+        androidx.appcompat.app.AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setMessage("기기를 초기화 하시겠습니까?");
+        ad.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @SuppressLint("CheckResult")
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "초기화 중입니다. 잠시만 기다려주세요.", Toast.LENGTH_SHORT).show();
+                sleepDocViewModel.disconnect();
+                refactorFlag = true;
+                sleepDocViewModel.connectSleepDoc(BleService.principalDevice.getMacAddress())
+                        .observeOn(Schedulers.io())
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .doOnComplete(() -> { Log.i("DeviceSet1", "on Complete"); })
+                        .subscribe(()->{
+                            sleepDocViewModel.disconnect();
+                            refactorFlag = false;
+                            sleepDocViewModel.connectSleepDoc(BleService.principalDevice.getMacAddress())
+                                    .observeOn(Schedulers.io())
+                                    .subscribeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(()->{
+                                        Toast.makeText(getApplicationContext(),
+                                                "초기화가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                    },Throwable -> {
+                                        Toast.makeText(getApplicationContext(),
+                                                "초기화를 실패했습니다.", Toast.LENGTH_SHORT).show(); });
+                        },Throwable::printStackTrace);
+
+                dialog.dismiss();
+                fab.setVisibility(View.GONE);
+                Log.d("DeviceSet1","공장 초기화");
+            }
+        });
+
+        ad.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Log.d("DeviceSet1","공장 초기화 취소");
             }
         });
         ad.show();

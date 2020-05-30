@@ -72,6 +72,7 @@ public class DeviceSet2 extends AppCompatActivity {
                     Log.d("Device2","1차성공 후 "+BleDeviceDTO.getName());
                     if (BleDeviceDTO.getName().equals("SleepDoc")) {
                         Log.d("Device2","슬립닥 찾음");
+                        DeviceSet1.refactorFlag = false;
                         sleepDocViewModel.connectSleepDoc(BleDeviceDTO.getMacAddress())
                                 .observeOn(Schedulers.io())
                                 .subscribeOn(AndroidSchedulers.mainThread())
