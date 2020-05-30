@@ -81,16 +81,21 @@ public class WeekAct extends Fragment {
         for(int i=0; i<7; i++){
             if(user.getStatAct().getWeekSumSun()[i]<6000 && user.getStatAct().getWeekSumMoon()[i]<2000){ //주간부족, 야간적정 -> 부족
                 mBarChart.addBar(new BarModel(str[i], user.getStatAct().getWeekSumDay()[i], Color.parseColor("#CAEBA2")));
+                Log.d("weekAct",i+" 주간: "+user.getStatAct().getWeekSumSun()[i]+", 야간:"+user.getStatAct().getWeekSumMoon()[i]);
             }
             else if(user.getStatAct().getWeekSumSun()[i]>=6000 && user.getStatAct().getWeekSumMoon()[i]<2000){ //주간충분, 야간적정 -> 충분
                 mBarChart.addBar(new BarModel(str[i], user.getStatAct().getWeekSumDay()[i], Color.parseColor("#8CCA45")));
+                Log.d("weekAct",i+" 주간: "+user.getStatAct().getWeekSumSun()[i]+", 야간:"+user.getStatAct().getWeekSumMoon()[i]);
             }
             else if(user.getStatAct().getWeekSumSun()[i]>=6000 && user.getStatAct().getWeekSumMoon()[i]>=2000){ //주간충분, 야간과다 -> 과다
                 mBarChart.addBar(new BarModel(str[i], user.getStatAct().getWeekSumDay()[i], Color.parseColor("#5F9919")));
+                Log.d("weekAct",i+" 주간: "+user.getStatAct().getWeekSumSun()[i]+", 야간:"+user.getStatAct().getWeekSumMoon()[i]);
             }
             else if(user.getStatAct().getWeekSumSun()[i]<6000 && user.getStatAct().getWeekSumMoon()[i]>=2000){ //주간부족, 야간과다 -> 부족
                 mBarChart.addBar(new BarModel(str[i], user.getStatAct().getWeekSumDay()[i], Color.parseColor("#CAEBA2")));
+                Log.d("weekAct",i+" 주간: "+user.getStatAct().getWeekSumSun()[i]+", 야간:"+user.getStatAct().getWeekSumMoon()[i]);
             }
+            //else if()
         }
         mBarChart.startAnimation();
 

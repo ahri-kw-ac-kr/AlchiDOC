@@ -3,6 +3,7 @@ package com.example.jms.home.statistic;
 import android.util.Log;
 
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
+import com.example.jms.home.UserDataModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -132,17 +133,26 @@ public class StatAct {
         for (int i = 0; i < perDay.size(); i++) {
             day[i] = new Integer[150];
             for (int j = 0; j < perDay.get(i).size(); j++) {
+                long time = (long) perDay.get(i).get(j).getStartTick()*1000;
+                SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+                String date = transFormat.format(time);
+                String hour = date.substring(9,11);
+                int hourI = Integer.parseInt(hour);
+
                 day[i][j] = (int) perDay.get(i).get(j).getSteps();
                 Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + day[i][j]);
-                if(j>=9 && j<18){sumDayMor[i]+=day[i][j];}
-                if(j>=18 && j<21){sumDayDin[i]+=day[i][j];}
+                if(hourI>=9 && hourI<18){sumDayMor[i]+=day[i][j];}
+                if(hourI>=18 && hourI<21){sumDayDin[i]+=day[i][j];}
                 sumDay[i] += day[i][j];
             }
             Log.d("StatAct-WeekAct", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
         }
         weekSumDay = sumDay;
+        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumDay(sumDay);
         weekSumSun = sumDayMor;
+        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumSun(sumDayMor);
         weekSumMoon = sumDayDin;
+        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumMoon(sumDayDin);
 
         //현재시간
         Calendar calendar = Calendar.getInstance(Locale.KOREA);
@@ -178,9 +188,14 @@ public class StatAct {
             day[i] = new Integer[150];
             for (int j = 0; j < perDay.get(i).size(); j++) {
                 day[i][j] = (int) perDay.get(i).get(j).getSteps();
-                Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + day[i][j]);
-                if(j>=9 && j<18){sumDayMor[i]+=day[i][j];}
-                if(j>=18 && j<21){sumDayDin[i]+=day[i][j];}
+                Log.d("MonthAct", "i: " + i + ", j: " + j + ", day: " + day[i][j]);
+                long time = (long) perDay.get(i).get(j).getStartTick()*1000;
+                SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+                String date = transFormat.format(time);
+                String hour = date.substring(9,11);
+                int hourI = Integer.parseInt(hour);
+                if(hourI>=9 && hourI<18){sumDayMor[i]+=day[i][j];}
+                if(hourI>=18 && hourI<21){sumDayDin[i]+=day[i][j];}
                 sumDay[i] += day[i][j];
             }
             Log.d("StatAct-MonthAct", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
