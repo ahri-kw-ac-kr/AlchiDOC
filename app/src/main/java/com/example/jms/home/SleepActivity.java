@@ -3,32 +3,25 @@ package com.example.jms.home;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.clj.fastble.BleManager;
 import com.example.jms.R;
-import com.example.jms.connection.model.BleService;
-import com.example.jms.connection.model.RestfulAPI;
-import com.example.jms.connection.model.dto.BleDeviceDTO;
-import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /*
 * foreground service 참고링크
@@ -41,6 +34,7 @@ public class SleepActivity extends AppCompatActivity {
 
     Button sleepEnd;
     String startTime, endTime;
+    Long calcTime;
     Chronometer chronometer;
     long stopTime = 0;
 
@@ -63,8 +57,8 @@ public class SleepActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("ble",0);
         editor = sharedPreferences.edit();
 
-        sleepEnd = (Button) findViewById(R.id.sleep_end);
-        chronometer = (Chronometer) findViewById(R.id.ellapse);
+        sleepEnd =  findViewById(R.id.sleep_end);
+        chronometer = findViewById(R.id.ellapse);
         Intent intent = new Intent(this, SleepService.class);
         intent.setAction("startForeground"); //포그라운드 서비스 실행
 
@@ -84,6 +78,34 @@ public class SleepActivity extends AppCompatActivity {
                 endTime = simpleDateFormat.format(eDate);
                 Log.d("SleepActivity - end", endTime);
                 chronometer.stop();
+
+                try {
+                    //초단위로 계산되는 시간 차이
+                    calcTime = (simpleDateFormat.parse(endTime).getTime()-simpleDateFormat.parse(startTime).getTime())/1000;
+                    Log.e("SleepActivity",calcTime+"");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if (calcTime < 3600 ) {
+                    Toast.makeText(getApplicationContext(), "30분 미만의 수면기록은 기록되지 않습니다.", Toast.LENGTH_LONG).show();
+                    stopService(intent);
+                    Intent intent2 = new Intent(SleepActivity.this, MainActivity.class);
+                    intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent2);
+                    finish();
+                }
+                //calctime이 30분 이상일경우
+                else{
+                    stopService(intent);
+                    Intent intent1 = new Intent(SleepActivity.this, TransitionPage.class);
+                    startActivity(intent1);
+                    finish();
+                }
+
+
+
 
                 /*
                 UserDTO user = new UserDTO();
@@ -176,7 +198,7 @@ public class SleepActivity extends AppCompatActivity {
                             }//블루투스 연결 안되어있을 때 else
 
 
-
+                            //위에서 사용이 필요해 아래 6줄 복붙해서 위에 있음
                             stopService(intent);
                             Intent intent = new Intent(SleepActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -186,9 +208,10 @@ public class SleepActivity extends AppCompatActivity {
                         }, Throwable::printStackTrace);
 */
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(intent);
-                } else { startService(intent); }
+                /*밑에 세줄 사용하니까 재시작됨 그래서 주석처리해뒀음 */
+                //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                   // startForegroundService(intent);
+                //} else { startService(intent); }
 
             }//onClick
         });//ClickListener
