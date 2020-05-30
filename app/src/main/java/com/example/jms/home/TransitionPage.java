@@ -28,9 +28,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TransitionPage extends AppCompatActivity {
 
-    Button triggerButton;
-    TextView tv;
-
     APIViewModel apiViewModel = new APIViewModel();
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
     BleViewModel bleViewModel = new BleViewModel();
@@ -44,19 +41,13 @@ public class TransitionPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transition_page); //승은이가 올려준 액티비티가 나오도록.
 
-        triggerButton = findViewById(R.id.trigger);
-        tv = findViewById(R.id.textView3);
-
         SleepDTO sleepDTO = new SleepDTO();
         sleepDTO.setSleepTime(SleepActivity.start);
         sleepDTO.setWakeTime(SleepActivity.end);
 
-        ///////취침, 기상시간 db저장///////
-        /*apiViewModel.patchUser(RestfulAPI.principalUser.getId(), user)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    RestfulAPI.principalUser = result;*/
+        sharedPreferences = getSharedPreferences("ble",0);
+        editor = sharedPreferences.edit();
+
         if (BleService.principalDevice != null && sleepDocViewModel.deviceCon()) {
             /////////////////기기데이터 받아오기//////////////////
             sleepDocViewModel.getRawdataFromSleepDoc()
@@ -84,6 +75,8 @@ public class TransitionPage extends AppCompatActivity {
                                                     UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
                                                     Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
                                                     SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                                    sleepDTO1.setSleepTime(SleepActivity.start);
+                                                    sleepDTO1.setWakeTime(SleepActivity.end);
                                                     sleepDTO1.setUser(RestfulAPI.principalUser);
                                                     /////////////////분석결과 db에 저장//////////////////
                                                     apiViewModel.postSleep(sleepDTO1)
@@ -145,6 +138,8 @@ public class TransitionPage extends AppCompatActivity {
                                                                                 UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
                                                                                 Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
                                                                                 SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                                                                sleepDTO1.setSleepTime(SleepActivity.start);
+                                                                                sleepDTO1.setWakeTime(SleepActivity.end);
                                                                                 sleepDTO1.setUser(RestfulAPI.principalUser);
                                                                                 /////////////////분석결과 db에 저장//////////////////
                                                                                 apiViewModel.postSleep(sleepDTO1)
@@ -162,32 +157,6 @@ public class TransitionPage extends AppCompatActivity {
                         }//검색 후 슬립닥 있을 경우 if
                     },Throwable::printStackTrace);//ble 검색 끝
         }//블루투스 연결 안되어있을 때 else
-
-/*
-                    //위에서 사용이 필요해 아래 6줄 복붙해서 위에 있음
-                    stopService(intent);
-                    Intent intent = new Intent(SleepActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    finish();
-                }, Throwable::printStackTrace);*/
-
-
-
-
-
-        triggerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
-
 
     }
 }
