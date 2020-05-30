@@ -14,11 +14,14 @@ import hu.akarnokd.rxjava2.math.MathFlowable;
 import io.reactivex.Flowable;
 
 public class StatAct {
+
+    /*일간*/
     private Integer[] daySumHour;
     private int daySum;
     private int dayKal;
     private int dayPercent;
 
+    /*주간*/
     private Integer[] weekSumDay;
     private Integer[] weekSumSun;
     private Integer[] weekSumMoon;
@@ -26,6 +29,7 @@ public class StatAct {
     private int weekKal;
     private int weekPercent;
 
+    /*월간*/
     private int monthMany;
     private int monthProper;
     private int monthLack;
