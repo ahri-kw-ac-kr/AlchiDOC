@@ -38,6 +38,9 @@ public class SleepActivity extends AppCompatActivity {
     Chronometer chronometer;
     long stopTime = 0;
 
+    public static String start;
+    public static String end;
+
     APIViewModel apiViewModel = new APIViewModel();
     SleepDocViewModel sleepDocViewModel = new SleepDocViewModel();
     BleViewModel bleViewModel = new BleViewModel();
@@ -67,6 +70,7 @@ public class SleepActivity extends AppCompatActivity {
 
         Date sDate = new Date(System.currentTimeMillis());
         startTime = simpleDateFormat.format(sDate);
+        start = startTime;
         Log.d("SleepActivity - start",startTime);
 
         sleepEnd.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +80,7 @@ public class SleepActivity extends AppCompatActivity {
 
                 Date eDate = new Date(System.currentTimeMillis());
                 endTime = simpleDateFormat.format(eDate);
+                end = endTime;
                 Log.d("SleepActivity - end", endTime);
                 chronometer.stop();
 
@@ -88,7 +93,7 @@ public class SleepActivity extends AppCompatActivity {
                 }
 
                 if (calcTime < 3600 ) {
-                    Toast.makeText(getApplicationContext(), "30분 미만의 수면기록은 기록되지 않습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "30분 미만의 수면은 기록되지 않습니다.", Toast.LENGTH_LONG).show();
                     stopService(intent);
                     Intent intent2 = new Intent(SleepActivity.this, MainActivity.class);
                     intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

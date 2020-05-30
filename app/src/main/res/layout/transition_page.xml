@@ -21,7 +21,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="수면시간을 기록중입니다."
+        android:text="수면을 분석하고 있습니다\n잠시만 기다려 주세요"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="233dp" />
