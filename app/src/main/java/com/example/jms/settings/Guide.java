@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.jms.R;
 
 public class Guide extends AppCompatActivity {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +23,5 @@ public class Guide extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
 }
