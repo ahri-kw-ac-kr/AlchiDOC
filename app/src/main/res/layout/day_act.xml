@@ -141,7 +141,7 @@
                             android:drawableLeft="@drawable/ic_sprint"
                             android:drawablePadding="5dp"
                             android:fontFamily="@font/nanumbold"
-                            android:text="걸음수"
+                            android:text="@string/steps"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
                             android:textSize="18sp"
@@ -164,7 +164,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="걸음"
+                            android:text="@string/step"
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -216,7 +216,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="kcal"
+                            android:text="@string/kcal"
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -317,7 +317,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="저녁 활동량"
+                            android:text="@string/act6"
                             android:textAlignment="viewStart"
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
