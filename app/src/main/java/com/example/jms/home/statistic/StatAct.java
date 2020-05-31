@@ -37,12 +37,14 @@ public class StatAct {
     private int monthAvg;
     private int monthKal;
     private int monthPercent;
+    private Integer[] monthSumSun;
+    private Integer[] monthSumMoon;
 
 
     public StatAct(){}
     public StatAct(Integer[] daySumHour, int daySum, int dayKal, int dayPercent,
                    Integer[] weekSumDay, Integer[] weekSumSun, Integer[] weekSumMoon, int weekAvg, int weekKal, int weekPercent,
-                   int monthMany, int monthProper, int monthLack, int monthAvg, int monthKal, int monthPercent){
+                   int monthMany, int monthProper, int monthLack, int monthAvg, int monthKal, int monthPercent, Integer[] monthSumSun, Integer[] monthSumMoon){
         this.daySumHour = daySumHour;
         this.daySum = daySum;
         this.dayKal = dayKal;
@@ -60,6 +62,8 @@ public class StatAct {
         this.monthLack = monthLack;
         this.monthKal = monthKal;
         this.monthPercent = monthPercent;
+        this.monthSumMoon = monthSumMoon;
+        this.monthSumSun = monthSumSun;
     }
 
     public Integer[] getDaySumHour() { return daySumHour; }
@@ -78,6 +82,8 @@ public class StatAct {
     public int getMonthAvg() { return monthAvg; }
     public int getMonthKal() { return monthKal; }
     public int getMonthPercent() { return monthPercent; }
+    public Integer[] getMonthSumSun() { return monthSumSun; }
+    public Integer[] getMonthSumMoon() { return monthSumMoon; }
 
     public void setDaySumHour(Integer[] daySumHour) { this.daySumHour = daySumHour; }
     public void setDaySum(int daySum) { this.daySum = daySum; }
@@ -95,6 +101,8 @@ public class StatAct {
     public void setMonthAvg(int weekAvg) { this.monthAvg = monthAvg; }
     public void setMonthKal(int weekKal) { this.monthKal = monthKal; }
     public void setMonthPercent(int weekPercent) { this.monthPercent = monthPercent; }
+    public void setMonthSumSun(Integer[] monthSumSun) { this.monthSumSun = monthSumSun; }
+    public void setMonthSumMoon(Integer[] monthSumMoon) { this.monthSumMoon = monthSumMoon; }
 
     private void day(List<List<RawdataDTO>> perHour){
         //합산 준비
@@ -200,6 +208,8 @@ public class StatAct {
             }
             Log.d("StatAct-MonthAct", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
         }
+        monthSumSun = sumDayMor;
+        monthSumMoon = sumDayDin;
 
         //현재시간
         Calendar calendar = Calendar.getInstance(Locale.KOREA);

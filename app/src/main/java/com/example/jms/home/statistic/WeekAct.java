@@ -95,18 +95,31 @@ public class WeekAct extends Fragment {
                 mBarChart.addBar(new BarModel(str[i], user.getStatAct().getWeekSumDay()[i], Color.parseColor("#CAEBA2")));
                 Log.d("weekAct",i+" 주간: "+user.getStatAct().getWeekSumSun()[i]+", 야간:"+user.getStatAct().getWeekSumMoon()[i]);
             }
-            //else if()
         }
         mBarChart.startAnimation();
 
-        /*
-        mBarChart.addBar(new BarModel("월", 0.5f, Color.parseColor("#CAEBA2")));
-        mBarChart.addBar(new BarModel("화", 0.8f, Color.parseColor("#CAEBA2")));
-        mBarChart.addBar(new BarModel("수", 1.2f, Color.parseColor("#8CCA45")));
-        mBarChart.addBar(new BarModel("목", 2.1f, Color.parseColor("#8CCA45")));
-        mBarChart.addBar(new BarModel("금", 3.3f, Color.parseColor("#5F9919")));
-        mBarChart.addBar(new BarModel("토", 2.4f, Color.parseColor("#8CCA45")));
-        mBarChart.addBar(new BarModel("일", 3.1f, Color.parseColor("#5F9919")));*/
+        //////////코멘트///////////
+        int sun = 0;
+        int moon = 0;
+        for(int i=0; i<thisDay; i++){
+            sun += user.getStatAct().getWeekSumSun()[i];
+            moon +=user.getStatAct().getWeekSumMoon()[i];
+        }
+        //주간코멘트
+        if(sun >= 6000){
+            //충분
+        }
+        else{
+            //부족
+        }
+
+        //야간코멘트
+        if(moon <=2000){
+            //적정
+        }
+        else{
+            //과다
+        }
 
 
         return view;

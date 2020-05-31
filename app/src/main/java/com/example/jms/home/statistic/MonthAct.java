@@ -120,6 +120,30 @@ public class MonthAct extends Fragment {
         dataSet.setColors(colorArray);
         pieChart.animateXY(5000, 5000);
 
+
+        //////////코멘트///////////
+        int sun = 0;
+        int moon = 0;
+        for(int i=0; i<Integer.parseInt(curr.substring(6)); i++){
+            sun += user.getStatAct().getMonthSumSun()[i];
+            moon +=user.getStatAct().getMonthSumMoon()[i];
+        }
+        //주간코멘트
+        if(sun >= 6000){
+            //충분
+        }
+        else{
+            //부족
+        }
+
+        //야간코멘트
+        if(moon <=2000){
+            //적정
+        }
+        else{
+            //과다
+        }
+
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)
         참고 사이트:
         https://github.com/PhilJay/MPAndroidChart/wiki/Dynamic-&-Realtime-Data
