@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ import io.reactivex.Flowable;
 
 public class DayAct extends Fragment {
 
+    ImageView face1, face2, face3;
+    TextView state1, state2, state3;
     TextView dayActPlan1;
     TextView dayActPlan2;
     TextView dayActPlan3;
@@ -88,14 +91,24 @@ public class DayAct extends Fragment {
         dayActPlan1 = (TextView) view.findViewById(R.id.dayActPlan1);
         dayActPlan2 = (TextView) view.findViewById(R.id.dayActPlan2);
         dayActPlan3 = (TextView) view.findViewById(R.id.dayActPlan3);
+        face1 = (ImageView) view.findViewById(R.id.face1);
+        face2 = (ImageView) view.findViewById(R.id.face2);
+        face3 = (ImageView) view.findViewById(R.id.face3);
+        state1 = (TextView) view.findViewById(R.id.state1);
+        state2 = (TextView) view.findViewById(R.id.state2);
+        state3 = (TextView) view.findViewById(R.id.state3);
 
         //주간 코멘트
         if (percent < 100) {
             //부족
             dayActPlan1.setText(R.string.dayActComment2);
+            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state1.setText(R.string.bad);
         } else {
             //충분
             dayActPlan1.setText(R.string.dayActComment1);
+            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state1.setText(R.string.good);
         }
 
         int currHour = Integer.parseInt(curr.substring(9,11)); //현재 시
@@ -120,10 +133,14 @@ public class DayAct extends Fragment {
                 if(dinnerFlag == 1){
                     //////////////////////저녁 과다
                     dayActPlan2.setText(R.string.dayActComment3);
+                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state2.setText(R.string.exceed);
                 }
                 else{
                     ///////////////////////저녁 적정
                     dayActPlan2.setText(R.string.dayActComment4);
+                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state2.setText(R.string.good);
                 }
             }
             else{ dayActPlan2.setText("\n"); }
@@ -141,10 +158,14 @@ public class DayAct extends Fragment {
                 if(eveningFlag == 1){
                     ////////////////////야간 과다
                     dayActPlan3.setText(R.string.dayActComment5);
+                    face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state3.setText(R.string.exceed);
                 }
                 else{
                     //////////////////////야간 적정
                     dayActPlan3.setText(R.string.dayActComment6);
+                    face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state3.setText(R.string.good);
                 }
             }
             else{ dayActPlan3.setText("\n"); }
@@ -166,10 +187,14 @@ public class DayAct extends Fragment {
                 if(dinnerFlag == 1){
                     //////////////////저녁 과다
                     dayActPlan2.setText(R.string.dayActComment3);
+                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state2.setText(R.string.exceed);
                 }
                 else{
                     //////////////////저녁 적정
                     dayActPlan2.setText(R.string.dayActComment4);
+                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state2.setText(R.string.good);
                 }
             }
             else{ dayActPlan2.setText("\n"); }
@@ -187,10 +212,14 @@ public class DayAct extends Fragment {
                 if(eveningFlag == 1){
                     /////////////////야간 과다
                     dayActPlan3.setText(R.string.dayActComment5);
+                    face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state3.setText(R.string.exceed);
                 }
                 else{
                     /////////////////야간 적정
                     dayActPlan3.setText(R.string.dayActComment6);
+                    face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state3.setText(R.string.good);
                 }
             }
             else{ dayActPlan3.setText("\n"); }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ import java.util.Locale;
 
 public class MonthAct extends Fragment {
 
+    ImageView face1, face2;
+    TextView state1, state2;
     View view;
     TextView monthActPlan1;
     TextView monthActPlan2;
@@ -123,6 +126,10 @@ public class MonthAct extends Fragment {
         //////////코멘트///////////
         monthActPlan1 = (TextView) view.findViewById(R.id.monthActPlan1);
         monthActPlan2 = (TextView) view.findViewById(R.id.monthActPlan2);
+        face1 = (ImageView) view.findViewById(R.id.face1);
+        face2 = (ImageView) view.findViewById(R.id.face2);
+        state1 = (TextView) view.findViewById(R.id.state1);
+        state2 = (TextView) view.findViewById(R.id.state2);
 
         int sun = 0;
         int moon = 0;
@@ -134,20 +141,28 @@ public class MonthAct extends Fragment {
         if(sun >= 6000){
             //충분
             monthActPlan1.setText(R.string.monthActComment1);
+            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state1.setText(R.string.good);
         }
         else{
             //부족
             monthActPlan1.setText(R.string.monthActComment2);
+            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state1.setText(R.string.bad);
         }
 
         //야간코멘트
         if(moon <=2000){
             //적정
             monthActPlan2.setText(R.string.monthActComment4);
+            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state2.setText(R.string.good);
         }
         else{
             //과다
             monthActPlan2.setText(R.string.monthActComment3);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.exceed);
         }
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)

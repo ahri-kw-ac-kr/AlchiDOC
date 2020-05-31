@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ import io.reactivex.Flowable;
 
 public class WeekAct extends Fragment {
 
+    ImageView face1, face2;
+    TextView state1, state2;
     View view;
     TextView weekActPlan1;
     TextView weekActPlan2;
@@ -101,6 +104,10 @@ public class WeekAct extends Fragment {
         //////////코멘트///////////
         weekActPlan1 = (TextView) view.findViewById(R.id.weekActPlan1);
         weekActPlan2 = (TextView) view.findViewById(R.id.weekActPlan2);
+        face1 = (ImageView) view.findViewById(R.id.face1);
+        face2 = (ImageView) view.findViewById(R.id.face2);
+        state1 = (TextView) view.findViewById(R.id.state1);
+        state2 = (TextView) view.findViewById(R.id.state2);
 
         int sun = 0;
         int moon = 0;
@@ -112,20 +119,28 @@ public class WeekAct extends Fragment {
         if(sun >= 6000){
             //충분
             weekActPlan1.setText(R.string.weekActComment1);
+            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state1.setText(R.string.good);
         }
         else{
             //부족
             weekActPlan1.setText(R.string.weekActComment2);
+            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state1.setText(R.string.bad);
         }
 
         //야간코멘트
         if(moon <=2000){
             //적정
             weekActPlan2.setText(R.string.weekActComment4);
+            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state2.setText(R.string.good);
         }
         else{
             //과다
             weekActPlan2.setText(R.string.weekActComment3);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.exceed);
         }
         return view;
     }
