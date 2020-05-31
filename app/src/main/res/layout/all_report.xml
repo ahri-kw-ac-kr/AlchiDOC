@@ -308,6 +308,7 @@
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/reportActSun"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
@@ -360,6 +361,7 @@
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/reportActMoon"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
