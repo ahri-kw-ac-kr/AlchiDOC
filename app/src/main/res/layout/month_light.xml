@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginRight="10dp"
-                    android:id="@+id/date"
+                    android:id="@+id/monthlightdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -50,6 +50,7 @@
 
 
                 <TextView
+                    android:id="@+id/monthlightpercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -131,6 +132,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthlightmany"
                                     android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -168,6 +170,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthlightprop"
                                     android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -205,6 +208,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthlightlack"
                                     android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -347,9 +351,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="Lux "
+                            android:text="Lux /"
                             android:textColor="#707070"
                             android:textSize="13sp"></TextView>
+
+                        <TextView
+                            android:id="@+id/monthK"
+                            android:layout_weight="0.5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="14"
+                            android:textColor="#F75321"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbold"
+                            android:text="K "
+                            android:textColor="#707070"
+                            android:textSize="13sp"></TextView>
+
 
 
                     </LinearLayout>

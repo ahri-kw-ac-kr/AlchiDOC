@@ -5,38 +5,94 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.home.UserDataModel;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MonthLight extends Fragment {
 
-    public MonthLight() {}
-
     View view;
 
-    int[] colorArray = new int[] {Color.parseColor("#F8683C"), Color.parseColor("#F99678"), Color.parseColor("#FFB59F")};
+    TextView titleDay;
+    TextView titlePercent;
+    String titleD;
+
+    TextView manyT;
+    TextView propT;
+    TextView lackT;
+
+    TextView AvgLux;
+    TextView AvgNightLux;
+    TextView AvgNightTemp;
+    public MonthLight() {}
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.month_light, container, false);
-
         PieChart pieChart = (PieChart) view.findViewById(R.id.piechart2);
+        int pos = UserDataModel.currentP;
+        UserDataModel user = UserDataModel.userDataModels[pos];
+
+        //현재시간
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+        String curr = transFormat.format(calendar.getTime());
+        int thisMonth = Integer.parseInt(curr.substring(4,6));
+
+        //000님의 0월 전체 평균
+        titleDay = (TextView) view.findViewById(R.id.monthlightdate);
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + thisMonth + "월 " + "전체 평균"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + thisMonth + "월 " + "전체 평균"; }
+        titleDay.setText(titleD);
+
+        //조도량 00%
+        titlePercent = (TextView) view.findViewById(R.id.monthlightpercent);
+        int percent = user.getStatLight().getMonthPercent();
+        String dayP = "조도량 " + percent + "%";
+        titlePercent.setText(dayP);
+
+        //라벨 텍스트
+        manyT = (TextView)view.findViewById(R.id.monthlightmany);
+        propT = (TextView)view.findViewById(R.id.monthlightprop);
+        lackT = (TextView)view.findViewById(R.id.monthlightlack);
+        manyT.setText(user.getStatLight().getMonthMany()+"일");
+        propT.setText(user.getStatLight().getMonthProper()+"일");
+        lackT.setText(user.getStatLight().getMonthLack()+"일");
+
+        //주간 조도량
+        AvgLux = view.findViewById(R.id.monthlux1);
+        AvgLux.setText(user.getStatLight().getMonthSunAvg()+"");
+        //야간 조도량
+        AvgNightLux = view.findViewById(R.id.monthlux3);
+        AvgNightLux.setText(user.getStatLight().getMonthMoonLuxAvg()+"");
+        //야간 색온도도
+        AvgNightTemp = view.findViewById(R.id.monthK);
+        AvgNightTemp.setText(user.getStatLight().getMonthMoonTempAvg()+"");
+
+        //그래프
+       int[] colorArray = new int[] {Color.parseColor("#F8683C"), Color.parseColor("#F99678"), Color.parseColor("#FFB59F")};
+
         ArrayList NoOfEmp = new ArrayList();
 
-        NoOfEmp.add(new Entry(14, 0));
-        NoOfEmp.add(new Entry(7, 1));
-        NoOfEmp.add(new Entry(9, 2));
-
+        NoOfEmp.add(new Entry(user.getStatLight().getMonthMany(), 0));
+        NoOfEmp.add(new Entry(user.getStatLight().getMonthProper(), 1));
+        NoOfEmp.add(new Entry(user.getStatLight().getMonthLack(), 2));
         PieDataSet dataSet = new PieDataSet(NoOfEmp, "");
 
         ArrayList name = new ArrayList();

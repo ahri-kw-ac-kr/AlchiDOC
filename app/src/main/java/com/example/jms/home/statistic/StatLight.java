@@ -30,6 +30,7 @@ public class StatLight {
 
     /*주간*/
     private Integer[] weekSumDay; //주 요일마다 전체 조도량 합산
+    private Integer[] weekSumDayTemp;
     private Integer[] weekSumSun; //주간 낮 조도량 (오전 9시 ~ 오후 6시)
     private Integer[] weekSumMoonLux; //주간 밤 조도량 (오후 6시 ~ 오후 9시)
     private Integer[] weekSumMoonTemp; //주간 밤 색온도 (오후 6시 ~ 오후 9시)
@@ -93,6 +94,7 @@ public class StatLight {
     /*getter*/
     public Integer[] getDaySumHourLux() { return daySumHourLux; }
     public Integer[] getDaySumHourTemp() { return daySumHourTemp; }
+    public Integer[] getDaySumHourLuxWgt() {return daySumHourLuxWgt;}
     public int getDaySum() { return daySum; }
     public int getDayPercent() { return dayPercent; }
     public int getDayDaySumLux() { return dayDaySumLux; }
@@ -191,9 +193,9 @@ public class StatLight {
                 else if(1000<=hourLux[i][j]&&hourLux[i][j]<1400){hourLuxWgt[i][j]= hourLux[i][j]*1;}
                 else{hourLuxWgt[i][j]= hourLux[i][j]*0*10;}
 
-                Log.d("DayAct-Lux", "i: " + i + ", j: " + j + ", hour: " + hourLux[i][j]);
-                Log.d("DayAct-Temp", "i: " + i + ", j: " + j + ", hour: " + hourTemp[i][j]);
-                Log.d("DayAct-LuxWgt", "i: " + i + ", j: " + j + ", hour: " + hourLuxWgt[i][j]);
+                Log.d("DayLight-Lux", "i: " + i + ", j: " + j + ", hour: " + hourLux[i][j]);
+                Log.d("DayLight-Temp", "i: " + i + ", j: " + j + ", hour: " + hourTemp[i][j]);
+                Log.d("DayLight-LuxWgt", "i: " + i + ", j: " + j + ", hour: " + hourLuxWgt[i][j]);
 
                 //SumHour = 1시간동안 합
                 sumHourLux[i] += hourLux[i][j];
@@ -206,9 +208,9 @@ public class StatLight {
                 }
 
             }
-            Log.d("DayAct-시간마다 Lux합산", i + ", " + sumHourLux[i]);//합산 잘 되었는지 확인
-            Log.d("DayAct-시간마다 Temp합산", i + ", " + sumHourTemp[i]);//합산 잘 되었는지 확인
-            Log.d("DayAct-시간마다 LuxWgt합산", i + ", " + sumHourLuxWgt[i]);//합산 잘 되었는지 확인
+            Log.d("DayLight-시간마다 Lux합산", i + ", " + sumHourLux[i]);//합산 잘 되었는지 확인
+            Log.d("DayLight-시간마다 Temp합산", i + ", " + sumHourTemp[i]);//합산 잘 되었는지 확인
+            Log.d("DayLight-시간마다 LuxWgt합산", i + ", " + sumHourLuxWgt[i]);//합산 잘 되었는지 확인
         }
 
         daySumHourLux = sumHourLux; //1시간마다 Lux 저장
@@ -272,8 +274,8 @@ public class StatLight {
                 dayTemp[i][j] = (int) perDay.get(i).get(j).getAvgTemp();
 
                 //0~24까지 7이간 parse한다.
-                Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + dayLux[i][j]);
-                Log.d("WeekAct", "i: " + i + ", j: " + j + ", day: " + dayTemp[i][j]);
+                Log.d("WeekLight", "i: " + i + ", j: " + j + ", day: " + dayLux[i][j]);
+                Log.d("WeekLight", "i: " + i + ", j: " + j + ", day: " + dayTemp[i][j]);
 
                 if(hourI>=9 && hourI<18){
                     sumDayMor[i]+=dayLux[i][j]/9; //오전9시~오후6시 Lux 평균
@@ -286,10 +288,10 @@ public class StatLight {
                 sumDay[i] += dayLux[i][j]/24; //하루 Lux
             }
 
-            Log.d("StatAct-WeekAct-MorningLux", i + ", " + sumDayMor[i]);
-            Log.d("StatAct-WeekAct-DinLux", i + ", " + sumDayDinLux[i]);
-            Log.d("StatAct-WeekAct-DinTemp", i + ", " + sumDayDinTemp[i]);
-            Log.d("StatAct-WeekAct-DayLux", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
+            Log.d("StatLight-WeekLight-MorningLux", i + ", " + sumDayMor[i]);
+            Log.d("StatLight-WeekLight-DinLux", i + ", " + sumDayDinLux[i]);
+            Log.d("StatLight-WeekLight-DinTemp", i + ", " + sumDayDinTemp[i]);
+            Log.d("StatLight-WeekLight-DayLux", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
 
             /*이거 되나...?*/
             weekSunAvg += sumDayMor[i];
@@ -298,13 +300,13 @@ public class StatLight {
         }
 
         weekSumDay = sumDay;
-        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumDay(sumDay);
+        //UserDataModel.userDataModels[pos].getStatLight().setWeekSumDay(sumDay);
         weekSumSun = sumDayMor;
-        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumSun(sumDayMor);
+        //UserDataModel.userDataModels[pos].getStatLight().setWeekSumSun(sumDayMor);
         weekSumMoonLux = sumDayDinLux;
-        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumMoonLux(sumDayDinLux);
+        //UserDataModel.userDataModels[pos].getStatLight().setWeekSumMoonLux(sumDayDinLux);
         weekSumMoonTemp = sumDayDinTemp;
-        //UserDataModel.userDataModels[pos].getStatAct().setWeekSumMoonTemp(sumDayDinTemp);
+        //UserDataModel.userDataModels[pos].getStatLight().setWeekSumMoonTemp(sumDayDinTemp);
 
 
         //현재시간
@@ -353,8 +355,8 @@ public class StatLight {
                 dayLux[i][j] = (int) perDay.get(i).get(j).getAvgLux();
                 dayTemp[i][j] = (int) perDay.get(i).get(j).getAvgTemp();
 
-                Log.d("MonthAct-daylux", "i: " + i + ", j: " + j + ", day: " + dayLux[i][j]);
-                Log.d("MonthAct-daytemp", "i: " + i + ", j: " + j + ", day: " + dayTemp[i][j]);
+                Log.d("MonthLight-daylux", "i: " + i + ", j: " + j + ", day: " + dayLux[i][j]);
+                Log.d("MonthLight-daytemp", "i: " + i + ", j: " + j + ", day: " + dayTemp[i][j]);
 
                 long time = (long) perDay.get(i).get(j).getStartTick()*1000;
                 SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
@@ -371,10 +373,10 @@ public class StatLight {
                 }
                 sumDay[i] += dayLux[i][j];
             }
-            Log.d("StatAct-MonthAct", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
-            Log.d("StatAct-MonthAct", i + ", " + sumDayMor[i]);//합산 잘 되었는지 확인
-            Log.d("StatAct-MonthAct", i + ", " + sumDayDinLux[i]);//합산 잘 되었는지 확인
-            Log.d("StatAct-MonthAct", i + ", " + sumDayDinTemp[i]);//합산 잘 되었는지 확인
+            Log.d("StatLight-MonthLight", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
+            Log.d("StatLight-MonthLight", i + ", " + sumDayMor[i]);//합산 잘 되었는지 확인
+            Log.d("StatLight-MonthLight", i + ", " + sumDayDinLux[i]);//합산 잘 되었는지 확인
+            Log.d("StatLight-MonthLight", i + ", " + sumDayDinTemp[i]);//합산 잘 되었는지 확인
         }
 
         //현재시간

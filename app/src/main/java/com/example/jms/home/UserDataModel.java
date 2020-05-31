@@ -1,26 +1,19 @@
 package com.example.jms.home;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.jms.connection.model.dto.GPSDTO;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 import com.example.jms.home.statistic.StatAct;
+import com.example.jms.home.statistic.StatLight;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 
 public class UserDataModel {
@@ -40,13 +33,14 @@ public class UserDataModel {
     private String addresses;
     private int position;
     private StatAct statAct;
+    private StatLight statLight;
 
 
     public UserDataModel(){}
     public UserDataModel(List<RawdataDTO> dataList, List<RawdataDTO> sleepDataList, List<RawdataDTO> todayList, List<RawdataDTO> weekList, List<RawdataDTO> monthList,
                          List<List<RawdataDTO>> perHour, List<List<RawdataDTO>> perDay, List<List<RawdataDTO>> perMonthDay,
                          List<GPSDTO> gpsList, String addresses, int position,
-                         StatAct statAct){
+                         StatAct statAct, StatLight statLight){
         this.dataList = dataList;
         this.sleepDataList = sleepDataList;
         this.todayList = todayList;
@@ -59,6 +53,7 @@ public class UserDataModel {
         this.addresses = addresses;
         this.position = position;
         this.statAct = statAct;
+        this.statLight = statLight;
     }
 
     public List<RawdataDTO> getDataList() { return dataList; }
@@ -72,7 +67,9 @@ public class UserDataModel {
     public List<GPSDTO> getGpsList() { return gpsList; }
     public String getAddresses() {return addresses;}
     public int getPosition() { return position; }
-    public void setStatAct(StatAct statAct) { this.statAct = statAct; }
+    public StatAct getStatAct() { return statAct; }
+    public StatLight getStatLight() {return statLight;}
+
 
     public void setDataList(List<RawdataDTO> dataList) { this.dataList = dataList; }
     public void setSleepDataList(List<RawdataDTO> sleepDataList) { this.sleepDataList = sleepDataList; }
@@ -85,7 +82,8 @@ public class UserDataModel {
     public void setGpsList(List<GPSDTO> gpsList) { this.gpsList = gpsList; }
     public void setAddresses(String addresses) { this.addresses = addresses; }
     public void setPosition(int position) { this.position = position; }
-    public StatAct getStatAct() { return statAct; }
+    public void setStatAct(StatAct statAct) { this.statAct = statAct; }
+    public void setStatLight(StatLight statLight){ this.statLight = statLight;}
 
     public void parsingDay(int pos) throws ParseException {
         Calendar calendar = Calendar.getInstance(Locale.KOREA);
@@ -146,6 +144,8 @@ public class UserDataModel {
 
         userDataModels[pos].setStatAct(new StatAct());
         userDataModels[pos].getStatAct().parsing(userDataModels[pos].getPerHour(),userDataModels[pos].getPerDay(),userDataModels[pos].getPerMonthDay());
+        userDataModels[pos].setStatLight(new StatLight());
+        userDataModels[pos].getStatLight().parsing(userDataModels[pos].getPerHour(),userDataModels[pos].getPerDay(),userDataModels[pos].getPerMonthDay());
     }
 
     public void parsingHour(int pos, List<RawdataDTO> data){
