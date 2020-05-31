@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginRight="10dp"
-                    android:id="@+id/dayActDate"
+                    android:id="@+id/daySleepDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -47,7 +47,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
                 <TextView
-                    android:id="@+id/dayActPercent"
+                    android:id="@+id/daySleepPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -175,6 +175,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/daySleepTotalHour"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -194,6 +195,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/daySleepTotalMinute"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -245,6 +247,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/daySleepDeepHour"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -264,6 +267,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/daySleepDeepMinute"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -311,6 +315,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/daySleepLightHour"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -330,6 +335,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/daySleepLightMinute"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -377,6 +383,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/daySleepWake"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -424,6 +431,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/daySleepTurn"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

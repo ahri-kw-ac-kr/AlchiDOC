@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.home.UserDataModel;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -19,19 +22,56 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DaySleep extends Fragment {
 
     View view;
 
+    TextView titleDay;
+    TextView titlePercent;
+    TextView totalH;
+    TextView totalM;
+    TextView deepH;
+    TextView deepM;
+    TextView lightH;
+    TextView lightM;
+    TextView wake;
+    TextView turn;
+    double percent;
+    String titleD;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.day_sleep, container, false);
-
-
         LineChart lineChart = (LineChart) view.findViewById(R.id.chart);
+        int pos = UserDataModel.currentP;
+        UserDataModel user = UserDataModel.userDataModels[pos];
+
+        //현재시간
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+        String curr = transFormat.format(calendar.getTime());
+
+        //000님의 0월 0일
+        titleDay = (TextView) view.findViewById(R.id.daySleepDate);
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        titleDay.setText(titleD);
+
+        // 수면효율 00%
+        titlePercent = (TextView) view.findViewById(R.id.daySleepPercent);
+        percent = user.getStatSleep().getPercentDay();
+        String dayP = "수면효율 " + percent + "%";
+        titlePercent.setText(dayP);
+
+        //총수면시간
+        totalH = (TextView)view.findViewById(R.id.daySleepTotalHour);
+        totalM = (TextView)view.findViewById(R.id.daySleepTotalMinute);
+
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(4f, 0));

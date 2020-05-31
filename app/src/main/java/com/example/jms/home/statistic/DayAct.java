@@ -35,9 +35,6 @@ import io.reactivex.Flowable;
 
 public class DayAct extends Fragment {
 
-    long mNow;
-    Date mDate;
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 M월 dd일");
     TextView titleDay;
     TextView titlePercent;
     TextView totalT;

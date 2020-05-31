@@ -283,6 +283,21 @@ public class Login extends AppCompatActivity {
                                     }
                                 }
                             },Throwable::printStackTrace);
+                    apiViewModel.getSleepById(RestfulAPI.principalUser.getId(),"0")
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(data-> {
+                                if(data.getContent()!=null){
+                                    userDataModel[finalI].setSleepDTOList(data.getContent());
+                                    Log.d("로그인 슬립","i 확인: "+finalI);
+                                    count.getAndIncrement();
+                                    Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                        UserDataModel.userDataModels = userDataModel;
+                                        observer.onComplete();
+                                    }
+                                }
+                            },Throwable::printStackTrace);
                 }
                 else{
                     apiViewModel.getRawdataById(RestfulAPI.principalUser.getFriend().get(i-1).getId(),"0",weekCause,lastDate)
@@ -310,6 +325,21 @@ public class Login extends AppCompatActivity {
                                                     Double.parseDouble(data.getContent().get(0).getLon())));
                                     }
                                     Log.d("로그인","i 확인: "+finalI);
+                                    count.getAndIncrement();
+                                    Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                        UserDataModel.userDataModels = userDataModel;
+                                        observer.onComplete();
+                                    }
+                                }
+                            },Throwable::printStackTrace);
+                    apiViewModel.getSleepById(RestfulAPI.principalUser.getFriend().get(i-1).getId(),"0")
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(data-> {
+                                if(data.getContent()!=null){
+                                    userDataModel[finalI].setSleepDTOList(data.getContent());
+                                    Log.d("로그인 슬립","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
                                     if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){

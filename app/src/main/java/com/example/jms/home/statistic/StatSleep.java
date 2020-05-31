@@ -14,8 +14,12 @@ public class StatSleep {
     private int total; // 총 수면시간
     private int[] level; //수면질 배열
 
+    //일간
+    int percentDay; //일간 퍼센트
+
     public StatSleep(){}
-    public StatSleep(int deep, int light, int turn, int wake, int turnHour, int total, int[] level){
+    public StatSleep(int deep, int light, int turn, int wake, int turnHour, int total, int[] level,
+                     int percentDay){
         this.deep = deep;
         this.light = light;
         this.turn = turn;
@@ -23,6 +27,7 @@ public class StatSleep {
         this.turnHour = turnHour;
         this.total = total;
         this.level = level;
+        this.percentDay = percentDay;
     }
 
     public int getDeep() { return deep; }
@@ -45,6 +50,9 @@ public class StatSleep {
 
     public int[] getLevel() { return level; }
     public void setLevel(int[] level) { this.level = level; }
+
+    public int getPercentDay(){ return percentDay; }
+    public void setPercentDay(int percentDay) { this.percentDay = percentDay; }
 
     public static SleepDTO analyze(List<RawdataDTO> data){
         SleepDTO sleepDTO = new SleepDTO();
@@ -106,5 +114,13 @@ public class StatSleep {
         sleepDTO.setLevel(levelA);
 
         return sleepDTO;
+    }
+
+    private void day(SleepDTO oneDay){
+        int total = oneDay.getTotal(); //총 수면시간
+        int wake =  oneDay.getWake(); // 깬 횟수
+        int turn = oneDay.getTurn(); //뒤척인 횟수
+
+        percentDay = (((wake*10)+turn)/total)*100;
     }
 }
