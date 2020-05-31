@@ -107,8 +107,8 @@ public class DayAct extends Fragment {
             int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0,2))-4; // 취침 4시간 전 시
             int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0,2))-2; // 취침 2시간 전 시
             //나의 저녁 코멘트
-            if((Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-400)
-            && (Integer.parseInt(curr.substring(9))<Integer.parseInt(RestfulAPI.principalUser.getSleep())-200)){
+            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-400)
+            {
                 for(int i=setHour4-1; i<currHour; i++){
                     for(int j=0; j<user.getPerHour().get(i).size(); j++){
                         if(user.getPerHour().get(i).get(j).getSteps()>400){
@@ -128,8 +128,8 @@ public class DayAct extends Fragment {
             }
             else{ dayActPlan2.setText("\n"); }
             //나의 야간 코멘트
-            if((Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-200)
-                    && (Integer.parseInt(curr.substring(9))<Integer.parseInt(RestfulAPI.principalUser.getSleep()))){
+            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-200)
+            {
                 for(int i=setHour2-1; i<currHour; i++){
                     for(int j=0; j<user.getPerHour().get(i).size(); j++){
                         if(user.getPerHour().get(i).get(j).getSteps()>200){
@@ -153,8 +153,8 @@ public class DayAct extends Fragment {
             int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep().substring(0,2))-4; // 취침 4시간 전 시
             int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep().substring(0,2))-2; // 취침 2시간 전 시
             //친구의 저녁 코멘트
-            if((Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-400)
-                    && (Integer.parseInt(curr.substring(9))<Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-200)){
+            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-400)
+            {
                 for(int i=setHour4-1; i<currHour; i++){
                     for(int j=0; j<user.getPerHour().get(i).size(); j++){
                         if(user.getPerHour().get(i).get(j).getSteps()>400){
@@ -174,8 +174,8 @@ public class DayAct extends Fragment {
             }
             else{ dayActPlan2.setText("\n"); }
             //친구의 야간 코멘트
-            if((Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-200)
-                    && (Integer.parseInt(curr.substring(9))<Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep()))){
+            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-200)
+             {
                 for(int i=setHour2-1; i<currHour; i++){
                     for(int j=0; j<user.getPerHour().get(i).size(); j++){
                         if(user.getPerHour().get(i).get(j).getSteps()>200){
