@@ -142,6 +142,7 @@ public class SignUp extends AppCompatActivity {
             user.setPassword(password);
             user.setSex(sex);
             user.setShareGPS("true");
+            user.setSleep("2200");
 
             apiViewModel.postRegister(user)
                     .subscribeOn(Schedulers.io())
