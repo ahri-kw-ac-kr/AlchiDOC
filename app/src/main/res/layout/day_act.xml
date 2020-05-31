@@ -108,7 +108,6 @@
                 android:textSize="17sp"
                 android:textStyle="bold"></TextView>
 
-
             <androidx.cardview.widget.CardView
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
@@ -169,8 +168,6 @@
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
 
-
-
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -180,7 +177,6 @@
 
                     <LinearLayout
                         android:weightSum="10"
-
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
@@ -270,18 +266,20 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:tint="#329035"
+                            android:id="@+id/face1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#329035"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:gravity="bottom"
+                            android:id="@+id/state1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text=""
                             android:textColor="#329035"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -302,7 +300,6 @@
                         android:layout_height="2dp"
                         android:background="#ECECEC"/>
 
-
                     <LinearLayout
                         android:weightSum="7"
                         android:layout_marginTop="16dp"
@@ -322,19 +319,20 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:tint="#329035"
+                            android:id="@+id/face2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#329035"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:gravity="bottom"
+                            android:id="@+id/state2"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
+                            android:text=""
                             android:textColor="#329035"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -356,7 +354,6 @@
                         android:layout_height="2dp"
                         android:background="#ECECEC"/>
 
-
                     <LinearLayout
                         android:weightSum="7"
                         android:layout_marginTop="16dp"
@@ -377,19 +374,19 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face3"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#329035"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/state3"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
+                            android:text=""
                             android:textColor="#329035"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -409,8 +406,6 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

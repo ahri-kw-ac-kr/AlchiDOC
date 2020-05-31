@@ -403,18 +403,19 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:tint="#329035"
+                            android:id="@+id/face1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:tint="#329035"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                            ></ImageView>
+                            android:layout_height="wrap_content"></ImageView>
                         <TextView
+                            android:gravity="bottom"
+                            android:id="@+id/state1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text=""
                             android:textColor="#329035"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -428,15 +429,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="이번 달의 활동량이 충분합니다. 다음 달에는 무리한 활동을 자제해 주세요."></TextView>
-
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#ECECEC"/>
-
-
                     <LinearLayout
                         android:weightSum="7"
                         android:layout_marginTop="16dp"
@@ -457,19 +455,19 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:tint="#329035"
+                            android:id="@+id/face2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:tint="#329035"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
-                            ></ImageView>
+                            android:layout_height="wrap_content"></ImageView>
                         <TextView
+                            android:id="@+id/state2"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
+                            android:text=""
                             android:textColor="#329035"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>

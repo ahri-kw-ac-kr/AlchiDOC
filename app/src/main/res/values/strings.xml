@@ -63,6 +63,7 @@
     <string name="sleep3">평균 뒤척임</string>
     <string name="good">충분</string>
     <string name="bad">부족</string>
+    <string name="exceed">과다</string>
 
     <string name="all_report1">인지행동 종합플랜</string>
     <string name="all_report2">세부사항별 인지행동 종합플랜</string>
