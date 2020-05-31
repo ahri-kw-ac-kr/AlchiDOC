@@ -17,6 +17,7 @@ import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -54,15 +55,21 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
             @SuppressLint("CheckResult")
             @Override
             public void onClick(View v) {
-                Log.e("TimePickerDemo",setHour+","+setMin);
+                Log.d("TimePickerDemo",setHour+","+setMin);
                 if (AM_PM == null && (setHour ==0 && setMin==0))
                 {
+                    //timePicker.getHour();
+                    //timePicker.getMinute();
+
                     setHour = hourOfday;
                     setMin = minute;
                 }
 
+                Log.d("TimePickerDemo1",""+String.format("%02d%02d", setHour, setMin));
+                String settingTime = String.format("%02d%02d", setHour, setMin);
+
                 UserDTO user = new UserDTO();
-                user.setSleep(Integer.toString(setHour)+Integer.toString(setMin));
+                user.setSleep(settingTime);
                 apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
