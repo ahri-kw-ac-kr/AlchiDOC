@@ -152,14 +152,15 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setLocationButtonEnabled(true);
 
-        int friendNum = UserDataModel.userDataModels.length - 1;
+        int friendNum = RestfulAPI.principalUser.getFriend().size();
         //Log.e("FragMap 친구수", Integer.toString(friendNum));
 
-        for(int i=1;i<=friendNum;i++){
-            if(UserDataModel.userDataModels[i].getGpsList().size() != 0) {
-                String name = UserDataModel.userDataModels[i].getGpsList().get(0).getUser().getFullname();
-                LatLng latLng = new LatLng(Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLat()),
-                        Double.parseDouble(UserDataModel.userDataModels[i].getGpsList().get(0).getLon()));
+        for(int i=0; i<friendNum; i++){
+            if(UserDataModel.userDataModels[i+1].getGpsList().size() != 0
+                    && RestfulAPI.principalUser.getFriend().get(i).getShareGPS().equals("true")) {
+                String name = UserDataModel.userDataModels[i+1].getGpsList().get(0).getUser().getFullname();
+                LatLng latLng = new LatLng(Double.parseDouble(UserDataModel.userDataModels[i+1].getGpsList().get(0).getLat()),
+                        Double.parseDouble(UserDataModel.userDataModels[i+1].getGpsList().get(0).getLon()));
                 addMarker(name, latLng, naverMap);
             }
         }
