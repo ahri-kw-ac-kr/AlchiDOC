@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("sleep",0);
         String start = sharedPreferences.getString("sleepTime","");
         String end = sharedPreferences.getString("wakeTime","");
+        Log.d("MainActivity - sleepData","시작: "+start+", 끝: "+end);
 
         APIViewModel apiViewModel = new APIViewModel();
         apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",start, end)
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(data2 -> {
                     if (data2.getContent() != null) {
                         UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                        Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
+                        Log.d("MainActivity - sleepData","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
                         SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
                         sleepDTO1.setSleepTime(start);
                         sleepDTO1.setWakeTime(end);
@@ -66,10 +67,11 @@ public class MainActivity extends AppCompatActivity {
                         apiViewModel.postSleep(sleepDTO1)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
+                                .subscribe(a->Log.d("MainActicity - sleepData","분석결과 저장"),
+                                        Throwable->Log.d("MainActivity-sleepData","분석결과 db저장 실패 "+Throwable.getMessage()));
                     }
-                    Log.d("SleepActivity","데이터 "+data2.getContent());
-                }, Throwable->Log.d("MainActivity-sleepData","분석결과 db저장 실패 "+Throwable.getMessage()));
+                    Log.d("MainActicity - sleepData","데이터 "+data2.getContent());
+                }, Throwable->Log.d("MainActivity-sleepData","rawData불러오기 실패 "+Throwable.getMessage()));
 
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);

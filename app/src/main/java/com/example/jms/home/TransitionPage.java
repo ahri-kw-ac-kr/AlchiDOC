@@ -23,6 +23,7 @@ import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.home.statistic.StatAct;
 import com.example.jms.home.statistic.StatSleep;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -91,7 +92,7 @@ public class TransitionPage extends AppCompatActivity {
                                 .observeOn(Schedulers.io())
                                 .doAfterTerminate(()->{
                                     /////////////////취침시간 동안의 데이터 갖고오기//////////////////
-                                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
+                                    /*apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
                                             .subscribeOn(Schedulers.io())
                                             .observeOn(AndroidSchedulers.mainThread())
                                             .subscribe(data2 -> {
@@ -109,7 +110,7 @@ public class TransitionPage extends AppCompatActivity {
                                                             .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
                                                 }
                                                 Log.d("SleepActivity","데이터 "+data2.getContent());
-                                            }, Throwable::printStackTrace);/////api-getRawdataByID
+                                            }, Throwable::printStackTrace);/////api-getRawdataByID  */
                                 })//데이터 포스트 종료 후
                                 .subscribe(result2 -> {
                                     Log.d("SleepActivity","raw데이터 포스트 완료");
@@ -141,7 +142,7 @@ public class TransitionPage extends AppCompatActivity {
                                     .observeOn(Schedulers.io())
                                     .subscribeOn(AndroidSchedulers.mainThread())
                                     .subscribe(()->{
-                                        BleService.principalDevice = BleDeviceDTO;
+                                        //BleService.principalDevice = BleDeviceDTO;
                                         editor.putString("mac",BleDeviceDTO.getMacAddress());
                                         editor.putString("key",BleDeviceDTO.getKey());
                                         editor.putString("name",BleDeviceDTO.getName());
