@@ -30,7 +30,8 @@ import java.util.Locale;
 public class MonthAct extends Fragment {
 
     View view;
-
+    TextView monthActPlan1;
+    TextView monthActPlan2;
     TextView titleDay;
     TextView titlePercent;
     TextView avgT;
@@ -41,7 +42,6 @@ public class MonthAct extends Fragment {
     String titleD;
 
     public MonthAct(){}
-
 
     @SuppressLint("SetTextI18n")
     @Nullable
@@ -120,8 +120,10 @@ public class MonthAct extends Fragment {
         dataSet.setColors(colorArray);
         pieChart.animateXY(5000, 5000);
 
-
         //////////코멘트///////////
+        monthActPlan1 = (TextView) view.findViewById(R.id.monthActPlan1);
+        monthActPlan2 = (TextView) view.findViewById(R.id.monthActPlan2);
+
         int sun = 0;
         int moon = 0;
         for(int i=0; i<Integer.parseInt(curr.substring(6)); i++){
@@ -131,17 +133,21 @@ public class MonthAct extends Fragment {
         //주간코멘트
         if(sun >= 6000){
             //충분
+            monthActPlan1.setText(R.string.monthActComment1);
         }
         else{
             //부족
+            monthActPlan1.setText(R.string.monthActComment2);
         }
 
         //야간코멘트
         if(moon <=2000){
             //적정
+            monthActPlan2.setText(R.string.monthActComment4);
         }
         else{
             //과다
+            monthActPlan2.setText(R.string.monthActComment3);
         }
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)
@@ -152,8 +158,6 @@ public class MonthAct extends Fragment {
         pieChart.notifyDataSetChanged(); // 차트에 데이터가 바뀌었다고 알림
         pieChart.invalidate(); // 차트 다시 그려! 명령하는 코드
         */
-
-
         return view;
     }
 }

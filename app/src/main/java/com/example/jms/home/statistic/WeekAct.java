@@ -27,11 +27,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import hu.akarnokd.rxjava2.math.MathFlowable;
 import io.reactivex.Flowable;
 
-
 public class WeekAct extends Fragment {
 
     View view;
-
+    TextView weekActPlan1;
+    TextView weekActPlan2;
     TextView titleDay;
     TextView titlePercent;
     TextView avgT;
@@ -99,6 +99,9 @@ public class WeekAct extends Fragment {
         mBarChart.startAnimation();
 
         //////////코멘트///////////
+        weekActPlan1 = (TextView) view.findViewById(R.id.weekActPlan1);
+        weekActPlan2 = (TextView) view.findViewById(R.id.weekActPlan2);
+
         int sun = 0;
         int moon = 0;
         for(int i=0; i<thisDay; i++){
@@ -108,22 +111,22 @@ public class WeekAct extends Fragment {
         //주간코멘트
         if(sun >= 6000){
             //충분
+            weekActPlan1.setText(R.string.weekActComment1);
         }
         else{
             //부족
+            weekActPlan1.setText(R.string.weekActComment2);
         }
 
         //야간코멘트
         if(moon <=2000){
             //적정
+            weekActPlan2.setText(R.string.weekActComment4);
         }
         else{
             //과다
+            weekActPlan2.setText(R.string.weekActComment3);
         }
-
-
         return view;
-
     }
-
 }

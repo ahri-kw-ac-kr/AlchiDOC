@@ -32,9 +32,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import hu.akarnokd.rxjava2.math.MathFlowable;
 import io.reactivex.Flowable;
 
-
 public class DayAct extends Fragment {
 
+    TextView dayActPlan1;
+    TextView dayActPlan2;
+    TextView dayActPlan3;
     TextView titleDay;
     TextView titlePercent;
     TextView totalT;
@@ -83,12 +85,17 @@ public class DayAct extends Fragment {
         for (int i = 9; i < 21; i++) { mBarChart.addBar(new BarModel(Integer.toString(i), user.getStatAct().getDaySumHour()[i], Color.parseColor("#5F9919"))); }
         mBarChart.startAnimation();
 
+        dayActPlan1 = (TextView) view.findViewById(R.id.dayActPlan1);
+        dayActPlan2 = (TextView) view.findViewById(R.id.dayActPlan2);
+        dayActPlan3 = (TextView) view.findViewById(R.id.dayActPlan3);
 
         //주간 코멘트
         if (percent < 100) {
             //부족
+            dayActPlan1.setText(R.string.dayActComment2);
         } else {
             //충분
+            dayActPlan1.setText(R.string.dayActComment1);
         }
 
         int currHour = Integer.parseInt(curr.substring(9,11)); //현재 시
@@ -112,9 +119,11 @@ public class DayAct extends Fragment {
                 }
                 if(dinnerFlag == 1){
                     //////////////////////저녁 과다
+                    dayActPlan2.setText(R.string.dayActComment3);
                 }
                 else{
                     ///////////////////////저녁 적정
+                    dayActPlan2.setText(R.string.dayActComment4);
                 }
             }
             //나의 야간 코멘트
@@ -130,9 +139,11 @@ public class DayAct extends Fragment {
                 }
                 if(eveningFlag == 1){
                     ////////////////////야간 과다
+                    dayActPlan3.setText(R.string.dayActComment5);
                 }
                 else{
                     //////////////////////야간 적정
+                    dayActPlan3.setText(R.string.dayActComment6);
                 }
             }
         }
@@ -152,9 +163,11 @@ public class DayAct extends Fragment {
                 }
                 if(dinnerFlag == 1){
                     //////////////////저녁 과다
+                    dayActPlan2.setText(R.string.dayActComment3);
                 }
                 else{
                     //////////////////저녁 적정
+                    dayActPlan2.setText(R.string.dayActComment4);
                 }
             }
             //친구의 야간 코멘트
@@ -170,13 +183,14 @@ public class DayAct extends Fragment {
                 }
                 if(eveningFlag == 1){
                     /////////////////야간 과다
+                    dayActPlan3.setText(R.string.dayActComment5);
                 }
                 else{
                     /////////////////야간 적정
+                    dayActPlan3.setText(R.string.dayActComment6);
                 }
             }
         }
-
         return view;
     }
 }

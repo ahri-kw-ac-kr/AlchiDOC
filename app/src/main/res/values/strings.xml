@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Alchi DOC</string>
 
+    <string name="start">시작</string>
+    <string name="next">다음</string>
+
     <string name="StringValue">이미지가 열리지 않습니다.</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
@@ -49,6 +52,7 @@
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>
+    <string name="act6">저녁 활동량</string>
     <string name="act4">활동량 인지행동 플랜</string>
     <string name="act5">오늘의 활동량 기록</string>
     <string name="light">조도량</string>
@@ -80,6 +84,89 @@
     <string name="sleep_ing2">8시간이 지나면 자동으로 종료됩니다.</string>
     <string name="sleep_ing3">취침 종료</string>
 
+    <string name="daylight1">오늘의 조도량 기록</string>
+    <string name="daylight2">저녁 조도량/색온도</string>
+    <string name="daylight3">야간 조도량/색온도</string>
+    <string name="daylight4">주간 조도량/색온도</string>
+    <string name="daylight5">조도량 인지행동 플랜</string>
+    <string name="daylight6">아침 조도량</string>
+    <string name="daylight7">저녁 조도량</string>
+    <string name="daylight8">야간 조도량</string>
+    <string name="lux">Lux</string>
+    <string name="k">K</string>
+
+    // 일간 조도량 인지행동 플랜
+    <string name="dayLightComment1">수면을 위한 주간 조도량이 충분한 상태입니다. 현재의 조도량을 유지하세요.</string>
+    <string name="dayLightComment2">수면을 위한 주간 조도량이 부족한 상태입니다. 오늘 밤 숙면을 위해 앞으로 30분간 야외로 나가 햇빛을 쐬도록 권장합니다. 햇볕을 충분히 받으면 세라토닌이 생성되고, 이 호르몬이 멜라토닌 분비를 촉진하여 숙면을 유도하게 됩니다.</string>
+    <string name="dayLightComment3">저녁 조도량이 과다한 상태입니다. 오늘 밤 숙면을 위해서는 조도량을 반드시 줄이도록 권장합니다.</string>
+    <string name="dayLightComment4">수면을 위한 저녁 조도량이 충분한 상태입니다. 현재의 조도량을 유지하세요.</string>
+    <string name="dayLightComment5">수면에 방해되는 밝은 곳에 노출되어 있습니다. 수면을 위해 어두운 조명 환경을 조성하시고 취침 전까지 유지할 수 있도록 권장합니다.</string>
+    <string name="dayLightComment6">수면을 위한 야간 조도량이 충분한 상태입니다. 현재의 조도량을 취침 전까지 유지하도록 하세요.</string>
+
+    // 주간 조도량 인지행동 플랜
+    <string name="weekLightComment1">이번 주 평균 주간 조도량은 충분하였습니다. 다음 주에도 이번 주와 비슷한 조도량을 유지하도록 합니다.</string>
+    <string name="weekLightComment2">이번 주 평균 주간 조도량은 대체로 부족한 편입니다. 다음 주에는 이번 주보다 더 많은 조도량을 쐴 수 있도록 권장합니다.</string>
+    <string name="weekLightComment3">이번 주 평균 야간 조도량은 과다 상태입니다. 취침 전 과다한 조도량은 수면을 방해하는 원인이 될 수 있으므로 다음 주에는 조도량을 반드시 줄이도록 권장합니다.</string>
+    <string name="weekLightComment4">이번 주 평균 야간 조도량은 충분하였습니다. 다음 주에도 이번 주와 비슷한 조도량을 취침 전에 유지할 수 있도록 합니다.</string>
+
+    // 월간 조도량 인지행동 플랜
+    <string name="monthLightComment1">이번 달 평균 주간 조도량은 충분하였습니다. 다음 달에도 이번 달과 비슷한 조도량을 유지하도록 합니다.</string>
+    <string name="monthLightComment2">이번 달 평균 주간 조도량은 대체로 부족한 편입니다. 다음 달에는 이번 달보다 더 많은 조도량을 쐴 수 있도록 권장합니다.</string>
+    <string name="monthLightComment3">이번 달 평균 야간 조도량은 과다 상태입니다. 취침 전 과다한 조도량은 수면을 방해하는 원인이 될 수 있으므로 다음 달에는 조도량을 반드시 줄이도록 권장합니다.</string>
+    <string name="monthLightComment4">이번 달 평균 야간 조도량은 충분하였습니다. 다음 달에도 이번 달과 비슷한 조도량을 취침 전에 유지하도록 합니다.</string>
+
+    // 일간 활동량 인지행동 플랜
+    <string name="dayActComment1">수면을 위한 주간 활동량이 충분한 상태입니다. 오후에는 활동량을 줄이도록 권장하며, 과격한 운동은 삼가해 주시길 바랍니다.</string>
+    <string name="dayActComment2">수면을 위한 주간 활동량이 부족한 상태입니다. 오후에는 더 많은 활동을 권장합니다. 수분을 보충하시고 활동량을 늘리도록 하세요.</string>
+    <string name="dayActComment3">수면을 위한 저녁 활동량이 과다한 상태입니다. 오늘 밤 숙면을 위해서 남은 시간 동안에는 활동을 자제하고 수분을 충분히 보충하십시오.</string>
+    <string name="dayActComment4">수면을 위한 저녁 활동량이 충분한 상태입니다. 남은 하루동안 현재와 같은 활동량을 유지하고, 활동량이 과다 상태가 되지 않도록 주의하세요.</string>
+    <string name="dayActComment5">현재의 야간 활동량은 숙면에 좋지 않은 과다한 상태입니다. 수면에 방해가 되는 과격한 운동은 삼가해 주시고 야간 활동량을 반드시 줄여야 오늘 밤 숙면을 취하는 데에 도움이 됩니다.</string>
+    <string name="dayActComment6">현재의 야간 활동량은 충분한 상태입니다. 취침 전까지 현재와 같은 활동량을 유지하고, 활동량이 과다 상태가 되지 않도록 주의하세요.</string>
+
+    // 주간 활동량 인지행동 플랜
+    <string name="weekActComment1">이번 주 평균 주간 활동량은 충분하였습니다. 다음 주에도 이번 주와 비슷한 활동량을 유지하도록 합니다.</string>
+    <string name="weekActComment2">이번 주 평균 주간 활동량은 대체로 부족한 편입니다. 다음 주에는 이번 주보다 더 많은 활동을 권장합니다.</string>
+    <string name="weekActComment3">이번 주 평균 야간 활동량은 과다 상태입니다. 취침 전 과다한 활동량은 수면 장애의 원인이 될 수 있으므로 다음 주에는 활동량을 반드시 줄이도록 권장합니다.</string>
+    <string name="weekActComment4">이번 주 평균 야간 활동량은 충분하였습니다. 다음 주에도 이번 주와 비슷한 활동량을 취침 전에 유지할 수 있도록 합니다.</string>
+
+    // 월간 활동량 인지행동 플랜
+    <string name="monthActComment1">이번 달 평균 주간 활동량은 충분하였습니다. 다음 달에도 이번 달과 비슷한 활동량을 유지하도록 합니다.</string>
+    <string name="monthActComment2">이번 달 평균 주간 활동량은 대체로 부족한 편입니다. 다음 달에는 이번 달보다 더 많은 활동을 권장합니다.</string>
+    <string name="monthActComment3">이번 달 평균 야간 활동량은 과다 상태입니다. 취침 전 과다한 활동량은 수면을 방해하는 원인이 될 수 있으므로 다음 달에는 활동량을 반드시 줄이도록 권장합니다.</string>
+    <string name="monthActComment4">이번 달 평균 야간 활동량은 충분하였습니다. 다음 달에도 이번 달과 비슷한 활동량을 취침 전에 유지하도록 합니다.</string>
+
+    // 일간 수면질 인지행동 플랜
+    <string name="daySleepComment1">총 수면 시간은 충분하였으나, 총 수면 시간 대비 깊은 잠의 비율이 부족한 상태입니다. 수면 시간은 지금과 같이 유지하도록 하며, 내일은 더 깊은 잠을 잘 수 있도록 일간 조도량, 일간 활동량 플랜에 따라 행동하기를 권장합니다.</string>
+    <string name="daySleepComment2">총 수면 시간 및 깊은 잠의 비율 모두 충분합니다. 내일도 높은 수면질을 위해 수면 시간 및 조도량, 활동량을 지금과 같이 유지하도록 하세요.</string>
+    <string name="daySleepComment3">총 수면 시간이 부족하며, 총 수면 시간 대비 깊은 잠의 비율 또한 부족한 상태입니다. 수면 관리가 반드시 필요한 상태이며 이와 같은 현상이 지속될 경우 다른 질병을 초래할 수 있으므로 조도량, 활동량 플랜에 따라 행동할 수 있도록 권장합니다.</string>
+    <string name="daySleepComment4">총 수면 시간 대비 깊은 잠의 비율은 충분하나, 총 수면 시간이 부족한 상태입니다. 깊은 잠의 비율이 낮아지지 않도록 수면 관리에 더욱 신경 써 주세요.</string>
+    <string name="daySleepComment5">수면 시간당 평균 뒤척임이 정상입니다. 평균 뒤척임의 횟수가 많아지지 않도록 수면 시간 및 조도량, 활동량을 지금과 같이 내일도 유지하도록 하세요.</string>
+    <string name="daySleepComment6">수면 시간당 평균 뒤척임이 정상 범위를 벗어난 수치입니다. 관리가 반드시 필요한 상태는 아니지만, 현재 상태에서 뒤척임 횟수가 더 늘어날 경우 수면 이상 증세로 악화될 수 있으므로 내일은 더욱 주의하시길 바랍니다.</string>
+    <string name="daySleepComment7">수면 시간당 평균 뒤척임이 주의 범위를 넘어 관리가 반드시 필요한 상태입니다. 일주일 내에 4회 이상 같은 현상이 발생하면 수면 이상 증세로 악화될 수 있으므로 내일부터는 수면 행동 플랜을 적극적으로 따라해 주시길 바랍니다.</string>
+
+    // 주간 수면질 인지행동 플랜
+    <string name="weekSleepComment1">이번 주 평균 수면 시간은 충분하였으나, 총 수면 시간 대비 깊은 잠의 비율이 부족한 상태입니다. 수면 시간은 이번 주와 비슷하게 유지하도록 하며, 다음 주에는 더 깊은 잠을 잘 수 있도록 조도량, 활동량 플랜에 맞게 행동해 주시기를 권장합니다.</string>
+    <string name="weekSleepComment2">이번 주 평균 수면 시간 및 깊은 잠의 비율 모두 충분합니다. 다음 주에도 높은 수면질을 위해 수면 시간 및 조도량, 활동량을 이번 주와 비슷하게 유지하도록 하세요.</string>
+    <string name="weekSleepComment3">이번 주 평균 수면 시간이 부족하며, 총 수면 시간 대비 깊은 잠의 평균 비율 또한 부족한 상태입니다. 수면 관리가 반드시 필요한 상태이며 이번 주와 같은 현상이 계속 발생할 경우 다른 질병을 초래할 수 있으므로 다음 주에는 조도량, 활동량 플랜에 따라 행동할 수 있도록 권장합니다.</string>
+    <string name="weekSleepComment4">이번 주 평균 수면 시간 대비 깊은 잠의 평균 비율은 충분하나, 평균 수면 시간이 부족한 상태입니다. 다음 주에는 깊은 잠의 비율이 낮아지지 않도록 수면 관리에 더욱 신경 써 주세요.</string>
+    <string name="weekSleepComment5">이번 주 수면 시간당 평균 뒤척임이 정상입니다. 평균 뒤척임의 횟수가 많아지지 않도록 수면 시간 및 조도량, 활동량을 이번 주와 같이 다음 주도 유지하도록 하세요.</string>
+    <string name="weekSleepComment6">이번 주 수면 시간당 평균 뒤척임이 정상 범위를 벗어난 수치입니다. 관리가 반드시 필요한 상태는 아니지만, 현재 상태에서 뒤척임 횟수가 더 늘어날 경우 수면 이상 증세로 악화될 수 있으므로 다음 주에는 더욱 주의하시길 바랍니다.</string>
+    <string name="weekSleepComment7">이번 주 수면 시간당 평균 뒤척임이 주의 범위를 넘어 관리가 반드시 필요한 상태입니다. 일주일 내에 4회 이상 같은 현상이 발생하면 수면 이상 증세로 악화될 수 있으므로 수면 행동 플랜을 적극적으로 따라해 주세요. 일주일에 4회 이상 발생하는 현상이 4주간 반복되면 수면 이상 증세로 의심되오니 수면센터 전문의의 상담을 적극 권유합니다.</string>
+
+    // 월간 수면질 인지행동 플랜
+    <string name="monthSleepComment1">이번 달 평균 수면 시간은 충분하였으나, 총 수면 시간 대비 깊은 잠의 비율이 부족한 상태입니다. 수면 시간은 이번 달과 비슷하게 유지하도록 하며, 다음 달에는 더 깊은 잠을 잘 수 있도록 조도량, 활동량 플랜에 맞게 행동해 주시기를 권장합니다.</string>
+    <string name="monthSleepComment2">이번 달 평균 수면 시간 및 깊은 잠의 비율 모두 충분합니다. 다음 달에도 높은 수면질을 위해 수면 시간 및 조도량, 활동량을 이번 달과 비슷하게 유지하도록 하세요.</string>
+    <string name="monthSleepComment3">이번 달 평균 수면 시간이 부족한 상태이며, 총 수면 시간 대비 깊은 잠의 월 평균 비율 또한 부족한 상태입니다. 수면 관리가 반드시 필요한 상태이며 이번 달과 비슷한 현상이 계속 발생할 경우 다른 질병을 초래할 수 있으므로 다음 달에는 조도량, 활동량 플랜에 따라 행동할 수 있도록 권장합니다.</string>
+    <string name="monthSleepComment4">이번 달 평균 수면 시간 대비 깊은 잠의 월 평균 비율은 충분하나, 평균 수면 시간이 부족한 상태입니다. 다음 달에는 깊은 잠의 비율이 낮아지지 않도록 수면 관리에 더욱 신경 써 주세요.</string>
+    <string name="monthSleepComment5">이번 달 수면 시간당 평균 뒤척임이 정상입니다. 평균 뒤척임의 횟수가 많아지지 않도록 수면 시간 및 조도량, 활동량을 이번 달과 같이 다음 달도 유지하도록 하세요.</string>
+    <string name="monthSleepComment6">이번 달 수면 시간당 평균 뒤척임이 정상 범위를 벗어난 수치입니다. 관리가 반드시 필요한 상태는 아니지만, 현재 상태에서 뒤척임 횟수가 더 늘어날 경우 수면 이상 증세로 악화될 수 있으므로 다음 달에는 더욱 주의하시길 바랍니다.</string>
+    <string name="monthSleepComment7">이번 달 수면 시간당 평균 뒤척임이 주의 범위를 넘어 관리가 반드시 필요한 상태입니다. 일주일 내에 4회 이상 같은 현상이 발생하면 수면 이상 증세로 악화될 수 있으므로 수면 행동 플랜을 적극적으로 따라해 주세요. 만약 일주일에 4회 이상 발생하는 현상이 4주간 반복되면 수면 이상 증세로 의심되오니 수면센터 전문의의 상담을 적극 권유합니다.</string>
+
+    <string name="actbutton_activity">활동량 통계</string>
+    <string name="step">걸음</string>
+    <string name="steps">걸음수</string>
+    <string name="kcal">kcal</string>
+
     <string name="map1">현 위치</string>
 
     <string name="set1">설정</string>
@@ -90,9 +177,7 @@
     <string name="profile">회원 정보 수정</string>
     <string name="tuto">도움말 보기</string>
     <string name="terms">이용약관</string>
-
     <string name="terms1">
-
 제 1 조 (목적)
 \n본 약관은 회원(본 약관에 동의한 자를 말합니다. 이하 "회원"이라고 합니다.)이 제이엠스마트㈜(이하 "회사"라고 합니다)가 제공하는 AlchiDOC(알치닥) 서비스(이하 "서비스"라고 합니다) 및 제반 서비스를 이용함에 있어 회사와 이용 고객(또는 회원)간에 서비스의 이용 조건 및 절차, 회사와 회원간의 권리•의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
 
@@ -620,8 +705,6 @@
 \n1. 본 약관은 2019년 2월 25일부터 적용됩니다</string>
 
 
-
-
     <string name="terms2">제이엠스마트㈜(이하 "회사"라 합니다.)가 제공하는 AlchiDOC(알치닥)서비스(이하 "서비스"라고 합니다.)는 이용자의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호 등에 관한 법률"등 개인정보와 관련된 법령 상의 개인정보보호규정 및 방송통신위원회가 제정한 "개인정보보호지침"을 준수하고 있습니다. 회사는 개인정보취급방침을 통하여 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 적극적으로 보호하기 위해 항상 노력하고 있음에 대해 알려드립니다.
 
 \n1. 수집하는 개인정보 항목
@@ -812,7 +895,5 @@
 
 \n• 개인정보처리방침 버전번호: 1.0
 \n• 개인정보처리방침 시행일자: 2019년 2월 25일
-
-
     </string>
 </resources>
