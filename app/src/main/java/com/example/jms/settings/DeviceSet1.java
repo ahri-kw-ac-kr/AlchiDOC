@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,6 +72,8 @@ public class DeviceSet1 extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         deviceList = (LinearLayout)findViewById(R.id.deviceList);
+        Log.d("DeviceSet1", "현재 디바이스 : "+ BleService.principalDevice);
+        Log.d("DeviceSet1", "현재 커넥트 : "+ ""+sleepDocViewModel.deviceCon());
         if(BleService.principalDevice!=null) {
             if(sleepDocViewModel.deviceCon()){
                 myDevice = new DeviceSet3(getApplicationContext());
@@ -147,22 +151,36 @@ public class DeviceSet1 extends AppCompatActivity {
             @SuppressLint("CheckResult")
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                String mac = BleService.principalDevice.getMacAddress();
                 Toast.makeText(getApplicationContext(), "초기화 중입니다. 잠시만 기다려주세요.", Toast.LENGTH_SHORT).show();
                 sleepDocViewModel.disconnect();
                 refactorFlag = true;
-                sleepDocViewModel.connectSleepDoc(BleService.principalDevice.getMacAddress())
+                Log.d("DeviceSet1", "공장 초기화 디바이스 : "+ BleService.principalDevice);
+                sleepDocViewModel.connectSleepDoc(mac)
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())
-                        .doOnComplete(() -> { Log.i("DeviceSet1", "on Complete"); })
+                        .doOnComplete(() -> {
+                            Log.i("DeviceSet1", "on Complete");
+                                Log.d("DeviceSet1","공장 초기화 마침");
+                            })
                         .subscribe(()->{
                             sleepDocViewModel.disconnect();
                             refactorFlag = false;
-                            sleepDocViewModel.connectSleepDoc(BleService.principalDevice.getMacAddress())
+                            sleepDocViewModel.connectSleepDoc(mac)
                                     .observeOn(Schedulers.io())
                                     .subscribeOn(AndroidSchedulers.mainThread())
                                     .subscribe(()->{
-                                        Toast.makeText(getApplicationContext(),
-                                                "초기화가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Handler mHandler = new Handler(Looper.getMainLooper());
+                                        mHandler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // 사용하고자 하는 코드
+                                                Toast.makeText(getApplicationContext(),
+                                                        "초기화가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                                Log.d("DeviceSet1","공장 초기화 성공");
+                                            }
+                                        }, 0);
+
                                     },Throwable -> {
                                         Toast.makeText(getApplicationContext(),
                                                 "초기화를 실패했습니다.", Toast.LENGTH_SHORT).show(); });
@@ -170,7 +188,6 @@ public class DeviceSet1 extends AppCompatActivity {
 
                 dialog.dismiss();
                 fab.setVisibility(View.GONE);
-                Log.d("DeviceSet1","공장 초기화");
             }
         });
 

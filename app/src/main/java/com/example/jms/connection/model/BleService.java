@@ -20,7 +20,7 @@ public class BleService {
     public static synchronized BleService getInstance() {
         if (bleService == null) {
             bleService = new BleService();
-            principalDevice = null;
+            //principalDevice = null;
         }
         return bleService;
     }

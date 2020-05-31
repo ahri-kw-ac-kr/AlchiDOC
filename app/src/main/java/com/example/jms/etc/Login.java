@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.clj.fastble.BleManager;
+import com.clj.fastble.data.BleDevice;
 import com.example.jms.R;
 import com.example.jms.connection.model.BleService;
 import com.example.jms.connection.model.RestfulAPI;
@@ -134,6 +135,7 @@ public class Login extends AppCompatActivity {
                             bleDeviceDTO.setName(sharedPreferences2.getString("name", ""));
                             bleDeviceDTO.setRssi(sharedPreferences2.getInt("rssi", 0));
                             BleService.principalDevice = bleDeviceDTO;
+                            Log.d("Login", "현재 디바이스 : "+ BleService.principalDevice);
                         }, Throwable::printStackTrace);
                 apiViewModel.postAuth(user)
                         .subscribeOn(Schedulers.io())

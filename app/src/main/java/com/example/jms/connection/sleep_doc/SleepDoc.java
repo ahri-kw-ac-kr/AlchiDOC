@@ -34,6 +34,8 @@ import io.reactivex.Observable;
 import com.clj.fastble.utils.HexUtil;
 import com.example.jms.connection.exceptions.DataIsTooShortException;
 import com.example.jms.connection.exceptions.ZeroLengthException;
+import com.example.jms.connection.model.BleService;
+import com.example.jms.connection.model.dto.BleDeviceDTO;
 import com.example.jms.connection.sleep_doc.command.Command;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 import com.example.jms.connection.sleep_doc.dto.SyncDataDTO;
@@ -68,6 +70,7 @@ public class SleepDoc {
         bleManager.disconnect(bleDevice);
         bleDevice = null;
         isConnected = false;
+        BleService.principalDevice = null;
     }
 
     public Completable connect() {
@@ -91,6 +94,14 @@ public class SleepDoc {
                     bleDevice = _bleDevice;
                     isConnected = true;
                     gatt = bleManager.getBluetoothGatt(bleDevice);
+
+                    //현재 기기 dto로 저장
+                    BleDeviceDTO bleDeviceDTO = new BleDeviceDTO();
+                    bleDeviceDTO.setMacAddress(_bleDevice.getMac());
+                    bleDeviceDTO.setKey(_bleDevice.getKey());
+                    bleDeviceDTO.setName(_bleDevice.getName());
+                    bleDeviceDTO.setRssi(_bleDevice.getRssi());
+                    BleService.principalDevice = bleDeviceDTO;
 
                     //sysCmdChar는 아래처럼 초기 연결시 가져오고 있습니다.
                     generalService = gatt.getService(ServiceUUID.GENERAL);
@@ -117,7 +128,6 @@ public class SleepDoc {
                 @Override
                 public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
                     Log.i("SleepDoc", "연결해제");
-                    isConnected = false;
                 }
             });
         });

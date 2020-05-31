@@ -87,7 +87,7 @@ public class JobSchedulerService extends JobService {
 
             //여기에 백그ㅏ운드에서 실행할 코드를 집어넣는다.
             /*여기에 코드코드코드*/
-
+            Log.d("잡스케쥴러서비스", "현재 디바이스 : "+ BleService.principalDevice);
             if (BleService.principalDevice != null && RestfulAPI.principalUser != null) {
                 sleepDocViewModel.getRawdataFromSleepDoc()
                         .observeOn(Schedulers.io())

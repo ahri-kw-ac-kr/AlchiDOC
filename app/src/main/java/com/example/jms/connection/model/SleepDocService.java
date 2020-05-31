@@ -14,7 +14,8 @@ public class SleepDocService {
     private static SleepDocService sleepDocService;
 
     public boolean deviceCon(){
-        return sleepDoc.deviceCon();
+        if(sleepDoc == null) { return false; }
+        else{ return sleepDoc.deviceCon(); }
     }
 
     public void disconnect(){sleepDoc.disconnect();}
@@ -41,5 +42,5 @@ public class SleepDocService {
     }
 
     // Singleton
-    private SleepDocService() {}
+    private SleepDocService() { }
 }
