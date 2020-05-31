@@ -40,7 +40,7 @@ public class DaySleep extends Fragment {
     TextView lightM;
     TextView wake;
     TextView turn;
-    double percent;
+    int percent;
     String titleD;
 
     @Nullable
@@ -51,15 +51,21 @@ public class DaySleep extends Fragment {
         int pos = UserDataModel.currentP;
         UserDataModel user = UserDataModel.userDataModels[pos];
 
-        //현재시간
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
-        String curr = transFormat.format(calendar.getTime());
-
         //000님의 0월 0일
         titleDay = (TextView) view.findViewById(R.id.daySleepDate);
-        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
-        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        try {
+            if (pos == 0) {
+                titleD = RestfulAPI.principalUser.getFullname() + "님의 " + user.getSleepDTOList().get(0).getWakeTime().substring(4, 6) + "월 " + user.getSleepDTOList().get(0).getWakeTime().substring(6, 8) + "일";
+            } else {
+                titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 " + user.getSleepDTOList().get(0).getWakeTime().substring(4, 6) + "월 " + user.getSleepDTOList().get(0).getWakeTime().substring(6, 8) + "일";
+            }
+        } catch (Exception e) {
+            if (pos == 0) {
+                titleD = RestfulAPI.principalUser.getFullname() + "님의 0월 0일";
+            } else {
+                titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 0월 0일";
+            }
+        }
         titleDay.setText(titleD);
 
         // 수면효율 00%
@@ -69,12 +75,75 @@ public class DaySleep extends Fragment {
         titlePercent.setText(dayP);
 
         //총수면시간
-        totalH = (TextView)view.findViewById(R.id.daySleepTotalHour);
-        totalM = (TextView)view.findViewById(R.id.daySleepTotalMinute);
+        totalH = (TextView) view.findViewById(R.id.daySleepTotalHour);
+        totalM = (TextView) view.findViewById(R.id.daySleepTotalMinute);
+        try {
+            int to = user.getSleepDTOList().get(0).getTotal(); //총 수면시간
+            int toH = to / 60; //총수면시간 시
+            int toM = to % 60; //총수면시간 분
+            totalH.setText("" + toH);
+            totalM.setText("" + toM);
+        } catch (Exception e) {
+            totalH.setText("0");
+            totalM.setText("0");
+        }
+
+        //깊은수면
+        deepH = (TextView) view.findViewById(R.id.daySleepDeepHour);
+        deepM = (TextView) view.findViewById(R.id.daySleepDeepMinute);
+        try {
+            int de = user.getSleepDTOList().get(0).getDeep();
+            int deH = de / 60;
+            int deM = de % 60;
+            deepH.setText("" + deH);
+            deepM.setText("" + deM);
+        } catch (Exception e) {
+            deepH.setText("0");
+            deepM.setText("0");
+        }
+
+        //얕은수면
+        lightH = (TextView) view.findViewById(R.id.daySleepLightHour);
+        lightM = (TextView) view.findViewById(R.id.daySleepLightMinute);
+        try {
+            int li = user.getSleepDTOList().get(0).getLight();
+            int liH = li / 60;
+            int liM = li % 60;
+            lightH.setText("" + liH);
+            lightM.setText("" + liM);
+        } catch (Exception e) {
+            lightH.setText("0");
+            lightM.setText("0");
+        }
+
+        //깨어남
+        wake = (TextView) view.findViewById(R.id.daySleepWake);
+        try {
+            wake.setText("" + user.getSleepDTOList().get(0).getWake());
+        } catch (Exception e) {
+            wake.setText("0");
+        }
 
 
+        //뒤척임
+        turn = (TextView) view.findViewById(R.id.daySleepTurn);
+        try {
+            turn.setText("" + user.getSleepDTOList().get(0).getTurn());
+        } catch (Exception e) {
+            turn.setText("0");
+        }
+
+
+        //그래프
         ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
+        try {
+            if (user.getSleepDTOList().get(0).getLevel() != null) {
+                String[] levels = user.getSleepDTOList().get(0).getLevel().split(",");
+                for (int i = 0; i < levels.length; i++) {
+                    entries.add(new Entry(Integer.parseInt(levels[i]), i));
+                }
+
+            /*entries.add(new Entry(4f, 0));
         entries.add(new Entry(8f, 1));
         entries.add(new Entry(6f, 2));
         entries.add(new Entry(10f, 3));
@@ -88,65 +157,56 @@ public class DaySleep extends Fragment {
         entries.add(new Entry(10f, 11));
         entries.add(new Entry(18f, 12));
         entries.add(new Entry(9f, 13));
-        entries.add(new Entry(16f, 14));
+        entries.add(new Entry(16f, 14));*/
 
-        LineDataSet dataset = new LineDataSet(entries, "");
+                LineDataSet dataset = new LineDataSet(entries, "");
 
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("11시");
-        labels.add("");
-        labels.add("12시");
-        labels.add("");
-        labels.add("1시");
-        labels.add("");
-        labels.add("2시");
-        labels.add("");
-        labels.add("3시");
-        labels.add("");
-        labels.add("4시");
-        labels.add("");
-        labels.add("5시");
-        labels.add("");
-        labels.add("6시");
+                ArrayList<String> labels = new ArrayList<String>();
+                labels.add(user.getSleepDTOList().get(0).getSleepTime().substring(9));
+                for (int i = 0; i < levels.length - 2; i++) {
+                    labels.add("");
+                }
+                labels.add(user.getSleepDTOList().get(0).getWakeTime().substring(9));
 
-        LineData data = new LineData(labels, dataset);
-        dataset.setDrawValues(false);
-        dataset.setDrawCircles(false);
-        dataset.setColor(Color.parseColor("#7610C0"));
+                LineData data = new LineData(labels, dataset);
+                dataset.setDrawValues(false);
+                dataset.setDrawCircles(false);
+                dataset.setColor(Color.parseColor("#7610C0"));
 
-        dataset.setDrawCubic(true);
-        dataset.setDrawFilled(true);
-        dataset.setFillColor(Color.parseColor("#EBD8FB"));
-        dataset.setLineWidth(3f);
+                dataset.setDrawCubic(true);
+                dataset.setDrawFilled(true);
+                dataset.setFillColor(Color.parseColor("#EBD8FB"));
+                dataset.setLineWidth(3f);
 
         /* 점 찍기
         dataset.setCircleColor(Color.parseColor("#7610C0"));
         dataset.setCircleColorHole(Color.parseColor("#7610C0"));
         dataset.setCircleSize(3f); */
 
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(10f);
-        xAxis.setTextColor(Color.parseColor("#707070"));
+                XAxis xAxis = lineChart.getXAxis();
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setTextSize(10f);
+                xAxis.setTextColor(Color.parseColor("#707070"));
 
-        YAxis yAxisLeft = lineChart.getAxisLeft();
-        yAxisLeft.setDrawLabels(false);
-        yAxisLeft.setDrawAxisLine(false);
-        yAxisLeft.setDrawGridLines(false);
+                YAxis yAxisLeft = lineChart.getAxisLeft();
+                yAxisLeft.setDrawLabels(false);
+                yAxisLeft.setDrawAxisLine(false);
+                yAxisLeft.setDrawGridLines(false);
 
-        YAxis yAxisRight = lineChart.getAxisRight();
-        yAxisRight.setDrawLabels(false);
-        yAxisRight.setDrawAxisLine(false);
-        yAxisRight.setDrawGridLines(false);
+                YAxis yAxisRight = lineChart.getAxisRight();
+                yAxisRight.setDrawLabels(false);
+                yAxisRight.setDrawAxisLine(false);
+                yAxisRight.setDrawGridLines(false);
 
-        lineChart.setDescription(null);
+                lineChart.setDescription(null);
 
-        Legend legend = lineChart.getLegend();
-        legend.setEnabled(false);
+                Legend legend = lineChart.getLegend();
+                legend.setEnabled(false);
 
-        lineChart.setData(data);
-        lineChart.animateY(5000);
-
-        return view;
+                lineChart.setData(data);
+                lineChart.animateY(5000);
+            }
+        }catch (Exception e){ }
+            return view;
     }
 }

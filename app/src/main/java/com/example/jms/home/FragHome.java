@@ -99,6 +99,8 @@ public class FragHome extends Fragment {
                 UserDataModel.currentP = position;
                 if(UserDataModel.userDataModels[position].getStatAct().getDayPercent()<100){ button2.setText("활동량 부족"); }
                 else{ button2.setText("활동량 충분"); }
+                if(UserDataModel.userDataModels[position].getStatSleep().getPercentDay()<80){ button3.setText("수면량 부족"); }
+                else{ button3.setText("수면량 충분"); }
             }
 
             @Override

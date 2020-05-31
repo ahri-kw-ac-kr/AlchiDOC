@@ -155,6 +155,8 @@ public class UserDataModel {
         userDataModels[pos].getStatAct().parsing(userDataModels[pos].getPerHour(),userDataModels[pos].getPerDay(),userDataModels[pos].getPerMonthDay());
         userDataModels[pos].setStatLight(new StatLight());
         userDataModels[pos].getStatLight().parsing(userDataModels[pos].getPerHour(),userDataModels[pos].getPerDay(),userDataModels[pos].getPerMonthDay());
+        userDataModels[pos].setStatSleep(new StatSleep());
+        userDataModels[pos].getStatSleep().parsing(userDataModels[pos].sleepDTOList);
     }
 
     public void parsingHour(int pos, List<RawdataDTO> data){

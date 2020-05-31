@@ -104,6 +104,9 @@ public class StatSleep {
         totalS = data.size()*10;
         lightS = totalS - deepS;
 
+        String str="";
+        for(int i=0; i<data.size(); i++){ str=str+levelA[i]+","; }
+
 
         sleepDTO.setTurnHour(turnHour); //0은 정상, 1은 주의, 2는 관리필요
         sleepDTO.setDeep(deepS);
@@ -111,7 +114,7 @@ public class StatSleep {
         sleepDTO.setTurn(turnS);
         sleepDTO.setWake(wakeS);
         sleepDTO.setTotal(totalS);
-        sleepDTO.setLevel(levelA);
+        sleepDTO.setLevel(str);
 
         return sleepDTO;
     }
@@ -120,7 +123,12 @@ public class StatSleep {
         int total = oneDay.getTotal(); //총 수면시간
         int wake =  oneDay.getWake(); // 깬 횟수
         int turn = oneDay.getTurn(); //뒤척인 횟수
+        if(total == 0){ percentDay = 0; }
+        else{ percentDay = (int)(((total-((wake*10.0)+turn))/total)*100); }
+    }
 
-        percentDay = (((wake*10)+turn)/total)*100;
+    public void parsing(List<SleepDTO> sleepDTO){
+        if(sleepDTO.size() != 0){ day(sleepDTO.get(0)); }
+        else{ percentDay = 0; }
     }
 }

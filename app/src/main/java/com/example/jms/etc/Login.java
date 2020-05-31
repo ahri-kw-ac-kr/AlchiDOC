@@ -258,7 +258,7 @@ public class Login extends AppCompatActivity {
                                 //userDataModel[finalI].setPosition(finalI);
                                 Log.d("MainActivity","i 확인: "+finalI);
                                 count.getAndIncrement();
-                                if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*3){
                                     UserDataModel.userDataModels = userDataModel;
                                     observer.onComplete();
                                 }
@@ -277,7 +277,7 @@ public class Login extends AppCompatActivity {
                                     Log.d("로그인","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
-                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*3){
                                         UserDataModel.userDataModels = userDataModel;
                                         observer.onComplete();
                                     }
@@ -292,7 +292,7 @@ public class Login extends AppCompatActivity {
                                     Log.d("로그인 슬립","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
-                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*3){
                                         UserDataModel.userDataModels = userDataModel;
                                         observer.onComplete();
                                     }
@@ -308,7 +308,7 @@ public class Login extends AppCompatActivity {
                                 //userDataModel[finalI].setPosition(finalI);
                                 Log.d("MainActivity","i 확인: "+finalI);
                                 count.getAndIncrement();
-                                if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*3){
                                     UserDataModel.userDataModels = userDataModel;
                                     observer.onComplete();
                                 }
@@ -327,7 +327,7 @@ public class Login extends AppCompatActivity {
                                     Log.d("로그인","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
-                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*3){
                                         UserDataModel.userDataModels = userDataModel;
                                         observer.onComplete();
                                     }
@@ -342,7 +342,7 @@ public class Login extends AppCompatActivity {
                                     Log.d("로그인 슬립","i 확인: "+finalI);
                                     count.getAndIncrement();
                                     Log.d("Login",finalI+"카운트 확인: "+count.get()+", "+RestfulAPI.principalUser.getFriend().size());
-                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*2){
+                                    if(count.get() == (RestfulAPI.principalUser.getFriend().size()+1)*3){
                                         UserDataModel.userDataModels = userDataModel;
                                         observer.onComplete();
                                     }
