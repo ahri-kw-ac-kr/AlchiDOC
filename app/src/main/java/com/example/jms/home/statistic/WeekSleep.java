@@ -111,7 +111,7 @@ public class WeekSleep extends Fragment {
         int wakeA = wake/thisDay;
         int turnA = turn/thisDay;
         int turnHourA = turnHour/thisDay;
-        percent = (int)(((total-((wake*10.0)+turn))/total)*100);
+        percent = (int)(((totalA-((wakeA*10.0)+turnA))/totalA)*100);
         totalH = totalA / 60; //총수면시간 시
         totalM = totalA % 60; //총수면시간 분
         deepH = deepA / 60;
