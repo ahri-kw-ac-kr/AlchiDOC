@@ -18,8 +18,9 @@ public class Report extends AppCompatActivity{
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 M월 dd일 달성률");
     TextView mTextView;
     TextView reportActSun, reportActMoon;
-    ImageView face3, face4;
-    TextView state3, state4;
+    TextView reportSleep1, reportSleep2;
+    ImageView face1, face2, face3, face4;
+    TextView state1, state2, state3, state4;
 
     ArcProgress act;
     ArcProgress sleep;
@@ -50,8 +51,14 @@ public class Report extends AppCompatActivity{
 
         reportActSun = (TextView) findViewById(R.id.reportActSun);
         reportActMoon = (TextView) findViewById(R.id.reportActMoon);
+        reportSleep1 = (TextView) findViewById(R.id.reportSleep1);
+        reportSleep2 = (TextView) findViewById(R.id.reportSleep2);
+        face1 = (ImageView) findViewById(R.id.face1);
+        face2 = (ImageView) findViewById(R.id.face2);
         face3 = (ImageView) findViewById(R.id.face3);
         face4 = (ImageView) findViewById(R.id.face4);
+        state1 = (TextView) findViewById(R.id.state1);
+        state2 = (TextView) findViewById(R.id.state2);
         state3 = (TextView) findViewById(R.id.state3);
         state4 = (TextView) findViewById(R.id.state4);
 
@@ -95,9 +102,8 @@ public class Report extends AppCompatActivity{
         sleep.setProgress(user.getStatSleep().getPercentDay());
 
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
-
-
-
+            reportSleep1.setText("\n");
+            reportSleep2.setText("\n");
         }
         else {/////측정데이터 존재
             int deepPercent = 0;
@@ -106,27 +112,41 @@ public class Report extends AppCompatActivity{
             //////////////////////////////////총 수면시간 코멘트////////////////////////
             if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
                 if (deepPercent >= 25) {//깊은잠 정상
-
+                    reportSleep1.setText(R.string.daySleepComment2);
+                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state1.setText(R.string.sleepState1);
                 } else {//깊은잠 부족
-
+                    reportSleep1.setText(R.string.daySleepComment1);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 }
             } else {//수면효율 비정상
                 if (deepPercent >= 25) {//깊은잠 정상
-
+                    reportSleep1.setText(R.string.daySleepComment4);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 } else {//깊은잠 부족
-
+                    reportSleep1.setText(R.string.daySleepComment3);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 }
             }
 
             ///////////////////////////////평균뒤척임 코멘트///////////////////////////
             if (user.getStatSleep().getTurnHour() == 0) {//정상
-
+                reportSleep2.setText(R.string.daySleepComment5);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.sleepState1);
             }
             else if(user.getStatSleep().getTurnHour() == 1){//주의
-
+                reportSleep2.setText(R.string.daySleepComment6);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState2);
             }
             else if(user.getStatSleep().getTurnHour() == 2){//관리필요
-
+                reportSleep2.setText(R.string.daySleepComment7);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState3);
             }
         }
 

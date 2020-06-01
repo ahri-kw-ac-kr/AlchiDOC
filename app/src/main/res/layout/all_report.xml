@@ -177,6 +177,7 @@
                             android:textColor="#7476B3"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -184,6 +185,7 @@
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/state1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -212,10 +214,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#ECECEC"/>
-
-
-
-
                     <LinearLayout
                         android:weightSum="7"
                         android:layout_marginTop="16dp"
@@ -235,6 +233,7 @@
                             android:textColor="#7476B3"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -242,6 +241,7 @@
                             android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/state2"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

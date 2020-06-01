@@ -1,10 +1,12 @@
 package com.example.jms.home.statistic;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +31,9 @@ import java.util.Calendar;
 public class DaySleep extends Fragment {
 
     View view;
-
+    TextView daySleepPlan1, daySleepPlan2;
+    ImageView face1, face2;
+    TextView state1, state2;
     TextView titleDay;
     TextView titlePercent;
     TextView totalH;
@@ -124,7 +128,6 @@ public class DaySleep extends Fragment {
             wake.setText("0");
         }
 
-
         //뒤척임
         turn = (TextView) view.findViewById(R.id.daySleepTurn);
         try {
@@ -132,7 +135,6 @@ public class DaySleep extends Fragment {
         } catch (Exception e) {
             turn.setText("0");
         }
-
 
         //그래프
         ArrayList<Entry> entries = new ArrayList<>();
@@ -212,13 +214,17 @@ public class DaySleep extends Fragment {
             }
         }catch (Exception e){ }
 
-
+        daySleepPlan1 = (TextView) view.findViewById(R.id.daySleepPlan1);
+        daySleepPlan2 = (TextView) view.findViewById(R.id.daySleepPlan2);
+        face1 = (ImageView) view.findViewById(R.id.face1);
+        face2 = (ImageView) view.findViewById(R.id.face2);
+        state1 = (TextView) view.findViewById(R.id.state1);
+        state2 = (TextView) view.findViewById(R.id.state2);
 
         ////////////////////////코멘트//////////////////////
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
-
-
-
+            daySleepPlan1.setText("\n");
+            daySleepPlan2.setText("\n");
         }
         else {/////측정데이터 존재
             int deepPercent = 0;
@@ -230,30 +236,44 @@ public class DaySleep extends Fragment {
             //////////////////////////////////총 수면시간 코멘트////////////////////////
             if (percent >= 80) {// 수면효율 정상
                 if (deepPercent >= 25) {//깊은잠 정상
-
+                    daySleepPlan1.setText(R.string.daySleepComment2);
+                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state1.setText(R.string.sleepState1);
                 } else {//깊은잠 부족
+                    daySleepPlan1.setText(R.string.daySleepComment1);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
 
                 }
             } else {//수면효율 비정상
                 if (deepPercent >= 25) {//깊은잠 정상
-
+                    daySleepPlan1.setText(R.string.daySleepComment4);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 } else {//깊은잠 부족
-
+                    daySleepPlan1.setText(R.string.daySleepComment3);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 }
             }
 
             ///////////////////////////////평균뒤척임 코멘트///////////////////////////
             if (user.getStatSleep().getTurnHour() == 0) {//정상
-
+                daySleepPlan2.setText(R.string.daySleepComment5);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.sleepState1);
             }
             else if(user.getStatSleep().getTurnHour() == 1){//주의
-
+                daySleepPlan2.setText(R.string.daySleepComment6);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState2);
             }
             else if(user.getStatSleep().getTurnHour() == 2){//관리필요
-
+                daySleepPlan2.setText(R.string.daySleepComment7);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState3);
             }
         }
-
             return view;
     }
 }
