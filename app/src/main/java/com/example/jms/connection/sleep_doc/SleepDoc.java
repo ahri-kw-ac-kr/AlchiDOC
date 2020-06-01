@@ -128,6 +128,7 @@ public class SleepDoc {
                 @Override
                 public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
                     Log.i("SleepDoc", "연결해제");
+                    isConnected = false;
                 }
             });
         });

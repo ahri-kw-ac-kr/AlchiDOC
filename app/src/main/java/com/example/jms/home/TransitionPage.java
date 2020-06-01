@@ -69,6 +69,10 @@ public class TransitionPage extends AppCompatActivity {
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(data2 -> {
                                     if (data2.getContent() != null) {
+                                        try{
+                                        Log.d("SleepActivity","데이터 첫번째result"+data2.getContent().get(0).getStartTick());}catch (Exception e){
+                                            Log.d("SleepActivity","데이터 첫번째result size"+data2.getContent().size());
+                                        }
                                         UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
                                         Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
                                         SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
