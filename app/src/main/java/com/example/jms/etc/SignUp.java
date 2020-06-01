@@ -119,14 +119,14 @@ public class SignUp extends AppCompatActivity {
         String password = txtPassword.getText().toString();
         String checkPassword = txtChkPassword.getText().toString();
 
-        if(name.length()==0){ Toast.makeText(getApplicationContext(), "이름을 입력해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(birth.length()==0){ Toast.makeText(getApplicationContext(), "생일을 입력해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(phone.length()==0){ Toast.makeText(getApplicationContext(), "전화번호를 입력해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(email.length()==0){ Toast.makeText(getApplicationContext(), "이메일을 입력해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(password.length()==0){ Toast.makeText(getApplicationContext(), "비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(checkPassword.length()==0){ Toast.makeText(getApplicationContext(), "비밀번호 확인을 입력해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(btnSex== null){ Toast.makeText(getApplicationContext(), "성별을 선택해 주세요.", Toast.LENGTH_SHORT).show(); }
-        else if(!password.equals(checkPassword)){ Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show(); }
+        if(name.length()==0){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong1, Toast.LENGTH_SHORT).show(); }
+        else if(birth.length()==0){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong2, Toast.LENGTH_SHORT).show(); }
+        else if(phone.length()==0){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong3, Toast.LENGTH_SHORT).show(); }
+        else if(email.length()==0){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong4, Toast.LENGTH_SHORT).show(); }
+        else if(password.length()==0){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong5, Toast.LENGTH_SHORT).show(); }
+        else if(checkPassword.length()==0){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong6, Toast.LENGTH_SHORT).show(); }
+        else if(btnSex== null){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong7, Toast.LENGTH_SHORT).show(); }
+        else if(!password.equals(checkPassword)){ Toast.makeText(getApplicationContext(), R.string.sign_up_wrong8, Toast.LENGTH_SHORT).show(); }
         else {
             String sex = btnSex.getText().toString();
             if(sex.equals("남자")){ sex = "m"; }
@@ -150,7 +150,7 @@ public class SignUp extends AppCompatActivity {
                     .subscribe(data -> {
                                 Log.d("SignUp","회원가입 완료");
                                 Toast.makeText(getApplicationContext(),
-                                                "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                                R.string.sign_up11, Toast.LENGTH_SHORT).show();
                                 onBackPressed();
                         },
                             Throwable -> {
@@ -159,11 +159,11 @@ public class SignUp extends AppCompatActivity {
                                     switch (e.code()){
                                         case 409:
                                             Toast.makeText(getApplicationContext(),
-                                                    "이미 존재하는 이메일입니다. 다른 이메일을 작성해 주세요.", Toast.LENGTH_SHORT).show();
+                                                    R.string.sign_up12, Toast.LENGTH_SHORT).show();
                                             break;
                                         case 500:
                                             Toast.makeText(getApplicationContext(),
-                                                    "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
+                                                    R.string.sign_up13, Toast.LENGTH_SHORT).show();
                                             break;
                                     }
                                 }

@@ -210,7 +210,6 @@
                     <LinearLayout
                         android:weightSum="10"
                         android:layout_marginTop="20dp"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -581,7 +580,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="연령에 맞는 적당한 수면 시간입니다. 오늘도 평균 수면 시간을 유지하도록 하세요."></TextView>
+                        android:text=""></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -635,13 +634,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="어제의 수면 시간당 평균 뒤척임이 수면 장애 수준의 수치입니다. 오늘의 숙면을 취하기 위해
-서 오전의 햇빛양과 오전 활동량을 반드시 어제
-보다 많이 늘려야 수면 시간이 늘어나고 숙면을
-취할 수 있습니다. 일주일 내에 4회 이상 같은
-현상이 발생하면 수면 장애 증세로 의심할 수
-있습니다. 수면 장애 개선을 위하여 적극적으로
-수면 위생 행동을 따라해 주십시오.">
+                        android:text="">
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

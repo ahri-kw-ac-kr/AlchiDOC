@@ -182,13 +182,15 @@ public class StatSleep {
         int monthFlag = 0;
         for (int i=0; i<allList.size(); i++){
             int thisDay = Integer.parseInt(allList.get(i).getWakeTime().substring(0,8));
+            Log.d("StatSleep",i+" "+"디스데이: "+thisDay+", 위크플래그: "+weekFlag+", 먼스플래그: "+monthFlag);
             if(thisDay >= weekS && thisDay < weekE){
                 if(weekFlag != thisDay) { weekList.add(allList.get(i)); weekFlag = thisDay; }
             }
-            if(thisDay >= monthS && thisDay < monthS){
+            if(thisDay >= monthS && thisDay < monthE){
                 if(monthFlag != thisDay) { monthList.add(allList.get(i)); monthFlag = thisDay; }
             }
         }
+        Log.d("StatSleep","주간 사이즈: "+weekList.size()+", 월간 사이즈: "+monthList.size());
     }
 
     //UserDataModel과 연결

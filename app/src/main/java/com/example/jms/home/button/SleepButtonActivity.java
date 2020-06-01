@@ -9,7 +9,6 @@ import com.example.jms.R;
 import com.example.jms.home.button.MySleepPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-
 /*아직 ACT 버튼만 test로 만든 상태입니다.*/
 public class SleepButtonActivity extends AppCompatActivity {
 
@@ -29,9 +28,9 @@ public class SleepButtonActivity extends AppCompatActivity {
         });
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tab_layout);
-        tabs.addTab(tabs.newTab().setText("일간"));
-        tabs.addTab(tabs.newTab().setText("주간"));
-        tabs.addTab(tabs.newTab().setText("월간"));
+        tabs.addTab(tabs.newTab().setText(R.string.day));
+        tabs.addTab(tabs.newTab().setText(R.string.week));
+        tabs.addTab(tabs.newTab().setText(R.string.month));
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -40,11 +39,8 @@ public class SleepButtonActivity extends AppCompatActivity {
 
         tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-
-
     }
 }
-
 
 //http://blog.naver.com/PostView.nhn?blogId=cosmosjs&logNo=221347183776&categoryNo=0&parentCategoryNo=56&viewDate=&currentPage=1&postListTopCurrentPage=1&from=section&userTopListOpen=true&userTopListCount=10&userTopListManageOpen=false&userTopListCurrentPage=1
 //해당 링크 참고
