@@ -407,16 +407,19 @@
                             android:textColor="#F75321"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face5"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#F75321"
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
+
                         <TextView
-                            android:layout_weight="1"
+                            android:id="@+id/state5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/good"
                             android:textColor="#F75321"
@@ -463,16 +466,19 @@
                             android:textColor="#F75321"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face6"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#F75321"
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
+
                         <TextView
-                            android:layout_weight="1"
+                            android:id="@+id/state6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:fontFamily="@font/nanumregular"
                             android:text="@string/good"
                             android:textColor="#F75321"

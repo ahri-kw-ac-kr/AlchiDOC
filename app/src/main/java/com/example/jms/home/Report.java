@@ -18,9 +18,10 @@ public class Report extends AppCompatActivity{
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 M월 dd일 달성률");
     TextView mTextView;
     TextView reportActSun, reportActMoon;
+    TextView reportLightSun, reportLightMoon;
     TextView reportSleep1, reportSleep2;
-    ImageView face1, face2, face3, face4;
-    TextView state1, state2, state3, state4;
+    ImageView face1, face2, face3, face4, face5, face6;
+    TextView state1, state2, state3, state4, state5, state6;
 
     ArcProgress act;
     ArcProgress sleep;
@@ -51,16 +52,22 @@ public class Report extends AppCompatActivity{
 
         reportActSun = (TextView) findViewById(R.id.reportActSun);
         reportActMoon = (TextView) findViewById(R.id.reportActMoon);
+        reportLightSun = (TextView) findViewById(R.id.reportLightSun);
+        reportLightMoon = (TextView) findViewById(R.id.reportLightMoon);
         reportSleep1 = (TextView) findViewById(R.id.reportSleep1);
         reportSleep2 = (TextView) findViewById(R.id.reportSleep2);
         face1 = (ImageView) findViewById(R.id.face1);
         face2 = (ImageView) findViewById(R.id.face2);
         face3 = (ImageView) findViewById(R.id.face3);
         face4 = (ImageView) findViewById(R.id.face4);
+        face5 = (ImageView) findViewById(R.id.face5);
+        face6 = (ImageView) findViewById(R.id.face6);
         state1 = (TextView) findViewById(R.id.state1);
         state2 = (TextView) findViewById(R.id.state2);
         state3 = (TextView) findViewById(R.id.state3);
         state4 = (TextView) findViewById(R.id.state4);
+        state5 = (TextView) findViewById(R.id.state5);
+        state6 = (TextView) findViewById(R.id.state6);
 
         //활동량 코멘트
         int actSun = 0;
@@ -94,6 +101,41 @@ public class Report extends AppCompatActivity{
         }
 
         ////////////////////////////////조도량///////////////////////////////
+
+        act = (ArcProgress) findViewById(R.id.arc_progress1);
+        act.setProgress(user.getStatLight().getDayPercent());
+
+        int lightSun = 0;
+        int lightMoon = 0;
+
+        //가중치 먹인거
+        for(int i=9; i<18; i++){ lightSun += user.getStatLight().getDaySumHourLuxWgt()[i]; }
+        for(int i=18; i<21; i++){ lightMoon += user.getStatLight().getDaySumHourLuxWgt()[i]; }
+
+        if(lightSun >= 6000){
+            ///주간 충분
+            reportLightSun.setText(R.string.dayLightComment1);
+            face5.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state5.setText(R.string.good);
+        }
+        else{
+            ///주간 부족
+            reportLightSun.setText(R.string.dayLightComment2);
+            face5.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state5.setText(R.string.bad);
+        }
+        if(lightMoon <= 2000){
+            ///야간 적정
+            reportLightMoon.setText(R.string.dayLightComment4);
+            face6.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state6.setText(R.string.good);
+        }
+        else{
+            ///야간 과다
+            reportLightMoon.setText(R.string.dayLightComment3);
+            face6.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state6.setText(R.string.good);
+        }
 
 
         ////////////////////////////////수면량///////////////////////////////
