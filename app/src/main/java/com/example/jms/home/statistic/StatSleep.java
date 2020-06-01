@@ -1,9 +1,17 @@
 package com.example.jms.home.statistic;
 
+import android.util.Log;
+
 import com.example.jms.connection.model.dto.SleepDTO;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class StatSleep {
     private int deep; //깊은수면
@@ -17,9 +25,15 @@ public class StatSleep {
     //일간
     int percentDay; //일간 퍼센트
 
+    //주간
+    private List<SleepDTO> weekList;
+
+    //월간
+    private List<SleepDTO> monthList;
+
     public StatSleep(){}
     public StatSleep(int deep, int light, int turn, int wake, int turnHour, int total, int[] level,
-                     int percentDay){
+                     int percentDay, List<SleepDTO> weekList, List<SleepDTO> monthList){
         this.deep = deep;
         this.light = light;
         this.turn = turn;
@@ -28,6 +42,8 @@ public class StatSleep {
         this.total = total;
         this.level = level;
         this.percentDay = percentDay;
+        this.weekList = weekList;
+        this.monthList = monthList;
     }
 
     public int getDeep() { return deep; }
@@ -54,6 +70,14 @@ public class StatSleep {
     public int getPercentDay(){ return percentDay; }
     public void setPercentDay(int percentDay) { this.percentDay = percentDay; }
 
+    public List<SleepDTO> getWeekList() { return weekList; }
+    public void setMonthList(List<SleepDTO> monthList) { this.monthList = monthList; }
+
+    public List<SleepDTO> getMonthList() { return monthList; }
+    public void setWeekList(List<SleepDTO> weekList) { this.weekList = weekList; }
+
+
+    //수면 분석
     public static SleepDTO analyze(List<RawdataDTO> data){
         SleepDTO sleepDTO = new SleepDTO();
 
@@ -119,6 +143,7 @@ public class StatSleep {
         return sleepDTO;
     }
 
+    //일간
     private void day(SleepDTO oneDay){
         int total = oneDay.getTotal(); //총 수면시간
         int wake =  oneDay.getWake(); // 깬 횟수
@@ -127,8 +152,51 @@ public class StatSleep {
         else{ percentDay = (int)(((total-((wake*10.0)+turn))/total)*100); }
     }
 
-    public void parsing(List<SleepDTO> sleepDTO){
-        if(sleepDTO.size() != 0){ day(sleepDTO.get(0)); }
+    //날짜 파싱 : 주간, 월간
+    private void selectDay(List<SleepDTO> sleepDTO) throws ParseException {
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+        String date = transFormat.format(calendar.getTime());
+        Date tod = transFormat.parse(date);
+
+        calendar.setTime(tod); //오늘
+        calendar.add(calendar.DATE,7-calendar.get(Calendar.DAY_OF_WEEK)+1); //이번 주 끝
+        int weekE = Integer.parseInt(transFormat.format(calendar.getTime()));
+
+        calendar.add(calendar.DATE,-7);//이번 주 시작
+        int weekS = Integer.parseInt(transFormat.format(calendar.getTime()));
+
+        String mstart = date.substring(0,6)+"01";
+        calendar.setTime(transFormat.parse(mstart));
+        int monthS = Integer.parseInt(transFormat.format(calendar.getTime()));//이번 달 시작
+
+        calendar.add(calendar.MONTH,1);//이번 달 끝
+        int monthE = Integer.parseInt(transFormat.format(calendar.getTime()));
+
+        Log.d("StatSleep","이번주 시작 "+weekS+", 이번주 끝+1 "+weekE+", 이번달 시작 "+monthS+", 이번달 끝+1 "+monthE);
+
+        List<SleepDTO> allList = sleepDTO;
+        weekList = new ArrayList<>();
+        monthList = new ArrayList<>();
+        int weekFlag = 0;
+        int monthFlag = 0;
+        for (int i=0; i<allList.size(); i++){
+            int thisDay = Integer.parseInt(allList.get(i).getWakeTime().substring(0,8));
+            if(thisDay >= weekS && thisDay < weekE){
+                if(weekFlag != thisDay) { weekList.add(allList.get(i)); weekFlag = thisDay; }
+            }
+            if(thisDay >= monthS && thisDay < monthS){
+                if(monthFlag != thisDay) { monthList.add(allList.get(i)); monthFlag = thisDay; }
+            }
+        }
+    }
+
+    //UserDataModel과 연결
+    public void parsing(List<SleepDTO> sleepDTO) throws ParseException {
+        if(sleepDTO.size() != 0){
+            day(sleepDTO.get(0));
+            selectDay(sleepDTO);
+        }
         else{ percentDay = 0; }
     }
 }
