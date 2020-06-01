@@ -601,7 +601,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="월 평균 뒤척임"
+                            android:text="월 평균 수면 시간"
                             android:textAlignment="viewStart"
                             android:textColor="#7476B3"
                             android:textSize="18sp"></TextView>
@@ -640,7 +640,6 @@
                         android:layout_height="2dp"
                         android:background="#ECECEC"/>
 
-
                     <LinearLayout
                         android:weightSum="7"
                         android:layout_marginTop="16dp"
@@ -655,7 +654,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumbold"
-                            android:text="월 평균 야간 수면량"
+                            android:text="월 평균 뒤척임"
                             android:textAlignment="viewStart"
                             android:textColor="#7476B3"
                             android:textSize="18sp"></TextView>

@@ -9,7 +9,9 @@ import com.example.jms.R;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Report extends AppCompatActivity{
 
@@ -139,6 +141,10 @@ public class Report extends AppCompatActivity{
 
 
         ////////////////////////////////수면량///////////////////////////////
+        //현재시간
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+        String curr = transFormat.format(calendar.getTime());
         //수면량 그래프
         sleep = (ArcProgress) findViewById(R.id.arc_progress3);
         sleep.setProgress(user.getStatSleep().getPercentDay());
@@ -148,47 +154,54 @@ public class Report extends AppCompatActivity{
             reportSleep2.setText("\n");
         }
         else {/////측정데이터 존재
-            int deepPercent = 0;
-            try { deepPercent = (int) ((((double)user.getStatSleep().getDeep() /(double) user.getStatSleep().getTotal())) * 100); } catch (Exception e) { }
-
-            //////////////////////////////////총 수면시간 코멘트////////////////////////
-            if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
-                if (deepPercent >= 25) {//깊은잠 정상
-                    reportSleep1.setText(R.string.daySleepComment2);
-                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state1.setText(R.string.sleepState1);
-                } else {//깊은잠 부족
-                    reportSleep1.setText(R.string.daySleepComment1);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state1.setText(R.string.sleepState2);
+            if (!user.getSleepDTOList().get(0).getWakeTime().substring(0, 8).equals(curr.substring(0, 8))) {//오늘데이터 없음
+                reportSleep1.setText("\n");
+                reportSleep2.setText("\n");
+            }
+            else {
+                int deepPercent = 0;
+                try {
+                    deepPercent = (int) ((((double) user.getStatSleep().getDeep() / (double) user.getStatSleep().getTotal())) * 100);
+                } catch (Exception e) {
                 }
-            } else {//수면효율 비정상
-                if (deepPercent >= 25) {//깊은잠 정상
-                    reportSleep1.setText(R.string.daySleepComment4);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state1.setText(R.string.sleepState2);
-                } else {//깊은잠 부족
-                    reportSleep1.setText(R.string.daySleepComment3);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state1.setText(R.string.sleepState2);
-                }
-            }
 
-            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
-            if (user.getStatSleep().getTurnHour() == 0) {//정상
-                reportSleep2.setText(R.string.daySleepComment5);
-                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                state2.setText(R.string.sleepState1);
-            }
-            else if(user.getStatSleep().getTurnHour() == 1){//주의
-                reportSleep2.setText(R.string.daySleepComment6);
-                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state2.setText(R.string.sleepState2);
-            }
-            else if(user.getStatSleep().getTurnHour() == 2){//관리필요
-                reportSleep2.setText(R.string.daySleepComment7);
-                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state2.setText(R.string.sleepState3);
+                //////////////////////////////////총 수면시간 코멘트////////////////////////
+                if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
+                    if (deepPercent >= 25) {//깊은잠 정상
+                        reportSleep1.setText(R.string.daySleepComment2);
+                        face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state1.setText(R.string.sleepState1);
+                    } else {//깊은잠 부족
+                        reportSleep1.setText(R.string.daySleepComment1);
+                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state1.setText(R.string.sleepState2);
+                    }
+                } else {//수면효율 비정상
+                    if (deepPercent >= 25) {//깊은잠 정상
+                        reportSleep1.setText(R.string.daySleepComment4);
+                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state1.setText(R.string.sleepState2);
+                    } else {//깊은잠 부족
+                        reportSleep1.setText(R.string.daySleepComment3);
+                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state1.setText(R.string.sleepState2);
+                    }
+                }
+
+                ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+                if (user.getStatSleep().getTurnHour() == 0) {//정상
+                    reportSleep2.setText(R.string.daySleepComment5);
+                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state2.setText(R.string.sleepState1);
+                } else if (user.getStatSleep().getTurnHour() == 1) {//주의
+                    reportSleep2.setText(R.string.daySleepComment6);
+                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state2.setText(R.string.sleepState2);
+                } else if (user.getStatSleep().getTurnHour() == 2) {//관리필요
+                    reportSleep2.setText(R.string.daySleepComment7);
+                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state2.setText(R.string.sleepState3);
+                }
             }
         }
 

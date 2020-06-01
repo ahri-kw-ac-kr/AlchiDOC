@@ -3,9 +3,11 @@ package com.example.jms.home.statistic;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,12 +19,17 @@ import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.SleepDTO;
 import com.example.jms.home.UserDataModel;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import org.eazegraph.lib.charts.StackedBarChart;
 import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.StackedBarModel;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -65,6 +72,7 @@ public class WeekSleep extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.week_sleep, container, false);
         StackedBarChart mStackedBarChart = (StackedBarChart) view.findViewById(R.id.stackedbarchart);
+        //BarChart mStackedBarChart = (BarChart) view.findViewById(R.id.stackedbarchart);
         int pos = UserDataModel.currentP;
         UserDataModel user = UserDataModel.userDataModels[pos];
         List<SleepDTO> weekList = user.getStatSleep().getWeekList();
@@ -74,6 +82,7 @@ public class WeekSleep extends Fragment {
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HHmm");
         String curr = transFormat.format(calendar.getTime());
         int thisDay = calendar.get(Calendar.DAY_OF_WEEK);
+        int thisWeek = calendar.get(Calendar.WEEK_OF_MONTH);
 
         ////////변수 초기화
         Integer[] totalSum = {0,0,0,0,0,0,0,0,0,0};
@@ -89,14 +98,15 @@ public class WeekSleep extends Fragment {
         int turn = 0;
         int turnHour = 0;
 
+        int size = weekList.size()-1;
         /////////////////////주간통계//////////////////
         for(int i=0; i<weekList.size(); i++){
-            totalSum[i] = weekList.get(i).getTotal();
-            deepSum[i] = weekList.get(i).getDeep();
-            lightSum[i] = weekList.get(i).getLight();
-            wakeSum[i] = weekList.get(i).getWake();
-            turnSum[i] = weekList.get(i).getTurn();
-            turnHourSum[i] = weekList.get(i).getTurnHour();
+            totalSum[i] = weekList.get(size-i).getTotal();
+            deepSum[i] = weekList.get(size-i).getDeep();
+            lightSum[i] = weekList.get(size-i).getLight();
+            wakeSum[i] = weekList.get(size-i).getWake();
+            turnSum[i] = weekList.get(size-i).getTurn();
+            turnHourSum[i] = weekList.get(size-i).getTurnHour();
         }
 
         for(int i=0; i<weekList.size(); i++){
@@ -123,10 +133,10 @@ public class WeekSleep extends Fragment {
         lightM = lightA%60;
 
 
-        //000님의 0월 0일
+        //000님의 0월 0주차
         titleDay = (TextView) view.findViewById(R.id.weekSleepTitle);
-        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
-        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
         titleDay.setText(titleD);
 
         ///퍼센트
@@ -156,6 +166,8 @@ public class WeekSleep extends Fragment {
 
 
         ///////그래프///////
+        //int[] colorArray = new int[]{Color.parseColor("#7851C3"),Color.parseColor("#AC89EB"),Color.parseColor("#D7B6F9")};
+        //ArrayList<BarEntry> dataSet = new ArrayList<>();
         StackedBarModel[] data = new StackedBarModel[7];
         String[] day = {"일","월","화","수","목","금","토"};
         for(int i=0; i<7; i++){
@@ -163,7 +175,18 @@ public class WeekSleep extends Fragment {
             data[i].addBar(new BarModel(deepSum[i], Color.parseColor("#7851C3")));
             data[i].addBar(new BarModel(lightSum[i], Color.parseColor("#AC89EB")));
             data[i].addBar(new BarModel(wakeSum[i], Color.parseColor("#D7B6F9")));
+            //dataSet.add(new BarEntry(0,new float[]{deepSum[i],lightSum[i],wakeSum[i]}));
+            //dataSet.add(new BarEntry(0,new float[]{deepSum[i],lightSum[i],wakeSum[i]}));
         }
+/*
+        BarDataSet barDataSet = new BarDataSet(dataSet,"");
+        barDataSet.setColors(colorArray);
+
+        BarData barData = new BarData(barDataSet);
+        mStackedBarChart.setData(barData);
+        mStackedBarChart.animateY(3000);
+*/
+
 
         /*
         StackedBarModel s1 = new StackedBarModel("월");
@@ -213,49 +236,52 @@ public class WeekSleep extends Fragment {
         state1 = (TextView) view.findViewById(R.id.state1);
         state2 = (TextView) view.findViewById(R.id.state2);
         int deepPercent = 0;
-        try{deepPercent = (int) (((double) (deepA / totalA)) * 100);}catch (Exception e){}
+        try{deepPercent = (int) ((((double)deepA / (double)totalA)) * 100);}catch (Exception e){}
 
+        Log.d("WeekSleep","weekList 길이 : "+user.getStatSleep().getWeekList().size()+", pos: "+pos);
         //////////////////////////////////총 수면시간 코멘트////////////////////////
-        if (percent >= 80) {// 수면효율 정상
-            if (deepPercent >= 25) {//깊은잠 정상
-                weekSleepPlan1.setText(R.string.weekSleepComment2);
-                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                state1.setText(R.string.sleepState1);
-            } else {//깊은잠 부족
-                weekSleepPlan1.setText(R.string.weekSleepComment1);
-                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state1.setText(R.string.sleepState2);
+        if(user.getStatSleep().getWeekList().size() == 0){///데이터 없음
+
+        }
+        else {
+            if (percent >= 80) {// 수면효율 정상
+                if (deepPercent >= 25) {//깊은잠 정상
+                    weekSleepPlan1.setText(R.string.weekSleepComment2);
+                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state1.setText(R.string.sleepState1);
+                } else {//깊은잠 부족
+                    weekSleepPlan1.setText(R.string.weekSleepComment1);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                }
+            } else {//수면효율 비정상
+                if (deepPercent >= 25) {//깊은잠 정상
+                    weekSleepPlan1.setText(R.string.weekSleepComment4);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                } else {//깊은잠 부족
+                    weekSleepPlan1.setText(R.string.weekSleepComment3);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                }
             }
-        } else {//수면효율 비정상
-            if (deepPercent >= 25) {//깊은잠 정상
-                weekSleepPlan1.setText(R.string.weekSleepComment4);
-                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state1.setText(R.string.sleepState2);
-            } else {//깊은잠 부족
-                weekSleepPlan1.setText(R.string.weekSleepComment3);
-                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state1.setText(R.string.sleepState2);
+
+            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+            if (Math.round(turnHourA) == 0) {//정상
+                weekSleepPlan2.setText(R.string.weekSleepComment5);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.sleepState1);
+            } else if (Math.round(turnHourA) == 1) {//주의
+                weekSleepPlan2.setText(R.string.weekSleepComment6);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState2);
+            } else if (Math.round(turnHourA) == 2) {//관리필요
+                weekSleepPlan2.setText(R.string.weekSleepComment7);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState3);
             }
-        }
 
-        ///////////////////////////////평균뒤척임 코멘트///////////////////////////
-        if (Math.round(turnHourA) == 0) {//정상
-            weekSleepPlan2.setText(R.string.weekSleepComment5);
-            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state2.setText(R.string.sleepState1);
         }
-        else if(Math.round(turnHourA) == 1){//주의
-            weekSleepPlan2.setText(R.string.weekSleepComment6);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.sleepState2);
-        }
-        else if(Math.round(turnHourA) == 2){//관리필요
-            weekSleepPlan2.setText(R.string.weekSleepComment7);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.sleepState3);
-        }
-
-
         return view;
     }
 }

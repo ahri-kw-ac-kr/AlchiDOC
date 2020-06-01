@@ -2,6 +2,7 @@ package com.example.jms.home.statistic;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -222,44 +223,48 @@ public class MonthSleep extends Fragment {
         int deepPercent = 0;
         try{deepPercent = (int) ((((double)deepA / (double)totalA)) * 100);}catch (Exception e){}
 
+        Log.d("MonthSleep","monthList 길이 : "+user.getStatSleep().getMonthList().size()+", pos: "+pos);
         //////////////////////////////////총 수면시간 코멘트////////////////////////
-        if (percent >= 80) {// 수면효율 정상
-            if (deepPercent >= 25) {//깊은잠 정상
-                monthSleepPlan1.setText(R.string.monthSleepComment2);
-                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                state1.setText(R.string.sleepState1);
-            } else {//깊은잠 부족
-                monthSleepPlan1.setText(R.string.monthSleepComment1);
-                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state1.setText(R.string.sleepState2);
-            }
-        } else {//수면효율 비정상
-            if (deepPercent >= 25) {//깊은잠 정상
-                monthSleepPlan1.setText(R.string.monthSleepComment4);
-                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state1.setText(R.string.sleepState2);
-            } else {//깊은잠 부족
-                monthSleepPlan1.setText(R.string.monthSleepComment3);
-                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state2.setText(R.string.sleepState2);
-            }
-        }
+        if(user.getStatSleep().getMonthList().size() == 0){//데이터 없음
 
-        ///////////////////////////////평균뒤척임 코멘트///////////////////////////
-        if (Math.round(turnHourA) == 0) {//정상
-            monthSleepPlan2.setText(R.string.monthSleepComment5);
-            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state2.setText(R.string.sleepState1);
         }
-        else if(Math.round(turnHourA) == 1){//주의
-            monthSleepPlan2.setText(R.string.monthSleepComment6);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.sleepState2);
-        }
-        else if(Math.round(turnHourA) == 2){//관리필요
-            monthSleepPlan2.setText(R.string.monthSleepComment7);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.sleepState3);
+        else {
+            if (percent >= 80) {// 수면효율 정상
+                if (deepPercent >= 25) {//깊은잠 정상
+                    monthSleepPlan1.setText(R.string.monthSleepComment2);
+                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state1.setText(R.string.sleepState1);
+                } else {//깊은잠 부족
+                    monthSleepPlan1.setText(R.string.monthSleepComment1);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                }
+            } else {//수면효율 비정상
+                if (deepPercent >= 25) {//깊은잠 정상
+                    monthSleepPlan1.setText(R.string.monthSleepComment4);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                } else {//깊은잠 부족
+                    monthSleepPlan1.setText(R.string.monthSleepComment3);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                }
+            }
+
+            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+            if (Math.round(turnHourA) == 0) {//정상
+                monthSleepPlan2.setText(R.string.monthSleepComment5);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.sleepState1);
+            } else if (Math.round(turnHourA) == 1) {//주의
+                monthSleepPlan2.setText(R.string.monthSleepComment6);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState2);
+            } else if (Math.round(turnHourA) == 2) {//관리필요
+                monthSleepPlan2.setText(R.string.monthSleepComment7);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState3);
+            }
         }
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)

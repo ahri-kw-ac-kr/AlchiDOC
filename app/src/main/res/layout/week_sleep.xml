@@ -183,7 +183,7 @@
                 android:layout_marginBottom="15dp"
 
                 android:fontFamily="@font/nanumregular"
-                android:text="이주의 수면량 기록"
+                android:text="이 주의 수면량 기록"
                 android:textColor="#646464"
                 android:textSize="17sp"
                 android:textStyle="bold"></TextView>
