@@ -77,6 +77,13 @@
     <string name="fragHome8">취침시간 설정</string>
     <string name="fragHome9">취침모드 시작</string>
 
+    <string name="mainActivity1">블루투스를 지원하지 않는 기기입니다.</string>
+    <string name="mainActivity2">블루투스가 활성화 되어 있지 않습니다. AlchiDOC 서비스를 이용하기 위해서는 블루투스를 켜주세요.</string>
+
+    <string name="samplePagerAdapter1">현재 저장된 위치가 없습니다</string>
+    <string name="samplePagerAdapter2">지도 탭을 눌러 현 위치를 확인하세요</string>
+    <string name="samplePagerAdapter3">위치 공유가 허용되지 않았습니다</string>
+
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>
