@@ -386,6 +386,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/weekLightFace1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -393,6 +394,7 @@
                             android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/weekLightState1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -411,49 +413,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="낮 시간대의 조도량이 부족합니다. 오후에는 야외 활동을 늘려주세요."></TextView>
-                    <View
-                        android:layout_gravity="center|top"
-                        android:layout_marginTop="12dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#ECECEC"/>
 
-
-                    <LinearLayout
-                        android:weightSum="7"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_weight="6"
-                            android:drawablePadding="5dp"
-                            android:drawableLeft="@drawable/ic_highlight_black_24dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumbold"
-                            android:text="평균 저녁 조도량"
-                            android:textAlignment="viewStart"
-                            android:textColor="#F75321"
-                            android:textSize="16sp"></TextView>
-                        <ImageView
-                            android:layout_weight="0.3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                            ></ImageView>
-                        <TextView
-                            android:gravity="bottom"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumregular"
-                            android:text="적정"
-                            android:textColor="#F75321"
-                            android:textSize="15sp"></TextView>
-                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/weekLightPlan2"
@@ -492,6 +452,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/weekLightFace2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -499,6 +460,7 @@
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/weekLightState2"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"

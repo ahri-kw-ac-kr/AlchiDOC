@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,9 @@ public class WeekLight extends Fragment {
     TextView WeekDayLux;
     TextView WeekNightLux;
     TextView WeekNightTemp;
-    int dL,nL,nK = 0; //dayLinght eveningLight eveningK nightLight nightK
+    TextView weekLightPlan1, weekLightPlan2;
+    ImageView face1, face2;
+    TextView state1,state2;
 
     //constructor
     public WeekLight(){}
@@ -99,6 +102,52 @@ public class WeekLight extends Fragment {
         }
 
         mBarChart.startAnimation();
+
+        //////////코멘트///////////
+        weekLightPlan1 = (TextView) view.findViewById(R.id.weekLightPlan1);
+        weekLightPlan2 = (TextView) view.findViewById(R.id.weekLightPlan2);
+        face1 = (ImageView) view.findViewById(R.id.weekLightFace1);
+        face2 = (ImageView) view.findViewById(R.id.weekLightFace2);
+        state1 = (TextView) view.findViewById(R.id.weekLightState1);
+        state2 = (TextView) view.findViewById(R.id.weekLightState2);
+
+        int sun = 0;
+        int moonLux = 0;
+        int moonTemp = 0;
+
+        for(int i=0; i<thisDay; i++){
+            sun += user.getStatLight().getWeekSumSun()[i];
+            moonLux +=user.getStatLight().getWeekSumMoonLux()[i];
+            moonTemp +=user.getStatLight().getWeekSumMoonTemp()[i];
+        }
+        //주간코멘트
+        if(sun >= 60000){
+            //충분
+            weekLightPlan1.setText(R.string.weekLightComment1);
+            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state1.setText(R.string.good);
+        }
+        else{
+            //부족
+            weekLightPlan1.setText(R.string.weekLightComment2);
+            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state1.setText(R.string.bad);
+        }
+
+        //야간코멘트
+        if(moonLux <=400||moonTemp<2500){
+            //적정
+            weekLightPlan2.setText(R.string.weekLightComment4);
+            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state2.setText(R.string.good);
+        }
+        else{
+            //과다
+            weekLightPlan2.setText(R.string.weekLightComment3);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.exceed);
+        }
+
 
         return view;
     }

@@ -431,6 +431,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/monthLightFace1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -438,6 +439,7 @@
                             android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/monthLightState1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -482,6 +484,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/monthLightFace2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -489,6 +492,7 @@
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/monthLightState2"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
