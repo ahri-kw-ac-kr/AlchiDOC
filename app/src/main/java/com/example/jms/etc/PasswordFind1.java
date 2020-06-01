@@ -69,7 +69,7 @@ public class PasswordFind1 extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(name->{
-                    Toast.makeText(getApplicationContext(), "입력하신 이메일로 인증번호를 발송하였습니다.\n5분 안으로 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.password_find14, Toast.LENGTH_SHORT).show();
                 },Throwable::printStackTrace);
         /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://13.209.225.252/api/v1/user/forget/?username="+email)
@@ -92,7 +92,7 @@ public class PasswordFind1 extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(name->{
-                    Toast.makeText(getApplicationContext(), "비밀번호가 재설정 되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.password_find15, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(),Login.class);
                     startActivity(intent);
                 },Throwable -> {
@@ -101,11 +101,11 @@ public class PasswordFind1 extends AppCompatActivity {
                         switch (e.code()){
                             case 401:
                                 Toast.makeText(getApplicationContext(),
-                                        "인증에 실패했습니다.\n인증요청을 다시 해주세요.", Toast.LENGTH_SHORT).show();
+                                        R.string.password_find15, Toast.LENGTH_SHORT).show();
                                 break;
                             case 500:
                                 Toast.makeText(getApplicationContext(),
-                                        "연결이 불안정합니다.", Toast.LENGTH_SHORT).show();
+                                        R.string.password_find16, Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }
