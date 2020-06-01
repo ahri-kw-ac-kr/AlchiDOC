@@ -374,6 +374,7 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:tint="#329035"
                             android:id="@+id/face3"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
