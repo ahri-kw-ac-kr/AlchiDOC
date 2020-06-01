@@ -21,6 +21,10 @@ import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.home.UserDataModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -65,6 +69,45 @@ public class DeviceSet2 extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                         startActivity(intent);
                         finish();
+
+                        Calendar calendar = Calendar.getInstance();
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+                        String date = transFormat.format(calendar.getTime());
+                        Date today = transFormat.parse(date);
+                        calendar.setTime(today);
+                        String lastDate;
+                        if(Integer.parseInt(date.substring(4,6))==12){
+                            int year = Integer.parseInt(date.substring(0,4))+1;
+                            lastDate = year+"0101 00:00:00";
+                        }else{
+                            int month = Integer.parseInt(date.substring(4,6))+1;
+                            lastDate = date.substring(0,4)+month+"01 00:00:00";
+                        }
+
+                        String weekCause;
+                        String month = date.substring(4,6);
+                        if(month == "01"){
+                            int year = Integer.parseInt(date.substring(0,4))-1;
+                            weekCause = year+"1223"; }
+                        else{
+                            int monthI = Integer.parseInt(month)-1;
+                            if(monthI < 10){
+                                month = "0"+ monthI;
+                                weekCause = date.substring(0,4)+month+"23 00:00:00"; }
+                            else{
+                                month = Integer.toString(monthI);
+                                weekCause = date.substring(0,4)+month+"23 00:00:00"; }
+                        }
+
+                        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",weekCause,lastDate)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(data -> {
+                                    if(data.getContent()!=null){
+                                        UserDataModel.userDataModels[0].setDataList(data.getContent());
+                                        UserDataModel.userDataModels[0].parsingDay(0);
+                                    }
+                                },Throwable::printStackTrace);
                     }
                 })
                 .subscribe(BleDeviceDTO -> {
@@ -78,13 +121,13 @@ public class DeviceSet2 extends AppCompatActivity {
                                 .subscribeOn(AndroidSchedulers.mainThread())
                                 .doOnComplete(() -> {
                                     Log.i("DeviceSet2", "on Complete");
-                                    sleepDocViewModel.battery()
+                                    /*sleepDocViewModel.battery()
                                             .observeOn(Schedulers.io())
                                             .subscribeOn(AndroidSchedulers.mainThread())
                                             .subscribe(batt -> {
                                                 Log.i("DeviceSet2", "배터리 "+ batt);
                                                 BleService.battery = "배터리: "+batt+"%";
-                                            },Throwable->{Log.d("DeviceSet2","배터리 실패"); });
+                                            },Throwable->{Log.d("DeviceSet2","배터리 실패"); });*/
                                 })
                                 .subscribe(() -> {
                                     BleService.principalDevice = BleDeviceDTO;
@@ -92,17 +135,26 @@ public class DeviceSet2 extends AppCompatActivity {
                                     editor.putString("key",BleDeviceDTO.getKey());
                                     editor.putString("name",BleDeviceDTO.getName());
                                     editor.putInt("rssi",BleDeviceDTO.getRssi());
-                                    editor.commit();
-                                    sleepDocViewModel.getRawdataFromSleepDoc()
-                                            .observeOn(Schedulers.io())
-                                            .subscribeOn(AndroidSchedulers.mainThread())
-                                            .subscribe(data -> {
-                                                data.setUser(RestfulAPI.principalUser);
-                                                apiViewModel.postRawdata(data)
+                                    editor.apply();
+                                   // sleepDocViewModel.battery()
+                                   //         .observeOn(Schedulers.io())
+                                   //         .subscribeOn(AndroidSchedulers.mainThread())
+                                   //         .doOnComplete(()->{
+                                                sleepDocViewModel.getRawdataFromSleepDoc()
                                                         .observeOn(Schedulers.io())
-                                                        .subscribe(result -> {
-                                                            }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
-                                                }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage()));
+                                                        .subscribeOn(AndroidSchedulers.mainThread())
+                                                        .subscribe(data -> {
+                                                            data.setUser(RestfulAPI.principalUser);
+                                                            apiViewModel.postRawdata(data)
+                                                                    .observeOn(Schedulers.io())
+                                                                    .subscribe(result -> {
+                                                                    }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
+                                                        }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage()));
+                                      //      })
+                                     //       .subscribe(batt -> {
+                                      //          Log.i("DeviceSet2", "배터리 "+ batt);
+                                       //         BleService.battery = "배터리: "+batt+"%";
+                                         //   },Throwable->{Log.d("DeviceSet2","배터리 실패"); });
                                     }, Throwable -> {
                                     Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                                     startActivity(intent);

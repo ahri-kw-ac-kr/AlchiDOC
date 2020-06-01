@@ -1,9 +1,6 @@
 package com.example.jms.settings;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.bluetooth.BluetoothClass;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,26 +10,24 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.clj.fastble.BleManager;
 import com.example.jms.R;
 import com.example.jms.connection.model.BleService;
-import com.example.jms.connection.model.RestfulAPI;
-import com.example.jms.connection.model.dto.BleDeviceDTO;
 import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.HttpException;
 
 public class DeviceSet1 extends AppCompatActivity {
 
@@ -78,18 +73,23 @@ public class DeviceSet1 extends AppCompatActivity {
             if(sleepDocViewModel.deviceCon()){
                 myDevice = new DeviceSet3(getApplicationContext());
                 deviceList.addView(myDevice);
+                TextView tt = myDevice.textView;
+                AtomicReference<String> str = new AtomicReference<>("");
                 sleepDocViewModel.battery()
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
                             Log.i("DeviceSet1", "배터리 "+ data);
                             BleService.battery = "배터리: "+data+"%";
-                            myDevice.textView.setText(BleService.battery);
+                            //str.set("배터리: " + data + "%");
+                            //myDevice.textView.setText(BleService.battery);
                             }
                             ,Throwable->{
-                            myDevice.textView.setText(""+BleService.battery);
+                            //myDevice.textView.setText(""+BleService.battery);
                             Log.d("DeviceSet1","배터리 실패");
                         });
+                tt.setText(BleService.battery);
+                //.setText(BleService.battery);
                 fab.setVisibility(View.GONE);
                 refactor.setVisibility(View.VISIBLE);
                 Button btn = myDevice.button;
@@ -129,6 +129,7 @@ public class DeviceSet1 extends AppCompatActivity {
                     @Override
                     public void run() {*/
                 fab.setVisibility(View.VISIBLE);
+                refactor.setVisibility(View.GONE);
             //}});
                 Log.d("DeviceSet1","연결끊기 확인");
             }

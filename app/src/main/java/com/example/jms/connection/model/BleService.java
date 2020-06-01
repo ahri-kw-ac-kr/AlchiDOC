@@ -44,7 +44,8 @@ public class BleService {
                     BleDeviceDTO bleDeviceDTO = new BleDeviceDTO(bleDevice);
                     //try{ if(bleDeviceDTO.getName().equals("SleepDoc")){ principalDevice = bleDeviceDTO; }
                     //}catch (Exception e){ }
-                    observer.onNext(bleDeviceDTO);
+                    if(bleDeviceDTO.getName().equals("SleepDoc")){ observer.onNext(bleDeviceDTO); }
+
                 }
 
                 @Override
