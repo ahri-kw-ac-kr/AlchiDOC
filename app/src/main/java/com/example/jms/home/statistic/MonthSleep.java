@@ -213,7 +213,7 @@ public class MonthSleep extends Fragment {
 
         /////////코멘트///////
         int deepPercent = 0;
-        try{deepPercent = (int) (((double) (deepA / totalA)) * 100);}catch (Exception e){}
+        try{deepPercent = (int) ((((double)deepA / (double)totalA)) * 100);}catch (Exception e){}
 
 
         //////////////////////////////////총 수면시간 코멘트////////////////////////
