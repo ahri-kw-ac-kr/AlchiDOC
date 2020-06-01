@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginRight="10dp"
-                    android:id="@+id/date"
+                    android:id="@+id/monthSleepTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -51,6 +51,7 @@
 
 
                 <TextView
+                    android:id="@+id/monthSleepPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -128,11 +129,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
-                                    android:text=" 과다 "
+                                    android:text=" 충분 "
                                     android:textColor="#5F5F5F"
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthSleepLevel1"
                                     android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -165,11 +167,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="left"
-                                    android:text=" 충분 "
+                                    android:text=" 보통 "
                                     android:textColor="#5F5F5F"
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthSleepLevel2"
                                     android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -207,6 +210,7 @@
                                     android:textSize="12sp"></TextView>
 
                                 <TextView
+                                    android:id="@+id/monthSleepLevel3"
                                     android:layout_weight="0.7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -277,6 +281,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthSleepTotalH"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -296,6 +301,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/monthSleepTotalM"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -345,6 +351,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthSleepDeepH"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -364,6 +371,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/monthSleepDeepM"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -411,6 +419,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthSleepLightH"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -430,6 +439,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/monthSleepLightM"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -477,6 +487,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthSleepWake"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -524,6 +535,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/monthSleepTurn"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

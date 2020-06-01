@@ -3,6 +3,7 @@ package com.example.jms.home.statistic;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -229,9 +230,10 @@ public class DaySleep extends Fragment {
         else {/////측정데이터 존재
             int deepPercent = 0;
             try {
-                deepPercent = (int) (((double) (user.getStatSleep().getDeep() / user.getStatSleep().getTotal())) * 100);
+                deepPercent = (int) ((((double) user.getSleepDTOList().get(0).getDeep() / (double) user.getSleepDTOList().get(0).getTotal()) * 100));
             } catch (Exception e) {
             }
+            Log.d("DaySleep","퍼센트: "+deepPercent+", 100곱하기 전: "+((double) user.getSleepDTOList().get(0).getDeep() / (double) user.getSleepDTOList().get(0).getTotal()));
 
             //////////////////////////////////총 수면시간 코멘트////////////////////////
             if (percent >= 80) {// 수면효율 정상
