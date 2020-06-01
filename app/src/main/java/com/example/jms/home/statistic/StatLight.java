@@ -393,6 +393,11 @@ public class StatLight {
             Log.d("StatLight-MonthLight", i + ", " + sumDayDinTemp[i]);//합산 잘 되었는지 확인
         }
 
+        monthSumDay = sumDay;
+        monthSumSun = sumDayMor;
+        monthSumMoonLux = sumDayDinLux;
+        monthSumMoonTemp = sumDayDinTemp;
+
         //현재시간
         Calendar calendar = Calendar.getInstance(Locale.KOREA);
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");

@@ -112,9 +112,8 @@ public class MainActivity extends AppCompatActivity {
         fragSettings = new FragSettings();
 
         BluetoothOn();
-
-
     }
+
     //하단바를 통해 프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n) {
         fm = getSupportFragmentManager();
@@ -133,28 +132,24 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit(); //저장의미
                 break;
         }
-
     }
 
     private void BluetoothOn(){
         BluetoothAdapter mBluetoothAdapter;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
-            Toast.makeText(getApplicationContext(), "블루투스를 지원하지 않는 기기입니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.mainActivity1, Toast.LENGTH_LONG).show();
         }
         else {
             if (mBluetoothAdapter.isEnabled()) {
                 //Toast.makeText(getApplicationContext(), "블루투스가 이미 활성화 되어 있습니다.", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getApplicationContext(), "블루투스가 활성화 되어 있지 않습니다. AlchiDoc 서비스를 이용하기 위해서는 블루투스를 켜주세요.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.mainActivity2, Toast.LENGTH_LONG).show();
                 Intent intentBluetoothEnable = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(intentBluetoothEnable, BT_REQUEST_ENABLE);
             }
-
         }
-
     }
-
 
     ///권한 설정 하는 코드를 가져와봤는데... 실행이 안되네요
     ///https://stackoverflow.com/questions/34342816/android-6-0-multiple-permissions - 여기를 참조했습니다

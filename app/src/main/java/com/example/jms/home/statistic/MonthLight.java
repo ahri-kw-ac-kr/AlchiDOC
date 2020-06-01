@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,11 @@ public class MonthLight extends Fragment {
     TextView AvgLux;
     TextView AvgNightLux;
     TextView AvgNightTemp;
+
+    TextView monthLightPlan1,monthLightPlan2;
+    ImageView face1,face2;
+    TextView state1,state2;
+
     public MonthLight() {}
 
 
@@ -119,6 +125,53 @@ public class MonthLight extends Fragment {
 
         dataSet.setColors(colorArray);
         pieChart.animateXY(5000, 5000);
+
+
+        //코멘트
+
+        monthLightPlan1 = (TextView) view.findViewById(R.id.monthLightPlan1);
+        monthLightPlan2 = (TextView) view.findViewById(R.id.monthLightPlan3);
+        face1 = (ImageView) view.findViewById(R.id.monthLightFace1);
+        face2 = (ImageView) view.findViewById(R.id.monthLightFace2);
+        state1 = (TextView) view.findViewById(R.id.monthLightState1);
+        state2 = (TextView) view.findViewById(R.id.monthLightState1);
+
+        int sun = 0;
+        int moonLux = 0;
+        int moonTemp = 0;
+
+        for(int i=0; i<Integer.parseInt(curr.substring(6)); i++){
+            sun += user.getStatLight().getMonthSumSun()[i];
+            moonLux +=user.getStatLight().getMonthSumMoonLux()[i];
+            moonTemp +=user.getStatLight().getMonthSumMoonTemp()[i];
+        }
+        //주간코멘트
+        if(sun >= 60000){
+            //충분
+            monthLightPlan1.setText(R.string.monthLightComment1);
+            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state1.setText(R.string.good);
+        }
+        else{
+            //부족
+            monthLightPlan1.setText(R.string.monthLightComment2);
+            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state1.setText(R.string.bad);
+        }
+
+        //야간코멘트
+        if(moonLux <=400 ||moonTemp <= 2500){
+            //적정
+            monthLightPlan2.setText(R.string.monthLightComment4);
+            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state2.setText(R.string.good);
+        }
+        else{
+            //과다
+            monthLightPlan2.setText(R.string.monthLightComment3);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.exceed);
+        }
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)
         참고 사이트:

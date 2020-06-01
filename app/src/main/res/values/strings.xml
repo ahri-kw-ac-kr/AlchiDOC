@@ -67,6 +67,23 @@
     <string name="sign_up_wrong7">성별을 선택해 주세요.</string>
     <string name="sign_up_wrong8">비밀번호가 일치하지 않습니다.</string>
 
+    <string name="fragHome1">조도량 부족</string>
+    <string name="fragHome2">조도량 충분</string>
+    <string name="fragHome3">활동량 부족</string>
+    <string name="fragHome4">활동량 충분</string>
+    <string name="fragHome5">수면량 부족</string>
+    <string name="fragHome6">수면량 충분</string>
+    <string name="fragHome7">원하는 작업을 선택해 주세요.</string>
+    <string name="fragHome8">취침시간 설정</string>
+    <string name="fragHome9">취침모드 시작</string>
+
+    <string name="mainActivity1">블루투스를 지원하지 않는 기기입니다.</string>
+    <string name="mainActivity2">블루투스가 활성화 되어 있지 않습니다. AlchiDOC 서비스를 이용하기 위해서는 블루투스를 켜주세요.</string>
+
+    <string name="samplePagerAdapter1">현재 저장된 위치가 없습니다</string>
+    <string name="samplePagerAdapter2">지도 탭을 눌러 현 위치를 확인하세요</string>
+    <string name="samplePagerAdapter3">위치 공유가 허용되지 않았습니다</string>
+
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>

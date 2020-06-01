@@ -54,8 +54,6 @@ public class FragHome extends Fragment {
 
     public FragHome(){    }
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,14 +94,14 @@ public class FragHome extends Fragment {
             public void onPageSelected(int position) {
                 UserDataModel.currentP = position;
 
-                if(UserDataModel.userDataModels[position].getStatLight().getDayPercent()<100){ button1.setText("조도량 부족"); }
-                else{ button1.setText("조도량 충분"); }
+                if(UserDataModel.userDataModels[position].getStatLight().getDayPercent()<100){ button1.setText(R.string.fragHome1); }
+                else{ button1.setText(R.string.fragHome2); }
 
-                if(UserDataModel.userDataModels[position].getStatAct().getDayPercent()<100){ button2.setText("활동량 부족"); }
-                else{ button2.setText("활동량 충분"); }
+                if(UserDataModel.userDataModels[position].getStatAct().getDayPercent()<100){ button2.setText(R.string.fragHome3); }
+                else{ button2.setText(R.string.fragHome4); }
 
-                if(UserDataModel.userDataModels[position].getStatSleep().getPercentDay()<80){ button3.setText("수면량 부족"); }
-                else{ button3.setText("수면량 충분"); }
+                if(UserDataModel.userDataModels[position].getStatSleep().getPercentDay()<80){ button3.setText(R.string.fragHome5); }
+                else{ button3.setText(R.string.fragHome6); }
             }
 
             @Override
@@ -139,8 +137,8 @@ public class FragHome extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
-                ad.setMessage("원하는 작업을 선택해 주세요.");
-                ad.setPositiveButton("취침모드 시작", new DialogInterface.OnClickListener() {
+                ad.setMessage(R.string.fragHome7);
+                ad.setPositiveButton(R.string.fragHome9, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //확인버튼을 누르면 다이얼로그가 사라지고 SleepActivity가 실행되도록
@@ -150,7 +148,7 @@ public class FragHome extends Fragment {
                         Log.d("D","버튼클릭됨");
                     }
                 });
-                ad.setNeutralButton("취침시간 설정", new DialogInterface.OnClickListener() {
+                ad.setNeutralButton(R.string.fragHome8, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
