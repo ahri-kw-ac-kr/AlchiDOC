@@ -1,12 +1,13 @@
 package com.example.jms.home;
 
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +23,6 @@ import com.example.jms.map.FragMap;
 import com.example.jms.settings.FragSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -37,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private FragHome fragHome = new FragHome();
     private FragMap fragMap = new FragMap();
     private FragSettings fragSettings = new FragSettings();
+    final static int BT_REQUEST_ENABLE = 1;
 
     SharedPreferences sharedPreferences;
 
@@ -46,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = getSharedPreferences("sleep",0);
-        String start = sharedPreferences.getString("sleepTime","");
-        String end = sharedPreferences.getString("wakeTime","");
-        Log.d("MainActivity - sleepData","시작: "+start+", 끝: "+end);
+        sharedPreferences = getSharedPreferences("sleep", 0);
+        String start = sharedPreferences.getString("sleepTime", "");
+        String end = sharedPreferences.getString("wakeTime", "");
+        Log.d("MainActivity - sleepData", "시작: " + start + ", 끝: " + end);
 
         APIViewModel apiViewModel = new APIViewModel();
-        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",start, end)
+        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", start, end)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(data2 -> {
                     if (data2.getContent() != null) {
                         UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                        Log.d("MainActivity - sleepData","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
+                        Log.d("MainActivity - sleepData", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
                         SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
                         sleepDTO1.setSleepTime(start);
                         sleepDTO1.setWakeTime(end);
@@ -67,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
                         apiViewModel.postSleep(sleepDTO1)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(a->Log.d("MainActicity - sleepData","분석결과 저장"),
-                                        Throwable->Log.d("MainActivity-sleepData","분석결과 db저장 실패 "+Throwable.getMessage()));
+                                .subscribe(a -> Log.d("MainActicity - sleepData", "분석결과 저장"),
+                                        Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
                     }
-                    Log.d("MainActicity - sleepData","데이터 "+data2.getContent());
-                }, Throwable->Log.d("MainActivity-sleepData","rawData불러오기 실패 "+Throwable.getMessage()));
+                    Log.d("MainActicity - sleepData", "데이터 " + data2.getContent());
+                }, Throwable -> Log.d("MainActivity-sleepData", "rawData불러오기 실패 " + Throwable.getMessage()));
 
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -99,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
         fragHome = new FragHome();
         fragMap = new FragMap();
         fragSettings = new FragSettings();
+
+        BluetoothOn();
+
+
     }
-
-
     //하단바를 통해 프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n) {
         fm = getSupportFragmentManager();
@@ -119,6 +119,25 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.frameLayout, fragSettings);
                 ft.commit(); //저장의미
                 break;
+        }
+
+    }
+
+    private void BluetoothOn(){
+        BluetoothAdapter mBluetoothAdapter;
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(getApplicationContext(), "블루투스를 지원하지 않는 기기입니다.", Toast.LENGTH_LONG).show();
+        }
+        else {
+            if (mBluetoothAdapter.isEnabled()) {
+                //Toast.makeText(getApplicationContext(), "블루투스가 이미 활성화 되어 있습니다.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "블루투스가 활성화 되어 있지 않습니다. AlchiDoc 서비스를 이용하기 위해서는 블루투스를 켜주세요.", Toast.LENGTH_LONG).show();
+                Intent intentBluetoothEnable = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(intentBluetoothEnable, BT_REQUEST_ENABLE);
+            }
+
         }
 
     }
