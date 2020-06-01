@@ -28,7 +28,6 @@ public class SleepBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.e("SleepBroad","호출되었음");
         //알람 시간이 되었을때 onReceive를 호출함
         //NotificationManager 안드로이드 상태바에 메세지를 던지기위한 서비스 불러오고
         NotificationManager notificationmanager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -43,22 +42,34 @@ public class SleepBroadcast extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar c = Calendar.getInstance();
-        int nowHour = c.get(Calendar.HOUR);
         String aTime = RestfulAPI.principalUser.getSleep();
+
+        int nowHour = c.get(Calendar.HOUR);
         int setHour = Integer.parseInt(aTime.substring(0,2));
         int setMin = Integer.parseInt(aTime.substring(2,4));
+        if(setHour>12){nowHour+=12;}
 
-        if ((setHour - nowHour)>4){
+        Log.e("SleepBroadcast",""+setHour +"-"+ nowHour);
+        if ((setHour - nowHour)<=4 && (setHour - nowHour)>2){
         builder.setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).setNumber(1)
                 .setContentTitle("취침 4시간 전입니다.").setContentText("숙면을 위해 무리한 활동을 자제하고 조명을 낮춰주세요.")
                 .setContentIntent(pendingIntent).setAutoCancel(true);
         notificationmanager.notify(NOTICATION_ID4, builder.build());
+        Log.e("SleepBroad4","호출되었음");
         }
-        else {
+        if((setHour - nowHour)<=2){
             builder.setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).setNumber(1)
                     .setContentTitle("취침 2시간 전입니다.").setContentText("숙면을 위해 무리한 활동을 자제하고 조명을 낮춰주세요.")
                     .setContentIntent(pendingIntent).setAutoCancel(true);
             notificationmanager.notify(NOTICATION_ID2, builder.build());
+            Log.e("SleepBroad2","호출되었음");
+        }
+        if((setHour - nowHour)<1){
+            builder.setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).setNumber(1)
+                    .setContentTitle("취침 직전입니다.").setContentText("수면을 위한 환경으로 들어가주세요.")
+                    .setContentIntent(pendingIntent).setAutoCancel(true);
+            notificationmanager.notify(NOTICATION_ID2, builder.build());
+            Log.e("SleepBroad0","호출되었음");
 
         }
     }

@@ -292,7 +292,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="낮 시간대의 활동량이 충분합니다. 오후에는 무리한 활동을 자제해 주세요."></TextView>
+                        android:text=""></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -345,7 +345,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.">
+                        android:text="">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"
@@ -374,6 +374,7 @@
                             android:textColor="#329035"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:tint="#329035"
                             android:id="@+id/face3"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
@@ -400,7 +401,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="평소보다 야간 활동량이 부족합니다. 남은 시간에는 더 많은 활동이 필요합니다.">
+                        android:text="">
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
