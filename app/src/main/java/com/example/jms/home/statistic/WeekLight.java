@@ -2,6 +2,7 @@ package com.example.jms.home.statistic;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,8 @@ public class WeekLight extends Fragment {
         WeekDayLux = view.findViewById(R.id.weeklux1); //주 - 주간 평균 조도량 9~18
         WeekNightLux = view.findViewById(R.id.weeklux3); //주 - 야간 평균 조도량 18~21
         WeekNightTemp = view.findViewById(R.id.weekK2);
-        avgT.setText("조도량  "+ user.getStatLight().getWeekAvg()/thisDay +"%");
+        Log.e("WeekLight",thisDay+"");
+        avgT.setText("조도량  "+ user.getStatLight().getWeekPercent() +"%");
 
         WeekDayLux.setText(user.getStatLight().getWeekSunAvg()+"");
         WeekNightLux.setText(user.getStatLight().getWeekMoonLuxAvg()+"");

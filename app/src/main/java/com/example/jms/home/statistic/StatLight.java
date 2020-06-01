@@ -252,16 +252,20 @@ public class StatLight {
 
         //하루치 합산 준비
         Integer[] sumDay = {0, 0, 0, 0, 0, 0, 0};
+        Integer[] sumDayWgt = {0, 0, 0, 0, 0, 0, 0};
         Integer[] sumDayMor = {0, 0, 0, 0, 0, 0, 0};
         Integer[] sumDayDinLux = {0, 0, 0, 0, 0, 0, 0};
         Integer[] sumDayDinTemp = {0, 0, 0, 0, 0, 0, 0};
+
         Integer[][] dayLux = new Integer[7][]; //매 시간
         Integer[][] dayTemp = new Integer[7][];
+        Integer[][] dayLuxWgt = new Integer[7][];
 
         for (int i = 0; i < perDay.size(); i++) {
 
             dayLux[i] = new Integer[150];
             dayTemp[i] = new Integer[150];
+            dayLuxWgt[i] = new Integer[150];
 
             for (int j = 0; j < perDay.get(i).size(); j++) {
                 long time = (long) perDay.get(i).get(j).getStartTick()*1000;
@@ -277,6 +281,14 @@ public class StatLight {
                 Log.d("WeekLight", "i: " + i + ", j: " + j + ", day: " + dayLux[i][j]);
                 Log.d("WeekLight", "i: " + i + ", j: " + j + ", day: " + dayTemp[i][j]);
 
+                if (dayLux[i][j]>=2000) {dayLuxWgt[i][j] = dayLux[i][j]*10;}
+                else if(1800<=dayLux[i][j]&&dayLux[i][j]<2000){dayLuxWgt[i][j] = dayLux[i][j]*9;} //가중치 0.9, 노출시간 10분
+                else if(1600<=dayLux[i][j]&&dayLux[i][j]<1800){dayLuxWgt[i][j]= dayLux[i][j]*7;} //이하 동문.
+                else if(1400<=dayLux[i][j]&&dayLux[i][j]<1600){dayLuxWgt[i][j]= dayLux[i][j]*4;}
+                else if(1000<=dayLux[i][j]&&dayLux[i][j]<1400){dayLuxWgt[i][j]= dayLux[i][j]*1;}
+                else{dayLuxWgt[i][j]= dayLux[i][j]*0*10;}
+
+
                 if(hourI>=9 && hourI<18){
                     sumDayMor[i]+=dayLux[i][j]/9; //오전9시~오후6시 Lux 평균
                 }
@@ -286,6 +298,7 @@ public class StatLight {
                 }
 
                 sumDay[i] += dayLux[i][j]/24; //하루 Lux
+                sumDayWgt[i] += dayLuxWgt[i][j]/24; //하루 LuxWgt
             }
 
             Log.d("StatLight-WeekLight-MorningLux", i + ", " + sumDayMor[i]);
@@ -317,12 +330,13 @@ public class StatLight {
 
         //매일 Lux를 다 더해서 일주일 LuxAvg 합 구하기
         AtomicInteger total = new AtomicInteger();
-        Flowable<Integer> flowableS = Flowable.fromArray(sumDay).to(MathFlowable::sumInt);
+        Flowable<Integer> flowableS = Flowable.fromArray(sumDayWgt).to(MathFlowable::sumInt);
         flowableS.subscribe(sum -> {
             total.set(sum);
         }, Throwable::printStackTrace);
         int avg = Math.round(total.intValue()/thisDay);
         weekAvg = avg;
+        Log.e("StatLight",weekAvg+"");
         weekPercent = (avg*100) / 60000;
     }
 

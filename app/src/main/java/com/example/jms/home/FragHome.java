@@ -3,7 +3,6 @@ package com.example.jms.home;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
-import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.home.button.ActButtonActivity;
 import com.example.jms.home.button.LightButtonActivity;
 import com.example.jms.home.button.SleepButtonActivity;
@@ -97,8 +95,13 @@ public class FragHome extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 UserDataModel.currentP = position;
+
+                if(UserDataModel.userDataModels[position].getStatLight().getDayPercent()<100){ button1.setText("조도량 부족"); }
+                else{ button1.setText("조도량 충분"); }
+
                 if(UserDataModel.userDataModels[position].getStatAct().getDayPercent()<100){ button2.setText("활동량 부족"); }
                 else{ button2.setText("활동량 충분"); }
+
                 if(UserDataModel.userDataModels[position].getStatSleep().getPercentDay()<80){ button3.setText("수면량 부족"); }
                 else{ button3.setText("수면량 충분"); }
             }
