@@ -362,6 +362,7 @@
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
@@ -387,6 +388,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/dayLightFace1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -394,6 +396,7 @@
                             android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/dayLightState1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -439,6 +442,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/dayLightFace2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -446,6 +450,7 @@
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/dayLightState2"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
@@ -493,6 +498,7 @@
                             android:textColor="#F75321"
                             android:textSize="16sp"></TextView>
                         <ImageView
+                            android:id="@+id/dayLightFace3"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -500,6 +506,7 @@
                             android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/dayLightState3"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"

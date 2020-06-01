@@ -18,8 +18,10 @@ import java.util.Calendar;
 
 public class SleepBroadcast extends BroadcastReceiver {
     String INTENT_ACTION = Intent.ACTION_BOOT_COMPLETED;
+
     private final static int NOTICATION_ID4 = 4;
     private final static int NOTICATION_ID2 = 2;
+
     private String channelId = "channel";
     private String channelName = "channelName";
 
@@ -41,26 +43,21 @@ public class SleepBroadcast extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar c = Calendar.getInstance();
-        int test = c.get(Calendar.MINUTE);
+        int nowHour = c.get(Calendar.HOUR);
         String aTime = RestfulAPI.principalUser.getSleep();
         int setHour = Integer.parseInt(aTime.substring(0,2));
         int setMin = Integer.parseInt(aTime.substring(2,4));
-        //Notification.Builder builder = new Notification.Builder(context,"channel_alarm");
-        //R.drawable.notification_icon
-        if ((setMin - test)>4){
+
+        if ((setHour - nowHour)>4){
         builder.setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).setNumber(1)
                 .setContentTitle("취침 4시간 전입니다.").setContentText("숙면을 위해 무리한 활동을 자제하고 조명을 낮춰주세요.")
                 .setContentIntent(pendingIntent).setAutoCancel(true);
-        Log.e("SleepBroad1", String.valueOf(builder));
-        Log.e("TimePickernoti1",notificationmanager+",");
         notificationmanager.notify(NOTICATION_ID4, builder.build());
         }
         else {
             builder.setSmallIcon(R.mipmap.ic_launcher).setWhen(System.currentTimeMillis()).setNumber(1)
                     .setContentTitle("취침 2시간 전입니다.").setContentText("숙면을 위해 무리한 활동을 자제하고 조명을 낮춰주세요.")
                     .setContentIntent(pendingIntent).setAutoCancel(true);
-            Log.e("SleepBroad2", String.valueOf(builder));
-            Log.e("TimePickernoti2",notificationmanager+",");
             notificationmanager.notify(NOTICATION_ID2, builder.build());
 
         }
