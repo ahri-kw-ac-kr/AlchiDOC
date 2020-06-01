@@ -186,6 +186,10 @@
     <string name="steps">걸음수</string>
     <string name="kcal">kcal</string>
 
+    <string name="sleepState1">정상</string>
+    <string name="sleepState2">주의</string>
+    <string name="sleepState3">관리필요</string>
+
     <string name="map1">현 위치</string>
 
     <string name="set1">설정</string>
