@@ -42,6 +42,8 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
         //타임피커를 현재 시간으로 세팅해주기 위한 코드
         int hourOfday = calendar.get(calendar.HOUR_OF_DAY);
         int minute = calendar.get(calendar.MINUTE);
+        int nHour = calendar.get(calendar.HOUR_OF_DAY);
+        int nMin = calendar.get(calendar.MINUTE);
 
         timePicker = (TimePicker) findViewById(R.id.tp);
         button1 = (Button) findViewById(R.id.setButton); //아래 설정 버튼
@@ -64,25 +66,40 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
                     setMin = minute;
                 }
 
-                Log.d("TimePickerDemo1",""+String.format("%02d%02d", setHour, setMin));
-                String settingTime = String.format("%02d%02d", setHour, setMin);
+                if (0<(nHour-setHour)){
 
-                UserDTO user = new UserDTO();
-                user.setSleep(settingTime);
+                    if(setHour<4){//세팅할 시간이 0시에서 4시인 경우
+                    Toast.makeText(getApplicationContext(), "새벽은 취침시간으로 설정되지 않습니다.", Toast.LENGTH_LONG).show();}
 
-                apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(result->{RestfulAPI.principalUser = result;
-                        // 알람설정하는 줄
-                            new SleepAlarm(getApplicationContext()).Alarm();},Throwable::printStackTrace);
+                    else {Toast.makeText(getApplicationContext(), "현재보다 이른 시간은 설정되지 않습니다.", Toast.LENGTH_LONG).show();}
+                }
+                else if ((setHour-nHour==0)&& (setMin-nMin<=0)){
+                    Toast.makeText(getApplicationContext(), "현재보다 이른 시간은 설정되지 않습니다.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Log.d("TimePickerDemo1",""+String.format("%02d%02d", setHour, setMin));
+                    String settingTime = String.format("%02d%02d", setHour, setMin);
 
-                Toast.makeText(getApplicationContext(), "취침시간이 설정되었습니다. "+" "+setHour+"시"+setMin+"분", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(SleepTime.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
+                    UserDTO user = new UserDTO();
+                    user.setSleep(settingTime);
+
+                    apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(result->{RestfulAPI.principalUser = result;
+                                // 알람설정하는 줄
+                                new SleepAlarm(getApplicationContext()).Alarm();},Throwable::printStackTrace);
+
+                    Toast.makeText(getApplicationContext(), "취침시간이 설정되었습니다. "+" "+setHour+"시"+setMin+"분", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SleepTime.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    finish();}
+
+
+
+
 
                 System.out.println(AM_PM+" "+setHour+":"+setMin);
             }

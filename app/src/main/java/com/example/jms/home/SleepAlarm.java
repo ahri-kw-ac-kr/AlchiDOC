@@ -32,8 +32,8 @@ public class SleepAlarm {
         int Nminute=c.get(c.MINUTE);
         int setHour = Integer.parseInt(aTime.substring(0,2));
         int setMin = Integer.parseInt(aTime.substring(2,4));
-        int AHour = setHour;
-        int AMin = setMin-5;
+        int AHour = setHour-4;
+        int AMin = setMin;
 
         //1시 59분에 2시 10분 알람을 맞추면 이상해지니까 우선 setting해둠.
         if (AMin < 0){
@@ -43,18 +43,18 @@ public class SleepAlarm {
         Log.e("sleepalarm 가져온 시간",setHour+" : "+setMin);
 
         if (Nhour>setHour){
-            Log.e("SleepA","취침시간 : 익일새벽 / 알림 5분전 "+AHour+":"+AMin);
+            Log.e("SleepA","취침시간 : 익일새벽 / 알림 4시간 전, 2시간 전 "+AHour+":"+AMin);
             c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE+1), AHour, AMin, 0);
         }
         else {
-            Log.e("SleepA","취침시간 : 당일 / 알림 5분전 "+AHour+":"+AMin);
+            Log.e("SleepA","취침시간 : 당일 / 알림 4시간 전, 2시간 전 "+AHour+":"+AMin);
             c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), AHour, AMin, 0);
         }
         //알람 예약
         am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender);
         Log.e("TimePickeralarm1",am+""+c.getTimeInMillis());
 
-        c.add(c.MINUTE,2);
+        c.add(c.HOUR,4);
         am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender1);
         Log.e("TimePickeralarm2",am+""+c.getTimeInMillis());
     }
