@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     final static int BT_REQUEST_ENABLE = 1;
 
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @SuppressLint("CheckResult")
     @Override
@@ -71,7 +72,12 @@ public class MainActivity extends AppCompatActivity {
                             apiViewModel.postSleep(sleepDTO1)
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(a -> Log.d("MainActicity - sleepData", "분석결과 저장"),
+                                    .subscribe(a -> {
+                                        Log.d("MainActicity - sleepData", "분석결과 저장");
+                                                editor.putString("sleepTime","0");
+                                                editor.putString("wakeTime","0");
+                                                editor.apply();
+                                        },
                                             Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
                         }
                     }

@@ -35,6 +35,8 @@ public class TransitionPage extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences2;
+    SharedPreferences.Editor editor2;
 
     @SuppressLint("CheckResult")
     @Override
@@ -48,6 +50,8 @@ public class TransitionPage extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("ble",0);
         editor = sharedPreferences.edit();
+        sharedPreferences2 = getSharedPreferences("sleep",0);
+        editor2 = sharedPreferences2.edit();
 
         if (BleService.principalDevice != null && sleepDocViewModel.deviceCon()) {
             Log.d("분석중","기기 있다");
@@ -81,11 +85,17 @@ public class TransitionPage extends AppCompatActivity {
                                             sleepDTO1.setSleepTime(SleepActivity.start);
                                             sleepDTO1.setWakeTime(SleepActivity.end);
                                             sleepDTO1.setUser(RestfulAPI.principalUser);
+                                            UserDataModel.userDataModels[0].getSleepDTOList().add(0,sleepDTO1);
                                             /////////////////분석결과 db에 저장//////////////////
                                             apiViewModel.postSleep(sleepDTO1)
                                                     .subscribeOn(Schedulers.io())
                                                     .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe(a -> Log.d("TransitionPage", "분석결과 저장"), Throwable::printStackTrace);
+                                                    .subscribe(a -> {
+                                                        Log.d("TransitionPage", "분석결과 저장");
+                                                        editor2.putString("sleepTime","0");
+                                                        editor2.putString("wakeTime","0");
+                                                        editor2.apply();
+                                                    }, Throwable::printStackTrace);
                                         }
                                     }
                                     Log.d("SleepActivity","데이터 "+data2.getContent());
@@ -174,11 +184,17 @@ public class TransitionPage extends AppCompatActivity {
                                                                         sleepDTO1.setSleepTime(SleepActivity.start);
                                                                         sleepDTO1.setWakeTime(SleepActivity.end);
                                                                         sleepDTO1.setUser(RestfulAPI.principalUser);
+                                                                        UserDataModel.userDataModels[0].getSleepDTOList().add(0,sleepDTO1);
                                                                         /////////////////분석결과 db에 저장//////////////////
                                                                         apiViewModel.postSleep(sleepDTO1)
                                                                                 .subscribeOn(Schedulers.io())
                                                                                 .observeOn(AndroidSchedulers.mainThread())
-                                                                                .subscribe(a -> Log.d("TransitionPage", "분석결과 저장"), Throwable::printStackTrace);
+                                                                                .subscribe(a -> {
+                                                                                    Log.d("TransitionPage", "분석결과 저장");
+                                                                                    editor2.putString("sleepTime","0");
+                                                                                    editor2.putString("wakeTime","0");
+                                                                                    editor2.apply();
+                                                                                    }, Throwable::printStackTrace);
                                                                     }
                                                                 }
                                                                 Log.d("SleepActivity","데이터 "+data2.getContent());

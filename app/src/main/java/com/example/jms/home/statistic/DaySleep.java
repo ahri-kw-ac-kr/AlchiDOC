@@ -135,13 +135,14 @@ public class DaySleep extends Fragment {
         //그래프
         ArrayList<Entry> entries = new ArrayList<>();
         try {
-            if (user.getSleepDTOList().get(0).getLevel() != null) {
-                String[] levels = user.getSleepDTOList().get(0).getLevel().split(",");
-                entries.add(new Entry(5, 0));
-                for (int i = 0; i < levels.length; i++) {
-                    entries.add(new Entry(Integer.parseInt(levels[i]), i+1));
-                }
-                entries.add(new Entry(5, levels.length+1));
+            if(user.getSleepDTOList().get(0).getWakeTime().substring(0,7).equals(curr.substring(0,7))) {
+                if (user.getSleepDTOList().get(0).getLevel() != null) {
+                    String[] levels = user.getSleepDTOList().get(0).getLevel().split(",");
+                    entries.add(new Entry(5, 0));
+                    for (int i = 0; i < levels.length; i++) {
+                        entries.add(new Entry(Integer.parseInt(levels[i]), i + 1));
+                    }
+                    entries.add(new Entry(5, levels.length + 1));
 
             /*entries.add(new Entry(4f, 0));
         entries.add(new Entry(8f, 1));
@@ -159,54 +160,55 @@ public class DaySleep extends Fragment {
         entries.add(new Entry(9f, 13));
         entries.add(new Entry(16f, 14));*/
 
-                LineDataSet dataset = new LineDataSet(entries, "");
+                    LineDataSet dataset = new LineDataSet(entries, "");
 
-                ArrayList<String> labels = new ArrayList<String>();
-                labels.add(user.getSleepDTOList().get(0).getSleepTime().substring(9,14));//잠든시간 HH:mm
-                for (int i = 0; i < levels.length; i++) {
-                    labels.add("");
-                }
-                labels.add(user.getSleepDTOList().get(0).getWakeTime().substring(9,14));//깬시간 HH:mm
+                    ArrayList<String> labels = new ArrayList<String>();
+                    labels.add(user.getSleepDTOList().get(0).getSleepTime().substring(9, 14));//잠든시간 HH:mm
+                    for (int i = 0; i < levels.length; i++) {
+                        labels.add("");
+                    }
+                    labels.add(user.getSleepDTOList().get(0).getWakeTime().substring(9, 14));//깬시간 HH:mm
 
-                LineData data = new LineData(labels, dataset);
-                dataset.setDrawValues(false);
-                dataset.setDrawCircles(false);
-                dataset.setColor(Color.parseColor("#7610C0"));
+                    LineData data = new LineData(labels, dataset);
+                    dataset.setDrawValues(false);
+                    dataset.setDrawCircles(false);
+                    dataset.setColor(Color.parseColor("#7610C0"));
 
-                dataset.setDrawCubic(true);
-                dataset.setDrawFilled(true);
-                dataset.setFillColor(Color.parseColor("#EBD8FB"));
-                dataset.setLineWidth(3f);
+                    dataset.setDrawCubic(true);
+                    dataset.setDrawFilled(true);
+                    dataset.setFillColor(Color.parseColor("#EBD8FB"));
+                    dataset.setLineWidth(3f);
 
         /* 점 찍기
         dataset.setCircleColor(Color.parseColor("#7610C0"));
         dataset.setCircleColorHole(Color.parseColor("#7610C0"));
         dataset.setCircleSize(3f); */
 
-                XAxis xAxis = lineChart.getXAxis();
-                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                xAxis.setTextSize(10f);
-                xAxis.setTextColor(Color.parseColor("#707070"));
+                    XAxis xAxis = lineChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setTextSize(10f);
+                    xAxis.setTextColor(Color.parseColor("#707070"));
 
-                YAxis yAxisLeft = lineChart.getAxisLeft();
-                yAxisLeft.setDrawLabels(false);
-                yAxisLeft.setDrawAxisLine(false);
-                yAxisLeft.setDrawGridLines(false);
-                yAxisLeft.setAxisMaxValue(5);
-                yAxisLeft.setAxisMinValue(0);
+                    YAxis yAxisLeft = lineChart.getAxisLeft();
+                    yAxisLeft.setDrawLabels(false);
+                    yAxisLeft.setDrawAxisLine(false);
+                    yAxisLeft.setDrawGridLines(false);
+                    yAxisLeft.setAxisMaxValue(5);
+                    yAxisLeft.setAxisMinValue(0);
 
-                YAxis yAxisRight = lineChart.getAxisRight();
-                yAxisRight.setDrawLabels(false);
-                yAxisRight.setDrawAxisLine(false);
-                yAxisRight.setDrawGridLines(false);
+                    YAxis yAxisRight = lineChart.getAxisRight();
+                    yAxisRight.setDrawLabels(false);
+                    yAxisRight.setDrawAxisLine(false);
+                    yAxisRight.setDrawGridLines(false);
 
-                lineChart.setDescription(null);
+                    lineChart.setDescription(null);
 
-                Legend legend = lineChart.getLegend();
-                legend.setEnabled(false);
+                    Legend legend = lineChart.getLegend();
+                    legend.setEnabled(false);
 
-                lineChart.setData(data);
-                lineChart.animateY(3000);
+                    lineChart.setData(data);
+                    lineChart.animateY(3000);
+                }
             }
         }catch (Exception e){ }
 
@@ -218,57 +220,61 @@ public class DaySleep extends Fragment {
         state2 = (TextView) view.findViewById(R.id.state2);
 
         ////////////////////////코멘트//////////////////////
+        Log.d("DaySleep","sleepDTOList 길이 : "+user.getSleepDTOList().size()+", pos: "+pos);
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
             daySleepPlan1.setText("\n");
             daySleepPlan2.setText("\n");
         }
         else {/////측정데이터 존재
-            int deepPercent = 0;
-            try {
-                deepPercent = (int) ((((double) user.getSleepDTOList().get(0).getDeep() / (double) user.getSleepDTOList().get(0).getTotal()) * 100));
-            } catch (Exception e) {
-            }
-            Log.d("DaySleep","퍼센트: "+deepPercent+", 100곱하기 전: "+((double) user.getSleepDTOList().get(0).getDeep() / (double) user.getSleepDTOList().get(0).getTotal()));
-
-            //////////////////////////////////총 수면시간 코멘트////////////////////////
-            if (percent >= 80) {// 수면효율 정상
-                if (deepPercent >= 25) {//깊은잠 정상
-                    daySleepPlan1.setText(R.string.daySleepComment2);
-                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state1.setText(R.string.sleepState1);
-                } else {//깊은잠 부족
-                    daySleepPlan1.setText(R.string.daySleepComment1);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state1.setText(R.string.sleepState2);
-
+            if (!user.getSleepDTOList().get(0).getWakeTime().substring(0, 8).equals(curr.substring(0, 8))) {//오늘데이터 없음
+                daySleepPlan1.setText("\n");
+                daySleepPlan2.setText("\n");
+            } else {
+                int deepPercent = 0;
+                try {
+                    deepPercent = (int) ((((double) user.getSleepDTOList().get(0).getDeep() / (double) user.getSleepDTOList().get(0).getTotal()) * 100));
+                } catch (Exception e) {
                 }
-            } else {//수면효율 비정상
-                if (deepPercent >= 25) {//깊은잠 정상
-                    daySleepPlan1.setText(R.string.daySleepComment4);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state1.setText(R.string.sleepState2);
-                } else {//깊은잠 부족
-                    daySleepPlan1.setText(R.string.daySleepComment3);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state1.setText(R.string.sleepState2);
-                }
-            }
+                Log.d("DaySleep", "퍼센트: " + deepPercent + ", 100곱하기 전: " + ((double) user.getSleepDTOList().get(0).getDeep() / (double) user.getSleepDTOList().get(0).getTotal()));
 
-            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
-            if (user.getStatSleep().getTurnHour() == 0) {//정상
-                daySleepPlan2.setText(R.string.daySleepComment5);
-                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                state2.setText(R.string.sleepState1);
-            }
-            else if(user.getStatSleep().getTurnHour() == 1){//주의
-                daySleepPlan2.setText(R.string.daySleepComment6);
-                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state2.setText(R.string.sleepState2);
-            }
-            else if(user.getStatSleep().getTurnHour() == 2){//관리필요
-                daySleepPlan2.setText(R.string.daySleepComment7);
-                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state2.setText(R.string.sleepState3);
+                //////////////////////////////////총 수면시간 코멘트////////////////////////
+                if (percent >= 80) {// 수면효율 정상
+                    if (deepPercent >= 25) {//깊은잠 정상
+                        daySleepPlan1.setText(R.string.daySleepComment2);
+                        face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state1.setText(R.string.sleepState1);
+                    } else {//깊은잠 부족
+                        daySleepPlan1.setText(R.string.daySleepComment1);
+                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state1.setText(R.string.sleepState2);
+
+                    }
+                } else {//수면효율 비정상
+                    if (deepPercent >= 25) {//깊은잠 정상
+                        daySleepPlan1.setText(R.string.daySleepComment4);
+                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state1.setText(R.string.sleepState2);
+                    } else {//깊은잠 부족
+                        daySleepPlan1.setText(R.string.daySleepComment3);
+                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state1.setText(R.string.sleepState2);
+                    }
+                }
+
+                ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+                if (user.getStatSleep().getTurnHour() == 0) {//정상
+                    daySleepPlan2.setText(R.string.daySleepComment5);
+                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state2.setText(R.string.sleepState1);
+                } else if (user.getStatSleep().getTurnHour() == 1) {//주의
+                    daySleepPlan2.setText(R.string.daySleepComment6);
+                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state2.setText(R.string.sleepState2);
+                } else if (user.getStatSleep().getTurnHour() == 2) {//관리필요
+                    daySleepPlan2.setText(R.string.daySleepComment7);
+                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state2.setText(R.string.sleepState3);
+                }
             }
         }
             return view;
