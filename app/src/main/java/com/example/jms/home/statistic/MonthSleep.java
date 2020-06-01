@@ -247,7 +247,7 @@ public class MonthSleep extends Fragment {
                 } else {//깊은잠 부족
                     monthSleepPlan1.setText(R.string.monthSleepComment3);
                     face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.sleepState2);
+                    state1.setText(R.string.sleepState2);
                 }
             }
 
