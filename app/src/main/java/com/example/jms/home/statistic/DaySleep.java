@@ -28,6 +28,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class DaySleep extends Fragment {
 
@@ -56,21 +57,15 @@ public class DaySleep extends Fragment {
         int pos = UserDataModel.currentP;
         UserDataModel user = UserDataModel.userDataModels[pos];
 
+        //현재시간
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+        String curr = transFormat.format(calendar.getTime());
+
         //000님의 0월 0일
         titleDay = (TextView) view.findViewById(R.id.daySleepDate);
-        try {
-            if (pos == 0) {
-                titleD = RestfulAPI.principalUser.getFullname() + "님의 " + user.getSleepDTOList().get(0).getWakeTime().substring(4, 6) + "월 " + user.getSleepDTOList().get(0).getWakeTime().substring(6, 8) + "일";
-            } else {
-                titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 " + user.getSleepDTOList().get(0).getWakeTime().substring(4, 6) + "월 " + user.getSleepDTOList().get(0).getWakeTime().substring(6, 8) + "일";
-            }
-        } catch (Exception e) {
-            if (pos == 0) {
-                titleD = RestfulAPI.principalUser.getFullname() + "님의 0월 0일";
-            } else {
-                titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 0월 0일";
-            }
-        }
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
         titleDay.setText(titleD);
 
         // 수면효율 00%
