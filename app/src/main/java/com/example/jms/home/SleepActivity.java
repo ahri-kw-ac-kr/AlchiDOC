@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import com.example.jms.connection.viewmodel.SleepDocViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /*
@@ -57,6 +58,8 @@ public class SleepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sleep_activity); //승은이가 올려준 액티비티가 나오도록.
 
+        Calendar calendar = Calendar.getInstance();
+
         UserDataModel.contextP = getApplicationContext();
         sharedPreferences = getSharedPreferences("sleep",0);
         editor = sharedPreferences.edit();
@@ -70,6 +73,10 @@ public class SleepActivity extends AppCompatActivity {
         chronometer.start();
 
         Date sDate = new Date(System.currentTimeMillis());
+
+        calendar.setTime(sDate);
+        calendar.add(Calendar.HOUR,8);
+
         startTime = simpleDateFormat.format(sDate);
         start = startTime;
         Log.d("SleepActivity - start",startTime);
@@ -122,7 +129,30 @@ public class SleepActivity extends AppCompatActivity {
 
             }//onClick
         });//ClickListener
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Date eDate = new Date(System.currentTimeMillis());
+                endTime = simpleDateFormat.format(eDate);
+                end = endTime;
+                Log.d("SleepActivity - end", endTime);
+                chronometer.stop();
+
+                editor.putString("sleepTime", start);
+                editor.putString("wakeTime", end);
+                editor.commit();
+
+                stopService(intent);
+                Intent intent1 = new Intent(SleepActivity.this, TransitionPage.class);
+                startActivity(intent1);
+                finish();
+            }
+        }, 2880000);
     }//onCreate
+
+
 
     @Override
     public void onBackPressed() {
