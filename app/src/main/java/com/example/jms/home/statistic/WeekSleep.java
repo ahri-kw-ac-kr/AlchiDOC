@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,7 +55,9 @@ public class WeekSleep extends Fragment {
     TextView lightMT;
     TextView wakeT;
     TextView turnT;
-
+    TextView weekSleepPlan1, weekSleepPlan2;
+    ImageView face1, face2;
+    TextView state1, state2;
 
     @SuppressLint("CheckResult")
     @Nullable
@@ -202,36 +205,54 @@ public class WeekSleep extends Fragment {
         for(int i=0; i<7; i++){ mStackedBarChart.addBar(data[i]); }
         mStackedBarChart.startAnimation();
 
-
         /////////코멘트///////
+        weekSleepPlan1 = (TextView) view.findViewById(R.id.weekSleepPlan1);
+        weekSleepPlan2 = (TextView) view.findViewById(R.id.weekSleepPlan2);
+        face1 = (ImageView) view.findViewById(R.id.face1);
+        face2 = (ImageView) view.findViewById(R.id.face2);
+        state1 = (TextView) view.findViewById(R.id.state1);
+        state2 = (TextView) view.findViewById(R.id.state2);
         int deepPercent = 0;
         try{deepPercent = (int) (((double) (deepA / totalA)) * 100);}catch (Exception e){}
-
 
         //////////////////////////////////총 수면시간 코멘트////////////////////////
         if (percent >= 80) {// 수면효율 정상
             if (deepPercent >= 25) {//깊은잠 정상
-
+                weekSleepPlan1.setText(R.string.weekSleepComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.sleepState1);
             } else {//깊은잠 부족
-
+                weekSleepPlan1.setText(R.string.weekSleepComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.sleepState2);
             }
         } else {//수면효율 비정상
             if (deepPercent >= 25) {//깊은잠 정상
-
+                weekSleepPlan1.setText(R.string.weekSleepComment4);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.sleepState2);
             } else {//깊은잠 부족
-
+                weekSleepPlan1.setText(R.string.weekSleepComment3);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.sleepState2);
             }
         }
 
         ///////////////////////////////평균뒤척임 코멘트///////////////////////////
         if (Math.round(turnHourA) == 0) {//정상
-
+            weekSleepPlan2.setText(R.string.weekSleepComment5);
+            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state2.setText(R.string.sleepState1);
         }
         else if(Math.round(turnHourA) == 1){//주의
-
+            weekSleepPlan2.setText(R.string.weekSleepComment6);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.sleepState2);
         }
         else if(Math.round(turnHourA) == 2){//관리필요
-
+            weekSleepPlan2.setText(R.string.weekSleepComment7);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.sleepState3);
         }
 
 
