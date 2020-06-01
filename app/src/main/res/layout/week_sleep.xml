@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginRight="10dp"
-                    android:id="@+id/date"
+                    android:id="@+id/weekSleepTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -54,6 +54,7 @@
 
 
                 <TextView
+                    android:id="@+id/weekSleepTitleP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -227,6 +228,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekSleepTotalH"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -246,6 +248,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/weekSleepTotalM"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -297,6 +300,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekSleepDeepH"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -316,6 +320,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/weekSleepDeepM"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -363,6 +368,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekSleepLightH"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -382,6 +388,7 @@
                             android:textColor="#707070"
                             android:textSize="15sp"></TextView>
                         <TextView
+                            android:id="@+id/weekSleepLightM"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -429,6 +436,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekSleepWake"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -476,6 +484,7 @@
                             android:textStyle="bold"></TextView>
 
                         <TextView
+                            android:id="@+id/weekSleepTurn"
                             android:layout_weight="0.5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
