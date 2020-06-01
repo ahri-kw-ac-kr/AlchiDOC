@@ -39,7 +39,6 @@ public class SamplePagerAdapter extends PagerAdapter {
         return view == object;
     }
 
-
     @SuppressLint("SetTextI18n")
     @NonNull
     @Override
@@ -55,12 +54,12 @@ public class SamplePagerAdapter extends PagerAdapter {
             if(position ==0 ) {
                 tv.setText(RestfulAPI.principalUser.getFullname() + " 님"); //user에 따라 수정(현재 0, 1, 2.. 이렇게 보임)
                 /*if(RestfulAPI.principalUser.getShareGPS()==null && UserDataModel.userDataModels[0].getGpsList().size()==0){
-                    tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("지도 탭을 눌러 현 위치를 확인하세요");
+                    tv2.setText(R.string.samplePagerAdapter1);
+                    tv3.setText(R.string.samplePagerAdapter2);
                 }*/
                 if(RestfulAPI.principalUser.getShareGPS().equals("true") && UserDataModel.userDataModels[0].getGpsList().size()==0){
-                    tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("지도 탭을 눌러 현 위치를 확인하세요");
+                    tv2.setText(R.string.samplePagerAdapter1);
+                    tv3.setText(R.string.samplePagerAdapter2);
                 }
                 else if(RestfulAPI.principalUser.getShareGPS().equals("true") && UserDataModel.userDataModels[0].getGpsList().size()!=0){
                     tv2.setText("" + UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
@@ -79,19 +78,19 @@ public class SamplePagerAdapter extends PagerAdapter {
                             + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(14, 16) + "분"); //user에 따라 수정
                 }*/
                 else if(RestfulAPI.principalUser.getShareGPS().equals("false")){
-                    tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("위치 공유가 허용되지 않았습니다");
+                    tv2.setText(R.string.samplePagerAdapter1);
+                    tv3.setText(R.string.samplePagerAdapter3);
                     }
             }
             else{
                 tv.setText(RestfulAPI.principalUser.getFriend().get(position - 1).getFullname() + " 님");
                 /*if(RestfulAPI.principalUser.getFriend().get(position-1).getShareGPS()==null && UserDataModel.userDataModels[position].getGpsList().size()==0){
-                    tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("현재 저장된 위치가 없습니다");
+                    tv2.setText(R.string.samplePagerAdapter1);
+                    tv3.setText(R.string.samplePagerAdapter1);
                     }*/
                 if(RestfulAPI.principalUser.getFriend().get(position-1).getShareGPS().equals("true") && UserDataModel.userDataModels[position].getGpsList().size()==0){
-                    tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("현재 저장된 위치가 없습니다");
+                    tv2.setText(R.string.samplePagerAdapter1);
+                    tv3.setText(R.string.samplePagerAdapter1);
                 }
                 /*else if(RestfulAPI.principalUser.getFriend().get(position-1).getShareGPS()==null && UserDataModel.userDataModels[position].getGpsList().size()!=0) {
                     tv2.setText("" + UserDataModel.userDataModels[position].getAddresses()); //user에 따라 수정
@@ -110,22 +109,17 @@ public class SamplePagerAdapter extends PagerAdapter {
                             + transFormat.format(UserDataModel.userDataModels[position].getGpsList().get(0).getCreatedAt()).substring(14, 16) + "분"); //user에 따라 수정
                 }
                 else if(RestfulAPI.principalUser.getFriend().get(position-1).getShareGPS().equals("false")){
-                    tv2.setText("현재 저장된 위치가 없습니다");
-                    tv3.setText("위치 공유가 허용되지 않았습니다");
+                    tv2.setText(R.string.samplePagerAdapter1);
+                    tv3.setText(R.string.samplePagerAdapter3);
                 }
             }
         }
-
         container.addView(view);
         return view;
     }
-
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
-
-
-
 }
