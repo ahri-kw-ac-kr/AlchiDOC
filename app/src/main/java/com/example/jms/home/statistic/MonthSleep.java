@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,9 @@ public class MonthSleep extends Fragment {
     TextView level1;
     TextView level2;
     TextView level3;
+    TextView monthSleepPlan1, monthSleepPlan2;
+    ImageView face1, face2;
+    TextView state1, state2;
 
     @Nullable
     @Override
@@ -207,42 +211,56 @@ public class MonthSleep extends Fragment {
         dataSet.setColors(colorArray);
         pieChart.animateXY(5000, 5000);
 
-
-
-
-
         /////////코멘트///////
+        monthSleepPlan1 = (TextView) view.findViewById(R.id.monthSleepPlan1);
+        monthSleepPlan2 = (TextView) view.findViewById(R.id.monthSleepPlan2);
+        face1 = (ImageView) view.findViewById(R.id.face1);
+        face2 = (ImageView) view.findViewById(R.id.face2);
+        state1 = (TextView) view.findViewById(R.id.state1);
+        state2 = (TextView) view.findViewById(R.id.state2);
+
         int deepPercent = 0;
         try{deepPercent = (int) ((((double)deepA / (double)totalA)) * 100);}catch (Exception e){}
-
 
         //////////////////////////////////총 수면시간 코멘트////////////////////////
         if (percent >= 80) {// 수면효율 정상
             if (deepPercent >= 25) {//깊은잠 정상
-
+                monthSleepPlan1.setText(R.string.monthSleepComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.sleepState1);
             } else {//깊은잠 부족
-
+                monthSleepPlan1.setText(R.string.monthSleepComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.sleepState2);
             }
         } else {//수면효율 비정상
             if (deepPercent >= 25) {//깊은잠 정상
-
+                monthSleepPlan1.setText(R.string.monthSleepComment4);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.sleepState2);
             } else {//깊은잠 부족
-
+                monthSleepPlan1.setText(R.string.monthSleepComment3);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState2);
             }
         }
 
         ///////////////////////////////평균뒤척임 코멘트///////////////////////////
         if (Math.round(turnHourA) == 0) {//정상
-
+            monthSleepPlan2.setText(R.string.monthSleepComment5);
+            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state2.setText(R.string.sleepState1);
         }
         else if(Math.round(turnHourA) == 1){//주의
-
+            monthSleepPlan2.setText(R.string.monthSleepComment6);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.sleepState2);
         }
         else if(Math.round(turnHourA) == 2){//관리필요
-
+            monthSleepPlan2.setText(R.string.monthSleepComment7);
+            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state2.setText(R.string.sleepState3);
         }
-
-
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)
         참고 사이트:
