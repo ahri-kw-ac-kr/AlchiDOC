@@ -1,6 +1,7 @@
 package com.example.jms.home;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +17,9 @@ public class Report extends AppCompatActivity{
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 M월 dd일 달성률");
     TextView mTextView;
+    TextView reportActSun, reportActMoon;
+    ImageView face3, face4;
+    TextView state3, state4;
 
     ArcProgress act;
     ArcProgress sleep;
@@ -44,22 +48,42 @@ public class Report extends AppCompatActivity{
         act = (ArcProgress) findViewById(R.id.arc_progress2);
         act.setProgress(user.getStatAct().getDayPercent());
 
+        reportActSun = (TextView) findViewById(R.id.reportActSun);
+        reportActMoon = (TextView) findViewById(R.id.reportActMoon);
+        face3 = (ImageView) findViewById(R.id.face3);
+        face4 = (ImageView) findViewById(R.id.face4);
+        state3 = (TextView) findViewById(R.id.state3);
+        state4 = (TextView) findViewById(R.id.state4);
+
         //활동량 코멘트
         int actSun = 0;
         int actMoon = 0;
         for(int i=9; i<18; i++){ actSun += user.getStatAct().getDaySumHour()[i]; }
         for(int i=18; i<21; i++){ actMoon += user.getStatAct().getDaySumHour()[i]; }
+
         if(actSun >= 6000){
             ///주간 충분
+            reportActSun.setText(R.string.dayActComment1);
+            face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state3.setText(R.string.good);
         }
         else{
             ///주간 부족
+            reportActSun.setText(R.string.dayActComment2);
+            face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state3.setText(R.string.bad);
         }
         if(actMoon <= 2000){
             ///야간 적정
+            reportActMoon.setText(R.string.dayActComment4);
+            face4.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+            state4.setText(R.string.good);
         }
         else{
             ///야간 과다
+            reportActMoon.setText(R.string.dayActComment3);
+            face4.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+            state4.setText(R.string.good);
         }
 
         ////////////////////////////////조도량///////////////////////////////
@@ -107,7 +131,6 @@ public class Report extends AppCompatActivity{
         }
 
     }
-
 
     ///현재시간///
     private String getTime(){

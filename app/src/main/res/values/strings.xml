@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Alchi DOC</string>
 
-    <string name="start">시작</string>
-    <string name="next">다음</string>
-
     <string name="StringValue">이미지가 열리지 않습니다.</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
@@ -12,6 +9,10 @@
     <string name="woman">여자</string>
     <string name="sex">성별</string>
 
+    <string name="day">일간</string>
+    <string name="week">주간</string>
+    <string name="month">월간</string>
+
     <string name="login1">로그인</string>
     <string name="login2">아직 회원이 아니신가요?</string>
     <string name="login3">회원가입 하기</string>
@@ -19,6 +20,7 @@
     <string name="login5">비밀번호를 잊어버리셨나요?</string>
     <string name="login6">비밀번호 재설정</string>
     <string name="login7">자동 로그인</string>
+    <string name="login8">이메일 또는 비밀번호가 잘못 되었습니다.</string>
 
     <string name="password_find1">비밀번호 재설정</string>
     <string name="password_find2">AlchiDOC에 가입된 이메일을 입력해 주세요.\n
@@ -34,6 +36,10 @@
     <string name="password_find11">비밀번호 확인</string>
     <string name="password_find12">비밀번호를 한 번 더 입력해 주세요.</string>
     <string name="password_find13">변경하기</string>
+    <string name="password_find14">입력하신 이메일로 인증번호를 발송하였습니다.\n5분 안으로 입력해주세요.</string>
+    <string name="password_find15">비밀번호가 재설정 되었습니다.</string>
+    <string name="password_find16">인증에 실패했습니다.\n인증요청을 다시 해주세요.</string>
+    <string name="password_find17">연결이 불안정합니다.</string>
     <string name="password_change">※ 비밀번호를 변경하실 분만 아래 내용을 입력해 주세요.</string>
     <string name="current_password">현재 비밀번호</string>
     <string name="modify">수정하기</string>
@@ -48,6 +54,18 @@
     <string name="sign_up8">이용약관 및 개인정보 취급방침 동의</string>
     <string name="sign_up9">다음으로</string>
     <string name="sign_up10">전화번호</string>
+    <string name="sign_up11">회원가입이 완료되었습니다.</string>
+    <string name="sign_up12">이미 존재하는 이메일입니다. 다른 이메일을 작성해 주세요.</string>
+    <string name="sign_up13">연결이 불안정합니다.</string>
+
+    <string name="sign_up_wrong1">이름을 입력해 주세요.</string>
+    <string name="sign_up_wrong2">생일을 입력해 주세요.</string>
+    <string name="sign_up_wrong3">전화번호를 입력해 주세요.</string>
+    <string name="sign_up_wrong4">이메일을 입력해 주세요.</string>
+    <string name="sign_up_wrong5">비밀번호를 입력해 주세요.</string>
+    <string name="sign_up_wrong6">비밀번호 확인을 입력해 주세요.</string>
+    <string name="sign_up_wrong7">성별을 선택해 주세요.</string>
+    <string name="sign_up_wrong8">비밀번호가 일치하지 않습니다.</string>
 
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
