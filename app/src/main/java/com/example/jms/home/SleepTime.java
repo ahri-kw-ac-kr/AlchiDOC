@@ -17,7 +17,6 @@ import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.model.dto.UserDTO;
 import com.example.jms.connection.viewmodel.APIViewModel;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -70,10 +69,13 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
 
                 UserDTO user = new UserDTO();
                 user.setSleep(settingTime);
+
                 apiViewModel.patchUser(RestfulAPI.principalUser.getId(),user)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(result->{RestfulAPI.principalUser = result;},Throwable::printStackTrace);
+                        .subscribe(result->{RestfulAPI.principalUser = result;
+                        // 알람설정하는 줄
+                            new SleepAlarm(getApplicationContext()).Alarm();},Throwable::printStackTrace);
 
                 Toast.makeText(getApplicationContext(), "취침시간이 설정되었습니다. "+" "+setHour+"시"+setMin+"분", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SleepTime.this, MainActivity.class);
@@ -81,6 +83,7 @@ public class SleepTime extends AppCompatActivity implements TimePicker.OnTimeCha
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 finish();
+
                 System.out.println(AM_PM+" "+setHour+":"+setMin);
             }
         });

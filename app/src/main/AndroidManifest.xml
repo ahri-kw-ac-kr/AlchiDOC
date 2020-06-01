@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--화면이 잠금상태일 때 알림으로 화면을 깨울 수 있게 한다.-->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -66,5 +68,9 @@
         <activity android:name=".settings.Guide"/>
         <activity android:name=".home.SleepActivity"
             android:launchMode="singleInstance"/>
+        <receiver android:name=".home.SleepBroadcast"
+            android:enabled="true"
+            android:exported="false"></receiver>
+
     </application>
 </manifest>

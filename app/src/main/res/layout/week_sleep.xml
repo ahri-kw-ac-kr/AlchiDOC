@@ -11,7 +11,8 @@
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"></androidx.coordinatorlayout.widget.CoordinatorLayout>
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     <ScrollView

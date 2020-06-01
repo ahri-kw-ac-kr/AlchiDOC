@@ -54,8 +54,8 @@ public class SleepService extends Service {
         builder.setSmallIcon(R.mipmap.ic_launcher);
 
         // 상황에 따라 바꿔야 됨
-        builder.setContentTitle("취침 4시간 전입니다.");
-        builder.setContentText("현재 활동량이 충분합니다. 숙면을 위해 무리한 활동을 자제해 주세요.");
+        builder.setContentTitle("수면기록 측정 중");
+        builder.setContentText("수면 기록을 측정 중입니다. 숙면을 위해 적절한 환경에서 수면을 취해주세요.");
 
 
         //클릭시 시작되는 인텐트 - 바로 일반인텐트 실행 불가 노티피케이션을 클릭했을 때 슬립액티비티로 돌아가도록.
