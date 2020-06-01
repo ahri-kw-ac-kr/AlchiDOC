@@ -296,7 +296,7 @@ public class StatLight {
             /*이거 되나...?*/
             weekSunAvg += sumDayMor[i];
             weekMoonLuxAvg += sumDayDinLux[i];
-            weekMoonTempAvg += sumDayDinTemp[i];
+            weekMoonTempAvg += sumDayDinTemp[i]/3;
         }
 
         weekSumDay = sumDay;

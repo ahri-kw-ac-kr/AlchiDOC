@@ -67,7 +67,7 @@ public class WeekLight extends Fragment {
 
         WeekDayLux.setText(user.getStatLight().getWeekSunAvg()+"");
         WeekNightLux.setText(user.getStatLight().getWeekMoonLuxAvg()+"");
-        WeekNightTemp.setText(user.getStatLight().getWeekMoonTempAvg()+"");
+        WeekNightTemp.setText(user.getStatLight().getWeekMoonTempAvg()/3+"");
 
 
         String[] str = {"일","월","화","수","목","금","토",};

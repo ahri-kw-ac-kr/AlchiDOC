@@ -80,9 +80,9 @@ public class DayLight extends Fragment {
 
         daySumLux.setText(""+user.getStatLight().getDayDaySumLux());
         evenSumLux.setText(""+user.getStatLight().getDayEvenSumLux());
-        evenAvgK.setText(""+user.getStatLight().getDayEvenSumTemp());
+        evenAvgK.setText(""+user.getStatLight().getDayEvenSumTemp()/4);
         nightSumLux.setText(""+user.getStatLight().getDayNightSumLux());
-        nightAvgK.setText(""+user.getStatLight().getDayNightSumTemp());
+        nightAvgK.setText(""+user.getStatLight().getDayNightSumTemp()/10);
         totalT.setText("조도량 "+user.getStatLight().getDayPercent()+"%");
 
         //시간 상관없이 Y축높이는 Lux, 그래프 바 색상은 K
