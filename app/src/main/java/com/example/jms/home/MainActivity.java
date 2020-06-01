@@ -55,22 +55,25 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(data2 -> {
                     if (data2.getContent() != null) {
-                        try{
-                            Log.d("MainActivity","데이터 첫번째result"+data2.getContent().get(0).getStartTick());}catch (Exception e){
-                            Log.d("MainActivity","데이터 첫번째result size"+data2.getContent().size());
+                        try {
+                            Log.d("MainActivity", "데이터 첫번째result" + data2.getContent().get(0).getStartTick());
+                        } catch (Exception e) {
+                            Log.d("MainActivity", "데이터 첫번째result size" + data2.getContent().size());
                         }
-                        UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                        Log.d("MainActivity - sleepData", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
-                        SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
-                        sleepDTO1.setSleepTime(start);
-                        sleepDTO1.setWakeTime(end);
-                        sleepDTO1.setUser(RestfulAPI.principalUser);
-                        /////////////////분석결과 db에 저장//////////////////
-                        apiViewModel.postSleep(sleepDTO1)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(a -> Log.d("MainActicity - sleepData", "분석결과 저장"),
-                                        Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
+                        if (data2.getContent().size() != 0) {
+                            UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
+                            Log.d("MainActivity - sleepData", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
+                            SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                            sleepDTO1.setSleepTime(start);
+                            sleepDTO1.setWakeTime(end);
+                            sleepDTO1.setUser(RestfulAPI.principalUser);
+                            /////////////////분석결과 db에 저장//////////////////
+                            apiViewModel.postSleep(sleepDTO1)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(a -> Log.d("MainActicity - sleepData", "분석결과 저장"),
+                                            Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
+                        }
                     }
                     Log.d("MainActicity - sleepData", "데이터 " + data2.getContent());
                 }, Throwable -> Log.d("MainActivity-sleepData", "rawData불러오기 실패 " + Throwable.getMessage()));
