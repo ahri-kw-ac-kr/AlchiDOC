@@ -555,23 +555,26 @@
                             android:textColor="#7476B3"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face1"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#7476B3"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:gravity="bottom"
+                            android:id="@+id/state1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text=""
                             android:textColor="#7476B3"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/weekSleepPlan1"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
                         android:fontFamily="@font/nanumregular"
@@ -585,7 +588,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="#ECECEC"/>
-
 
                     <LinearLayout
                         android:weightSum="7"
@@ -606,24 +608,26 @@
                             android:textColor="#7476B3"
                             android:textSize="18sp"></TextView>
                         <ImageView
+                            android:id="@+id/face2"
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#7476B3"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
+                            android:id="@+id/state2"
                             android:gravity="bottom"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
+                            android:text=""
                             android:textColor="#7476B3"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/weekSleepPlan2"
                         android:layout_marginBottom="22dp"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
