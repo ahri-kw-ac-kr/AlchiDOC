@@ -67,6 +67,16 @@
     <string name="sign_up_wrong7">성별을 선택해 주세요.</string>
     <string name="sign_up_wrong8">비밀번호가 일치하지 않습니다.</string>
 
+    <string name="fragHome1">조도량 부족</string>
+    <string name="fragHome2">조도량 충분</string>
+    <string name="fragHome3">활동량 부족</string>
+    <string name="fragHome4">활동량 충분</string>
+    <string name="fragHome5">수면량 부족</string>
+    <string name="fragHome6">수면량 충분</string>
+    <string name="fragHome7">원하는 작업을 선택해 주세요.</string>
+    <string name="fragHome8">취침시간 설정</string>
+    <string name="fragHome9">취침모드 시작</string>
+
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>
