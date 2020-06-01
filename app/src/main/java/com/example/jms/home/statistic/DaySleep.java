@@ -206,7 +206,7 @@ public class DaySleep extends Fragment {
                 legend.setEnabled(false);
 
                 lineChart.setData(data);
-                lineChart.animateY(5000);
+                lineChart.animateY(3000);
             }
         }catch (Exception e){ }
 

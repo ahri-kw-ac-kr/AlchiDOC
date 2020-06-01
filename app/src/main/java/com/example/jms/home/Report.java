@@ -107,7 +107,7 @@ public class Report extends AppCompatActivity{
         }
         else {/////측정데이터 존재
             int deepPercent = 0;
-            try { deepPercent = (int) (((double) (user.getStatSleep().getDeep() / user.getStatSleep().getTotal())) * 100); } catch (Exception e) { }
+            try { deepPercent = (int) ((((double)user.getStatSleep().getDeep() /(double) user.getStatSleep().getTotal())) * 100); } catch (Exception e) { }
 
             //////////////////////////////////총 수면시간 코멘트////////////////////////
             if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
