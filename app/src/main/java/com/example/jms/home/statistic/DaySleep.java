@@ -139,9 +139,11 @@ public class DaySleep extends Fragment {
         try {
             if (user.getSleepDTOList().get(0).getLevel() != null) {
                 String[] levels = user.getSleepDTOList().get(0).getLevel().split(",");
+                entries.add(new Entry(5, 0));
                 for (int i = 0; i < levels.length; i++) {
-                    entries.add(new Entry(Integer.parseInt(levels[i]), i));
+                    entries.add(new Entry(Integer.parseInt(levels[i]), i+1));
                 }
+                entries.add(new Entry(5, levels.length+1));
 
             /*entries.add(new Entry(4f, 0));
         entries.add(new Entry(8f, 1));
@@ -162,11 +164,11 @@ public class DaySleep extends Fragment {
                 LineDataSet dataset = new LineDataSet(entries, "");
 
                 ArrayList<String> labels = new ArrayList<String>();
-                labels.add(user.getSleepDTOList().get(0).getSleepTime().substring(9));
-                for (int i = 0; i < levels.length - 2; i++) {
+                labels.add(user.getSleepDTOList().get(0).getSleepTime().substring(9,14));//잠든시간 HH:mm
+                for (int i = 0; i < levels.length; i++) {
                     labels.add("");
                 }
-                labels.add(user.getSleepDTOList().get(0).getWakeTime().substring(9));
+                labels.add(user.getSleepDTOList().get(0).getWakeTime().substring(9,14));//깬시간 HH:mm
 
                 LineData data = new LineData(labels, dataset);
                 dataset.setDrawValues(false);
@@ -192,6 +194,8 @@ public class DaySleep extends Fragment {
                 yAxisLeft.setDrawLabels(false);
                 yAxisLeft.setDrawAxisLine(false);
                 yAxisLeft.setDrawGridLines(false);
+                yAxisLeft.setAxisMaxValue(5);
+                yAxisLeft.setAxisMinValue(0);
 
                 YAxis yAxisRight = lineChart.getAxisRight();
                 yAxisRight.setDrawLabels(false);
@@ -207,6 +211,49 @@ public class DaySleep extends Fragment {
                 lineChart.animateY(5000);
             }
         }catch (Exception e){ }
+
+
+
+        ////////////////////////코멘트//////////////////////
+        if(user.getSleepDTOList().size() == 0){////측정데이터 없음
+
+
+
+        }
+        else {/////측정데이터 존재
+            int deepPercent = 0;
+            try {
+                deepPercent = (int) (((double) (user.getStatSleep().getDeep() / user.getStatSleep().getTotal())) * 100);
+            } catch (Exception e) {
+            }
+
+            //////////////////////////////////총 수면시간 코멘트////////////////////////
+            if (percent >= 80) {// 수면효율 정상
+                if (deepPercent >= 25) {//깊은잠 정상
+
+                } else {//깊은잠 부족
+
+                }
+            } else {//수면효율 비정상
+                if (deepPercent >= 25) {//깊은잠 정상
+
+                } else {//깊은잠 부족
+
+                }
+            }
+
+            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+            if (user.getStatSleep().getTurnHour() == 0) {//정상
+
+            }
+            else if(user.getStatSleep().getTurnHour() == 1){//주의
+
+            }
+            else if(user.getStatSleep().getTurnHour() == 2){//관리필요
+
+            }
+        }
+
             return view;
     }
 }
