@@ -82,6 +82,7 @@ public class WeekSleep extends Fragment {
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HHmm");
         String curr = transFormat.format(calendar.getTime());
         int thisDay = calendar.get(Calendar.DAY_OF_WEEK);
+        int thisWeek = calendar.get(Calendar.WEEK_OF_MONTH);
 
         ////////변수 초기화
         Integer[] totalSum = {0,0,0,0,0,0,0,0,0,0};
@@ -132,10 +133,10 @@ public class WeekSleep extends Fragment {
         lightM = lightA%60;
 
 
-        //000님의 0월 0일
+        //000님의 0월 0주차
         titleDay = (TextView) view.findViewById(R.id.weekSleepTitle);
-        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
-        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
+        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
+        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
         titleDay.setText(titleD);
 
         ///퍼센트
