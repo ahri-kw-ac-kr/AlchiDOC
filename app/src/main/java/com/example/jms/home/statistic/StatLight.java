@@ -432,6 +432,10 @@ public class StatLight {
         week(perDay);
         month(perMonthDay);
     }
+
+    public void parsing(List<List<RawdataDTO>> perHour){
+        day(perHour);
+    }
 }
 
 

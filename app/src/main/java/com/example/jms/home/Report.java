@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
+import com.example.jms.home.statistic.StatSleep;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
 import java.text.ParseException;
@@ -37,6 +38,13 @@ public class Report extends AppCompatActivity{
     ArcProgress act;
     ArcProgress sleep;
 
+    UserDataModel user = new UserDataModel();
+
+    //현재시간
+    Calendar calendar = Calendar.getInstance(Locale.KOREA);
+    SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HHmm");
+    String curr = transFormat.format(calendar.getTime());
+
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,34 +59,50 @@ public class Report extends AppCompatActivity{
                 onBackPressed();
             }
         });
-        mTextView = (TextView) findViewById(R.id.textView);
-        mTextView.setText(getTime());
 
-        //현재시간
-        Calendar calendar = Calendar.getInstance(Locale.KOREA);
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HHmm");
-        String curr = transFormat.format(calendar.getTime());
+        //시간
         Date date = new Date();
-        try { date = transFormat.parse(curr); } catch (ParseException e) { }
+        try {
+            date = transFormat.parse(curr);
+        } catch (ParseException e) {
+        }
 
         ////////////////////////////초기 : 어제//////////////////////////
         calendar.setTime(date);
-        calendar.add(calendar.DATE,-1);
-        String yestserday = transFormat.format(calendar.getTime()).substring(0,8)+" 00:00:00";
+        calendar.add(calendar.DATE, -1);
+        String yestserday = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+        mTextView = (TextView) findViewById(R.id.textView);
+        String dateT = yestserday.substring(0,4)+"년 "+yestserday.substring(4,6)+"월 "+yestserday.substring(6,8)+"일 달성률";
+        mTextView.setText(dateT);
 
-        UserDataModel reportUser = new UserDataModel();
-        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",yestserday,curr.substring(0,8)+" 00:00:00")
+
+        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", yestserday, curr.substring(0, 8) + " 00:00:00")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(data -> {
-                    if(data.getContent()!=null){ reportUser.setDataList(data.getContent()); }
+                    if (data.getContent() != null) {
+                        user.setDataList(data.getContent());
+                        user.parsingHour(-1, user.getDataList());
+                        concon();
+                    }
+                });
+        apiViewModel.getSleepById(RestfulAPI.principalUser.getId(), "0")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(data -> {
+                    if (data.getContent() != null) {
+                        user.setSleepDTOList(data.getContent());
+                        user.setStatSleep(new StatSleep());
+                        user.getStatSleep().parsing(user.getSleepDTOList());
+                        concon();
+                    }
                 });
 
 
-
         //사용자 정의
-        UserDataModel user = UserDataModel.userDataModels[0];
-
+        //UserDataModel user = UserDataModel.userDataModels[0];
+    }
+        public void concon(){
         ////////////////////////////////활동량///////////////////////////////
         //활동량 그래프
         act = (ArcProgress) findViewById(R.id.arc_progress2);
@@ -174,7 +198,7 @@ public class Report extends AppCompatActivity{
 
         ////////////////////////////////수면량///////////////////////////////
         //수면량 그래프
-        sleep = (ArcProgress) findViewById(R.id.arc_progress3);
+        /*sleep = (ArcProgress) findViewById(R.id.arc_progress3);
         sleep.setProgress(user.getStatSleep().getPercentDay());
 
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
@@ -231,8 +255,7 @@ public class Report extends AppCompatActivity{
                     state2.setText(R.string.sleepState3);
                 }
             }
-        }
-
+        }*/
     }
 
     ///현재시간///

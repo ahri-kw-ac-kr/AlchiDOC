@@ -159,69 +159,140 @@ public class UserDataModel {
         userDataModels[pos].getStatSleep().parsing(userDataModels[pos].getSleepDTOList());
     }
 
-    public void parsingHour(int pos, List<RawdataDTO> data){
-        userDataModels[pos].perHour = new ArrayList<>();
-        for(int i=0; i<24; i++){ userDataModels[pos].perHour.add( new ArrayList<>()); }
-
-        for(int i=0; i<data.size();i++){
-            long time = (long) data.get(i).getStartTick()*1000;
-            SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
-            String date = transFormat.format(time);
-            String hour = date.substring(9,11);
-            int hourI = Integer.parseInt(hour);
-            Log.d("UserDataModel","인티저로 바꾼 값: "+hourI);
-            switch (hourI){
-                case 0:
-                    userDataModels[pos].perHour.get(0).add(data.get(i)); Log.d("UserDataModel","0으로 들어옴"); break;
-                case 1:
-                    userDataModels[pos].perHour.get(1).add(data.get(i)); Log.d("UserDataModel","1으로 들어옴"); break;
-                case 2:
-                    userDataModels[pos].perHour.get(2).add(data.get(i)); Log.d("UserDataModel","2으로 들어옴"); break;
-                case 3:
-                    userDataModels[pos].perHour.get(3).add(data.get(i)); Log.d("UserDataModel","3으로 들어옴"); break;
-                case 4:
-                    userDataModels[pos].perHour.get(4).add(data.get(i)); Log.d("UserDataModel","4으로 들어옴"); break;
-                case 5:
-                    userDataModels[pos].perHour.get(5).add(data.get(i)); Log.d("UserDataModel","5으로 들어옴"); break;
-                case 6:
-                    userDataModels[pos].perHour.get(6).add(data.get(i)); Log.d("UserDataModel","6으로 들어옴"); break;
-                case 7:
-                    userDataModels[pos].perHour.get(7).add(data.get(i)); Log.d("UserDataModel","7으로 들어옴"); break;
-                case 8:
-                    userDataModels[pos].perHour.get(8).add(data.get(i)); Log.d("UserDataModel","8으로 들어옴"); break;
-                case 9:
-                    userDataModels[pos].perHour.get(9).add(data.get(i)); Log.d("UserDataModel","9으로 들어옴"); break;
-                case 10:
-                    userDataModels[pos].perHour.get(10).add(data.get(i)); Log.d("UserDataModel","10으로 들어옴"); break;
-                case 11:
-                    userDataModels[pos].perHour.get(11).add(data.get(i)); Log.d("UserDataModel","11으로 들어옴"); break;
-                case 12:
-                    userDataModels[pos].perHour.get(12).add(data.get(i)); Log.d("UserDataModel","12으로 들어옴"); break;
-                case 13:
-                    userDataModels[pos].perHour.get(13).add(data.get(i)); Log.d("UserDataModel","13으로 들어옴"); break;
-                case 14:
-                    userDataModels[pos].perHour.get(14).add(data.get(i)); Log.d("UserDataModel","14으로 들어옴"); break;
-                case 15:
-                    userDataModels[pos].perHour.get(15).add(data.get(i)); Log.d("UserDataModel","15으로 들어옴"); break;
-                case 16:
-                    userDataModels[pos].perHour.get(16).add(data.get(i)); Log.d("UserDataModel","16으로 들어옴"); break;
-                case 17:
-                    userDataModels[pos].perHour.get(17).add(data.get(i)); Log.d("UserDataModel","17으로 들어옴"); break;
-                case 18:
-                    userDataModels[pos].perHour.get(18).add(data.get(i)); Log.d("UserDataModel","18으로 들어옴"); break;
-                case 19:
-                    userDataModels[pos].perHour.get(19).add(data.get(i)); Log.d("UserDataModel","19으로 들어옴"); break;
-                case 20:
-                    userDataModels[pos].perHour.get(20).add(data.get(i)); Log.d("UserDataModel","20으로 들어옴"); break;
-                case 21:
-                    userDataModels[pos].perHour.get(21).add(data.get(i)); Log.d("UserDataModel","21으로 들어옴"); break;
-                case 22:
-                    userDataModels[pos].perHour.get(22).add(data.get(i)); Log.d("UserDataModel","22으로 들어옴"); break;
-                case 23:
-                    userDataModels[pos].perHour.get(23).add(data.get(i)); Log.d("UserDataModel","23으로 들어옴"); break;
+    public void parsingHour(int pos, List<RawdataDTO> data) throws ParseException {
+        if(pos >=0 ) {
+            userDataModels[pos].perHour = new ArrayList<>();
+            for (int i = 0; i < 24; i++) {
+                userDataModels[pos].perHour.add(new ArrayList<>());
             }
+
+            for (int i = 0; i < data.size(); i++) {
+                long time = (long) data.get(i).getStartTick() * 1000;
+                SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+                String date = transFormat.format(time);
+                String hour = date.substring(9, 11);
+                int hourI = Integer.parseInt(hour);
+                Log.d("UserDataModel", "인티저로 바꾼 값: " + hourI);
+                switch (hourI) {
+                    case 0:
+                        userDataModels[pos].perHour.get(0).add(data.get(i));
+                        Log.d("UserDataModel", "0으로 들어옴");
+                        break;
+                    case 1:
+                        userDataModels[pos].perHour.get(1).add(data.get(i));
+                        Log.d("UserDataModel", "1으로 들어옴");
+                        break;
+                    case 2:
+                        userDataModels[pos].perHour.get(2).add(data.get(i));
+                        Log.d("UserDataModel", "2으로 들어옴");
+                        break;
+                    case 3:
+                        userDataModels[pos].perHour.get(3).add(data.get(i));
+                        Log.d("UserDataModel", "3으로 들어옴");
+                        break;
+                    case 4:
+                        userDataModels[pos].perHour.get(4).add(data.get(i));
+                        Log.d("UserDataModel", "4으로 들어옴");
+                        break;
+                    case 5:
+                        userDataModels[pos].perHour.get(5).add(data.get(i));
+                        Log.d("UserDataModel", "5으로 들어옴");
+                        break;
+                    case 6:
+                        userDataModels[pos].perHour.get(6).add(data.get(i));
+                        Log.d("UserDataModel", "6으로 들어옴");
+                        break;
+                    case 7:
+                        userDataModels[pos].perHour.get(7).add(data.get(i));
+                        Log.d("UserDataModel", "7으로 들어옴");
+                        break;
+                    case 8:
+                        userDataModels[pos].perHour.get(8).add(data.get(i));
+                        Log.d("UserDataModel", "8으로 들어옴");
+                        break;
+                    case 9:
+                        userDataModels[pos].perHour.get(9).add(data.get(i));
+                        Log.d("UserDataModel", "9으로 들어옴");
+                        break;
+                    case 10:
+                        userDataModels[pos].perHour.get(10).add(data.get(i));
+                        Log.d("UserDataModel", "10으로 들어옴");
+                        break;
+                    case 11:
+                        userDataModels[pos].perHour.get(11).add(data.get(i));
+                        Log.d("UserDataModel", "11으로 들어옴");
+                        break;
+                    case 12:
+                        userDataModels[pos].perHour.get(12).add(data.get(i));
+                        Log.d("UserDataModel", "12으로 들어옴");
+                        break;
+                    case 13:
+                        userDataModels[pos].perHour.get(13).add(data.get(i));
+                        Log.d("UserDataModel", "13으로 들어옴");
+                        break;
+                    case 14:
+                        userDataModels[pos].perHour.get(14).add(data.get(i));
+                        Log.d("UserDataModel", "14으로 들어옴");
+                        break;
+                    case 15:
+                        userDataModels[pos].perHour.get(15).add(data.get(i));
+                        Log.d("UserDataModel", "15으로 들어옴");
+                        break;
+                    case 16:
+                        userDataModels[pos].perHour.get(16).add(data.get(i));
+                        Log.d("UserDataModel", "16으로 들어옴");
+                        break;
+                    case 17:
+                        userDataModels[pos].perHour.get(17).add(data.get(i));
+                        Log.d("UserDataModel", "17으로 들어옴");
+                        break;
+                    case 18:
+                        userDataModels[pos].perHour.get(18).add(data.get(i));
+                        Log.d("UserDataModel", "18으로 들어옴");
+                        break;
+                    case 19:
+                        userDataModels[pos].perHour.get(19).add(data.get(i));
+                        Log.d("UserDataModel", "19으로 들어옴");
+                        break;
+                    case 20:
+                        userDataModels[pos].perHour.get(20).add(data.get(i));
+                        Log.d("UserDataModel", "20으로 들어옴");
+                        break;
+                    case 21:
+                        userDataModels[pos].perHour.get(21).add(data.get(i));
+                        Log.d("UserDataModel", "21으로 들어옴");
+                        break;
+                    case 22:
+                        userDataModels[pos].perHour.get(22).add(data.get(i));
+                        Log.d("UserDataModel", "22으로 들어옴");
+                        break;
+                    case 23:
+                        userDataModels[pos].perHour.get(23).add(data.get(i));
+                        Log.d("UserDataModel", "23으로 들어옴");
+                        break;
+                }
+            }
+            Log.d("UserDataMdel", "perHour");
         }
-        Log.d("UserDataMdel","perHour");
+        else if(pos == -1){//레포트에서 사용
+            perHour = new ArrayList<>();
+            for (int i = 0; i < 24; i++) {
+                perHour.add(new ArrayList<>());
+            }
+            for (int i = 0; i < data.size(); i++) {
+                long time = (long) data.get(i).getStartTick() * 1000;
+                SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+                String date = transFormat.format(time);
+                String hour = date.substring(9, 11);
+                int hourI = Integer.parseInt(hour);
+                Log.d("UserDataModel", "인티저로 바꾼 값: " + hourI);
+                perHour.get(hourI).add(data.get(i));
+            }
+            statAct = new StatAct();
+            statAct.parsing(perHour);
+            statLight = new StatLight();
+            statLight.parsing(perHour);
+        }
     }
 
     public void parsingWeekDay(int pos, List<RawdataDTO> data){
