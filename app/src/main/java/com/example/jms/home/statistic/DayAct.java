@@ -222,7 +222,7 @@ public class DayAct extends Fragment {
                     state3.setText(R.string.good);
                 }
             }
-            else{ dayActPlan3.setText("\n"); }
+            else{ dayActPlan3.setText(R.string.noData); }
         }
         return view;
     }
