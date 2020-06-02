@@ -52,6 +52,10 @@ public class APIViewModel extends ViewModel {
         return restfulAPIService.getSleepById(id, page);
     }
 
+    public Single<PageDTO<SleepDTO>> getSleepByPeriod(Long id, String page, String created_at_lt, String created_at_gt){
+        return restfulAPIService.getSleepByPeriod(id, page, created_at_lt, created_at_gt);
+    }
+
     public Single<UserDTO> postUser(UserDTO user){
         return restfulAPIService.postUser(user);
     }

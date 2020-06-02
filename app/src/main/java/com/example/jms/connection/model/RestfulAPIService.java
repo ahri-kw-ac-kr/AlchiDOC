@@ -80,6 +80,14 @@ public interface RestfulAPIService {
     Single<PageDTO<SleepDTO>> getSleepById(@Path("id") Long id, @Query("page") String page);
 
     /**
+     * GET
+     * BaseURL/user/1/sleepPeriod
+     * 1번 유저의 날짜 별 sleep data 조회
+     **/
+    @GET("user/{id}/sleepPeriod")
+    Single<PageDTO<SleepDTO>> getSleepByPeriod(@Path("id") Long id, @Query("page") String page, @Query("created_at_lt") String created_at_lt, @Query("created_at_gt") String created_at_gt);
+
+    /**
      * POST
      * BaseURL/user
      * user post
