@@ -68,74 +68,76 @@ public class DaySleep extends Fragment {
         else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
         titleDay.setText(titleD);
 
-        // 수면효율 00%
-        titlePercent = (TextView) view.findViewById(R.id.daySleepPercent);
-        percent = user.getStatSleep().getPercentDay();
-        String dayP = "수면효율 " + percent + "%";
-        titlePercent.setText(dayP);
+        if(user.getSleepDTOList().get(0).getWakeTime().substring(0,8).equals(curr.substring(0,8))) {
+            // 수면효율 00%
+            titlePercent = (TextView) view.findViewById(R.id.daySleepPercent);
+            percent = user.getStatSleep().getPercentDay();
+            String dayP = "수면효율 " + percent + "%";
+            titlePercent.setText(dayP);
 
-        //총수면시간
-        totalH = (TextView) view.findViewById(R.id.daySleepTotalHour);
-        totalM = (TextView) view.findViewById(R.id.daySleepTotalMinute);
-        try {
-            int to = user.getSleepDTOList().get(0).getTotal(); //총 수면시간
-            int toH = to / 60; //총수면시간 시
-            int toM = to % 60; //총수면시간 분
-            totalH.setText("" + toH);
-            totalM.setText("" + toM);
-        } catch (Exception e) {
-            totalH.setText("0");
-            totalM.setText("0");
-        }
+            //총수면시간
+            totalH = (TextView) view.findViewById(R.id.daySleepTotalHour);
+            totalM = (TextView) view.findViewById(R.id.daySleepTotalMinute);
+            try {
+                int to = user.getSleepDTOList().get(0).getTotal(); //총 수면시간
+                int toH = to / 60; //총수면시간 시
+                int toM = to % 60; //총수면시간 분
+                totalH.setText("" + toH);
+                totalM.setText("" + toM);
+            } catch (Exception e) {
+                totalH.setText("0");
+                totalM.setText("0");
+            }
 
-        //깊은수면
-        deepH = (TextView) view.findViewById(R.id.daySleepDeepHour);
-        deepM = (TextView) view.findViewById(R.id.daySleepDeepMinute);
-        try {
-            int de = user.getSleepDTOList().get(0).getDeep();
-            int deH = de / 60;
-            int deM = de % 60;
-            deepH.setText("" + deH);
-            deepM.setText("" + deM);
-        } catch (Exception e) {
-            deepH.setText("0");
-            deepM.setText("0");
-        }
+            //깊은수면
+            deepH = (TextView) view.findViewById(R.id.daySleepDeepHour);
+            deepM = (TextView) view.findViewById(R.id.daySleepDeepMinute);
+            try {
+                int de = user.getSleepDTOList().get(0).getDeep();
+                int deH = de / 60;
+                int deM = de % 60;
+                deepH.setText("" + deH);
+                deepM.setText("" + deM);
+            } catch (Exception e) {
+                deepH.setText("0");
+                deepM.setText("0");
+            }
 
-        //얕은수면
-        lightH = (TextView) view.findViewById(R.id.daySleepLightHour);
-        lightM = (TextView) view.findViewById(R.id.daySleepLightMinute);
-        try {
-            int li = user.getSleepDTOList().get(0).getLight();
-            int liH = li / 60;
-            int liM = li % 60;
-            lightH.setText("" + liH);
-            lightM.setText("" + liM);
-        } catch (Exception e) {
-            lightH.setText("0");
-            lightM.setText("0");
-        }
+            //얕은수면
+            lightH = (TextView) view.findViewById(R.id.daySleepLightHour);
+            lightM = (TextView) view.findViewById(R.id.daySleepLightMinute);
+            try {
+                int li = user.getSleepDTOList().get(0).getLight();
+                int liH = li / 60;
+                int liM = li % 60;
+                lightH.setText("" + liH);
+                lightM.setText("" + liM);
+            } catch (Exception e) {
+                lightH.setText("0");
+                lightM.setText("0");
+            }
 
-        //깨어남
-        wake = (TextView) view.findViewById(R.id.daySleepWake);
-        try {
-            wake.setText("" + user.getSleepDTOList().get(0).getWake());
-        } catch (Exception e) {
-            wake.setText("0");
-        }
+            //깨어남
+            wake = (TextView) view.findViewById(R.id.daySleepWake);
+            try {
+                wake.setText("" + user.getSleepDTOList().get(0).getWake());
+            } catch (Exception e) {
+                wake.setText("0");
+            }
 
-        //뒤척임
-        turn = (TextView) view.findViewById(R.id.daySleepTurn);
-        try {
-            turn.setText("" + user.getSleepDTOList().get(0).getTurn());
-        } catch (Exception e) {
-            turn.setText("0");
+            //뒤척임
+            turn = (TextView) view.findViewById(R.id.daySleepTurn);
+            try {
+                turn.setText("" + user.getSleepDTOList().get(0).getTurn());
+            } catch (Exception e) {
+                turn.setText("0");
+            }
         }
 
         //그래프
         ArrayList<Entry> entries = new ArrayList<>();
         try {
-            if(user.getSleepDTOList().get(0).getWakeTime().substring(0,7).equals(curr.substring(0,7))) {
+            if(user.getSleepDTOList().get(0).getWakeTime().substring(0,8).equals(curr.substring(0,8))) {
                 if (user.getSleepDTOList().get(0).getLevel() != null) {
                     String[] levels = user.getSleepDTOList().get(0).getLevel().split(",");
                     entries.add(new Entry(5, 0));

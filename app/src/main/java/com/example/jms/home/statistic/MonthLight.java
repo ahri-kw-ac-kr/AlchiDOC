@@ -130,7 +130,7 @@ public class MonthLight extends Fragment {
         //코멘트
 
         monthLightPlan1 = (TextView) view.findViewById(R.id.monthLightPlan1);
-        monthLightPlan2 = (TextView) view.findViewById(R.id.monthLightPlan3);
+        monthLightPlan2 = (TextView) view.findViewById(R.id.monthLightPlan2);
         face1 = (ImageView) view.findViewById(R.id.monthLightFace1);
         face2 = (ImageView) view.findViewById(R.id.monthLightFace2);
         state1 = (TextView) view.findViewById(R.id.monthLightState1);

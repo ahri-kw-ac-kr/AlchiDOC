@@ -54,7 +54,7 @@
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/nanumregular"
                     android:gravity="left"
-                    android:text="수면량 84%"
+                    android:text="수면량 0%"
                     android:textColor="#7476B3"
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
@@ -181,7 +181,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="8"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -201,7 +201,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="20"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -253,7 +253,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="2"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -273,7 +273,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="5"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -321,7 +321,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="6"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -341,7 +341,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="15"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -389,7 +389,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="2"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>
@@ -437,7 +437,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:fontFamily="@font/nanumbold"
-                            android:text="1"
+                            android:text="0"
                             android:textColor="#7476B3"
                             android:textSize="18sp"
                             android:textStyle="bold"></TextView>

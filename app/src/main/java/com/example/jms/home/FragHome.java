@@ -24,6 +24,9 @@ import com.example.jms.home.button.LightButtonActivity;
 import com.example.jms.home.button.SleepButtonActivity;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import cn.nightcode.sliderIndicator.SliderIndicator;
 
@@ -63,6 +66,10 @@ public class FragHome extends Fragment {
             if(UserDataModel.userDataModels[i].getTodayList()==null){
                 try { UserDataModel.userDataModels[i].parsingDay(i); } catch (ParseException e) { e.printStackTrace(); }}
         }
+        //현재시간
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
+        String curr = transFormat.format(calendar.getTime());
 
         //각 버튼 누르면 다른 페이지로 이동하는 역할!!
         button1 = (Button) view.findViewById(R.id.button1);
@@ -76,8 +83,14 @@ public class FragHome extends Fragment {
         else{ button1.setText(R.string.fragHome2); }
         if(UserDataModel.userDataModels[0].getStatAct().getDayPercent()<100){ button2.setText(R.string.fragHome3); }
         else{ button2.setText(R.string.fragHome4); }
-        if(UserDataModel.userDataModels[0].getStatSleep().getPercentDay()<80){ button3.setText(R.string.fragHome5); }
-        else{ button3.setText(R.string.fragHome6); }
+        if(UserDataModel.userDataModels[0].getSleepDTOList().get(0).getWakeTime().substring(0,8).equals(curr.substring(0,8))) {
+            if (UserDataModel.userDataModels[0].getStatSleep().getPercentDay() < 80) {
+                button3.setText(R.string.fragHome5);
+            } else {
+                button3.setText(R.string.fragHome6);
+            }
+        }
+        else{ button3.setText(R.string.fragHome5); }
 
         //메인화면 상단에 사용자 옆으로 넘겨서 볼 수 있게 하는 역할
         mainViewPager = (ViewPager) view.findViewById(R.id.main_view_pager);
@@ -109,8 +122,14 @@ public class FragHome extends Fragment {
                 if(UserDataModel.userDataModels[position].getStatAct().getDayPercent()<100){ button2.setText(R.string.fragHome3); }
                 else{ button2.setText(R.string.fragHome4); }
 
-                if(UserDataModel.userDataModels[position].getStatSleep().getPercentDay()<80){ button3.setText(R.string.fragHome5); }
-                else{ button3.setText(R.string.fragHome6); }
+                if(UserDataModel.userDataModels[position].getSleepDTOList().get(0).getWakeTime().substring(0,8).equals(curr.substring(0,8))) {
+                    if (UserDataModel.userDataModels[position].getStatSleep().getPercentDay() < 80) {
+                        button3.setText(R.string.fragHome5);
+                    } else {
+                        button3.setText(R.string.fragHome6);
+                    }
+                }
+                else{ button3.setText(R.string.fragHome5); }
             }
 
             @Override
