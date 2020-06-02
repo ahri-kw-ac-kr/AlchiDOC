@@ -182,7 +182,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#7476B3"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:id="@+id/state1"
@@ -190,7 +189,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text=""
                             android:textColor="#7476B3"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -238,7 +237,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#7476B3"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:id="@+id/state2"
@@ -246,7 +244,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/bad"
+                            android:text=""
                             android:textColor="#7476B3"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -396,7 +394,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#F75321"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
 
                         <TextView
@@ -405,7 +402,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text=""
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -450,7 +447,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#F75321"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
 
                         <TextView
@@ -459,7 +455,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/nanumregular"
-                            android:text="@string/good"
+                            android:text=""
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
