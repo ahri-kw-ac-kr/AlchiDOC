@@ -1,4 +1,5 @@
 package com.example.jms.home;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -6,14 +7,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
+import com.example.jms.connection.viewmodel.APIViewModel;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class Report extends AppCompatActivity{
+
+    APIViewModel apiViewModel = new APIViewModel();
 
     long mNow;
     Date mDate;
@@ -28,6 +37,7 @@ public class Report extends AppCompatActivity{
     ArcProgress act;
     ArcProgress sleep;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +53,28 @@ public class Report extends AppCompatActivity{
         });
         mTextView = (TextView) findViewById(R.id.textView);
         mTextView.setText(getTime());
+
+        //현재시간
+        Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HHmm");
+        String curr = transFormat.format(calendar.getTime());
+        Date date = new Date();
+        try { date = transFormat.parse(curr); } catch (ParseException e) { }
+
+        ////////////////////////////초기 : 어제//////////////////////////
+        calendar.setTime(date);
+        calendar.add(calendar.DATE,-1);
+        String yestserday = transFormat.format(calendar.getTime()).substring(0,8)+" 00:00:00";
+
+        UserDataModel reportUser = new UserDataModel();
+        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(),"0",yestserday,curr.substring(0,8)+" 00:00:00")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(data -> {
+                    if(data.getContent()!=null){ reportUser.setDataList(data.getContent()); }
+                });
+
+
 
         //사용자 정의
         UserDataModel user = UserDataModel.userDataModels[0];
@@ -141,10 +173,6 @@ public class Report extends AppCompatActivity{
 
 
         ////////////////////////////////수면량///////////////////////////////
-        //현재시간
-        Calendar calendar = Calendar.getInstance(Locale.KOREA);
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HH");
-        String curr = transFormat.format(calendar.getTime());
         //수면량 그래프
         sleep = (ArcProgress) findViewById(R.id.arc_progress3);
         sleep.setProgress(user.getStatSleep().getPercentDay());
