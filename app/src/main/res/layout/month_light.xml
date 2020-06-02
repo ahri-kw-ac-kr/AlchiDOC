@@ -436,7 +436,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:id="@+id/monthLightState1"
@@ -444,7 +443,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="과다"
+                            android:text=""
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -457,7 +456,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="낮 시간대의 조도량이 부족합니다. 오후에는 야외 활동을 늘려주세요."></TextView>
+                        android:text="@string/noData"></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -489,7 +488,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:id="@+id/monthLightState2"
@@ -498,13 +496,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="적정"
+                            android:text=""
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/monthLightPlan3"
+                        android:id="@+id/monthLightPlan2"
                         android:layout_marginBottom="22dp"
                         android:lineSpacingExtra="6dp"
                         android:textColor="#5A5959"
@@ -512,7 +510,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="조명 색의 온도가 적당합니다. 현재의 조명 밝기를 유지하세요.">
+                        android:text="@string/noData">
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
