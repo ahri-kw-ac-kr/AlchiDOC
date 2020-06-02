@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
@@ -25,6 +26,7 @@ import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
 import com.example.jms.etc.Login;
 import com.example.jms.home.MainActivity;
+import com.example.jms.home.SleepTime;
 import com.example.jms.home.UserDataModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,7 +38,7 @@ public class FragSettings extends Fragment {
 
     private View view;
     MainActivity mainActivity;
-    LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5, layButton6, layButton7;
+    LinearLayout layButton1, layButton2, layButton3, layButton4, layButton5, layButton6, layButton7, layButton8, layButton9;
     TextView logoutButton;
     TextView myInfo;
 
@@ -77,6 +79,8 @@ public class FragSettings extends Fragment {
         layButton5 = (LinearLayout) view.findViewById(R.id.setButton5);
         layButton6 = (LinearLayout) view.findViewById(R.id.setButton6);
         layButton7 = (LinearLayout) view.findViewById(R.id.setButton7);
+        layButton8 = (LinearLayout) view.findViewById(R.id.setButton8);
+        layButton9 = (LinearLayout) view.findViewById(R.id.setButton9);
         logoutButton = (TextView) view.findViewById(R.id.logout_button);
         myInfo = (TextView)view.findViewById(R.id.myInfo);
 
@@ -162,6 +166,22 @@ public class FragSettings extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LocationPermission.class);
+                startActivity(intent);
+            }
+        });
+
+        layButton8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Guide.class);
+                startActivity(intent);
+            }
+        });
+
+        layButton9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SleepTime.class);
                 startActivity(intent);
             }
         });
