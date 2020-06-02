@@ -71,11 +71,20 @@ public class FragHome extends Fragment {
         report = (ImageButton) view.findViewById(R.id.report);
         sleepStart = (ImageButton) view.findViewById(R.id.sleepStart);
 
+        //onPageSelected가 Viewpager를 옮길때 실행되어서, 어플실행시 우선 사용자 카드가 보여짐을 이용해 처음으로 선언하고 넘어간다.
+        if(UserDataModel.userDataModels[0].getStatLight().getDayPercent()<100){ button1.setText(R.string.fragHome1); }
+        else{ button1.setText(R.string.fragHome2); }
+        if(UserDataModel.userDataModels[0].getStatAct().getDayPercent()<100){ button2.setText(R.string.fragHome3); }
+        else{ button2.setText(R.string.fragHome4); }
+        if(UserDataModel.userDataModels[0].getStatSleep().getPercentDay()<80){ button3.setText(R.string.fragHome5); }
+        else{ button3.setText(R.string.fragHome6); }
+
         //메인화면 상단에 사용자 옆으로 넘겨서 볼 수 있게 하는 역할
         mainViewPager = (ViewPager) view.findViewById(R.id.main_view_pager);
         //pagerAdapter = new com.example.jms.SamplePagerAdapter(container.getContext());
         pagerAdapter = new com.example.jms.home.SamplePagerAdapter(getActivity());
         mainViewPager.setAdapter(pagerAdapter);
+
 
         indicator = (SliderIndicator) view.findViewById(R.id.main_slide_indicator);
         if(RestfulAPI.principalUser.getFriend()!=null){
