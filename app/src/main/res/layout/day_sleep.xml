@@ -527,7 +527,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text=""></TextView>
+                        android:text="@string/noData"></TextView>
                     <View
                         android:layout_gravity="center|top"
                         android:layout_marginTop="12dp"
@@ -581,7 +581,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="">
+                        android:text="@string/noData">
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
