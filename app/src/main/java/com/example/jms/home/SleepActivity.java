@@ -3,8 +3,8 @@ package com.example.jms.home;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +21,6 @@ import com.example.jms.connection.viewmodel.SleepDocViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /*
@@ -58,7 +57,7 @@ public class SleepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sleep_activity); //승은이가 올려준 액티비티가 나오도록.
 
-        Calendar calendar = Calendar.getInstance();
+        //Calendar calendar = Calendar.getInstance();
 
         UserDataModel.contextP = getApplicationContext();
         sharedPreferences = getSharedPreferences("sleep",0);
@@ -66,16 +65,20 @@ public class SleepActivity extends AppCompatActivity {
 
         sleepEnd =  findViewById(R.id.sleep_end);
         chronometer = findViewById(R.id.ellapse);
+
         Intent intent = new Intent(this, SleepService.class);
         intent.setAction("startForeground"); //포그라운드 서비스 실행
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else { startService(intent); }
 
         chronometer.setBase(SystemClock.elapsedRealtime() + stopTime);
         chronometer.start();
 
         Date sDate = new Date(System.currentTimeMillis());
 
-        calendar.setTime(sDate);
-        calendar.add(Calendar.HOUR,8);
+        //calendar.setTime(sDate);
+        //calendar.add(Calendar.HOUR,8);
 
         startTime = simpleDateFormat.format(sDate);
         start = startTime;
@@ -124,12 +127,12 @@ public class SleepActivity extends AppCompatActivity {
 
                 /*밑에 세줄 사용하니까 재시작됨 그래서 주석처리해뒀음 */
                 //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                   // startForegroundService(intent);
+                //    startForegroundService(intent);
                 //} else { startService(intent); }
 
             }//onClick
         });//ClickListener
-
+/*
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -149,7 +152,7 @@ public class SleepActivity extends AppCompatActivity {
                 startActivity(intent1);
                 finish();
             }
-        }, 2880000);
+        }, 2880000);*/
     }//onCreate
 
 

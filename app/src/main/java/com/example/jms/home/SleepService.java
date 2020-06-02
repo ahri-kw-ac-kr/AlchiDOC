@@ -28,21 +28,23 @@ public class SleepService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("Sleepservice","intent");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.e("Sleepservice","intent"+intent);
         if("startForeground".equals(intent.getAction())){ //해당 인텐트로 이와 같은 커맨드가 온다면
             startForegroundService(); // 아래의 함수를 실행하시오
         }
-        Log.d("D","수면 서비스 시작");
+        Log.d("SleepService","수면 서비스 시작");
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
 
-        Log.d("D","수면서비스 종료");
+        Log.d("SleepService","수면서비스 종료");
         super.onDestroy();
 
     }
