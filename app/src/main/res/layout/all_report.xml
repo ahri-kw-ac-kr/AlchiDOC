@@ -51,17 +51,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginBottom="6dp"
+            android:layout_gravity="center|top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_left_black_24dp"></ImageView>
+            <ImageView
+                android:layout_gravity="bottom"
+                android:tint="#4E4E4E"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_event_note_black_24dp"></ImageView>
             <TextView
+                android:gravity="bottom"
+                android:text="2020년 06월 03일 달성률"
                 android:id="@+id/textView"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="4dp"
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold"></TextView>
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
+        </LinearLayout>
             <LinearLayout
                 android:weightSum="3"
                 android:layout_gravity="center"
@@ -142,7 +168,7 @@
                 android:fontFamily="@font/nanumregular"
                 android:text="@string/all_report2"
                 android:textColor="#646464"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold"></TextView>
             <androidx.cardview.widget.CardView
                 android:layout_marginBottom="100dp"

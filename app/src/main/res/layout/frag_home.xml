@@ -41,7 +41,7 @@
                 android:fontFamily="@font/gulimr"
                 android:text="AlchiDOC"
                 android:textColor="#ffffff"
-                android:textSize="17dp"/>
+                android:textSize="19dp"/>
 
             <ImageButton
                 android:id="@+id/report"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="26dp"
                 android:layout_marginRight="27dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_event_note_black_24dp">
+                android:src="@drawable/ic_assignment_black_24dp">
             </ImageButton>
         </RelativeLayout>
 
@@ -130,9 +130,9 @@
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="조도량 충분"
+                android:text="조도량 데이터가 없습니다."
                 android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textSize="15sp"
                ></Button>
 
             <TextView
@@ -150,7 +150,7 @@
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp"
                 android:layout_marginBottom="5dp"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:background="@drawable/main_grad"
                 android:drawableLeft="@drawable/ic_actact"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -161,7 +161,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="   활동량 부족"
+                android:text="   활동량 데이터가 없습니다."
                 android:textColor="#ffffff">
             </Button>
 
@@ -181,7 +181,7 @@
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="27dp"
                 android:layout_marginBottom="14dp"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:background="@drawable/main_grad"
                 android:drawableLeft="@drawable/ic_nights_stay_24px"
                 android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
@@ -192,7 +192,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="10dp"
-                android:text="   수면량 충분"
+                android:text="   수면량 데이터가 없습니다."
                 android:textColor="#ffffff">
             </Button>
         </LinearLayout>
