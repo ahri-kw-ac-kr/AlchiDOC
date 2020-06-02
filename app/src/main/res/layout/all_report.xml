@@ -58,11 +58,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/goBack"
                 android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_chevron_left_black_24dp"></ImageView>
             <ImageView
+                android:onClick="OnClickHandler"
                 android:layout_gravity="bottom"
                 android:tint="#4E4E4E"
                 android:layout_width="wrap_content"
@@ -83,6 +85,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"></TextView>
             <ImageView
+                android:id="@+id/goFront"
                 android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

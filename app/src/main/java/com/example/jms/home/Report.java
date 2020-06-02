@@ -1,12 +1,17 @@
 package com.example.jms.home;
+
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import com.example.jms.R;
 import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.connection.viewmodel.APIViewModel;
@@ -29,6 +34,9 @@ public class Report extends AppCompatActivity{
     long mNow;
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy년 M월 dd일 달성률");
+    ImageView backButton, frontButton;
+    private DatePickerDialog.OnDateSetListener callbackMethod;
+
     TextView mTextView;
     TextView reportActSun, reportActMoon;
     TextView reportLightSun, reportLightMoon;
@@ -71,10 +79,31 @@ public class Report extends AppCompatActivity{
         ////////////////////////////초기 : 어제//////////////////////////
         calendar.setTime(date);
         calendar.add(calendar.DATE, -1);
+        Log.e("Report!",calendar+"");
         String yestserday = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
         mTextView = (TextView) findViewById(R.id.textView);
         String dateT = yestserday.substring(0,4)+"년 "+yestserday.substring(4,6)+"월 "+yestserday.substring(6,8)+"일 달성률";
-        mTextView.setText(dateT);
+        mTextView.setText(dateT); //파싱해서 세팅해줍니다.
+
+        backButton = findViewById(R.id.goBack);
+        frontButton = findViewById(R.id.goFront);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //표시되는 날짜를 하루 줄이는 것이 필요
+
+            }
+        });
+        frontButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //표시되는 날짜를 하루 늘리기
+                //if()
+            }
+        });
+        this.InitializeView();
+        this.InitializeListener();
+
 
 
         apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", yestserday, curr.substring(0, 8) + " 00:00:00")
@@ -282,6 +311,31 @@ public class Report extends AppCompatActivity{
                 state2.setText(R.string.sleepState3);
             }
         }
+    }
+    public void InitializeView(){mTextView = (TextView) findViewById(R.id.textView);}
+    public void InitializeListener()
+    {
+        callbackMethod = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+            {
+                Log.e("Report",""+year+":"+monthOfYear+":"+dayOfMonth);
+                mTextView.setText(year + "년" + (monthOfYear+1) + "월" + dayOfMonth + "일 달성률");
+            }
+        };
+    }
+
+    final Calendar c = Calendar.getInstance();
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+    public void OnClickHandler(View view)
+    {
+        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, year, month, day);
+
+        dialog.show();
     }
 
     ///현재시간///
