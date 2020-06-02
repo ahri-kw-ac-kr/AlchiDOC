@@ -1,6 +1,7 @@
 package com.example.jms.home;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -83,26 +84,54 @@ public class Report extends AppCompatActivity{
                     if (data.getContent() != null) {
                         user.setDataList(data.getContent());
                         user.parsingHour(-1, user.getDataList());
-                        concon();
+                        apiViewModel.getSleepByPeriod(RestfulAPI.principalUser.getId(), "0", yestserday, curr.substring(0, 8) + " 00:00:00")
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(data2 -> {
+                                    if (data.getContent() != null) {
+                                        user.setSleepDTOList(data2.getContent());
+                                        user.setStatSleep(new StatSleep());
+                                        user.getStatSleep().parsing(user.getSleepDTOList());
+                                        concon();
+                                    }
+                                });
                     }
                 });
-        apiViewModel.getSleepById(RestfulAPI.principalUser.getId(), "0")
+
+
+        //여기서부터 캘린더에서 고른날짜 받아와서 아래에 있는 changeDay 함수 쓰기.
+
+
+
+
+    }//onCreate
+
+    @SuppressLint("CheckResult")
+    ////startDay는 캘린더에서 고른 날짜, finishDay는 그 다음 날짜, 날짜 형식은 무조건 yyyymmdd HH:mm:ss 로 해주기.
+    public void changeDay(String startDay, String finishDay){
+        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", startDay, finishDay)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(data -> {
                     if (data.getContent() != null) {
-                        user.setSleepDTOList(data.getContent());
-                        user.setStatSleep(new StatSleep());
-                        user.getStatSleep().parsing(user.getSleepDTOList());
-                        concon();
+                        user.setDataList(data.getContent());
+                        user.parsingHour(-1, user.getDataList());
+                        apiViewModel.getSleepByPeriod(RestfulAPI.principalUser.getId(), "0", startDay, finishDay)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(data2 -> {
+                                    if (data.getContent() != null) {
+                                        user.setSleepDTOList(data2.getContent());
+                                        user.setStatSleep(new StatSleep());
+                                        user.getStatSleep().parsing(user.getSleepDTOList());
+                                        concon();
+                                    }
+                                });
                     }
                 });
-
-
-        //사용자 정의
-        //UserDataModel user = UserDataModel.userDataModels[0];
     }
-        public void concon(){
+
+    public void concon(){///내용물
         ////////////////////////////////활동량///////////////////////////////
         //활동량 그래프
         act = (ArcProgress) findViewById(R.id.arc_progress2);
@@ -198,64 +227,61 @@ public class Report extends AppCompatActivity{
 
         ////////////////////////////////수면량///////////////////////////////
         //수면량 그래프
-        /*sleep = (ArcProgress) findViewById(R.id.arc_progress3);
-        sleep.setProgress(user.getStatSleep().getPercentDay());
+        sleep = (ArcProgress) findViewById(R.id.arc_progress3);
+        //sleep.setProgress(user.getStatSleep().getPercentDay());
+        Log.d("레포트",user.getSleepDTOList().get(0).getWakeTime().substring(0, 8));
 
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
             reportSleep1.setText("\n");
             reportSleep2.setText("\n");
+            sleep.setProgress(0);
         }
         else {/////측정데이터 존재
-            if (!user.getSleepDTOList().get(0).getWakeTime().substring(0, 8).equals(curr.substring(0, 8))) {//오늘데이터 없음
-                reportSleep1.setText("\n");
-                reportSleep2.setText("\n");
+            sleep.setProgress(user.getStatSleep().getPercentDay());
+            int deepPercent = 0;
+            try {
+                deepPercent = (int) ((((double) user.getStatSleep().getDeep() / (double) user.getStatSleep().getTotal())) * 100);
+            } catch (Exception e) {
             }
-            else {
-                int deepPercent = 0;
-                try {
-                    deepPercent = (int) ((((double) user.getStatSleep().getDeep() / (double) user.getStatSleep().getTotal())) * 100);
-                } catch (Exception e) {
-                }
 
-                //////////////////////////////////총 수면시간 코멘트////////////////////////
-                if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
-                    if (deepPercent >= 25) {//깊은잠 정상
-                        reportSleep1.setText(R.string.daySleepComment2);
-                        face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                        state1.setText(R.string.sleepState1);
-                    } else {//깊은잠 부족
-                        reportSleep1.setText(R.string.daySleepComment1);
-                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                        state1.setText(R.string.sleepState2);
-                    }
-                } else {//수면효율 비정상
-                    if (deepPercent >= 25) {//깊은잠 정상
-                        reportSleep1.setText(R.string.daySleepComment4);
-                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                        state1.setText(R.string.sleepState2);
-                    } else {//깊은잠 부족
-                        reportSleep1.setText(R.string.daySleepComment3);
-                        face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                        state1.setText(R.string.sleepState2);
-                    }
+            //////////////////////////////////총 수면시간 코멘트////////////////////////
+            if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
+                if (deepPercent >= 25) {//깊은잠 정상
+                    reportSleep1.setText(R.string.daySleepComment2);
+                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    state1.setText(R.string.sleepState1);
+                } else {//깊은잠 부족
+                    reportSleep1.setText(R.string.daySleepComment1);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 }
-
-                ///////////////////////////////평균뒤척임 코멘트///////////////////////////
-                if (user.getStatSleep().getTurnHour() == 0) {//정상
-                    reportSleep2.setText(R.string.daySleepComment5);
-                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state2.setText(R.string.sleepState1);
-                } else if (user.getStatSleep().getTurnHour() == 1) {//주의
-                    reportSleep2.setText(R.string.daySleepComment6);
-                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.sleepState2);
-                } else if (user.getStatSleep().getTurnHour() == 2) {//관리필요
-                    reportSleep2.setText(R.string.daySleepComment7);
-                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.sleepState3);
+            } else {//수면효율 비정상
+                if (deepPercent >= 25) {//깊은잠 정상
+                    reportSleep1.setText(R.string.daySleepComment4);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
+                } else {//깊은잠 부족
+                    reportSleep1.setText(R.string.daySleepComment3);
+                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    state1.setText(R.string.sleepState2);
                 }
             }
-        }*/
+
+            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+            if (user.getStatSleep().getTurnHour() == 0) {//정상
+                reportSleep2.setText(R.string.daySleepComment5);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.sleepState1);
+            } else if (user.getStatSleep().getTurnHour() == 1) {//주의
+                reportSleep2.setText(R.string.daySleepComment6);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState2);
+            } else if (user.getStatSleep().getTurnHour() == 2) {//관리필요
+                reportSleep2.setText(R.string.daySleepComment7);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.sleepState3);
+            }
+        }
     }
 
     ///현재시간///
