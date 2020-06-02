@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -132,7 +133,7 @@ public class SleepActivity extends AppCompatActivity {
 
             }//onClick
         });//ClickListener
-/*
+
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -152,7 +153,7 @@ public class SleepActivity extends AppCompatActivity {
                 startActivity(intent1);
                 finish();
             }
-        }, 2880000);*/
+        }, 2880000);
     }//onCreate
 
 
