@@ -72,15 +72,15 @@ public class DeviceSet1 extends AppCompatActivity {
         if(BleService.principalDevice!=null) {
             if(sleepDocViewModel.deviceCon()){
                 myDevice = new DeviceSet3(getApplicationContext());
-                deviceList.addView(myDevice);
-                TextView tt = myDevice.textView;
+                //deviceList.addView(myDevice);
+                //TextView tt = myDevice.textView;
                 AtomicReference<String> str = new AtomicReference<>("");
                 sleepDocViewModel.battery()
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
-                            Log.i("DeviceSet1", "배터리 "+ data);
                             BleService.battery = "배터리: "+data+"%";
+                            Log.i("DeviceSet1", "배터리 "+ data);
                             //str.set("배터리: " + data + "%");
                             //myDevice.textView.setText(BleService.battery);
                             }
@@ -88,8 +88,11 @@ public class DeviceSet1 extends AppCompatActivity {
                             //myDevice.textView.setText(""+BleService.battery);
                             Log.d("DeviceSet1","배터리 실패");
                         });
-                tt.setText(BleService.battery);
+
                 //.setText(BleService.battery);
+                //tt.setText(BleService.battery);
+                myDevice.textView.setText(BleService.battery);
+                deviceList.addView(myDevice);
                 fab.setVisibility(View.GONE);
                 refactor.setVisibility(View.VISIBLE);
                 Button btn = myDevice.button;

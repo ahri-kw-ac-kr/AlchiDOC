@@ -191,9 +191,9 @@ public class TransitionPage extends AppCompatActivity {
                                                                                 .observeOn(AndroidSchedulers.mainThread())
                                                                                 .subscribe(a -> {
                                                                                     Log.d("TransitionPage", "분석결과 저장");
-                                                                                    editor2.putString("sleepTime","0");
-                                                                                    editor2.putString("wakeTime","0");
-                                                                                    editor2.apply();
+                                                                                    //editor2.putString("sleepTime","0");
+                                                                                    //editor2.putString("wakeTime","0");
+                                                                                    //editor2.apply();
                                                                                     }, Throwable::printStackTrace);
                                                                     }
                                                                 }

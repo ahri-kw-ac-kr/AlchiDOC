@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(a -> {
                                         Log.d("MainActicity - sleepData", "분석결과 저장");
-                                                editor.putString("sleepTime","0");
-                                                editor.putString("wakeTime","0");
-                                                editor.apply();
+                                                //editor.putString("sleepTime","0");
+                                                //editor.putString("wakeTime","0");
+                                                //editor.apply();
                                         },
                                             Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
                         }

@@ -24,6 +24,7 @@ import com.example.jms.home.UserDataModel;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -48,6 +49,8 @@ public class DeviceSet2 extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         Log.d("DeviceSet2","들어옴");
+
+        AtomicInteger flag = new AtomicInteger(0);
 
         BleManager.getInstance().init(getApplication());
         bleViewModel.scanBle()
@@ -111,9 +114,10 @@ public class DeviceSet2 extends AppCompatActivity {
                     }
                 })
                 .subscribe(BleDeviceDTO -> {
+                    flag.getAndIncrement();
                     Log.d("Device2","1차성공");
                     Log.d("Device2","1차성공 후 "+BleDeviceDTO.getName());
-                    if (BleDeviceDTO.getName().equals("SleepDoc")) {
+                    if (BleDeviceDTO.getName().equals("SleepDoc") && flag.get() ==1) {
                         Log.d("Device2","슬립닥 찾음");
                         DeviceSet1.refactorFlag = false;
                         sleepDocViewModel.connectSleepDoc(BleDeviceDTO.getMacAddress())
@@ -136,10 +140,10 @@ public class DeviceSet2 extends AppCompatActivity {
                                     editor.putString("name",BleDeviceDTO.getName());
                                     editor.putInt("rssi",BleDeviceDTO.getRssi());
                                     editor.apply();
-                                   // sleepDocViewModel.battery()
-                                   //         .observeOn(Schedulers.io())
-                                   //         .subscribeOn(AndroidSchedulers.mainThread())
-                                   //         .doOnComplete(()->{
+                                    sleepDocViewModel.battery()
+                                            .observeOn(Schedulers.io())
+                                            .subscribeOn(AndroidSchedulers.mainThread())
+                                            .doOnComplete(()->{
                                                 sleepDocViewModel.getRawdataFromSleepDoc()
                                                         .observeOn(Schedulers.io())
                                                         .subscribeOn(AndroidSchedulers.mainThread())
@@ -150,11 +154,11 @@ public class DeviceSet2 extends AppCompatActivity {
                                                                     .subscribe(result -> {
                                                                     }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
                                                         }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage()));
-                                      //      })
-                                     //       .subscribe(batt -> {
-                                      //          Log.i("DeviceSet2", "배터리 "+ batt);
-                                       //         BleService.battery = "배터리: "+batt+"%";
-                                         //   },Throwable->{Log.d("DeviceSet2","배터리 실패"); });
+                                            })
+                                           .subscribe(batt -> {
+                                                Log.i("DeviceSet2", "배터리 "+ batt);
+                                                BleService.battery = "배터리: "+batt+"%";
+                                          },Throwable->{Log.d("DeviceSet2","배터리 실패"); });
                                     }, Throwable -> {
                                     Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                                     startActivity(intent);
