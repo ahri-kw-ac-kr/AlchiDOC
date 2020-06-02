@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Alchi DOC</string>
 
+    <string name="noData">해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.</string>
+
     <string name="StringValue">이미지가 열리지 않습니다.</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>

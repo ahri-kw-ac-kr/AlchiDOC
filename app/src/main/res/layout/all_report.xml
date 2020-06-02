@@ -201,7 +201,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.">
+                        android:text="@string/noData">
                         <!--
                          android:autoSizeTextType="uniform"
                          app:autoSizePresetSizes="@array/auto_text_sizes"
@@ -257,7 +257,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.">
+                        android:text="@string/noData">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"
@@ -310,7 +310,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.">
+                        android:text="@string/noData">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"
@@ -361,7 +361,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.">
+                        android:text="@string/noData">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"
@@ -414,7 +414,7 @@
                         android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.">
+                        android:text="@string/noData">
                     </TextView>
                     <View
                         android:layout_gravity="center|top"
@@ -468,7 +468,7 @@
                         android:layout_marginBottom="22dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="해당 시간의 데이터가 수집되었을 시 평가 기록이 나타납니다.">
+                        android:text="@string/noData">
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
