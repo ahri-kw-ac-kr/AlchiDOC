@@ -84,6 +84,29 @@
     <string name="samplePagerAdapter2">지도 탭을 눌러 현 위치를 확인하세요</string>
     <string name="samplePagerAdapter3">위치 공유가 허용되지 않았습니다</string>
 
+    <string name="sleepTime1">새벽은 취침시간으로 설정되지 않습니다.</string>
+    <string name="sleepTime2">현재보다 이른 시간은 설정되지 않습니다.</string>
+    <string name="sleepTime3">취침시간이 설정되었습니다. </string>
+
+    <string name="careList1">추가</string>
+    <string name="careList2">친구가 추가되었습니다.</string>
+    <string name="careList3">해당 아이디를 가진 사용자가 없습니다.</string>
+    <string name="careList4">삭제 되었습니다.</string>
+    <string name="careList5">취소</string>
+
+    <string name="deviceSet1">기기와 연결을 끊으시겠습니까?</string>
+    <string name="deviceSet2">예</string>
+    <string name="deviceSet3">기기를 초기화 하시겠습니까?</string>
+    <string name="deviceSet4">초기화 중입니다. 잠시만 기다려주세요.</string>
+    <string name="deviceSet5">초기화가 완료되었습니다.</string>
+    <string name="deviceSet6">초기화를 실패했습니다.</string>
+    <string name="deviceSet7">아니오</string>
+    <string name="deviceSet8">검색된 기기가 없습니다.</string>
+    <string name="deviceSet9">기기 연결 실패</string>
+
+    <string name="profile1">비밀번호가 일치하지 않습니다.</string>
+    <string name="profile2">회원정보가 수정되었습니다.</string>
+
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>
