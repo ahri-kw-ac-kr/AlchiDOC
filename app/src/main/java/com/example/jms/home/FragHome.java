@@ -148,14 +148,14 @@ public class FragHome extends Fragment {
                         Log.d("D","버튼클릭됨");
                     }
                 });
-                ad.setNeutralButton(R.string.fragHome8, new DialogInterface.OnClickListener() {
+                /*ad.setNeutralButton(R.string.fragHome8, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         Intent intent = new Intent(getActivity(), SleepTime.class);
                         startActivity(intent);
                     }
-                });
+                });*/
                 ad.show();
             }
         });
