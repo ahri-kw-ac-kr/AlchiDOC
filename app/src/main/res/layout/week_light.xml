@@ -391,7 +391,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:id="@+id/weekLightState1"
@@ -399,7 +398,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="과다"
+                            android:text=""
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
@@ -457,7 +456,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:tint="#F75321"
-                            android:src="@drawable/ic_sentiment_satisfied_black_24dp"
                             ></ImageView>
                         <TextView
                             android:id="@+id/weekLightState2"
@@ -466,7 +464,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanumregular"
-                            android:text="적정"
+                            android:text=""
                             android:textColor="#F75321"
                             android:textSize="15sp"></TextView>
                     </LinearLayout>
