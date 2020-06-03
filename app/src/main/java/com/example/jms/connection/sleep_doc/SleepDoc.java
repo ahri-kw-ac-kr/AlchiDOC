@@ -280,6 +280,7 @@ public class SleepDoc {
                 public void onReadSuccess(byte[] data) {
                     observer.onNext(data[0]);
                     Log.i("SleepDoc", "배터리 "+ data[0]);
+                    observer.onComplete();
                     //setTimeAndZone(bleDevice);
                 }
                 @Override
