@@ -109,9 +109,9 @@ public class Report extends AppCompatActivity{
                                         user.getStatSleep().parsing(user.getSleepDTOList());
                                         concon();
                                     }
-                                });
+                                },Throwable::printStackTrace);
                     }
-                });
+                },Throwable::printStackTrace);
 
 
         //여기서부터 캘린더에서 고른날짜 받아와서 아래에 있는 changeDay 함수 쓰기.
@@ -140,9 +140,9 @@ public class Report extends AppCompatActivity{
                                         user.getStatSleep().parsing(user.getSleepDTOList());
                                         concon();
                                     }
-                                });
+                                },Throwable::printStackTrace);
                     }
-                });
+                },Throwable::printStackTrace);
     }
 
     public void concon(){///내용물
@@ -361,7 +361,7 @@ public class Report extends AppCompatActivity{
                 String fday=transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
 
                 Log.e("Report",""+sday+fday);
-                //changeDay(sday,fday);
+                changeDay(sday,fday);
             }
         };
     }
@@ -373,7 +373,6 @@ public class Report extends AppCompatActivity{
     public void OnClickHandler(View view)
     {
         DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, year, month, day);
-        //changeDay(calendar,calenda);
         dialog.show();
     }
 
