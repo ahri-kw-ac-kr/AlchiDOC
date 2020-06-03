@@ -149,7 +149,7 @@ public class DayAct extends Fragment {
                         state2.setText(R.string.good);
                     }
                 } else {
-                    dayActPlan2.setText("\n");
+                    dayActPlan2.setText(R.string.noData);
                 }
                 //나의 야간 코멘트
                 if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getSleep()) - 200) {
@@ -176,7 +176,7 @@ public class DayAct extends Fragment {
                         state3.setText(R.string.good);
                     }
                 } else {
-                    dayActPlan3.setText("\n");
+                    dayActPlan3.setText(R.string.noData);
                 }
             } else { //친구코멘트
                 int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep().substring(0, 2)) - 4; // 취침 4시간 전 시
@@ -206,7 +206,7 @@ public class DayAct extends Fragment {
                         state2.setText(R.string.good);
                     }
                 } else {
-                    dayActPlan2.setText("\n");
+                    dayActPlan2.setText(R.string.noData);
                 }
                 //친구의 야간 코멘트
                 if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep()) - 200) {

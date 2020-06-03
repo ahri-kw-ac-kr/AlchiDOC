@@ -194,7 +194,7 @@ public class DayLight extends Fragment {
                         state2.setText(R.string.good);
                     }
                 } else {
-                    dayLightPlan2.setText("\n");
+                    dayLightPlan2.setText(R.string.noData);
                 } //그 시간대가 아닐때 비워두기.
 
 
@@ -223,7 +223,7 @@ public class DayLight extends Fragment {
                         state3.setText(R.string.good);
                     }
                 } else {
-                    dayLightPlan3.setText("\n");
+                    dayLightPlan3.setText(R.string.noData);
                 } //그 시간대가 아닐때 비워두기.
 
             }
@@ -259,7 +259,7 @@ public class DayLight extends Fragment {
                         state2.setText(R.string.good);
                     }
                 } else {
-                    dayLightPlan2.setText("\n");
+                    dayLightPlan2.setText(R.string.noData);
                 } //그 시간대가 아닐때 비워두기.
 
 
@@ -288,7 +288,7 @@ public class DayLight extends Fragment {
                         state3.setText(R.string.good);
                     }
                 } else {
-                    dayLightPlan3.setText("\n");
+                    dayLightPlan3.setText(R.string.noData);
                 }
 
 
