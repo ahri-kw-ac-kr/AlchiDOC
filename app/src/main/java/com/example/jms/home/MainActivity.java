@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
         try {
             //초단위로 계산되는 시간 차이
-            calcTime = (simpleDateFormat.parse(start).getTime()-simpleDateFormat.parse(end).getTime())/1000;
+            calcTime = (simpleDateFormat.parse(end).getTime()-simpleDateFormat.parse(start).getTime())/1000;
             Log.e("SleepActivity",calcTime+"");
         } catch (ParseException e) { e.printStackTrace(); }
 
-        if(calcTime > 3600) {///30분 안되면 저장 못함
+        if(calcTime > 1800) {///30분 안되면 저장 못함
             APIViewModel apiViewModel = new APIViewModel();
             apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", start, end)
                     .subscribeOn(Schedulers.io())

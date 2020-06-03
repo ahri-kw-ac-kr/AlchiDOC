@@ -109,7 +109,7 @@ public class SleepActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                if (calcTime < 3600 ) {
+                if (calcTime < 1800 ) {
                     Toast.makeText(getApplicationContext(), "30분 미만의 수면은 기록되지 않습니다.", Toast.LENGTH_LONG).show();
                     stopService(intent);
                     Intent intent2 = new Intent(SleepActivity.this, MainActivity.class);
