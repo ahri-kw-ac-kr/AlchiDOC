@@ -138,17 +138,13 @@ public class Report extends AppCompatActivity{
                 }
                 else{
                     //우선 현재 날짜를 cal2에 저장하고 calendar를 하나 빼준다,
-                    calendar.add(Calendar.DATE,-1);
-                    calendar2.add(Calendar.DATE,-1);
-                    String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                    String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
-                    if(calendar.compareTo(nCalendar)>0){
-                        Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
-                    }
-                    else{
+                        calendar.add(Calendar.DATE,-1);
+                        calendar2.add(Calendar.DATE,-1);
+                        String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                        String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
                         mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
                         Log.e("Report2", "" + dayBefore+"~"+dayBefore2);
-                        changeDay(dayBefore,dayBefore2);}
+                        changeDay(dayBefore,dayBefore2);
 
 
                 }
@@ -168,14 +164,14 @@ public class Report extends AppCompatActivity{
                     changeDay(dayAfter,dayAfter2);
                 }
                 else{
-                    calendar.add(Calendar.DATE,1);
-                    calendar2.add(Calendar.DATE,1);
-                    String dayAfter = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                    String dayAfter2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
                     if(calendar.compareTo(nCalendar)>0){
                         Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
                     }
                     else{
+                        calendar.add(Calendar.DATE,1);
+                        calendar2.add(Calendar.DATE,1);
+                        String dayAfter = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                        String dayAfter2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
                         mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
                         Log.e("Report4", "" + dayAfter+"~"+dayAfter2);
                         changeDay(dayAfter,dayAfter2);}
