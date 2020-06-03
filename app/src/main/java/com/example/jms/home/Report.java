@@ -247,6 +247,7 @@ public class Report extends AppCompatActivity{
         if(user.getTodayList().size() == 0){  //데이터 없음
             reportActSun.setText(R.string.noData);
             reportActMoon.setText(R.string.noData);
+            act.setProgress(0);
         }
         else {//데이터 있음
             int percent = user.getStatAct().getDayPercent();
@@ -292,6 +293,7 @@ public class Report extends AppCompatActivity{
         if(user.getTodayList().size() == 0) {  //데이터 없음
             reportLightSun.setText(R.string.noData);
             reportLightMoon.setText(R.string.noData);
+            light.setProgress(0);
         }
         else{
             int percent1 = user.getStatLight().getDayPercent();
@@ -345,8 +347,7 @@ public class Report extends AppCompatActivity{
             int deepPercent = 0;
             try {
                 deepPercent = (int) ((((double) user.getStatSleep().getDeep() / (double) user.getStatSleep().getTotal())) * 100);
-            } catch (Exception e) {
-            }
+            } catch (Exception e) { }
 
             //////////////////////////////////총 수면시간 코멘트////////////////////////
             if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
