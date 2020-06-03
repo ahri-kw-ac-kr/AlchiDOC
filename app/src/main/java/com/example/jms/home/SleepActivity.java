@@ -154,7 +154,7 @@ public class SleepActivity extends AppCompatActivity {
                 startActivity(intent1);
                 finish();
             }
-        }, 288000000);
+        }, 28800000);
     }//onCreate
 
 
