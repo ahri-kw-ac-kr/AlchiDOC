@@ -191,29 +191,33 @@ public class Report extends AppCompatActivity{
         for(int i=9; i<18; i++){ actSun += user.getStatAct().getDaySumHour()[i]; }
         for(int i=18; i<21; i++){ actMoon += user.getStatAct().getDaySumHour()[i]; }
 
-        if(actSun >= 6000){
-            ///주간 충분
-            reportActSun.setText(R.string.dayActComment1);
-            face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state3.setText(R.string.good);
+        if(user.getTodayList() == null){   }//데이터 없음
+        else {//데이터 있음
+            if (actSun >= 6000) {
+                ///주간 충분
+                reportActSun.setText(R.string.dayActComment1);
+                face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state3.setText(R.string.good);
+            } else {
+                ///주간 부족
+                reportActSun.setText(R.string.dayActComment2);
+                face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state3.setText(R.string.bad);
+            }
         }
-        else{
-            ///주간 부족
-            reportActSun.setText(R.string.dayActComment2);
-            face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state3.setText(R.string.bad);
-        }
-        if(actMoon <= 2000){
-            ///야간 적정
-            reportActMoon.setText(R.string.dayActComment4);
-            face4.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state4.setText(R.string.good);
-        }
-        else{
-            ///야간 과다
-            reportActMoon.setText(R.string.dayActComment3);
-            face4.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state4.setText(R.string.good);
+        if(user.getTodayList()== null){    }//데이터 없음
+        else {//데이터 있음
+            if (actMoon <= 2000) {
+                ///야간 적정
+                reportActMoon.setText(R.string.dayActComment4);
+                face4.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state4.setText(R.string.good);
+            } else {
+                ///야간 과다
+                reportActMoon.setText(R.string.dayActComment3);
+                face4.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state4.setText(R.string.good);
+            }
         }
 
         ////////////////////////////////조도량///////////////////////////////
@@ -228,29 +232,33 @@ public class Report extends AppCompatActivity{
         for(int i=9; i<18; i++){ lightSun += user.getStatLight().getDaySumHourLuxWgt()[i]; }
         for(int i=18; i<21; i++){ lightMoon += user.getStatLight().getDaySumHourLuxWgt()[i]; }
 
-        if(lightSun >= 6000){
-            ///주간 충분
-            reportLightSun.setText(R.string.dayLightComment1);
-            face5.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state5.setText(R.string.good);
-        }
+        if(user.getTodayList()== null) {   }//데이터 없음
         else{
-            ///주간 부족
-            reportLightSun.setText(R.string.dayLightComment2);
-            face5.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state5.setText(R.string.bad);
+            if (lightSun >= 6000) {
+                ///주간 충분
+                reportLightSun.setText(R.string.dayLightComment1);
+                face5.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state5.setText(R.string.good);
+            } else {
+                ///주간 부족
+                reportLightSun.setText(R.string.dayLightComment2);
+                face5.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state5.setText(R.string.bad);
+            }
         }
-        if(lightMoon <= 2000){
-            ///야간 적정
-            reportLightMoon.setText(R.string.dayLightComment4);
-            face6.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state6.setText(R.string.good);
-        }
-        else{
-            ///야간 과다
-            reportLightMoon.setText(R.string.dayLightComment3);
-            face6.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state6.setText(R.string.good);
+        if(user.getTodayList()== null) {    }//데이터 없음
+        else {
+            if (lightMoon <= 2000) {
+                ///야간 적정
+                reportLightMoon.setText(R.string.dayLightComment4);
+                face6.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state6.setText(R.string.good);
+            } else {
+                ///야간 과다
+                reportLightMoon.setText(R.string.dayLightComment3);
+                face6.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state6.setText(R.string.good);
+            }
         }
 
 
@@ -258,12 +266,12 @@ public class Report extends AppCompatActivity{
         //수면량 그래프
         sleep = (ArcProgress) findViewById(R.id.arc_progress3);
         //sleep.setProgress(user.getStatSleep().getPercentDay());
-        Log.d("레포트",user.getSleepDTOList().get(0).getWakeTime().substring(0, 8));
+        //Log.d("레포트",user.getSleepDTOList().get(0).getWakeTime().substring(0, 8));
 
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
-            reportSleep1.setText("\n");
-            reportSleep2.setText("\n");
-            sleep.setProgress(0);
+            //reportSleep1.setText("\n");
+            //reportSleep2.setText("\n");
+            //sleep.setProgress(0);
         }
         else {/////측정데이터 존재
             sleep.setProgress(user.getStatSleep().getPercentDay());

@@ -98,86 +98,89 @@ public class WeekSleep extends Fragment {
         int turn = 0;
         int turnHour = 0;
 
-        int size = weekList.size()-1;
-        /////////////////////주간통계//////////////////
-        for(int i=0; i<weekList.size(); i++){
-            totalSum[i] = weekList.get(size-i).getTotal();
-            deepSum[i] = weekList.get(size-i).getDeep();
-            lightSum[i] = weekList.get(size-i).getLight();
-            wakeSum[i] = weekList.get(size-i).getWake();
-            turnSum[i] = weekList.get(size-i).getTurn();
-            turnHourSum[i] = weekList.get(size-i).getTurnHour();
-        }
+        if(weekList != null) {
+            int size = weekList.size() - 1;
+            /////////////////////주간통계//////////////////
+            for (int i = 0; i < weekList.size(); i++) {
+                totalSum[i] = weekList.get(size - i).getTotal();
+                deepSum[i] = weekList.get(size - i).getDeep();
+                lightSum[i] = weekList.get(size - i).getLight();
+                wakeSum[i] = weekList.get(size - i).getWake();
+                turnSum[i] = weekList.get(size - i).getTurn();
+                turnHourSum[i] = weekList.get(size - i).getTurnHour();
+            }
 
-        for(int i=0; i<weekList.size(); i++){
-            total += totalSum[i];
-            deep += deepSum[i];
-            light += lightSum[i];
-            wake += wakeSum[i];
-            turn += turnSum[i];
-            turnHour += turnHourSum[i];
-        }
+            for (int i = 0; i < weekList.size(); i++) {
+                total += totalSum[i];
+                deep += deepSum[i];
+                light += lightSum[i];
+                wake += wakeSum[i];
+                turn += turnSum[i];
+                turnHour += turnHourSum[i];
+            }
 
-        int totalA = total/thisDay;
-        int deepA = deep/thisDay;
-        int lightA = light/thisDay;
-        int wakeA = wake/thisDay;
-        int turnA = turn/thisDay;
-        int turnHourA = turnHour/thisDay;
-        percent = (int)(((totalA-((wakeA*10.0)+turnA))/totalA)*100);
-        totalH = totalA / 60; //총수면시간 시
-        totalM = totalA % 60; //총수면시간 분
-        deepH = deepA / 60;
-        deepM = deepA%60;
-        lightH = lightA/60;
-        lightM = lightA%60;
-
-
-        //000님의 0월 0주차
-        titleDay = (TextView) view.findViewById(R.id.weekSleepTitle);
-        if(pos == 0){ titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
-        else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
-        titleDay.setText(titleD);
-
-        ///퍼센트
-        titlePercent = (TextView)view.findViewById(R.id.weekSleepTitleP);
-        String strP = "평균 수면량 "+percent+"%";
-        titlePercent.setText(strP);
-
-        //수면량 기록 카드뷰
-        totalHT = (TextView)view.findViewById(R.id.weekSleepTotalH);
-        totalMT = (TextView)view.findViewById(R.id.weekSleepTotalM);
-        deepHT = (TextView)view.findViewById(R.id.weekSleepDeepH);
-        deepMT = (TextView)view.findViewById(R.id.weekSleepDeepM);
-        lightHT = (TextView)view.findViewById(R.id.weekSleepLightH);
-        lightMT = (TextView)view.findViewById(R.id.weekSleepLightM);
-        wakeT = (TextView)view.findViewById(R.id.weekSleepWake);
-        turnT = (TextView)view.findViewById(R.id.weekSleepTurn);
-
-        totalHT.setText(""+totalH);
-        totalMT.setText(""+totalM);
-        deepHT.setText(""+deepH);
-        deepMT.setText(""+deepM);
-        lightHT.setText(""+lightH);
-        lightMT.setText(""+lightM);
-        wakeT.setText(""+wakeA);
-        turnT.setText(""+turnA);
+            int totalA = total / thisDay;
+            int deepA = deep / thisDay;
+            int lightA = light / thisDay;
+            int wakeA = wake / thisDay;
+            int turnA = turn / thisDay;
+            int turnHourA = turnHour / thisDay;
+            percent = (int) (((totalA - ((wakeA * 10.0) + turnA)) / totalA) * 100);
+            totalH = totalA / 60; //총수면시간 시
+            totalM = totalA % 60; //총수면시간 분
+            deepH = deepA / 60;
+            deepM = deepA % 60;
+            lightH = lightA / 60;
+            lightM = lightA % 60;
 
 
+            //000님의 0월 0주차
+            titleDay = (TextView) view.findViewById(R.id.weekSleepTitle);
+            if (pos == 0) {
+                titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
+            } else {
+                titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
+            }
+            titleDay.setText(titleD);
 
-        ///////그래프///////
-        //int[] colorArray = new int[]{Color.parseColor("#7851C3"),Color.parseColor("#AC89EB"),Color.parseColor("#D7B6F9")};
-        //ArrayList<BarEntry> dataSet = new ArrayList<>();
-        StackedBarModel[] data = new StackedBarModel[7];
-        String[] day = {"일","월","화","수","목","금","토"};
-        for(int i=0; i<7; i++){
-            data[i] = new StackedBarModel(day[i]);
-            data[i].addBar(new BarModel(deepSum[i], Color.parseColor("#7851C3")));
-            data[i].addBar(new BarModel(lightSum[i], Color.parseColor("#AC89EB")));
-            data[i].addBar(new BarModel(wakeSum[i], Color.parseColor("#D7B6F9")));
-            //dataSet.add(new BarEntry(0,new float[]{deepSum[i],lightSum[i],wakeSum[i]}));
-            //dataSet.add(new BarEntry(0,new float[]{deepSum[i],lightSum[i],wakeSum[i]}));
-        }
+            ///퍼센트
+            titlePercent = (TextView) view.findViewById(R.id.weekSleepTitleP);
+            String strP = "평균 수면량 " + percent + "%";
+            titlePercent.setText(strP);
+
+            //수면량 기록 카드뷰
+            totalHT = (TextView) view.findViewById(R.id.weekSleepTotalH);
+            totalMT = (TextView) view.findViewById(R.id.weekSleepTotalM);
+            deepHT = (TextView) view.findViewById(R.id.weekSleepDeepH);
+            deepMT = (TextView) view.findViewById(R.id.weekSleepDeepM);
+            lightHT = (TextView) view.findViewById(R.id.weekSleepLightH);
+            lightMT = (TextView) view.findViewById(R.id.weekSleepLightM);
+            wakeT = (TextView) view.findViewById(R.id.weekSleepWake);
+            turnT = (TextView) view.findViewById(R.id.weekSleepTurn);
+
+            totalHT.setText("" + totalH);
+            totalMT.setText("" + totalM);
+            deepHT.setText("" + deepH);
+            deepMT.setText("" + deepM);
+            lightHT.setText("" + lightH);
+            lightMT.setText("" + lightM);
+            wakeT.setText("" + wakeA);
+            turnT.setText("" + turnA);
+
+
+            ///////그래프///////
+            //int[] colorArray = new int[]{Color.parseColor("#7851C3"),Color.parseColor("#AC89EB"),Color.parseColor("#D7B6F9")};
+            //ArrayList<BarEntry> dataSet = new ArrayList<>();
+            StackedBarModel[] data = new StackedBarModel[7];
+            String[] day = {"일", "월", "화", "수", "목", "금", "토"};
+            for (int i = 0; i < 7; i++) {
+                data[i] = new StackedBarModel(day[i]);
+                data[i].addBar(new BarModel(deepSum[i], Color.parseColor("#7851C3")));
+                data[i].addBar(new BarModel(lightSum[i], Color.parseColor("#AC89EB")));
+                data[i].addBar(new BarModel(wakeSum[i], Color.parseColor("#D7B6F9")));
+                //dataSet.add(new BarEntry(0,new float[]{deepSum[i],lightSum[i],wakeSum[i]}));
+                //dataSet.add(new BarEntry(0,new float[]{deepSum[i],lightSum[i],wakeSum[i]}));
+            }
 /*
         BarDataSet barDataSet = new BarDataSet(dataSet,"");
         barDataSet.setColors(colorArray);
@@ -225,18 +228,24 @@ public class WeekSleep extends Fragment {
         s7.addBar(new BarModel(38, Color.parseColor("#D7B6F9")));
 
          */
-        for(int i=0; i<7; i++){ mStackedBarChart.addBar(data[i]); }
-        mStackedBarChart.startAnimation();
+            for (int i = 0; i < 7; i++) {
+                mStackedBarChart.addBar(data[i]);
+            }
+            mStackedBarChart.startAnimation();
 
-        /////////코멘트///////
-        weekSleepPlan1 = (TextView) view.findViewById(R.id.weekSleepPlan1);
-        weekSleepPlan2 = (TextView) view.findViewById(R.id.weekSleepPlan2);
-        face1 = (ImageView) view.findViewById(R.id.face1);
-        face2 = (ImageView) view.findViewById(R.id.face2);
-        state1 = (TextView) view.findViewById(R.id.state1);
-        state2 = (TextView) view.findViewById(R.id.state2);
-        int deepPercent = 0;
-        try{deepPercent = (int) ((((double)deepA / (double)totalA)) * 100);}catch (Exception e){}
+            /////////코멘트///////
+            weekSleepPlan1 = (TextView) view.findViewById(R.id.weekSleepPlan1);
+            weekSleepPlan2 = (TextView) view.findViewById(R.id.weekSleepPlan2);
+            face1 = (ImageView) view.findViewById(R.id.face1);
+            face2 = (ImageView) view.findViewById(R.id.face2);
+            state1 = (TextView) view.findViewById(R.id.state1);
+            state2 = (TextView) view.findViewById(R.id.state2);
+            int deepPercent = 0;
+            try {
+                deepPercent = (int) ((((double) deepA / (double) totalA)) * 100);
+            } catch (Exception e) {
+            }
+
 
         Log.d("WeekSleep","weekList 길이 : "+user.getStatSleep().getWeekList().size()+", pos: "+pos);
         //////////////////////////////////총 수면시간 코멘트////////////////////////
@@ -280,6 +289,7 @@ public class WeekSleep extends Fragment {
                 face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
                 state2.setText(R.string.sleepState3);
             }
+        }
 
         }
         return view;

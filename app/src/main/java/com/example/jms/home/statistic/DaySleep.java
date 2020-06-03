@@ -68,7 +68,7 @@ public class DaySleep extends Fragment {
         else{ titleD = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + curr.substring(6, 8) + "일"; }
         titleDay.setText(titleD);
 
-        if(user.getSleepDTOList().get(0).getWakeTime().substring(0,8).equals(curr.substring(0,8))) {
+        if(user.getSleepDTOList().size()!=0 && user.getSleepDTOList().get(0).getWakeTime().substring(0,8).equals(curr.substring(0,8))) {
             // 수면효율 00%
             titlePercent = (TextView) view.findViewById(R.id.daySleepPercent);
             percent = user.getStatSleep().getPercentDay();
