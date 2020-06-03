@@ -165,7 +165,7 @@ public class Report extends AppCompatActivity{
                 }
                 else{
                     if(calendar.compareTo(nCalendar)>0){
-                        Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "데이터가 측정되지 않아 리포트를 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
                     }
                     else{
                         calendar.add(Calendar.DATE,1);
