@@ -213,7 +213,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"></TextView>
             <androidx.cardview.widget.CardView
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="90dp"
                 app:cardElevation="5dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="#ffffff"
@@ -249,7 +249,6 @@
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#7476B3"
                             ></ImageView>
                         <TextView
                             android:id="@+id/state1"
@@ -304,7 +303,6 @@
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#7476B3"
                             ></ImageView>
                         <TextView
                             android:id="@+id/state2"
@@ -358,7 +356,6 @@
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#329035"
                             ></ImageView>
                         <TextView
                             android:id="@+id/state3"
@@ -409,7 +406,6 @@
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="#329035"
                             ></ImageView>
                         <TextView
                             android:id="@+id/state4"
@@ -461,7 +457,6 @@
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#F75321"
                             ></ImageView>
 
                         <TextView
@@ -514,7 +509,6 @@
                             android:layout_weight="0.3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#F75321"
                             ></ImageView>
 
                         <TextView

@@ -134,7 +134,7 @@ public class MonthLight extends Fragment {
         face1 = (ImageView) view.findViewById(R.id.monthLightFace1);
         face2 = (ImageView) view.findViewById(R.id.monthLightFace2);
         state1 = (TextView) view.findViewById(R.id.monthLightState1);
-        state2 = (TextView) view.findViewById(R.id.monthLightState1);
+        state2 = (TextView) view.findViewById(R.id.monthLightState2);
 
 
         if(user.getMonthList().size() == 0){
