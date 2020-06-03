@@ -38,7 +38,6 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.overlay.PathOverlay;
 import com.naver.maps.map.util.FusedLocationSource;
-import com.naver.maps.map.util.MarkerIcons;
 
 import java.io.IOException;
 import java.util.List;
@@ -129,6 +128,7 @@ public class FragMap extends Fragment implements OnMapReadyCallback{
                     }
                 }
             }},1000);
+
 
         return view;
     }

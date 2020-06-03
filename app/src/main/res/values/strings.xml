@@ -109,6 +109,12 @@
     <string name="profile1">비밀번호가 일치하지 않습니다.</string>
     <string name="profile2">회원정보가 수정되었습니다.</string>
 
+
+
+
+
+
+
     <string name="act">활동량</string>
     <string name="act2">주간 활동량</string>
     <string name="act3">야간 활동량</string>
@@ -222,6 +228,25 @@
     <string name="monthSleepComment5">이번 달 수면 시간당 평균 뒤척임이 정상입니다. 평균 뒤척임의 횟수가 많아지지 않도록 수면 시간 및 조도량, 활동량을 이번 달과 같이 다음 달도 유지하도록 하세요.</string>
     <string name="monthSleepComment6">이번 달 수면 시간당 평균 뒤척임이 정상 범위를 벗어난 수치입니다. 관리가 반드시 필요한 상태는 아니지만, 현재 상태에서 뒤척임 횟수가 더 늘어날 경우 수면 이상 증세로 악화될 수 있으므로 다음 달에는 더욱 주의하시길 바랍니다.</string>
     <string name="monthSleepComment7">이번 달 수면 시간당 평균 뒤척임이 주의 범위를 넘어 관리가 반드시 필요한 상태입니다. 일주일 내에 4회 이상 같은 현상이 발생하면 수면 이상 증세로 악화될 수 있으므로 수면 행동 플랜을 적극적으로 따라해 주세요. 만약 일주일에 4회 이상 발생하는 현상이 4주간 반복되면 수면 이상 증세로 의심되오니 수면센터 전문의의 상담을 적극 권유합니다.</string>
+
+    ////레포트 조도량
+    <string name="reportLightComment1">수면을 위한 주간 조도량이 충분하였습니다. 다음 날도 오늘의 주간 조도량을 유지하세요.</string>
+    <string name="reportLightComment2">수면을 위한 주간 조도량이 부족하였습니다. 다음 날엔 숙면을 위해 30분간 야외로 나가 햇빛을 쐬도록 권장합니다. 햇볕을 충분히 받으면 세라토닌이 생성되고, 이 호르몬이 멜라토닌 분비를 촉진하여 숙면을 유도하게 됩니다.</string>
+    <string name="reportLightComment5">수면에 방해되는 밝은 곳에 노출되었습니다. 다음 날엔 수면을 위해 어둡고 색온도가 낮은 조명 환경을 조성하시고 취침 전까지 유지할 수 있도록 권장합니다.</string>
+    <string name="reportLightComment6">수면을 위한 야간 조도량이 충분하였습니다. 다음 날도 오늘의 야간 조도량을 취침 전까지 유지하도록 하세요.</string>
+    ////레포트 활동량
+    <string name="reportActComment1">수면을 위한 주간 활동량이 충분하였습니다. 다음 날도 활동량이 충분할 수 있도록 과격한 운동은 삼가해 주시길 바랍니다.</string>
+    <string name="reportActComment2">수면을 위한 주간 활동량이 부족하였습니다. 다음 날에는 더 많은 활동을 권장합니다. 수분을 보충하시고 활동량을 늘리도록 하세요.</string>
+     <string name="reportActComment5">오늘의 야간 활동량은 숙면에 좋지 않은 과다 상태였습니다. 다음 날 야간에는 수면에 방해가 되는 과격한 운동은 삼가해 주시고 야간 활동량을 반드시 줄여야 그 날의 숙면을 취하는 데에 도움이 됩니다.</string>
+    <string name="reportActComment6">오늘의 야간 활동량은 충분하였습니다. 다음 날도 취침 전까지 오늘과 같은 활동량을 유지하고, 활동량이 과다 상태가 되지 않도록 주의하세요.</string>
+    ////레포트 수면질
+    <string name="reportSleepComment1">총 수면 시간은 충분하였으나, 총 수면 시간 대비 깊은 잠의 비율이 부족하였습니다. 수면 시간은 어제와 같이 유지하도록 하며, 내일은 더 깊은 잠을 잘 수 있도록 일간 조도량, 일간 활동량 플랜에 따라 행동하기를 권장합니다.</string>
+    <string name="reportSleepComment2">총 수면 시간 및 깊은 잠의 비율 모두 충분하였습니다. 내일도 높은 수면질을 위해 수면 시간 및 조도량, 활동량을 어제와 같이 유지하도록 하세요.</string>
+    <string name="reportSleepComment3">총 수면 시간이 부족하며, 총 수면 시간 대비 깊은 잠의 비율 또한 부족하였습니다. 수면 관리가 반드시 필요한 상태이며 이와 같은 현상이 지속될 경우 다른 질병을 초래할 수 있으므로 조도량, 활동량 플랜에 따라 행동할 수 있도록 권장합니다.</string>
+    <string name="reportSleepComment4">총 수면 시간 대비 깊은 잠의 비율은 충분하나, 총 수면 시간이 부족하였습니다. 깊은 잠의 비율이 낮아지지 않도록 수면 관리에 더욱 신경 써 주세요.</string>
+    <string name="reportSleepComment5">수면 시간당 평균 뒤척임이 정상입니다. 평균 뒤척임의 횟수가 많아지지 않도록 수면 시간 및 조도량, 활동량을 어제와 같이 내일도 유지하도록 하세요.</string>
+    <string name="reportSleepComment6">수면 시간당 평균 뒤척임이 정상 범위를 벗어난 수치입니다. 관리가 반드시 필요한 상태는 아니지만, 뒤척임 횟수가 더 늘어날 경우 수면 이상 증세로 악화될 수 있으므로 내일은 더욱 주의하시길 바랍니다.</string>
+    <string name="reportSleepComment7">수면 시간당 평균 뒤척임이 주의 범위를 넘어 관리가 반드시 필요합니다. 일주일 내에 4회 이상 같은 현상이 발생하면 수면 이상 증세로 악화될 수 있으므로 내일부터는 수면 행동 플랜을 적극적으로 따라해 주시길 바랍니다.</string>
 
     <string name="actbutton_activity">활동량 통계</string>
     <string name="step">걸음</string>

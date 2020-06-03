@@ -309,7 +309,7 @@ public class StatLight {
             /*이거 되나...?*/
             weekSunAvg += sumDayMor[i];
             weekMoonLuxAvg += sumDayDinLux[i];
-            weekMoonTempAvg += sumDayDinTemp[i]/3;
+            weekMoonTempAvg += sumDayDinTemp[i]/(3*7);
         }
 
         weekSumDay = sumDay;
@@ -358,11 +358,13 @@ public class StatLight {
 
         Integer[][] dayLux = new Integer[31][];
         Integer[][] dayTemp = new Integer[31][];
+        Integer[][] dayLuxWgt = new Integer[31][];
 
         for (int i = 0; i < perDay.size(); i++) {
 
             dayLux[i] = new Integer[150];
             dayTemp[i] = new Integer[150];
+            dayLuxWgt[i] = new Integer[150];
 
             for (int j = 0; j < perDay.get(i).size(); j++) {
 
@@ -378,14 +380,28 @@ public class StatLight {
                 String hour = date.substring(9,11);
                 int hourI = Integer.parseInt(hour);
 
+                // 2000이상이면 가중치 1, 노출시간 10분.
+                if (dayLux[i][j]>=2000) {dayLuxWgt[i][j] = dayLux[i][j]*10;}
+                else if(1800<=dayLux[i][j]&&dayLux[i][j]<2000){dayLuxWgt[i][j] = dayLux[i][j]*9;} //가중치 0.9, 노출시간 10분
+                else if(1600<=dayLux[i][j]&&dayLux[i][j]<1800){dayLuxWgt[i][j]= dayLux[i][j]*7;} //이하 동문.
+                else if(1400<=dayLux[i][j]&&dayLux[i][j]<1600){dayLuxWgt[i][j]= dayLux[i][j]*4;}
+                else if(1000<=dayLux[i][j]&&dayLux[i][j]<1400){dayLuxWgt[i][j]= dayLux[i][j]*1;}
+                else{dayLuxWgt[i][j]= dayLux[i][j]*0*10;}
+
                 if(hourI>=9 && hourI<18){
-                    sumDayMor[i]+=dayLux[i][j];
+                    sumDayMor[i]+=dayLuxWgt[i][j];
+                    monthSunAvg += sumDayMor[i];
                 }
                 if(hourI>=18 && hourI<21){
-                    sumDayDinLux[i]+=dayLux[i][j];
+                    sumDayDinLux[i]+=dayLuxWgt[i][j];
                     sumDayDinTemp[i]+=dayTemp[i][j];
+                    monthMoonLuxAvg += sumDayDinLux[i];
+                    monthMoonTempAvg+= sumDayDinTemp[i];
                 }
                 sumDay[i] += dayLux[i][j];
+
+
+
             }
             Log.d("StatLight-MonthLight", i + ", " + sumDay[i]);//합산 잘 되었는지 확인
             Log.d("StatLight-MonthLight", i + ", " + sumDayMor[i]);//합산 잘 되었는지 확인
@@ -393,16 +409,20 @@ public class StatLight {
             Log.d("StatLight-MonthLight", i + ", " + sumDayDinTemp[i]);//합산 잘 되었는지 확인
         }
 
-        monthSumDay = sumDay;
-        monthSumSun = sumDayMor;
-        monthSumMoonLux = sumDayDinLux;
-        monthSumMoonTemp = sumDayDinTemp;
-
         //현재시간
         Calendar calendar = Calendar.getInstance(Locale.KOREA);
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
         String curr = transFormat.format(calendar.getTime());
         int thisDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        monthSumDay = sumDay;
+        monthSumSun = sumDayMor;
+        monthSumMoonLux = sumDayDinLux;
+        monthSumMoonTemp = sumDayDinTemp;
+        monthSunAvg =  monthSunAvg/(thisDay*9);
+        monthMoonLuxAvg =  monthMoonLuxAvg/(thisDay*3);
+        monthMoonTempAvg = monthMoonTempAvg/(thisDay*3*calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+
 
         //과다,충분,부족 별 날짜 개수
         monthMany=0;
@@ -410,6 +430,7 @@ public class StatLight {
         monthLack=0;
 
         for(int i=0; i< thisDay; i++){
+            Log.e("proper?", i + ", " + sumDayMor[i]);//합산 잘 되었는지 확인
             if(sumDayMor[i]>=60000) { monthProper++; }
             else if(sumDayMor[i]<60000) { monthLack++; }
         }

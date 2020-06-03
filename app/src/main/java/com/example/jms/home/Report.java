@@ -138,13 +138,13 @@ public class Report extends AppCompatActivity{
                 }
                 else{
                     //우선 현재 날짜를 cal2에 저장하고 calendar를 하나 빼준다,
-                        calendar.add(Calendar.DATE,-1);
-                        calendar2.add(Calendar.DATE,-1);
-                        String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                        String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
-                        mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report2", "" + dayBefore+"~"+dayBefore2);
-                        changeDay(dayBefore,dayBefore2);
+                    calendar.add(Calendar.DATE,-1);
+                    calendar2.add(Calendar.DATE,-1);
+                    String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                    String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
+                    mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
+                    Log.e("Report2", "" + dayBefore+"~"+dayBefore2);
+                    changeDay(dayBefore,dayBefore2);
 
 
                 }
@@ -165,7 +165,7 @@ public class Report extends AppCompatActivity{
                 }
                 else{
                     if(calendar.compareTo(nCalendar)>0){
-                        Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "데이터가 측정되지 않아 리포트를 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
                     }
                     else{
                         calendar.add(Calendar.DATE,1);
@@ -257,12 +257,12 @@ public class Report extends AppCompatActivity{
             for(int i=18; i<21; i++){ actMoon += user.getStatAct().getDaySumHour()[i]; }
             if (actSun >= 6000) {
                 ///주간 충분
-                reportActSun.setText(R.string.dayActComment1);
+                reportActSun.setText(R.string.reportActComment1);
                 face3.setImageResource(R.drawable.act_satisfied);
                 state3.setText(R.string.good);
             } else {
                 ///주간 부족
-                reportActSun.setText(R.string.dayActComment2);
+                reportActSun.setText(R.string.reportActComment2);
                 face3.setImageResource(R.drawable.act_dissatisfied);
                 state3.setText(R.string.bad);
             }
@@ -271,12 +271,12 @@ public class Report extends AppCompatActivity{
         else {//데이터 있음
             if (actMoon <= 2000) {
                 ///야간 적정
-                reportActMoon.setText(R.string.dayActComment4);
+                reportActMoon.setText(R.string.reportActComment6);
                 face4.setImageResource(R.drawable.act_satisfied);
                 state4.setText(R.string.good);
             } else {
                 ///야간 과다
-                reportActMoon.setText(R.string.dayActComment3);
+                reportActMoon.setText(R.string.reportActComment5);
                 face4.setImageResource(R.drawable.act_dissatisfied);
                 state4.setText(R.string.exceed);
             }
@@ -308,12 +308,12 @@ public class Report extends AppCompatActivity{
             for(int i=18; i<21; i++){ lightMoon += user.getStatLight().getDaySumHourLuxWgt()[i]; }
             if (lightSun >= 6000) {
                 ///주간 충분
-                reportLightSun.setText(R.string.dayLightComment1);
+                reportLightSun.setText(R.string.reportLightComment1);
                 face5.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
                 state5.setText(R.string.good);
             } else {
                 ///주간 부족
-                reportLightSun.setText(R.string.dayLightComment2);
+                reportLightSun.setText(R.string.reportLightComment2);
                 face5.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
                 state5.setText(R.string.bad);
             }
@@ -322,12 +322,12 @@ public class Report extends AppCompatActivity{
         else {
             if (lightMoon <= 2000) {
                 ///야간 적정
-                reportLightMoon.setText(R.string.dayLightComment4);
+                reportLightMoon.setText(R.string.reportLightComment6);
                 face6.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
                 state6.setText(R.string.good);
             } else {
                 ///야간 과다
-                reportLightMoon.setText(R.string.dayLightComment3);
+                reportLightMoon.setText(R.string.reportLightComment5);
                 face6.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
                 state6.setText(R.string.exceed);
             }
@@ -360,43 +360,42 @@ public class Report extends AppCompatActivity{
             //////////////////////////////////총 수면시간 코멘트////////////////////////
             if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
                 if (deepPercent >= 25) {//깊은잠 정상
-                    reportSleep1.setText(R.string.daySleepComment2);
+                    reportSleep1.setText(R.string.reportSleepComment2);
                     face1.setImageResource(R.drawable.sleep_satisfied);
                     state1.setText(R.string.sleepState1);
                 } else {//깊은잠 부족
-                    reportSleep1.setText(R.string.daySleepComment1);
+                    reportSleep1.setText(R.string.reportSleepComment1);
                     face1.setImageResource(R.drawable.sleep_dissatisfied);
                     state1.setText(R.string.sleepState2);
                 }
             } else {//수면효율 비정상
                 if (deepPercent >= 25) {//깊은잠 정상
-                    reportSleep1.setText(R.string.daySleepComment4);
+                    reportSleep1.setText(R.string.reportSleepComment4);
                     face1.setImageResource(R.drawable.sleep_dissatisfied);
                     state1.setText(R.string.sleepState2);
                 } else {//깊은잠 부족
-                    reportSleep1.setText(R.string.daySleepComment3);
+                    reportSleep1.setText(R.string.reportSleepComment3);
                     face1.setImageResource(R.drawable.sleep_dissatisfied);
                     state1.setText(R.string.sleepState2);
                 }
             }
-
-            ///////////////////////////////평균뒤척임 코멘트///////////////////////////
+            ////푸시를해라 푸시
+            /////////////////////평균뒤척임 코멘트////////////////////
             if (user.getStatSleep().getTurnHour() == 0) {//정상
-                reportSleep2.setText(R.string.daySleepComment5);
+                reportSleep2.setText(R.string.reportSleepComment5);
                 face2.setImageResource(R.drawable.sleep_satisfied);
                 state2.setText(R.string.sleepState1);
             } else if (user.getStatSleep().getTurnHour() == 1) {//주의
-                reportSleep2.setText(R.string.daySleepComment6);
+                reportSleep2.setText(R.string.reportSleepComment6);
                 face2.setImageResource(R.drawable.sleep_dissatisfied);
                 state2.setText(R.string.sleepState2);
             } else if (user.getStatSleep().getTurnHour() == 2) {//관리필요
-                reportSleep2.setText(R.string.daySleepComment7);
+                reportSleep2.setText(R.string.reportSleepComment7);
                 face2.setImageResource(R.drawable.sleep_dissatisfied);
                 state2.setText(R.string.sleepState3);
             }
         }
     }
-
     public void InitializeView(){mTextView = (TextView) findViewById(R.id.textView);}
     public void InitializeListener()
     {
@@ -438,8 +437,8 @@ public class Report extends AppCompatActivity{
 
     ///현재시간///
     //private String getTime(){
-       // mNow = System.currentTimeMillis();
-      // mDate = new Date(mNow);
-       // return mFormat.format(mDate);
-   // }
+    // mNow = System.currentTimeMillis();
+    // mDate = new Date(mNow);
+    // return mFormat.format(mDate);
+    // }
 }
