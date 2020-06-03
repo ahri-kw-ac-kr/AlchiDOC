@@ -275,6 +275,7 @@ public class UserDataModel {
             Log.d("UserDataMdel", "perHour");
         }
         else if(pos == -1){//레포트에서 사용
+            todayList = data;
             perHour = new ArrayList<>();
             for (int i = 0; i < 24; i++) {
                 perHour.add(new ArrayList<>());
