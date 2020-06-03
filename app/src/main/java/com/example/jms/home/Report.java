@@ -258,12 +258,12 @@ public class Report extends AppCompatActivity{
             if (actSun >= 6000) {
                 ///주간 충분
                 reportActSun.setText(R.string.dayActComment1);
-                face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                face3.setImageResource(R.drawable.act_satisfied);
                 state3.setText(R.string.good);
             } else {
                 ///주간 부족
                 reportActSun.setText(R.string.dayActComment2);
-                face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                face3.setImageResource(R.drawable.act_dissatisfied);
                 state3.setText(R.string.bad);
             }
         }
@@ -272,12 +272,12 @@ public class Report extends AppCompatActivity{
             if (actMoon <= 2000) {
                 ///야간 적정
                 reportActMoon.setText(R.string.dayActComment4);
-                face4.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                face4.setImageResource(R.drawable.act_satisfied);
                 state4.setText(R.string.good);
             } else {
                 ///야간 과다
                 reportActMoon.setText(R.string.dayActComment3);
-                face4.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                face4.setImageResource(R.drawable.act_dissatisfied);
                 state4.setText(R.string.exceed);
             }
         }
@@ -329,7 +329,7 @@ public class Report extends AppCompatActivity{
                 ///야간 과다
                 reportLightMoon.setText(R.string.dayLightComment3);
                 face6.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state6.setText(R.string.good);
+                state6.setText(R.string.exceed);
             }
         }
 
@@ -361,21 +361,21 @@ public class Report extends AppCompatActivity{
             if (user.getStatSleep().getPercentDay() >= 80) {// 수면효율 정상
                 if (deepPercent >= 25) {//깊은잠 정상
                     reportSleep1.setText(R.string.daySleepComment2);
-                    face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                    face1.setImageResource(R.drawable.sleep_satisfied);
                     state1.setText(R.string.sleepState1);
                 } else {//깊은잠 부족
                     reportSleep1.setText(R.string.daySleepComment1);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    face1.setImageResource(R.drawable.sleep_dissatisfied);
                     state1.setText(R.string.sleepState2);
                 }
             } else {//수면효율 비정상
                 if (deepPercent >= 25) {//깊은잠 정상
                     reportSleep1.setText(R.string.daySleepComment4);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    face1.setImageResource(R.drawable.sleep_dissatisfied);
                     state1.setText(R.string.sleepState2);
                 } else {//깊은잠 부족
                     reportSleep1.setText(R.string.daySleepComment3);
-                    face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                    face1.setImageResource(R.drawable.sleep_dissatisfied);
                     state1.setText(R.string.sleepState2);
                 }
             }
@@ -383,15 +383,15 @@ public class Report extends AppCompatActivity{
             ///////////////////////////////평균뒤척임 코멘트///////////////////////////
             if (user.getStatSleep().getTurnHour() == 0) {//정상
                 reportSleep2.setText(R.string.daySleepComment5);
-                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                face2.setImageResource(R.drawable.sleep_satisfied);
                 state2.setText(R.string.sleepState1);
             } else if (user.getStatSleep().getTurnHour() == 1) {//주의
                 reportSleep2.setText(R.string.daySleepComment6);
-                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                face2.setImageResource(R.drawable.sleep_dissatisfied);
                 state2.setText(R.string.sleepState2);
             } else if (user.getStatSleep().getTurnHour() == 2) {//관리필요
                 reportSleep2.setText(R.string.daySleepComment7);
-                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                face2.setImageResource(R.drawable.sleep_dissatisfied);
                 state2.setText(R.string.sleepState3);
             }
         }
