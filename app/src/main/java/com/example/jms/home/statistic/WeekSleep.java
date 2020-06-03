@@ -98,6 +98,15 @@ public class WeekSleep extends Fragment {
         int turn = 0;
         int turnHour = 0;
 
+        //000님의 0월 0주차
+        titleDay = (TextView) view.findViewById(R.id.weekSleepTitle);
+        if (pos == 0) {
+            titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
+        } else {
+            titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
+        }
+        titleDay.setText(titleD);
+
         if(weekList != null) {
             int size = weekList.size() - 1;
             /////////////////////주간통계//////////////////
@@ -133,15 +142,6 @@ public class WeekSleep extends Fragment {
             lightH = lightA / 60;
             lightM = lightA % 60;
 
-
-            //000님의 0월 0주차
-            titleDay = (TextView) view.findViewById(R.id.weekSleepTitle);
-            if (pos == 0) {
-                titleD = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
-            } else {
-                titleD = RestfulAPI.principalUser.getFriend().get(pos - 1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
-            }
-            titleDay.setText(titleD);
 
             ///퍼센트
             titlePercent = (TextView) view.findViewById(R.id.weekSleepTitleP);
