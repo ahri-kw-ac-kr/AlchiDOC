@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("SleepActivity",calcTime+"");
         } catch (ParseException e) { e.printStackTrace(); }
 
-        if(calcTime < 3600) {///30분 안되면 저장 못함
+        if(calcTime > 3600) {///30분 안되면 저장 못함
             APIViewModel apiViewModel = new APIViewModel();
             apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", start, end)
                     .subscribeOn(Schedulers.io())
