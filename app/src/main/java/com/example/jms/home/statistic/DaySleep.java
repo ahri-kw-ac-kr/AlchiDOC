@@ -224,13 +224,13 @@ public class DaySleep extends Fragment {
         ////////////////////////코멘트//////////////////////
         Log.d("DaySleep","sleepDTOList 길이 : "+user.getSleepDTOList().size()+", pos: "+pos);
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
-            daySleepPlan1.setText("\n");
-            daySleepPlan2.setText("\n");
+            //daySleepPlan1.setText("\n");
+            //daySleepPlan2.setText("\n");
         }
         else {/////측정데이터 존재
             if (!user.getSleepDTOList().get(0).getWakeTime().substring(0, 8).equals(curr.substring(0, 8))) {//오늘데이터 없음
-                daySleepPlan1.setText("\n");
-                daySleepPlan2.setText("\n");
+                //daySleepPlan1.setText("\n");
+                //daySleepPlan2.setText("\n");
             } else {
                 int deepPercent = 0;
                 try {

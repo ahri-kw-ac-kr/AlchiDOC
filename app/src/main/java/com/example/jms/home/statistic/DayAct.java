@@ -98,131 +98,144 @@ public class DayAct extends Fragment {
         state2 = (TextView) view.findViewById(R.id.state2);
         state3 = (TextView) view.findViewById(R.id.state3);
 
-        //주간 코멘트
-        if (percent < 100) {
-            //부족
-            dayActPlan1.setText(R.string.dayActComment2);
-            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state1.setText(R.string.bad);
-        } else {
-            //충분
-            dayActPlan1.setText(R.string.dayActComment1);
-            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state1.setText(R.string.good);
-        }
+        if(user.getTodayList().size()==0){//데이터 없음
 
-        int currHour = Integer.parseInt(curr.substring(9,11)); //현재 시
-        int dinnerFlag = 0;
-        int eveningFlag = 0;
 
-        //나 = 사용자
-        if(pos == 0){
-            int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0,2))-4; // 취침 4시간 전 시
-            int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0,2))-2; // 취침 2시간 전 시
-            //나의 저녁 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-400)
-            {
-                for(int i=setHour4-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getSteps()>400){
-                            dinnerFlag = 1;
-                            break; }
-                    }
-                    if(dinnerFlag == 1){ break; }
-                }
-                if(dinnerFlag == 1){
-                    //////////////////////저녁 과다
-                    dayActPlan2.setText(R.string.dayActComment3);
-                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.exceed);
-                }
-                else{
-                    ///////////////////////저녁 적정
-                    dayActPlan2.setText(R.string.dayActComment4);
-                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state2.setText(R.string.good);
-                }
-            }
-            else{ dayActPlan2.setText("\n"); }
-            //나의 야간 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-200)
-            {
-                for(int i=setHour2-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getSteps()>200){
-                            eveningFlag = 1;
-                            break; }
-                    }
-                    if(eveningFlag == 1){ break; }
-                }
-                if(eveningFlag == 1){
-                    ////////////////////야간 과다
-                    dayActPlan3.setText(R.string.dayActComment5);
-                    face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state3.setText(R.string.exceed);
-                }
-                else{
-                    //////////////////////야간 적정
-                    dayActPlan3.setText(R.string.dayActComment6);
-                    face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state3.setText(R.string.good);
-                }
-            }
-            else{ dayActPlan3.setText("\n"); }
         }
-        else{ //친구코멘트
-            int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep().substring(0,2))-4; // 취침 4시간 전 시
-            int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep().substring(0,2))-2; // 취침 2시간 전 시
-            //친구의 저녁 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-400)
-            {
-                for(int i=setHour4-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getSteps()>400){
-                            dinnerFlag = 1;
-                            break; }
+        else {
+            //주간 코멘트
+            if (percent < 100) {
+                //부족
+                dayActPlan1.setText(R.string.dayActComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.bad);
+            } else {
+                //충분
+                dayActPlan1.setText(R.string.dayActComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.good);
+            }
+
+            int currHour = Integer.parseInt(curr.substring(9, 11)); //현재 시
+            int dinnerFlag = 0;
+            int eveningFlag = 0;
+
+            //나 = 사용자
+            if (pos == 0) {
+                int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0, 2)) - 4; // 취침 4시간 전 시
+                int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0, 2)) - 2; // 취침 2시간 전 시
+                //나의 저녁 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getSleep()) - 400) {
+                    for (int i = setHour4 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getSteps() > 400) {
+                                dinnerFlag = 1;
+                                break;
+                            }
+                        }
+                        if (dinnerFlag == 1) {
+                            break;
+                        }
                     }
-                    if(dinnerFlag == 1){ break; }
+                    if (dinnerFlag == 1) {
+                        //////////////////////저녁 과다
+                        dayActPlan2.setText(R.string.dayActComment3);
+                        face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state2.setText(R.string.exceed);
+                    } else {
+                        ///////////////////////저녁 적정
+                        dayActPlan2.setText(R.string.dayActComment4);
+                        face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state2.setText(R.string.good);
+                    }
+                } else {
+                    dayActPlan2.setText("\n");
                 }
-                if(dinnerFlag == 1){
-                    //////////////////저녁 과다
-                    dayActPlan2.setText(R.string.dayActComment3);
-                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.exceed);
+                //나의 야간 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getSleep()) - 200) {
+                    for (int i = setHour2 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getSteps() > 200) {
+                                eveningFlag = 1;
+                                break;
+                            }
+                        }
+                        if (eveningFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (eveningFlag == 1) {
+                        ////////////////////야간 과다
+                        dayActPlan3.setText(R.string.dayActComment5);
+                        face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state3.setText(R.string.exceed);
+                    } else {
+                        //////////////////////야간 적정
+                        dayActPlan3.setText(R.string.dayActComment6);
+                        face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state3.setText(R.string.good);
+                    }
+                } else {
+                    dayActPlan3.setText("\n");
                 }
-                else{
-                    //////////////////저녁 적정
-                    dayActPlan2.setText(R.string.dayActComment4);
-                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state2.setText(R.string.good);
+            } else { //친구코멘트
+                int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep().substring(0, 2)) - 4; // 취침 4시간 전 시
+                int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep().substring(0, 2)) - 2; // 취침 2시간 전 시
+                //친구의 저녁 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep()) - 400) {
+                    for (int i = setHour4 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getSteps() > 400) {
+                                dinnerFlag = 1;
+                                break;
+                            }
+                        }
+                        if (dinnerFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (dinnerFlag == 1) {
+                        //////////////////저녁 과다
+                        dayActPlan2.setText(R.string.dayActComment3);
+                        face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state2.setText(R.string.exceed);
+                    } else {
+                        //////////////////저녁 적정
+                        dayActPlan2.setText(R.string.dayActComment4);
+                        face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state2.setText(R.string.good);
+                    }
+                } else {
+                    dayActPlan2.setText("\n");
+                }
+                //친구의 야간 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep()) - 200) {
+                    for (int i = setHour2 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getSteps() > 200) {
+                                eveningFlag = 1;
+                                break;
+                            }
+                        }
+                        if (eveningFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (eveningFlag == 1) {
+                        /////////////////야간 과다
+                        dayActPlan3.setText(R.string.dayActComment5);
+                        face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state3.setText(R.string.exceed);
+                    } else {
+                        /////////////////야간 적정
+                        dayActPlan3.setText(R.string.dayActComment6);
+                        face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state3.setText(R.string.good);
+                    }
+                } else {
+                    dayActPlan3.setText(R.string.noData);
                 }
             }
-            else{ dayActPlan2.setText("\n"); }
-            //친구의 야간 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-200)
-             {
-                for(int i=setHour2-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getSteps()>200){
-                            eveningFlag = 1;
-                            break; }
-                    }
-                    if(eveningFlag == 1){ break; }
-                }
-                if(eveningFlag == 1){
-                    /////////////////야간 과다
-                    dayActPlan3.setText(R.string.dayActComment5);
-                    face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state3.setText(R.string.exceed);
-                }
-                else{
-                    /////////////////야간 적정
-                    dayActPlan3.setText(R.string.dayActComment6);
-                    face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state3.setText(R.string.good);
-                }
-            }
-            else{ dayActPlan3.setText(R.string.noData); }
         }
         return view;
     }

@@ -139,149 +139,162 @@ public class DayLight extends Fragment {
         state2 = (TextView) view.findViewById(R.id.dayLightState2);
         state3 = (TextView) view.findViewById(R.id.dayLightState3);
 
-        //주간 코멘트
-        if(user.getStatLight().getDayPercent() <100 ){
-            //부족 멘트
-            dayLightPlan1.setText(R.string.dayLightComment2);
-            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state1.setText(R.string.bad);
+        if(user.getTodayList().size()==0){
+
+
         }
         else {
-            //충분 멘트
-            dayLightPlan1.setText(R.string.dayLightComment1);
-            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state1.setText(R.string.good);
+            //주간 코멘트
+            if (user.getStatLight().getDayPercent() < 100) {
+                //부족 멘트
+                dayLightPlan1.setText(R.string.dayLightComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.bad);
+            } else {
+                //충분 멘트
+                dayLightPlan1.setText(R.string.dayLightComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.good);
+
+            }
+
+            int currHour = Integer.parseInt(curr.substring(9, 11)); //현재 시
+            int dinnerFlag = 0;
+            int eveningFlag = 0;
+
+            //나 = 사용자
+            if (pos == 0) {
+                //내 수면시간 가져와서 저녁, 야간 먹이기
+                int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0, 2)) - 4; // 취침 4시간 전 hour
+                int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0, 2)) - 2; // 취침 2시간 전 hour
+
+                //나의 저녁 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getSleep()) - 400) //4시간 빼줬습니다
+                {
+                    for (int i = setHour4 - 1; i < currHour; i++) { //0부터 받아오더라..
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getAvgLux() > 400 || user.getPerHour().get(i).get(j).getAvgTemp() > 3000) {
+                                dinnerFlag = 1;
+                                break;
+                            }
+                        }
+                        if (dinnerFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (dinnerFlag == 1) {
+                        //////////////////////저녁 과다
+                        dayLightPlan2.setText(R.string.dayLightComment3);
+                        face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state2.setText(R.string.exceed);
+                    } else {
+                        ///////////////////////저녁 적정
+                        dayLightPlan2.setText(R.string.dayLightComment4);
+                        face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state2.setText(R.string.good);
+                    }
+                } else {
+                    dayLightPlan2.setText("\n");
+                } //그 시간대가 아닐때 비워두기.
+
+
+                //나의 야간 코멘트 - 200빼기
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getSleep()) - 200) {
+                    for (int i = setHour2 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getAvgLux() > 300 || user.getPerHour().get(i).get(j).getAvgTemp() > 2000) {
+                                eveningFlag = 1;
+                                break;
+                            }
+                        }
+                        if (eveningFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (eveningFlag == 1) {
+                        ////////////////////야간 과다
+                        dayLightPlan3.setText(R.string.dayLightComment5);
+                        face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state3.setText(R.string.exceed);
+                    } else {
+                        //////////////////////야간 적정
+                        dayLightPlan3.setText(R.string.dayLightComment6);
+                        face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state3.setText(R.string.good);
+                    }
+                } else {
+                    dayLightPlan3.setText("\n");
+                } //그 시간대가 아닐때 비워두기.
+
+            }
+
+            //친구 수면시간 가져오기
+            else {
+                // 친구 수면시간 가져와서 저녁, 야간 먹이기
+                int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep().substring(0, 2)) - 4; // 취침 4시간 전 시
+                int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep().substring(0, 2)) - 2; // 취침 2시간 전 시
+
+                //친구의 저녁 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep()) - 400) {
+                    for (int i = setHour4 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getAvgLux() > 400 || user.getPerHour().get(i).get(j).getAvgTemp() > 3000) {
+                                dinnerFlag = 1;
+                                break;
+                            }
+                        }
+                        if (dinnerFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (dinnerFlag == 1) {
+                        //////////////////저녁 과다
+                        dayLightPlan2.setText(R.string.dayLightComment3);
+                        face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state2.setText(R.string.exceed);
+                    } else {
+                        //////////////////저녁 적정
+                        dayLightPlan2.setText(R.string.dayLightComment4);
+                        face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state2.setText(R.string.good);
+                    }
+                } else {
+                    dayLightPlan2.setText("\n");
+                } //그 시간대가 아닐때 비워두기.
+
+
+                //친구의 야간 코멘트
+                if (Integer.parseInt(curr.substring(9)) >= Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos - 1).getSleep()) - 200) {
+                    for (int i = setHour2 - 1; i < currHour; i++) {
+                        for (int j = 0; j < user.getPerHour().get(i).size(); j++) {
+                            if (user.getPerHour().get(i).get(j).getAvgLux() > 300 || user.getPerHour().get(i).get(j).getAvgTemp() > 2000) {
+                                eveningFlag = 1;
+                                break;
+                            }
+                        }
+                        if (eveningFlag == 1) {
+                            break;
+                        }
+                    }
+                    if (eveningFlag == 1) {
+                        /////////////////야간 과다
+                        dayLightPlan3.setText(R.string.dayLightComment5);
+                        face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                        state3.setText(R.string.exceed);
+                    } else {
+                        /////////////////야간 적정
+                        dayLightPlan3.setText(R.string.dayLightComment6);
+                        face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                        state3.setText(R.string.good);
+                    }
+                } else {
+                    dayLightPlan3.setText("\n");
+                }
+
+
+            }
 
         }
-
-        int currHour = Integer.parseInt(curr.substring(9,11)); //현재 시
-        int dinnerFlag = 0;
-        int eveningFlag = 0;
-
-        //나 = 사용자
-        if(pos == 0){
-            //내 수면시간 가져와서 저녁, 야간 먹이기
-            int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0,2))-4; // 취침 4시간 전 hour
-            int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getSleep().substring(0,2))-2; // 취침 2시간 전 hour
-
-            //나의 저녁 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-400) //4시간 빼줬습니다
-            {
-                for(int i=setHour4-1; i<currHour; i++){ //0부터 받아오더라..
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getAvgLux()>400||user.getPerHour().get(i).get(j).getAvgTemp()>3000){
-                            dinnerFlag = 1;
-                            break; }
-                    }
-                    if(dinnerFlag == 1){ break; }
-                }
-                if(dinnerFlag == 1){
-                    //////////////////////저녁 과다
-                    dayLightPlan2.setText(R.string.dayLightComment3);
-                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.exceed);
-                }
-                else{
-                    ///////////////////////저녁 적정
-                    dayLightPlan2.setText(R.string.dayLightComment4);
-                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state2.setText(R.string.good);
-                }
-            }
-            else{ dayLightPlan2.setText("\n"); } //그 시간대가 아닐때 비워두기.
-
-
-            //나의 야간 코멘트 - 200빼기
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getSleep())-200)
-            {
-                for(int i=setHour2-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getAvgLux()>300||user.getPerHour().get(i).get(j).getAvgTemp()>2000){
-                            eveningFlag = 1;
-                            break; }
-                    }
-                    if(eveningFlag == 1){ break; }
-                }
-                if(eveningFlag == 1){
-                    ////////////////////야간 과다
-                    dayLightPlan3.setText(R.string.dayLightComment5);
-                    face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state3.setText(R.string.exceed);
-                }
-                else{
-                    //////////////////////야간 적정
-                    dayLightPlan3.setText(R.string.dayLightComment6);
-                    face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state3.setText(R.string.good);
-                }
-            }
-            else{ dayLightPlan3.setText("\n"); } //그 시간대가 아닐때 비워두기.
-
-        }
-
-        //친구 수면시간 가져오기
-        else{
-            // 친구 수면시간 가져와서 저녁, 야간 먹이기
-            int setHour4 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep().substring(0,2))-4; // 취침 4시간 전 시
-            int setHour2 = Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep().substring(0,2))-2; // 취침 2시간 전 시
-
-            //친구의 저녁 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-400)
-            {
-                for(int i=setHour4-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getAvgLux()>400||user.getPerHour().get(i).get(j).getAvgTemp()>3000){
-                            dinnerFlag = 1;
-                            break; }
-                    }
-                    if(dinnerFlag == 1){ break; }
-                }
-                if(dinnerFlag == 1){
-                    //////////////////저녁 과다
-                    dayLightPlan2.setText(R.string.dayLightComment3);
-                    face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state2.setText(R.string.exceed);
-                }
-                else{
-                    //////////////////저녁 적정
-                    dayLightPlan2.setText(R.string.dayLightComment4);
-                    face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state2.setText(R.string.good);
-                }
-            }
-            else{ dayLightPlan2.setText("\n"); } //그 시간대가 아닐때 비워두기.
-
-
-            //친구의 야간 코멘트
-            if(Integer.parseInt(curr.substring(9))>=Integer.parseInt(RestfulAPI.principalUser.getFriend().get(pos-1).getSleep())-200)
-            {
-                for(int i=setHour2-1; i<currHour; i++){
-                    for(int j=0; j<user.getPerHour().get(i).size(); j++){
-                        if(user.getPerHour().get(i).get(j).getAvgLux()>300||user.getPerHour().get(i).get(j).getAvgTemp()>2000){
-                            eveningFlag = 1;
-                            break; }
-                    }
-                    if(eveningFlag == 1){ break; }
-                }
-                if(eveningFlag == 1){
-                    /////////////////야간 과다
-                    dayLightPlan3.setText(R.string.dayLightComment5);
-                    face3.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                    state3.setText(R.string.exceed);
-                }
-                else{
-                    /////////////////야간 적정
-                    dayLightPlan3.setText(R.string.dayLightComment6);
-                    face3.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-                    state3.setText(R.string.good);
-                }
-            }
-            else{ dayLightPlan3.setText("\n"); }
-
-
-        }
-
-
 
 
         return view;

@@ -111,43 +111,45 @@ public class WeekLight extends Fragment {
         state1 = (TextView) view.findViewById(R.id.weekLightState1);
         state2 = (TextView) view.findViewById(R.id.weekLightState2);
 
-        int sun = 0;
-        int moonLux = 0;
-        int moonTemp = 0;
+        if(user.getWeekList().size() == 0){
 
-        for(int i=0; i<thisDay; i++){
-            sun += user.getStatLight().getWeekSumSun()[i];
-            moonLux +=user.getStatLight().getWeekSumMoonLux()[i];
-            moonTemp +=user.getStatLight().getWeekSumMoonTemp()[i];
         }
-        //주간코멘트
-        if(sun >= 60000){
-            //충분
-            weekLightPlan1.setText(R.string.weekLightComment1);
-            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state1.setText(R.string.good);
-        }
-        else{
-            //부족
-            weekLightPlan1.setText(R.string.weekLightComment2);
-            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state1.setText(R.string.bad);
-        }
+        else {
+            int sun = 0;
+            int moonLux = 0;
+            int moonTemp = 0;
 
-        //야간코멘트
-        if(moonLux <=400||moonTemp<2500){
-            //적정
-            weekLightPlan2.setText(R.string.weekLightComment4);
-            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state2.setText(R.string.good);
-        }
-        else{
-            //과다
-            weekLightPlan2.setText(R.string.weekLightComment3);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.exceed);
-        }
+            for (int i = 0; i < thisDay; i++) {
+                sun += user.getStatLight().getWeekSumSun()[i];
+                moonLux += user.getStatLight().getWeekSumMoonLux()[i];
+                moonTemp += user.getStatLight().getWeekSumMoonTemp()[i];
+            }
+            //주간코멘트
+            if (sun >= 60000) {
+                //충분
+                weekLightPlan1.setText(R.string.weekLightComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.good);
+            } else {
+                //부족
+                weekLightPlan1.setText(R.string.weekLightComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.bad);
+            }
 
+            //야간코멘트
+            if (moonLux <= 400 || moonTemp < 2500) {
+                //적정
+                weekLightPlan2.setText(R.string.weekLightComment4);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.good);
+            } else {
+                //과다
+                weekLightPlan2.setText(R.string.weekLightComment3);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.exceed);
+            }
+        }
 
         return view;
     }

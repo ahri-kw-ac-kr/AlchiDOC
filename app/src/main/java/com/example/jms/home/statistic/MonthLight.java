@@ -136,41 +136,45 @@ public class MonthLight extends Fragment {
         state1 = (TextView) view.findViewById(R.id.monthLightState1);
         state2 = (TextView) view.findViewById(R.id.monthLightState1);
 
-        int sun = 0;
-        int moonLux = 0;
-        int moonTemp = 0;
 
-        for(int i=0; i<Integer.parseInt(curr.substring(6)); i++){
-            sun += user.getStatLight().getMonthSumSun()[i];
-            moonLux +=user.getStatLight().getMonthSumMoonLux()[i];
-            moonTemp +=user.getStatLight().getMonthSumMoonTemp()[i];
-        }
-        //주간코멘트
-        if(sun >= 60000){
-            //충분
-            monthLightPlan1.setText(R.string.monthLightComment1);
-            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state1.setText(R.string.good);
-        }
-        else{
-            //부족
-            monthLightPlan1.setText(R.string.monthLightComment2);
-            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state1.setText(R.string.bad);
-        }
+        if(user.getMonthList().size() == 0){
 
-        //야간코멘트
-        if(moonLux <=400 ||moonTemp <= 2500){
-            //적정
-            monthLightPlan2.setText(R.string.monthLightComment4);
-            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state2.setText(R.string.good);
         }
-        else{
-            //과다
-            monthLightPlan2.setText(R.string.monthLightComment3);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.exceed);
+        else {
+            int sun = 0;
+            int moonLux = 0;
+            int moonTemp = 0;
+
+            for (int i = 0; i < Integer.parseInt(curr.substring(6)); i++) {
+                sun += user.getStatLight().getMonthSumSun()[i];
+                moonLux += user.getStatLight().getMonthSumMoonLux()[i];
+                moonTemp += user.getStatLight().getMonthSumMoonTemp()[i];
+            }
+            //주간코멘트
+            if (sun >= 60000) {
+                //충분
+                monthLightPlan1.setText(R.string.monthLightComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.good);
+            } else {
+                //부족
+                monthLightPlan1.setText(R.string.monthLightComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.bad);
+            }
+
+            //야간코멘트
+            if (moonLux <= 400 || moonTemp <= 2500) {
+                //적정
+                monthLightPlan2.setText(R.string.monthLightComment4);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.good);
+            } else {
+                //과다
+                monthLightPlan2.setText(R.string.monthLightComment3);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.exceed);
+            }
         }
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)

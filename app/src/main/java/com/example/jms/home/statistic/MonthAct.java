@@ -131,38 +131,42 @@ public class MonthAct extends Fragment {
         state1 = (TextView) view.findViewById(R.id.state1);
         state2 = (TextView) view.findViewById(R.id.state2);
 
-        int sun = 0;
-        int moon = 0;
-        for(int i=0; i<Integer.parseInt(curr.substring(6)); i++){
-            sun += user.getStatAct().getMonthSumSun()[i];
-            moon +=user.getStatAct().getMonthSumMoon()[i];
-        }
-        //주간코멘트
-        if(sun >= 6000){
-            //충분
-            monthActPlan1.setText(R.string.monthActComment1);
-            face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state1.setText(R.string.good);
-        }
-        else{
-            //부족
-            monthActPlan1.setText(R.string.monthActComment2);
-            face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state1.setText(R.string.bad);
-        }
+        if(user.getMonthList().size()==0){
 
-        //야간코멘트
-        if(moon <=2000){
-            //적정
-            monthActPlan2.setText(R.string.monthActComment4);
-            face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
-            state2.setText(R.string.good);
+
         }
-        else{
-            //과다
-            monthActPlan2.setText(R.string.monthActComment3);
-            face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-            state2.setText(R.string.exceed);
+        else {
+            int sun = 0;
+            int moon = 0;
+            for (int i = 0; i < Integer.parseInt(curr.substring(6)); i++) {
+                sun += user.getStatAct().getMonthSumSun()[i];
+                moon += user.getStatAct().getMonthSumMoon()[i];
+            }
+            //주간코멘트
+            if (sun >= 6000) {
+                //충분
+                monthActPlan1.setText(R.string.monthActComment1);
+                face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state1.setText(R.string.good);
+            } else {
+                //부족
+                monthActPlan1.setText(R.string.monthActComment2);
+                face1.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state1.setText(R.string.bad);
+            }
+
+            //야간코멘트
+            if (moon <= 2000) {
+                //적정
+                monthActPlan2.setText(R.string.monthActComment4);
+                face2.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
+                state2.setText(R.string.good);
+            } else {
+                //과다
+                monthActPlan2.setText(R.string.monthActComment3);
+                face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
+                state2.setText(R.string.exceed);
+            }
         }
 
         /* 데이터 바뀔 때 쓰는 코드(지금은 임의의 값 집어넣은 것)
