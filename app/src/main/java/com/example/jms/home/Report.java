@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -53,8 +54,10 @@ public class Report extends AppCompatActivity{
 
     //현재시간
     Calendar calendar = Calendar.getInstance(Locale.KOREA);
+    Calendar calendar2 = Calendar.getInstance(Locale.KOREA);
     Calendar sCalendar = Calendar.getInstance(Locale.KOREA);
     Calendar fCalendar = Calendar.getInstance(Locale.KOREA);
+    Calendar nCalendar = Calendar.getInstance(Locale.KOREA); //현재시간만 가르키는 캘린더. 건드리면 안됩니다
     SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd HHmm");
     String curr = transFormat.format(calendar.getTime());
 
@@ -83,6 +86,8 @@ public class Report extends AppCompatActivity{
         ////////////////////////////초기 : 어제//////////////////////////
         calendar.setTime(date);
         calendar.add(calendar.DATE, -1);
+        calendar2.setTime(date);
+
 
         String yesterday = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
         mTextView = (TextView) findViewById(R.id.textView);
@@ -313,14 +318,26 @@ public class Report extends AppCompatActivity{
                         sCalendar.add(Calendar.DATE,-1);
                         fCalendar.add(Calendar.DATE,-1);
                         String dayBefore = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                        String dayBefore2 = transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
                         mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report", "" + dayBefore);
+                        Log.e("Report1", "" + dayBefore+"~"+dayBefore2);
+                        changeDay(dayBefore,dayBefore2);
                     }
                     else{
+                        //우선 현재 날짜를 cal2에 저장하고 calendar를 하나 빼준다,
                         calendar.add(Calendar.DATE,-1);
+                        calendar2.add(Calendar.DATE,-1);
                         String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report", "" + dayBefore);
+                        String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
+                        if(calendar.compareTo(nCalendar)>0){
+                            Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
+                            Log.e("Report2", "" + dayBefore+"~"+dayBefore2);
+                            changeDay(dayBefore,dayBefore2);}
+
+
                     }
                 }
             });
@@ -332,14 +349,24 @@ public class Report extends AppCompatActivity{
                         sCalendar.add(Calendar.DATE,1);
                         fCalendar.add(Calendar.DATE,1);
                         String dayAfter = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                        String dayAfter2 = transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
                         mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report",""+dayAfter);
+                        Log.e("Report3", "" + dayAfter+"~"+dayAfter2);
+                        changeDay(dayAfter,dayAfter2);
                     }
                     else{
                         calendar.add(Calendar.DATE,1);
+                        calendar2.add(Calendar.DATE,1);
                         String dayAfter = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report",""+dayAfter);
+                        String dayAfter2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
+                        if(calendar.compareTo(nCalendar)>0){
+                            Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
+                            Log.e("Report4", "" + dayAfter+"~"+dayAfter2);
+                            changeDay(dayAfter,dayAfter2);}
+
                     }
                 }
             });
@@ -361,7 +388,7 @@ public class Report extends AppCompatActivity{
                 trigger +=1;
                 //캘린더에서 설정한 날짜를 받아오기.
                 setyear= year;
-                setmon=monthOfYear+1;
+                setmon=monthOfYear;
                 setday=dayOfMonth;
 
                 //파싱형식 적용 위해 시작일, 종료일을 캘린더에 등록
@@ -385,6 +412,7 @@ public class Report extends AppCompatActivity{
     public void OnClickHandler(View view)
     {
         DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, year, month, day);
+        dialog.getDatePicker().setMaxDate(nCalendar.getTimeInMillis());
         dialog.show();
     }
 
