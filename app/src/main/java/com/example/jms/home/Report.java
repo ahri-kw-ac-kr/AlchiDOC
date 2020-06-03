@@ -310,11 +310,16 @@ public class Report extends AppCompatActivity{
                 public void onClick(View v) {
                     //표시되는 날짜를 하루 줄이는 것이 필요
                     if (trigger>0) { //만약 datepick dialogue에 한번이라도 접근했을 경우
+                        sCalendar.add(Calendar.DATE,-1);
+                        fCalendar.add(Calendar.DATE,-1);
                         String dayBefore = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
                         Log.e("Report", "" + dayBefore);
                     }
                     else{
+                        calendar.add(Calendar.DATE,-1);
                         String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
                         Log.e("Report", "" + dayBefore);
                     }
                 }
@@ -324,15 +329,22 @@ public class Report extends AppCompatActivity{
                 public void onClick(View v) {
 
                     if (trigger>0) {//만약 datepick dialogue에 한번이라도 접근했을 경우
+                        sCalendar.add(Calendar.DATE,1);
+                        fCalendar.add(Calendar.DATE,1);
                         String dayAfter = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
                         Log.e("Report",""+dayAfter);
                     }
                     else{
+                        calendar.add(Calendar.DATE,1);
                         String dayAfter = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
                         Log.e("Report",""+dayAfter);
                     }
                 }
             });
+
+            //다이얼로그 뷰, 리스너 선언
             this.InitializeView();
             this.InitializeListener();
         }
