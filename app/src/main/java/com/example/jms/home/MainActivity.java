@@ -1,7 +1,9 @@
 package com.example.jms.home;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -163,6 +165,30 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    //mainactivity에서 back button을 press하면 띄우는 팝업
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alert_ex = new AlertDialog.Builder(this);
+        alert_ex.setMessage("AlchiDoc을 종료하시겠습니까?");
+
+        alert_ex.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alert_ex.setNegativeButton("종료", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        });
+        alert_ex.setTitle("AlchiDoc");
+        AlertDialog alert = alert_ex.create();
+        alert.show();
+
+    }
+
 
     ///권한 설정 하는 코드를 가져와봤는데... 실행이 안되네요
     ///https://stackoverflow.com/questions/34342816/android-6-0-multiple-permissions - 여기를 참조했습니다
