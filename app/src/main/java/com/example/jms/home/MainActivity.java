@@ -23,6 +23,9 @@ import com.example.jms.map.FragMap;
 import com.example.jms.settings.FragSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -45,45 +48,55 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //////////////////////수면분석 db에 저장///////////////////////
         sharedPreferences = getSharedPreferences("sleep", 0);
         String start = sharedPreferences.getString("sleepTime", "");
         String end = sharedPreferences.getString("wakeTime", "");
         Log.d("MainActivity - sleepData", "시작: " + start + ", 끝: " + end);
 
-        APIViewModel apiViewModel = new APIViewModel();
-        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", start, end)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(data2 -> {
-                    if (data2.getContent() != null) {
-                        try {
-                            Log.d("MainActivity", "데이터 첫번째result" + data2.getContent().get(0).getStartTick());
-                        } catch (Exception e) {
-                            Log.d("MainActivity", "데이터 첫번째result size" + data2.getContent().size());
-                        }
-                        if (data2.getContent().size() != 0) {
-                            UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                            Log.d("MainActivity - sleepData", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
-                            SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
-                            sleepDTO1.setSleepTime(start);
-                            sleepDTO1.setWakeTime(end);
-                            sleepDTO1.setUser(RestfulAPI.principalUser);
-                            /////////////////분석결과 db에 저장//////////////////
-                            apiViewModel.postSleep(sleepDTO1)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(a -> {
-                                        Log.d("MainActicity - sleepData", "분석결과 저장");
-                                                //editor.putString("sleepTime","0");
-                                                //editor.putString("wakeTime","0");
-                                                //editor.apply();
-                                        },
-                                            Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
-                        }
-                    }
-                    Log.d("MainActicity - sleepData", "데이터 " + data2.getContent());
-                }, Throwable -> Log.d("MainActivity-sleepData", "rawData불러오기 실패 " + Throwable.getMessage()));
+        Long calcTime = (long) 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+        try {
+            //초단위로 계산되는 시간 차이
+            calcTime = (simpleDateFormat.parse(start).getTime()-simpleDateFormat.parse(end).getTime())/1000;
+            Log.e("SleepActivity",calcTime+"");
+        } catch (ParseException e) { e.printStackTrace(); }
 
+        if(calcTime < 3600) {///30분 안되면 저장 못함
+            APIViewModel apiViewModel = new APIViewModel();
+            apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", start, end)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(data2 -> {
+                        if (data2.getContent() != null) {
+                            try {
+                                Log.d("MainActivity", "데이터 첫번째result" + data2.getContent().get(0).getStartTick());
+                            } catch (Exception e) {
+                                Log.d("MainActivity", "데이터 첫번째result size" + data2.getContent().size());
+                            }
+                            if (data2.getContent().size() != 0) {
+                                UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
+                                Log.d("MainActivity - sleepData", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
+                                SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                sleepDTO1.setSleepTime(start);
+                                sleepDTO1.setWakeTime(end);
+                                sleepDTO1.setUser(RestfulAPI.principalUser);
+                                /////////////////분석결과 db에 저장//////////////////
+                                apiViewModel.postSleep(sleepDTO1)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(a -> {
+                                                    Log.d("MainActicity - sleepData", "분석결과 저장");
+                                                    //editor.putString("sleepTime","0");
+                                                    //editor.putString("wakeTime","0");
+                                                    //editor.apply();
+                                                },
+                                                Throwable -> Log.d("MainActivity-sleepData", "분석결과 db저장 실패 " + Throwable.getMessage()));
+                            }
+                        }
+                        Log.d("MainActicity - sleepData", "데이터 " + data2.getContent());
+                    }, Throwable -> Log.d("MainActivity-sleepData", "rawData불러오기 실패 " + Throwable.getMessage()));
+        }
         //하단바
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fm = getSupportFragmentManager();

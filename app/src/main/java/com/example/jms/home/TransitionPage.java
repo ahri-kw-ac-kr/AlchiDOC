@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,7 @@ import com.example.jms.connection.viewmodel.BleViewModel;
 import com.example.jms.connection.viewmodel.SleepDocViewModel;
 import com.example.jms.home.statistic.StatAct;
 import com.example.jms.home.statistic.StatSleep;
+import com.example.jms.settings.DeviceSet1;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -211,7 +215,15 @@ public class TransitionPage extends AppCompatActivity {
                                                 }, Throwable -> Log.d("SleeActivity", "데이터 불러오기 오류 " + Throwable.getMessage()));/////sleepDoc - getRawdataFromSleepDoc
                                     },Throwable::printStackTrace);//연결 끝
                         }//검색 후 슬립닥 있을 경우 if
-                    },Throwable::printStackTrace);//ble 검색 끝
+                    },Throwable -> {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() { Toast.makeText(getApplicationContext(), "블루투스와 위치가 켜져 있는지 확인해주세요.", Toast.LENGTH_SHORT).show(); }},0);
+                        finish();
+                    });//ble 검색 끝
         }//블루투스 연결 안되어있을 때 else
 
     }
