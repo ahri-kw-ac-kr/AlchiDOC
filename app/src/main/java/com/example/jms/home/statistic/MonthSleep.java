@@ -101,7 +101,52 @@ public class MonthSleep extends Fragment {
         int turn = 0;
         int turnHour = 0;
 
-        if(monthList!=null) {
+        if(monthList==null){
+            level1 = (TextView) view.findViewById(R.id.monthSleepLevel1);
+            level2 = (TextView) view.findViewById(R.id.monthSleepLevel2);
+            level3 = (TextView) view.findViewById(R.id.monthSleepLevel3);
+
+            /////그래프/////
+            int perfect = 0;
+            int soso = 0;
+            int lack = thisDay;
+
+            level1.setText(perfect + "일");
+            level2.setText(soso + "일");
+            level3.setText(lack + "일");
+
+            ArrayList NoOfEmp = new ArrayList();
+            NoOfEmp.add(new Entry(perfect, 0));
+            NoOfEmp.add(new Entry(soso, 1));
+            NoOfEmp.add(new Entry(lack, 2));
+            PieDataSet dataSet = new PieDataSet(NoOfEmp, "");
+
+            ArrayList name = new ArrayList();
+            name.add("충분");
+            name.add("보통");
+            name.add("부족");
+
+            PieData data = new PieData(name, dataSet);
+            pieChart.setData(data);
+            pieChart.setUsePercentValues(true); // false로 바꾸면 데이터가 백분율이 아닌 원래 값으로 그려짐
+            pieChart.setCenterText("수면량");
+            pieChart.setCenterTextSize(15);
+            pieChart.setHoleRadius(25);
+            pieChart.setDescription(null);
+            pieChart.setDrawSliceText(false); // true로 바꾸면 차트에 '과다, 충분, 부족'도 같이 나타남
+            pieChart.setTransparentCircleAlpha(100); // 차트 안에 작은 원 투명도 조절(0~255): 255이 제일 투명
+            pieChart.setTransparentCircleRadius(35);
+
+            Legend legend = pieChart.getLegend();
+            legend.setEnabled(false); // true로 바꾸면 범례 생김
+
+            data.setValueTextSize(18); // 원 안에 퍼센트값 크기 조정
+            data.setValueTextColor(Color.parseColor("#3B2760")); // 퍼센트값 색상
+
+            dataSet.setColors(colorArray);
+            pieChart.animateXY(5000, 5000);
+        }
+        else if(monthList!=null) {
             /////////////////////월간통계//////////////////
             for (int i = 0; i < monthList.size(); i++) {
                 totalSum[i] = monthList.get(i).getTotal();

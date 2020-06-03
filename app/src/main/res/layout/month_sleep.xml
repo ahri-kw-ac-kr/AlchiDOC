@@ -140,7 +140,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
                                     android:gravity="right"
-                                    android:text=" 4일"
+                                    android:text=" 0일"
                                     android:textColor="#5F5F5F"
                                     android:textSize="14sp"
                                     android:textStyle="bold"></TextView>
@@ -178,7 +178,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
                                     android:gravity="right"
-                                    android:text=" 10일"
+                                    android:text=" 0일"
                                     android:textColor="#5F5F5F"
                                     android:textSize="14sp"
                                     android:textStyle="bold"></TextView>
@@ -216,7 +216,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumregular"
                                     android:gravity="right"
-                                    android:text=" 16일"
+                                    android:text=" 0일"
                                     android:textColor="#5F5F5F"
                                     android:textSize="14sp"
                                     android:textStyle="bold"></TextView>
