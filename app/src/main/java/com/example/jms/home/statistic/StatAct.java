@@ -130,6 +130,7 @@ public class StatAct {
 
         //퍼센트 구하는 곳
         dayPercent = (total.intValue()*100) / 6000;
+        Log.d("레포트","총 걸음수: "+total.intValue()+", 퍼센트: "+dayPercent);
     }
 
     private void week(List<List<RawdataDTO>> perDay){

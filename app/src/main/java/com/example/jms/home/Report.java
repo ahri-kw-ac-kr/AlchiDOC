@@ -48,6 +48,7 @@ public class Report extends AppCompatActivity{
     TextView state1, state2, state3, state4, state5, state6;
 
     ArcProgress act;
+    ArcProgress light;
     ArcProgress sleep;
 
     UserDataModel user = new UserDataModel();
@@ -184,7 +185,9 @@ public class Report extends AppCompatActivity{
 
         }
         else {//데이터 있음
-            act.setProgress(user.getStatAct().getDayPercent());
+            int percent = user.getStatAct().getDayPercent();
+            if(user.getStatAct().getDayPercent() > 100){ percent = 100; }
+            act.setProgress(percent);
             for(int i=9; i<18; i++){ actSun += user.getStatAct().getDaySumHour()[i]; }
             for(int i=18; i<21; i++){ actMoon += user.getStatAct().getDaySumHour()[i]; }
             if (actSun >= 6000) {
@@ -216,7 +219,7 @@ public class Report extends AppCompatActivity{
 
         ////////////////////////////////조도량///////////////////////////////
 
-        act = (ArcProgress) findViewById(R.id.arc_progress1);
+        light = (ArcProgress) findViewById(R.id.arc_progress1);
 
         int lightSun = 0;
         int lightMoon = 0;
@@ -227,7 +230,9 @@ public class Report extends AppCompatActivity{
 
         }
         else{
-            act.setProgress(user.getStatLight().getDayPercent());
+            int percent1 = user.getStatLight().getDayPercent();
+            if(percent1 > 100){ percent1 = 100; }
+            light.setProgress(percent1);
             //가중치 먹인거
             for(int i=9; i<18; i++){ lightSun += user.getStatLight().getDaySumHourLuxWgt()[i]; }
             for(int i=18; i<21; i++){ lightMoon += user.getStatLight().getDaySumHourLuxWgt()[i]; }
