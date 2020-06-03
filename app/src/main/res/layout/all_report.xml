@@ -52,30 +52,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <LinearLayout
+            android:weightSum="16.6"
             android:layout_marginBottom="6dp"
             android:layout_gravity="center|top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
             <ImageView
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="24dp"
                 android:id="@+id/goBack"
                 android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_chevron_left_black_24dp"></ImageView>
-            <ImageView
-                android:onClick="OnClickHandler"
-                android:layout_gravity="bottom"
-                android:tint="#4E4E4E"
-                android:layout_width="wrap_content"
+                android:src="@drawable/ic_chevron_left_black_24dp"></ImageView></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_event_note_black_24dp"></ImageView>
+                android:layout_weight="3">
+                <ImageView
+                    android:layout_marginTop="24dp"
+                    android:layout_gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></ImageView></LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:onClick="OnClickHandler"
+                    android:src="@drawable/ic_event_note_black_24dp"
+                    android:tint="#4E4E4E"></ImageView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.6">
             <TextView
                 android:gravity="bottom"
                 android:text="2020년 06월 03일 달성률"
                 android:id="@+id/textView"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
@@ -83,13 +108,26 @@
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:textSize="16sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"></TextView></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+                <ImageView
+                    android:layout_marginTop="24dp"
+                    android:layout_gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></ImageView></LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
             <ImageView
+                android:layout_marginTop="24dp"
                 android:id="@+id/goFront"
-                android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_chevron_right_black_24dp"></ImageView>
+                android:src="@drawable/ic_chevron_right_black_24dp"></ImageView></LinearLayout>
         </LinearLayout>
             <LinearLayout
                 android:weightSum="3"
@@ -158,6 +196,7 @@
                         app:arc_progress="0"
                         app:arc_stroke_width="8dp"
                         app:arc_text_color="#707070"
+                        app:arc_suffix_text_size="10dp"
                         app:arc_unfinished_color="#E6E6E6" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -504,17 +543,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#2B90D9"
-        android:padding="3dp"
-        app:itemIconTint="#ffffff"
-        app:itemTextColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_editor_absoluteX="16dp"
-        app:menu="@menu/bottom_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

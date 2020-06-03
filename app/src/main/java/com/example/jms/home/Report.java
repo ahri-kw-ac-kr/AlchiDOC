@@ -245,8 +245,8 @@ public class Report extends AppCompatActivity{
         int actMoon = 0;
 
         if(user.getTodayList().size() == 0){  //데이터 없음
-
-
+            reportActSun.setText(R.string.noData);
+            reportActMoon.setText(R.string.noData);
         }
         else {//데이터 있음
             int percent = user.getStatAct().getDayPercent();
@@ -277,7 +277,7 @@ public class Report extends AppCompatActivity{
                 ///야간 과다
                 reportActMoon.setText(R.string.dayActComment3);
                 face4.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
-                state4.setText(R.string.good);
+                state4.setText(R.string.exceed);
             }
         }
 
@@ -290,8 +290,8 @@ public class Report extends AppCompatActivity{
 
 
         if(user.getTodayList().size() == 0) {  //데이터 없음
-
-
+            reportLightSun.setText(R.string.noData);
+            reportLightMoon.setText(R.string.noData);
         }
         else{
             int percent1 = user.getStatLight().getDayPercent();
@@ -336,8 +336,8 @@ public class Report extends AppCompatActivity{
 
         //Log.d("레포트","수면디티오 길이: "+user.getSleepDTOList().size());
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
-            reportSleep1.setText("\n");
-            reportSleep2.setText("\n");
+            reportSleep1.setText(R.string.noData);
+            reportSleep2.setText(R.string.noData);
             sleep.setProgress(0);
         }
         else {/////측정데이터 존재
