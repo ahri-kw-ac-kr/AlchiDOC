@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.jms.connection.model.SleepDocService;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
+import java.util.List;
+
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 
@@ -26,7 +28,7 @@ public class SleepDocViewModel extends ViewModel {
         return sleepDocService.connect(mac);
     }
 
-    public Observable<RawdataDTO> getRawdataFromSleepDoc() {
+    public Observable<List<RawdataDTO>> getRawdataFromSleepDoc() {
         return sleepDocService.getRawdata();
     }
 

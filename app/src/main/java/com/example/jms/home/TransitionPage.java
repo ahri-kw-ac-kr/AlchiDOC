@@ -63,82 +63,59 @@ public class TransitionPage extends AppCompatActivity {
             sleepDocViewModel.getRawdataFromSleepDoc()
                     .observeOn(Schedulers.io())
                     .subscribeOn(AndroidSchedulers.mainThread())
-                    .doOnComplete(()->{
-                        /////////////////취침시간 동안의 데이터 갖고오기//////////////////
-                        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
-                                .subscribeOn(Schedulers.io())
-                                .doAfterTerminate(()->{
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    startActivity(intent);
-                                    finish();
-                                })
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(data2 -> {
-                                    if (data2.getContent() != null) {
-                                        try {
-                                            Log.d("SleepActivity", "데이터 첫번째result" + data2.getContent().get(0).getStartTick());
-                                        } catch (Exception e) {
-                                            Log.d("SleepActivity", "데이터 첫번째result size" + data2.getContent().size());
-                                        }
-                                        if (data2.getContent().size() != 0) {
-                                            UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                                            Log.d("SleepActivity", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
-                                            SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
-                                            sleepDTO1.setSleepTime(SleepActivity.start);
-                                            sleepDTO1.setWakeTime(SleepActivity.end);
-                                            sleepDTO1.setUser(RestfulAPI.principalUser);
-                                            UserDataModel.userDataModels[0].getSleepDTOList().add(0,sleepDTO1);
-                                            /////////////////분석결과 db에 저장//////////////////
-                                            apiViewModel.postSleep(sleepDTO1)
-                                                    .subscribeOn(Schedulers.io())
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe(a -> {
-                                                        Log.d("TransitionPage", "분석결과 저장");
-                                                        editor2.putString("sleepTime","0");
-                                                        editor2.putString("wakeTime","0");
-                                                        editor2.apply();
-                                                    }, Throwable::printStackTrace);
-                                        }
-                                    }
-                                    Log.d("SleepActivity","데이터 "+data2.getContent());
-                                }, Throwable::printStackTrace);/////api-getRawdataByID
-                    })
                     .subscribe(data -> {
                         Log.d("SleepActivity","데이터 받아옴");
-                        data.setUser(RestfulAPI.principalUser);
-                        /////////////////받은 데이터 db로 전송//////////////////
-                        apiViewModel.postRawdata(data)
-                                .observeOn(Schedulers.io())
-                                .doAfterTerminate(()->{
-                                    /////////////////취침시간 동안의 데이터 갖고오기//////////////////
-                                    /*apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
-                                            .subscribeOn(Schedulers.io())
-                                            .observeOn(AndroidSchedulers.mainThread())
-                                            .subscribe(data2 -> {
-                                                if (data2.getContent() != null) {
-                                                    UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                                                    Log.d("SleepActivity","데이터 첫번째"+UserDataModel.userDataModels[0].getSleepDataList().size());
-                                                    SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
-                                                    sleepDTO1.setSleepTime(SleepActivity.start);
-                                                    sleepDTO1.setWakeTime(SleepActivity.end);
-                                                    sleepDTO1.setUser(RestfulAPI.principalUser);
-                                                    /////////////////분석결과 db에 저장//////////////////
-                                                    apiViewModel.postSleep(sleepDTO1)
-                                                            .subscribeOn(Schedulers.io())
-                                                            .observeOn(AndroidSchedulers.mainThread())
-                                                            .subscribe(a->Log.d("TransitionPage","분석결과 저장"),Throwable::printStackTrace);
-                                                }
-                                                Log.d("SleepActivity","데이터 "+data2.getContent());
-                                            }, Throwable::printStackTrace);/////api-getRawdataByID  */
-                                })//데이터 포스트 종료 후
-                                .subscribe(result2 -> {
-                                    Log.d("SleepActivity","raw데이터 포스트 완료");
-
-                                }, Throwable -> {
-                                    Log.d("SleeActivity", "집어넣기 오류 " + Throwable.getMessage());
-                                });/////api = postRawdata
+                        for(int i=0; i<data.size(); i++){
+                            data.get(i).setUser(RestfulAPI.principalUser);
+                            /////////////////받은 데이터 db로 전송//////////////////
+                            apiViewModel.postRawdata(data.get(i))
+                                    .observeOn(Schedulers.io())
+                                    .doAfterTerminate(()->{
+                                        /////////////////취침시간 동안의 데이터 갖고오기//////////////////
+                                        apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
+                                                .subscribeOn(Schedulers.io())
+                                                .doAfterTerminate(()->{
+                                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                    startActivity(intent);
+                                                    finish();
+                                                })
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe(data2 -> {
+                                                    if (data2.getContent() != null) {
+                                                        try {
+                                                            Log.d("SleepActivity", "데이터 첫번째result" + data2.getContent().get(0).getStartTick());
+                                                        } catch (Exception e) {
+                                                            Log.d("SleepActivity", "데이터 첫번째result size" + data2.getContent().size());
+                                                        }
+                                                        if (data2.getContent().size() != 0) {
+                                                            UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
+                                                            Log.d("SleepActivity", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
+                                                            SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                                            sleepDTO1.setSleepTime(SleepActivity.start);
+                                                            sleepDTO1.setWakeTime(SleepActivity.end);
+                                                            sleepDTO1.setUser(RestfulAPI.principalUser);
+                                                            UserDataModel.userDataModels[0].getSleepDTOList().add(0,sleepDTO1);
+                                                            /////////////////분석결과 db에 저장//////////////////
+                                                            apiViewModel.postSleep(sleepDTO1)
+                                                                    .subscribeOn(Schedulers.io())
+                                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                                    .subscribe(a -> {
+                                                                        Log.d("TransitionPage", "분석결과 저장");
+                                                                        //editor2.putString("sleepTime","0");
+                                                                        //editor2.putString("wakeTime","0");
+                                                                        //editor2.apply();
+                                                                    }, Throwable::printStackTrace);//분석결과 저장
+                                                        }
+                                                    }
+                                                    Log.d("SleepActivity","데이터 "+data2.getContent());//섭스크라이브 성공
+                                                }, Throwable::printStackTrace);/////api-getRawdataByID
+                                    })//데이터 포스트 종료 후
+                                    .subscribe(result2 -> { Log.d("SleepActivity","raw데이터 포스트 완료"); },
+                                            Throwable -> { Log.d("SleeActivity", "집어넣기 오류 " + Throwable.getMessage());
+                                            });/////api = postRawdata
+                        }
                     }, Throwable -> Log.d("SleeActivity", "데이터 불러오기 오류 " + Throwable.getMessage()));/////sleepDoc - getRawdataFromSleepDoc
         } //블루투스 연결 되어있을 때
         else {
@@ -174,44 +151,59 @@ public class TransitionPage extends AppCompatActivity {
                                         sleepDocViewModel.getRawdataFromSleepDoc()
                                                 .observeOn(Schedulers.io())
                                                 .subscribeOn(AndroidSchedulers.mainThread())
-                                                .doOnComplete(()->{
-                                                    /////////////////취침시간 동안의 데이터 갖고오기//////////////////
-                                                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
-                                                            .subscribeOn(Schedulers.io())
-                                                            .observeOn(AndroidSchedulers.mainThread())
-                                                            .subscribe(data2 -> {
-                                                                if (data2.getContent() != null) {
-                                                                    if (data2.getContent().size() != 0) {
-                                                                        UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
-                                                                        Log.d("SleepActivity", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
-                                                                        SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
-                                                                        sleepDTO1.setSleepTime(SleepActivity.start);
-                                                                        sleepDTO1.setWakeTime(SleepActivity.end);
-                                                                        sleepDTO1.setUser(RestfulAPI.principalUser);
-                                                                        UserDataModel.userDataModels[0].getSleepDTOList().add(0,sleepDTO1);
-                                                                        /////////////////분석결과 db에 저장//////////////////
-                                                                        apiViewModel.postSleep(sleepDTO1)
-                                                                                .subscribeOn(Schedulers.io())
-                                                                                .observeOn(AndroidSchedulers.mainThread())
-                                                                                .subscribe(a -> {
-                                                                                    Log.d("TransitionPage", "분석결과 저장");
-                                                                                    //editor2.putString("sleepTime","0");
-                                                                                    //editor2.putString("wakeTime","0");
-                                                                                    //editor2.apply();
-                                                                                    }, Throwable::printStackTrace);
-                                                                    }
-                                                                }
-                                                                Log.d("SleepActivity","데이터 "+data2.getContent());
-                                                            }, Throwable::printStackTrace);/////api-getRawdataByID
-                                                })
                                                 .subscribe(data -> {
-                                                    data.setUser(RestfulAPI.principalUser);
-                                                    /////////////////받은 데이터 db로 전송//////////////////
-                                                    apiViewModel.postRawdata(data)
-                                                            .observeOn(Schedulers.io())
-                                                            .subscribe(result2 -> { }, Throwable -> {
-                                                                Log.d("SleeActivity", "집어넣기 오류 " + Throwable.getMessage());
-                                                            });/////api = postRawdata
+                                                    Log.d("SleepActivity","데이터 받아옴");
+                                                    for(int i=0; i<data.size(); i++){
+                                                        data.get(i).setUser(RestfulAPI.principalUser);
+                                                        /////////////////받은 데이터 db로 전송//////////////////
+                                                        apiViewModel.postRawdata(data.get(i))
+                                                                .observeOn(Schedulers.io())
+                                                                .doAfterTerminate(()->{
+                                                                    /////////////////취침시간 동안의 데이터 갖고오기//////////////////
+                                                                    apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", SleepActivity.start, SleepActivity.end)
+                                                                            .subscribeOn(Schedulers.io())
+                                                                            .doAfterTerminate(()->{
+                                                                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                                                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                                                startActivity(intent);
+                                                                                finish();
+                                                                            })
+                                                                            .observeOn(AndroidSchedulers.mainThread())
+                                                                            .subscribe(data2 -> {
+                                                                                if (data2.getContent() != null) {
+                                                                                    try {
+                                                                                        Log.d("SleepActivity", "데이터 첫번째result" + data2.getContent().get(0).getStartTick());
+                                                                                    } catch (Exception e) {
+                                                                                        Log.d("SleepActivity", "데이터 첫번째result size" + data2.getContent().size());
+                                                                                    }
+                                                                                    if (data2.getContent().size() != 0) {
+                                                                                        UserDataModel.userDataModels[0].setSleepDataList(data2.getContent());
+                                                                                        Log.d("SleepActivity", "데이터 첫번째" + UserDataModel.userDataModels[0].getSleepDataList().size());
+                                                                                        SleepDTO sleepDTO1 = StatSleep.analyze(data2.getContent());
+                                                                                        sleepDTO1.setSleepTime(SleepActivity.start);
+                                                                                        sleepDTO1.setWakeTime(SleepActivity.end);
+                                                                                        sleepDTO1.setUser(RestfulAPI.principalUser);
+                                                                                        UserDataModel.userDataModels[0].getSleepDTOList().add(0,sleepDTO1);
+                                                                                        /////////////////분석결과 db에 저장//////////////////
+                                                                                        apiViewModel.postSleep(sleepDTO1)
+                                                                                                .subscribeOn(Schedulers.io())
+                                                                                                .observeOn(AndroidSchedulers.mainThread())
+                                                                                                .subscribe(a -> {
+                                                                                                    Log.d("TransitionPage", "분석결과 저장");
+                                                                                                    //editor2.putString("sleepTime","0");
+                                                                                                    //editor2.putString("wakeTime","0");
+                                                                                                    //editor2.apply();
+                                                                                                }, Throwable::printStackTrace);//분석결과 저장
+                                                                                    }
+                                                                                }
+                                                                                Log.d("SleepActivity","데이터 "+data2.getContent());//섭스크라이브 성공
+                                                                            }, Throwable::printStackTrace);/////api-getRawdataByID
+                                                                })//데이터 포스트 종료 후
+                                                                .subscribe(result2 -> { Log.d("SleepActivity","raw데이터 포스트 완료"); },
+                                                                        Throwable -> { Log.d("SleeActivity", "집어넣기 오류 " + Throwable.getMessage());
+                                                                        });/////api = postRawdata
+                                                    }
                                                 }, Throwable -> Log.d("SleeActivity", "데이터 불러오기 오류 " + Throwable.getMessage()));/////sleepDoc - getRawdataFromSleepDoc
                                     },Throwable::printStackTrace);//연결 끝
                         }//검색 후 슬립닥 있을 경우 if

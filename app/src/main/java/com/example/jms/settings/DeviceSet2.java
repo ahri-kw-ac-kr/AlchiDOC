@@ -149,11 +149,13 @@ public class DeviceSet2 extends AppCompatActivity {
                                                         .observeOn(Schedulers.io())
                                                         .subscribeOn(AndroidSchedulers.mainThread())
                                                         .subscribe(data -> {
-                                                            data.setUser(RestfulAPI.principalUser);
-                                                            apiViewModel.postRawdata(data)
-                                                                    .observeOn(Schedulers.io())
-                                                                    .subscribe(result -> {
-                                                                    }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
+                                                            for(int i=0; i<data.size(); i++){
+                                                                data.get(i).setUser(RestfulAPI.principalUser);
+                                                                apiViewModel.postRawdata(data.get(i))
+                                                                        .observeOn(Schedulers.io())
+                                                                        .subscribe(result -> {
+                                                                        }, Throwable -> { Log.d("DeviceSet2", "집어넣기 오류 " + Throwable.getMessage()); });
+                                                            }
                                                         }, Throwable -> Log.d("DeviceSet2", "데이터 불러오기 오류 " + Throwable.getMessage()));
                                             })
                                            .subscribe(batt -> {

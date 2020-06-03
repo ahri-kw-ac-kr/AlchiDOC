@@ -9,6 +9,8 @@ import com.clj.fastble.data.BleDevice;
 import com.example.jms.connection.sleep_doc.SleepDoc;
 import com.example.jms.connection.sleep_doc.dto.RawdataDTO;
 
+import java.util.List;
+
 public class SleepDocService {
     private SleepDoc sleepDoc;
     private static SleepDocService sleepDocService;
@@ -20,7 +22,7 @@ public class SleepDocService {
 
     public void disconnect(){sleepDoc.disconnect();}
 
-    public Observable<RawdataDTO> getRawdata() {
+    public Observable<List<RawdataDTO>> getRawdata() {
         return sleepDoc.getRawdata();
     }
 

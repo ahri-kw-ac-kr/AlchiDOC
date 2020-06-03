@@ -23,7 +23,9 @@ import com.clj.fastble.exception.BleException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Observer;
 import java.util.TimeZone;
 import java.util.UUID;
@@ -134,7 +136,7 @@ public class SleepDoc {
         });
     }
 
-    public Observable<RawdataDTO> getRawdata() {
+    public Observable<List<RawdataDTO>> getRawdata() {
         if (!isConnected) {
             Log.d("SleepDoc", "이거 나오면 안됨");
         }
@@ -144,6 +146,7 @@ public class SleepDoc {
         descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
         gatt.writeDescriptor(descriptor);
 
+        List<RawdataDTO> rawdataList = new ArrayList<>();
         return Observable.create(observer -> {
             bleManager.notify(bleDevice, ServiceUUID.SYNC.toString(), CharacteristicUUID.SYNC_CONTROL.toString(), new BleNotifyCallback() {
                 //Sync Notify ON Success
@@ -163,6 +166,7 @@ public class SleepDoc {
                     Log.i("SleepDoc", "Characteristic Changed");
                     if(data[0] == Command.SYNC_NOTI_DONE) {
                         Log.i("SleepDoc", "Sync Noti Done");
+                        observer.onNext(rawdataList);
                         observer.onComplete();
                         return;
                     }
@@ -194,10 +198,14 @@ public class SleepDoc {
                                             rawdataDTO.getVectorZ()));
                                     if(rawdataDTO.getStartTick()==0){ break; }
                                     else{
-                                    observer.onNext(syncDataDTO.rawdataDTOArray[i]);
+                                    //observer.onNext(syncDataDTO.rawdataDTOArray[i]);
+                                        rawdataList.add(syncDataDTO.rawdataDTOArray[i]);
                                     count += 1;}
                                 }
-                                if(count == 0){ observer.onNext(syncDataDTO.rawdataDTOArray[count]); }
+                                if(count == 0){
+                                    //observer.onNext(syncDataDTO.rawdataDTOArray[count]);
+                                    rawdataList.add(syncDataDTO.rawdataDTOArray[count]);
+                                }
                                 //else { observer.onNext(syncDataDTO.rawdataDTOArray[count-1]); }
                                 bleManager.write(bleDevice, ServiceUUID.SYNC.toString(), CharacteristicUUID.SYNC_CONTROL.toString(), new byte[]{Command.SYNC_CONTROL_PREPARE_NEXT}, logWriteCallback);
                             } catch (ZeroLengthException e) {

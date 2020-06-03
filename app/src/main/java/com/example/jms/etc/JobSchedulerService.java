@@ -93,13 +93,15 @@ public class JobSchedulerService extends JobService {
                         .observeOn(Schedulers.io())
                         .subscribeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
-                            data.setUser(RestfulAPI.principalUser);
-                            apiViewModel.postRawdata(data)
-                                    .observeOn(Schedulers.io())
-                                    .subscribe(result -> {
-                                    }, Throwable -> {
-                                        Log.d("JobSchedulerService", "집어넣기 오류 " + Throwable.getMessage());
-                                    });
+                            for(int i=0; i<data.size(); i++){
+                                data.get(i).setUser(RestfulAPI.principalUser);
+                                apiViewModel.postRawdata(data.get(i))
+                                        .observeOn(Schedulers.io())
+                                        .subscribe(result -> {
+                                        }, Throwable -> {
+                                            Log.d("JobSchedulerService", "집어넣기 오류 " + Throwable.getMessage());
+                                        });
+                            }
                         }, Throwable -> Log.d("JobSchedulerService", "데이터 불러오기 오류 " + Throwable.getMessage()));
             }
             if (RestfulAPI.principalUser != null) {
