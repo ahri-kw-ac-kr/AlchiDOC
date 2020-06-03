@@ -80,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></ImageView></LinearLayout>
             <LinearLayout
+                android:gravity="right"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,17 +95,19 @@
                     android:tint="#4E4E4E"></ImageView>
             </LinearLayout>
             <LinearLayout
+                android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.6">
             <TextView
+                android:layout_marginRight="10dp"
                 android:gravity="bottom"
                 android:text="2020년 06월 03일 달성률"
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="2dp"
                 android:fontFamily="@font/nanumregular"
                 android:textColor="#646464"
                 android:textSize="16sp"
