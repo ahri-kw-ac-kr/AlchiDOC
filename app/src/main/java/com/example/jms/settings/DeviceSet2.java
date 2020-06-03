@@ -182,7 +182,15 @@ public class DeviceSet2 extends AppCompatActivity {
                             public void run() { Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show(); }},0);
                         finish();
 
-                    }*/},Throwable::printStackTrace);
+                    }*/},Throwable->{
+                    Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
+                    startActivity(intent);
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() { Toast.makeText(getApplicationContext(), "블루투스와 위치가 켜져 있는지 확인해주세요.", Toast.LENGTH_SHORT).show(); }},0);
+                    finish();
+                });
 
     }
 }
