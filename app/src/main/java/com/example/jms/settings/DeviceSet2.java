@@ -58,7 +58,7 @@ public class DeviceSet2 extends AppCompatActivity {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(() -> {
                     Log.i("DeviceSet2", "블루투스 기기 스캔");
-                    if(BleService.principalDevice == null){
+                    if(BleService.principalDevice == null && flag.intValue()!=1){
                         Log.d("Device2","스캔했지만 기기없음.1");
                         Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                         startActivity(intent);
@@ -68,6 +68,7 @@ public class DeviceSet2 extends AppCompatActivity {
                             public void run() { Toast.makeText(getApplicationContext(), "검색된 기기가 없습니다.", Toast.LENGTH_SHORT).show(); }},0);
                         finish();
                     }
+                    else if(BleService.principalDevice == null && flag.intValue() == 1){  }
                     else{
                         Intent intent = new Intent(getApplicationContext(), DeviceSet1.class);
                         startActivity(intent);
