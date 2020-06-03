@@ -122,7 +122,71 @@ public class Report extends AppCompatActivity{
 
         //여기서부터 캘린더에서 고른날짜 받아와서 아래에 있는 changeDay 함수 쓰기.
 
+        //버튼 우선 선언만 해둠
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //표시되는 날짜를 하루 줄이는 것이 필요
+                if (trigger>0) { //만약 datepick dialogue에 한번이라도 접근했을 경우
+                    sCalendar.add(Calendar.DATE,-1);
+                    fCalendar.add(Calendar.DATE,-1);
+                    String dayBefore = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                    String dayBefore2 = transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                    mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
+                    Log.e("Report1", "" + dayBefore+"~"+dayBefore2);
+                    changeDay(dayBefore,dayBefore2);
+                }
+                else{
+                    //우선 현재 날짜를 cal2에 저장하고 calendar를 하나 빼준다,
+                    calendar.add(Calendar.DATE,-1);
+                    calendar2.add(Calendar.DATE,-1);
+                    String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                    String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
+                    if(calendar.compareTo(nCalendar)>0){
+                        Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
+                        Log.e("Report2", "" + dayBefore+"~"+dayBefore2);
+                        changeDay(dayBefore,dayBefore2);}
 
+
+                }
+            }
+        });
+        frontButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (trigger>0) {//만약 datepick dialogue에 한번이라도 접근했을 경우
+                    sCalendar.add(Calendar.DATE,1);
+                    fCalendar.add(Calendar.DATE,1);
+                    String dayAfter = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                    String dayAfter2 = transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
+                    mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
+                    Log.e("Report3", "" + dayAfter+"~"+dayAfter2);
+                    changeDay(dayAfter,dayAfter2);
+                }
+                else{
+                    calendar.add(Calendar.DATE,1);
+                    calendar2.add(Calendar.DATE,1);
+                    String dayAfter = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
+                    String dayAfter2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
+                    if(calendar.compareTo(nCalendar)>0){
+                        Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
+                        Log.e("Report4", "" + dayAfter+"~"+dayAfter2);
+                        changeDay(dayAfter,dayAfter2);}
+
+                }
+            }
+        });
+
+        //다이얼로그 뷰, 리스너 선언
+        this.InitializeView();
+        this.InitializeListener();
 
     }//onCreate
 
@@ -321,72 +385,6 @@ public class Report extends AppCompatActivity{
                 face2.setImageResource(R.drawable.ic_sentiment_dissatisfied_black_24dp);
                 state2.setText(R.string.sleepState3);
             }
-
-            //버튼 우선 선언만 해둠
-            backButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //표시되는 날짜를 하루 줄이는 것이 필요
-                    if (trigger>0) { //만약 datepick dialogue에 한번이라도 접근했을 경우
-                        sCalendar.add(Calendar.DATE,-1);
-                        fCalendar.add(Calendar.DATE,-1);
-                        String dayBefore = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
-                        String dayBefore2 = transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
-                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report1", "" + dayBefore+"~"+dayBefore2);
-                        changeDay(dayBefore,dayBefore2);
-                    }
-                    else{
-                        //우선 현재 날짜를 cal2에 저장하고 calendar를 하나 빼준다,
-                        calendar.add(Calendar.DATE,-1);
-                        calendar2.add(Calendar.DATE,-1);
-                        String dayBefore = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                        String dayBefore2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
-                        if(calendar.compareTo(nCalendar)>0){
-                            Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
-                            Log.e("Report2", "" + dayBefore+"~"+dayBefore2);
-                            changeDay(dayBefore,dayBefore2);}
-
-
-                    }
-                }
-            });
-            frontButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (trigger>0) {//만약 datepick dialogue에 한번이라도 접근했을 경우
-                        sCalendar.add(Calendar.DATE,1);
-                        fCalendar.add(Calendar.DATE,1);
-                        String dayAfter = transFormat.format(sCalendar.getTime()).substring(0, 8) + " 00:00:00";
-                        String dayAfter2 = transFormat.format(fCalendar.getTime()).substring(0, 8) + " 00:00:00";
-                        mTextView.setText(transFormat.format(sCalendar.getTime()).substring(0,4)+"년 "+transFormat.format(sCalendar.getTime()).substring(4,6)+"월 "+transFormat.format(sCalendar.getTime()).substring(6,8)+"일 달성률");
-                        Log.e("Report3", "" + dayAfter+"~"+dayAfter2);
-                        changeDay(dayAfter,dayAfter2);
-                    }
-                    else{
-                        calendar.add(Calendar.DATE,1);
-                        calendar2.add(Calendar.DATE,1);
-                        String dayAfter = transFormat.format(calendar.getTime()).substring(0, 8) + " 00:00:00";
-                        String dayAfter2 = transFormat.format(calendar2.getTime()).substring(0, 8) + " 00:00:00";
-                        if(calendar.compareTo(nCalendar)>0){
-                            Toast.makeText(getApplicationContext(), "오늘 이후의 리포트는 열람할 수 없습니다.", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            mTextView.setText(transFormat.format(calendar.getTime()).substring(0,4)+"년 "+transFormat.format(calendar.getTime()).substring(4,6)+"월 "+transFormat.format(calendar.getTime()).substring(6,8)+"일 달성률");
-                            Log.e("Report4", "" + dayAfter+"~"+dayAfter2);
-                            changeDay(dayAfter,dayAfter2);}
-
-                    }
-                }
-            });
-
-            //다이얼로그 뷰, 리스너 선언
-            this.InitializeView();
-            this.InitializeListener();
         }
     }
 
