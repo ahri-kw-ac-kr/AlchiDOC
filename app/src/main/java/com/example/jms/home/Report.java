@@ -128,6 +128,7 @@ public class Report extends AppCompatActivity{
     @SuppressLint("CheckResult")
     ////startDay는 캘린더에서 고른 날짜, finishDay는 그 다음 날짜, 날짜 형식은 무조건 yyyymmdd HH:mm:ss 로 해주기.
     public void changeDay(String startDay, String finishDay){
+        user = new UserDataModel();
         apiViewModel.getRawdataById(RestfulAPI.principalUser.getId(), "0", startDay, finishDay)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -154,7 +155,6 @@ public class Report extends AppCompatActivity{
         ////////////////////////////////활동량///////////////////////////////
         //활동량 그래프
         act = (ArcProgress) findViewById(R.id.arc_progress2);
-        act.setProgress(user.getStatAct().getDayPercent());
 
         reportActSun = (TextView) findViewById(R.id.reportActSun);
         reportActMoon = (TextView) findViewById(R.id.reportActMoon);
@@ -178,11 +178,15 @@ public class Report extends AppCompatActivity{
         //활동량 코멘트
         int actSun = 0;
         int actMoon = 0;
-        for(int i=9; i<18; i++){ actSun += user.getStatAct().getDaySumHour()[i]; }
-        for(int i=18; i<21; i++){ actMoon += user.getStatAct().getDaySumHour()[i]; }
 
-        if(user.getTodayList() == null){   }//데이터 없음
+        if(user.getTodayList().size() == 0){  //데이터 없음
+
+
+        }
         else {//데이터 있음
+            act.setProgress(user.getStatAct().getDayPercent());
+            for(int i=9; i<18; i++){ actSun += user.getStatAct().getDaySumHour()[i]; }
+            for(int i=18; i<21; i++){ actMoon += user.getStatAct().getDaySumHour()[i]; }
             if (actSun >= 6000) {
                 ///주간 충분
                 reportActSun.setText(R.string.dayActComment1);
@@ -195,7 +199,7 @@ public class Report extends AppCompatActivity{
                 state3.setText(R.string.bad);
             }
         }
-        if(user.getTodayList()== null){    }//데이터 없음
+        if(user.getTodayList().size() == 0){    }//데이터 없음
         else {//데이터 있음
             if (actMoon <= 2000) {
                 ///야간 적정
@@ -213,17 +217,20 @@ public class Report extends AppCompatActivity{
         ////////////////////////////////조도량///////////////////////////////
 
         act = (ArcProgress) findViewById(R.id.arc_progress1);
-        act.setProgress(user.getStatLight().getDayPercent());
 
         int lightSun = 0;
         int lightMoon = 0;
 
-        //가중치 먹인거
-        for(int i=9; i<18; i++){ lightSun += user.getStatLight().getDaySumHourLuxWgt()[i]; }
-        for(int i=18; i<21; i++){ lightMoon += user.getStatLight().getDaySumHourLuxWgt()[i]; }
 
-        if(user.getTodayList()== null) {   }//데이터 없음
+        if(user.getTodayList().size() == 0) {  //데이터 없음
+
+
+        }
         else{
+            act.setProgress(user.getStatLight().getDayPercent());
+            //가중치 먹인거
+            for(int i=9; i<18; i++){ lightSun += user.getStatLight().getDaySumHourLuxWgt()[i]; }
+            for(int i=18; i<21; i++){ lightMoon += user.getStatLight().getDaySumHourLuxWgt()[i]; }
             if (lightSun >= 6000) {
                 ///주간 충분
                 reportLightSun.setText(R.string.dayLightComment1);
@@ -236,7 +243,7 @@ public class Report extends AppCompatActivity{
                 state5.setText(R.string.bad);
             }
         }
-        if(user.getTodayList()== null) {    }//데이터 없음
+        if(user.getTodayList().size() == 0) {    }//데이터 없음
         else {
             if (lightMoon <= 2000) {
                 ///야간 적정
@@ -258,10 +265,11 @@ public class Report extends AppCompatActivity{
         //sleep.setProgress(user.getStatSleep().getPercentDay());
         //Log.d("레포트",user.getSleepDTOList().get(0).getWakeTime().substring(0, 8));
 
+        //Log.d("레포트","수면디티오 길이: "+user.getSleepDTOList().size());
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
-            //reportSleep1.setText("\n");
-            //reportSleep2.setText("\n");
-            //sleep.setProgress(0);
+            reportSleep1.setText("\n");
+            reportSleep2.setText("\n");
+            sleep.setProgress(0);
         }
         else {/////측정데이터 존재
             sleep.setProgress(user.getStatSleep().getPercentDay());
