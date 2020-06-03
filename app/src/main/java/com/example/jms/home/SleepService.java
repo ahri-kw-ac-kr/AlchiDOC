@@ -1,5 +1,6 @@
 package com.example.jms.home;
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,10 +9,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
 
 import androidx.core.app.NotificationCompat;
 
 import com.example.jms.R;
+
+import static java.security.AccessController.getContext;
 
 public class SleepService extends Service {
 
@@ -53,7 +57,9 @@ public class SleepService extends Service {
     private void startForegroundService() {
         // 노피티케이션컴팻 빌더 선언
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        //builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.drawable.noti_icon);
+        //builder.setColor(0xff123456);
 
         // 상황에 따라 바꿔야 됨
         builder.setContentTitle("수면기록 측정 중");
