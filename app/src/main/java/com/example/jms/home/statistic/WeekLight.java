@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.jms.R;
+import com.example.jms.connection.model.RestfulAPI;
 import com.example.jms.home.UserDataModel;
 
 import org.eazegraph.lib.charts.BarChart;
@@ -35,6 +36,7 @@ public class WeekLight extends Fragment {
     TextView weekLightPlan1, weekLightPlan2;
     ImageView face1, face2;
     TextView state1,state2;
+    String titleW;
 
     //constructor
     public WeekLight(){}
@@ -59,7 +61,8 @@ public class WeekLight extends Fragment {
 
         //000님의 0월 0주차
         titleWeek = view.findViewById(R.id.weekLightDate);
-        String titleW = user.getDataList().get(0).getUser().getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차";
+        if(pos == 0){ titleW = RestfulAPI.principalUser.getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
+        else{ titleW = RestfulAPI.principalUser.getFriend().get(pos-1).getFullname() + "님의 " + curr.substring(4, 6) + "월 " + thisWeek + "주차"; }
         titleWeek.setText(titleW);
 
         //조도량 구하는
