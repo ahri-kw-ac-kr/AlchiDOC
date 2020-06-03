@@ -243,6 +243,10 @@ public class Report extends AppCompatActivity{
         if(user.getTodayList().size() == 0){  //데이터 없음
             reportActSun.setText(R.string.noData);
             reportActMoon.setText(R.string.noData);
+            face3.setImageResource(R.drawable.blank);
+            face4.setImageResource(R.drawable.blank);
+            state3.setText("\n");
+            state4.setText("\n");
             act.setProgress(0);
         }
         else {//데이터 있음
@@ -289,6 +293,10 @@ public class Report extends AppCompatActivity{
         if(user.getTodayList().size() == 0) {  //데이터 없음
             reportLightSun.setText(R.string.noData);
             reportLightMoon.setText(R.string.noData);
+            face5.setImageResource(R.drawable.blank);
+            face6.setImageResource(R.drawable.blank);
+            state5.setText("\n");
+            state6.setText("\n");
             light.setProgress(0);
         }
         else{
@@ -336,6 +344,10 @@ public class Report extends AppCompatActivity{
         if(user.getSleepDTOList().size() == 0){////측정데이터 없음
             reportSleep1.setText(R.string.noData);
             reportSleep2.setText(R.string.noData);
+            face1.setImageResource(R.drawable.blank);
+            face2.setImageResource(R.drawable.blank);
+            state1.setText("\n");
+            state2.setText("\n");
             sleep.setProgress(0);
         }
         else {/////측정데이터 존재
