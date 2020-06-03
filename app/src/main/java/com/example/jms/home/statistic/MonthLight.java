@@ -2,6 +2,7 @@ package com.example.jms.home.statistic;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,9 @@ public class MonthLight extends Fragment {
         //야간 색온도도
         AvgNightTemp = view.findViewById(R.id.monthK);
         AvgNightTemp.setText(user.getStatLight().getMonthMoonTempAvg()+"");
+        Log.e("MonthLT",user.getStatLight().getMonthSunAvg()+"");
+        Log.e("MonthLT",user.getStatLight().getMonthMoonLuxAvg()+"");
+        Log.e("MonthLT",user.getStatLight().getMonthMoonTempAvg()+"");
 
         //그래프
        int[] colorArray = new int[] {Color.parseColor("#d84315"), Color.parseColor("#fb8c00"), Color.parseColor("#ffd54f")};
@@ -150,12 +154,16 @@ public class MonthLight extends Fragment {
                 moonLux += user.getStatLight().getMonthSumMoonLux()[i];
                 moonTemp += user.getStatLight().getMonthSumMoonTemp()[i];
             }
+            Log.e("MonthL",moonTemp+"");
+            Log.e("MonthL",moonLux+"");
+            Log.e("MonthL",sun+"");
             //주간코멘트
             if (sun >= 60000) {
                 //충분
                 monthLightPlan1.setText(R.string.monthLightComment1);
                 face1.setImageResource(R.drawable.ic_sentiment_satisfied_black_24dp);
                 state1.setText(R.string.good);
+
             } else {
                 //부족
                 monthLightPlan1.setText(R.string.monthLightComment2);
