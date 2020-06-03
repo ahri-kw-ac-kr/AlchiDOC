@@ -92,7 +92,7 @@ public class MonthLight extends Fragment {
         AvgNightTemp.setText(user.getStatLight().getMonthMoonTempAvg()+"");
 
         //그래프
-       int[] colorArray = new int[] {Color.parseColor("#F8683C"), Color.parseColor("#F99678"), Color.parseColor("#FFB59F")};
+       int[] colorArray = new int[] {Color.parseColor("#d84315"), Color.parseColor("#fb8c00"), Color.parseColor("#ffd54f")};
 
         ArrayList NoOfEmp = new ArrayList();
 
